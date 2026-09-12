@@ -32,5 +32,7 @@ window.ENGLISH_101_DOCUMENTS = [
   { id: "paraphrase", category: "Verb", title: "80+ Cụm Chữa Yếu Paraphrase", description: "Flashcards giúp tăng vốn diễn đạt và cải thiện kỹ năng paraphrase.", type: "HTML", path: "Verb/paraphrase.html" },
   { id: "phrasal-verbs", category: "Verb", title: "66 Phrasal Verbs Cực Mạnh", description: "Học cụm động từ thiết yếu qua flashcards tương tác.", type: "HTML", path: "Verb/phrasal-verbs.html", featured: true },
 
+  { id: "deep-reading", category: "Guide", title: "Giao trình Deep Reading", description: "Bài đọc sâu giúp tăng khả năng hiểu và phân tích văn bản học thuật / nâng cao.", type: "PDF", path: "Guide/Giao-trinh-Deep-Reading.pdf", featured: true, downloadable: true },
+  { id: "english-grammar-notes", category: "Guide", title: "English Grammar Notes", description: "Ghi chú ngữ pháp trọng tâm để ôn tập nhanh và tra cứu dễ dàng.", type: "PDF", path: "Guide/English-Grammar-Notes.pdf", downloadable: true },
   { id: "english-learning-101", category: "Guide", title: "English Learning 101", description: "Tài liệu hướng dẫn tổng quan lộ trình học tiếng Anh hiệu quả.", type: "PDF", path: "Guide/English-Learning-101.pdf", featured: true, downloadable: true }
 ];
