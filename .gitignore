@@ -1,0 +1,23 @@
+# Operating system
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Local tooling and temporary files
+node_modules/
+.cache/
+dist/
+*.log
+*.tmp
+~$*.docx
+
+# Python local server/tooling
+__pycache__/
+*.py[cod]
+.venv/
