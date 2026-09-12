@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>80+ Cụm Chữa Yếu Paraphrase — Flashcards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1b2a52;
+    --navy-deep:#0f1a36;
+    --red:#b3261e;
+    --accent:#3a6df0;
+    --paper:#f5f3ee;
+    --card:#ffffff;
+    --ink:#1c1f2a;
+    --muted:#6b7185;
+    --line:#e3e0d6;
+    --good:#2f8f5b;
+    --bad:#c0463d;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Iowan Old Style','Georgia',serif;
+    background:var(--paper);
+    color:var(--ink);
+    min-height:100vh;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:28px 18px 60px;}
+  header{margin-bottom:20px;}
+  h1{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-weight:800;
+    letter-spacing:-0.02em;
+    font-size:clamp(22px,5.5vw,32px);
+    color:var(--navy-deep);
+    margin:0 0 4px;
+  }
+  h1 .num{color:var(--red);}
+  .sub{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    color:var(--muted);
+    font-size:14px;
+    margin-bottom:18px;
+  }
+  .rangebar{
+    display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;
+    font-family:'Helvetica Neue',Arial,sans-serif;
+  }
+  .range-btn{
+    border:1px solid var(--line);
+    background:var(--card);
+    color:var(--navy-deep);
+    padding:7px 13px;
+    border-radius:20px;
+    font-size:13px;
+    cursor:pointer;
+    transition:all .15s ease;
+  }
+  .range-btn.active{
+    background:var(--navy-deep);
+    color:#fff;
+    border-color:var(--navy-deep);
+  }
+  .range-btn:hover:not(.active){border-color:var(--navy-deep);}
+
+  .stats{
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:13px;color:var(--muted);margin-bottom:10px;
+  }
+  .progress-bar{
+    height:4px;background:var(--line);border-radius:2px;overflow:hidden;margin-bottom:22px;
+  }
+  .progress-fill{height:100%;background:var(--red);transition:width .25s ease;}
+
+  .card-stage{
+    perspective:1400px;
+    margin-bottom:20px;
+  }
+  .card{
+    position:relative;
+    width:100%;
+    min-height:300px;
+    transform-style:preserve-3d;
+    transition:transform .5s cubic-bezier(.4,.2,.2,1);
+    cursor:pointer;
+  }
+  .card.flipped{transform:rotateY(180deg);}
+  .face{
+    position:absolute;inset:0;
+    backface-visibility:hidden;
+    border-radius:16px;
+    border:1px solid var(--line);
+    background:var(--card);
+    box-shadow:0 6px 24px rgba(15,26,54,0.08);
+    padding:32px 30px;
+    display:flex;flex-direction:column;
+    justify-content:center;
+  }
+  .face.back{transform:rotateY(180deg);background:var(--navy-deep);color:#f5f3ee;border-color:var(--navy-deep);}
+  .stt{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:12px;letter-spacing:.08em;
+    color:#fff;background:var(--red);
+    display:inline-block;padding:3px 10px;border-radius:20px;
+    margin-bottom:16px;font-weight:700;width:fit-content;
+  }
+  .term{
+    font-size:clamp(26px,5.5vw,36px);
+    font-weight:700;color:var(--navy-deep);line-height:1.15;
+  }
+  .hint{
+    margin-top:14px;font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:12.5px;color:var(--muted);
+  }
+  .meaning{
+    font-size:clamp(19px,4.4vw,24px);
+    font-weight:700;margin-bottom:16px;color:#fff;
+  }
+  .replace-label{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+    color:#9db4f5;margin-bottom:8px;font-weight:700;
+  }
+  .replace-list{
+    list-style:none;padding:0;margin:3px 0 4px;
+    display:flex;flex-wrap:wrap;gap:10px;
+  }
+  .replace-list li{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:clamp(18px,4vw,23px);line-height:1.25;color:#13254b;
+    font-weight:800;letter-spacing:-.01em;
+    position:relative;padding:10px 14px;
+    background:#f7d77e;border:1px solid #ffe5a5;border-radius:11px;
+    box-shadow:0 4px 12px rgba(0,0,0,.14);
+  }
+  .replace-list li:nth-child(even){background:#dfe8ff;border-color:#b9cafa;color:#173b87;}
+  .replace-list li::before{
+    content:none;
+  }
+
+  .controls{
+    display:flex;gap:10px;justify-content:center;align-items:center;
+    font-family:'Helvetica Neue',Arial,sans-serif;
+  }
+  .btn{
+    border:none;border-radius:10px;padding:12px 18px;font-size:14px;
+    cursor:pointer;font-weight:600;
+    background:var(--card);border:1px solid var(--line);color:var(--navy-deep);
+  }
+  .btn:hover{border-color:var(--navy-deep);}
+  .btn.primary{background:var(--navy-deep);color:#fff;border-color:var(--navy-deep);}
+  .btn.primary:hover{background:var(--navy);}
+
+  .know-row{
+    display:flex;gap:10px;justify-content:center;margin-top:16px;
+  }
+  .know-btn{
+    flex:1;max-width:220px;padding:13px;border-radius:10px;border:none;
+    font-family:'Helvetica Neue',Arial,sans-serif;font-weight:700;font-size:14px;cursor:pointer;
+  }
+  .know-btn.no{background:#fbe9e7;color:var(--bad);}
+  .know-btn.yes{background:#e5f4ec;color:var(--good);}
+  .know-btn:hover{filter:brightness(0.95);}
+
+  footer{
+    text-align:center;margin-top:28px;font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:12px;color:var(--muted);
+  }
+  .shuffle-note{
+    text-align:center;font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:12px;color:var(--muted);margin-top:10px;
+  }
+  @media (max-width:480px){
+    .face{padding:24px 20px;}
+  }
+
+  /* ===== CHÍNH TẢ ===== */
+  .mode-tabs{
+    display:flex;gap:8px;margin:0 0 18px;
+    font-family:'Helvetica Neue',Arial,sans-serif;
+  }
+  .mode-tab{
+    flex:1;border:1px solid var(--line);background:var(--card);
+    color:var(--navy-deep);padding:10px 14px;border-radius:10px;
+    cursor:pointer;font-weight:700;font-size:13px;
+  }
+  .mode-tab.active{background:var(--navy-deep);color:#fff;border-color:var(--navy-deep);}
+  .mode-panel{display:none;}
+  .mode-panel.active{display:block;}
+  .dictation{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    box-shadow:0 6px 24px rgba(15,26,54,0.08);padding:24px;
+    font-family:'Helvetica Neue',Arial,sans-serif;
+  }
+  .dictation h2{margin:0 0 5px;color:var(--navy-deep);font-size:22px;}
+  .dictation-sub{color:var(--muted);font-size:13px;margin-bottom:18px;line-height:1.5;}
+  .dict-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+  .dict-field label{display:block;font-size:11px;font-weight:700;color:var(--muted);margin:0 0 5px;text-transform:uppercase;letter-spacing:.06em;}
+  .dict-field select,.dict-answer{
+    width:100%;border:1px solid var(--line);background:#fff;color:var(--ink);
+    padding:11px 12px;border-radius:9px;font-size:14px;outline:none;
+  }
+  .dict-answer:focus{border-color:var(--navy-deep);box-shadow:0 0 0 2px rgba(22,50,79,.08);}
+  .dict-progress{height:5px;background:var(--line);border-radius:4px;overflow:hidden;margin:10px 0 22px;}
+  .dict-progress-fill{height:100%;background:var(--gold, var(--red));transition:width .2s ease;}
+  .dict-meta{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;margin-bottom:6px;}
+  .dict-prompt{
+    font-family:'Iowan Old Style','Georgia',serif;font-size:clamp(24px,5vw,34px);
+    font-weight:700;color:var(--navy-deep);line-height:1.25;margin:10px 0 7px;
+  }
+  .dict-hint{font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.45;}
+  .dict-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:10px;}
+  .dict-feedback{display:none;margin-top:14px;padding:12px 14px;border-radius:9px;line-height:1.45;font-size:14px;}
+  .dict-feedback.good{display:block;background:#e5f4ec;color:#226c46;}
+  .dict-feedback.bad{display:block;background:#fbe9e7;color:#9a342e;}
+  .answer-reps{font-size:1.08em;font-weight:800;color:#173b87;}
+  .dict-end{display:none;text-align:center;padding:18px 4px 4px;}
+  .dict-end-score{font-size:34px;font-weight:800;color:var(--navy-deep);margin-bottom:5px;}
+  .dict-note{font-size:12px;color:var(--muted);margin-top:10px;}
+  @media(max-width:560px){.dict-grid{grid-template-columns:1fr}.dictation{padding:18px}}
+
+  /* Phông thống nhất, hỗ trợ dấu tiếng Việt ổn định trên Windows/Android. */
+  body,button,input,select,.sub,.rangebar,.stats,.stt,.hint,.replace-label,
+  .replace-list li,.controls,.know-btn,footer,.shuffle-note,.mode-tabs,.dictation{
+    font-family:'IBM Plex Sans','Segoe UI',Arial,sans-serif;
+  }
+  .term,.meaning,.dict-prompt{font-family:'Fraunces','Noto Serif',Georgia,serif;}
+  .dict-answer[readonly]{background:#f2f4f6;color:var(--ink);cursor:default;}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1><span class="num">80+</span> CỤM CHỮA YẾU PARAPHRASE</h1>
+    <div class="sub">80 từ cơ bản · Từ thay thế nâng cao · Flashcard lật để ôn tập</div>
+  </header>
+  <div class="mode-tabs">
+    <button class="mode-tab active" data-mode="flashcards">FLASHCARDS</button>
+    <button class="mode-tab" data-mode="dictation">CHÍNH TẢ</button>
+  </div>
+  <div id="flashcardsPanel" class="mode-panel active">
+
+
+  <div class="rangebar" id="rangeBar"></div>
+
+  <div class="stats">
+    <span id="counter">1 / 80</span>
+    <span id="scoreDisplay">Đã thuộc: 0</span>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+  <div class="card-stage">
+    <div class="card" id="card">
+      <div class="face front">
+        <div class="stt" id="sttFront">#1</div>
+        <div class="term" id="termFront">—</div>
+        <div class="hint">Chạm vào thẻ để xem từ thay thế</div>
+      </div>
+      <div class="face back">
+        <div class="stt" id="sttBack" style="background:#3a6df0;">#1</div>
+        <div class="meaning" id="meaningBack">—</div>
+        <div class="replace-label">Từ thay thế nâng cao</div>
+        <ul class="replace-list" id="replaceBack"></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="know-row">
+    <button class="know-btn no" id="btnNo">Chưa thuộc</button>
+    <button class="know-btn yes" id="btnYes">Đã thuộc ✓</button>
+  </div>
+
+  <div class="controls" style="margin-top:18px;">
+    <button class="btn" id="btnPrev">← Trước</button>
+    <button class="btn" id="btnShuffle">🔀 Xáo trộn</button>
+    <button class="btn primary" id="btnNext">Tiếp →</button>
+  </div>
+  <div class="shuffle-note">Enter lần 1: xem từ thay thế · Enter lần 2: thẻ tiếp theo · Space: lật thẻ · ← →: chuyển thẻ</div>
+
+  <footer>The Real IELTS · 80+ Cụm chữa yếu Paraphrase</footer>
+  </div>
+  <div id="dictationPanel" class="mode-panel">
+    <div class="dictation">
+      <div id="dictSetup">
+        <h2>Chính tả</h2>
+        <div class="dictation-sub">Luyện thay từ cơ bản bằng cách diễn đạt nâng cao, hoặc đảo chiều để nhớ từ gốc.</div>
+        <div class="dict-grid">
+          <div class="dict-field">
+            <label>Phạm vi</label>
+            <select id="dictRange"></select>
+          </div>
+          <div class="dict-field">
+            <label>Hướng luyện</label>
+            <select id="dictDirection"><option value="vi-term">Tiếng Việt → Cụm tiếng Anh cơ bản</option>
+              <option value="vi-rep">Tiếng Việt → Paraphrase nâng cao</option>
+              <option value="term-rep">Từ cơ bản → Paraphrase nâng cao</option>
+              <option value="rep-term">Paraphrase nâng cao → Từ cơ bản</option></select>
+          </div>
+          <div class="dict-field">
+            <label>Số câu</label>
+            <select id="dictCount">
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="30">30</option>
+              <option value="9999">Tất cả</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn primary" id="dictStart">Bắt đầu chính tả</button>
+        <div class="dict-note">Ở chiều Việt → Paraphrase, chỉ cần nhập đúng một phương án nâng cao. Enter lần 1 để xem đáp án; Enter lần 2 để chuyển câu.</div>
+      </div>
+
+      <div id="dictPlay" style="display:none;">
+        <div class="dict-meta"><span id="dictCounter">Câu 1</span><span id="dictScore">Đúng: 0</span></div>
+        <div class="dict-progress"><div class="dict-progress-fill" id="dictProgress"></div></div>
+        <div class="dict-prompt" id="dictPrompt">—</div>
+        <div class="dict-hint" id="dictHint"></div>
+        <input class="dict-answer" id="dictAnswer" autocomplete="off" spellcheck="false" placeholder="Nhập đáp án...">
+        <div class="dict-actions">
+          <button class="btn primary" id="dictCheck">Kiểm tra (Enter)</button>
+          <button class="btn" id="dictListen">🔊 Nghe</button>
+          <button class="btn" id="dictNext" style="display:none;">Tiếp →</button>
+        </div>
+        <div class="dict-feedback" id="dictFeedback"></div>
+      </div>
+
+      <div class="dict-end" id="dictEnd">
+        <div class="dict-end-score" id="dictFinalScore">0 / 0</div>
+        <div id="dictFinalText"></div>
+        <div class="dict-actions" style="justify-content:center;margin-top:16px;">
+          <button class="btn primary" id="dictAgain">Làm lại</button>
+          <button class="btn" id="dictRetryWrong">Luyện từ sai</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const DATA = [
+  {stt:1, term:"I think", meaning:"Tôi cho rằng; Theo quan điểm của tôi; Tôi hoàn toàn tin rằng", rep:["From my perspective","I firmly believe that"]},
+  {stt:2, term:"People think", meaning:"Người ta tin rằng; Mọi người thường cho rằng", rep:["It is widely believed that","It is commonly assumed that"]},
+  {stt:3, term:"I agree", meaning:"Tôi đồng ý với quan điểm rằng…", rep:["I am in agreement with the view that"]},
+  {stt:4, term:"I disagree", meaning:"Tôi không đồng tình; Tôi không bị thuyết phục rằng…", rep:["I am not convinced that","I remain unconvinced that"]},
+  {stt:5, term:"For example", meaning:"Ví dụ; Điều này có thể được minh họa bằng…", rep:["This is exemplified by","This can be illustrated by"]},
+  {stt:6, term:"Because", meaning:"Bởi vì; Do thực tế rằng…", rep:["Due to the fact that","Owing to the fact that"]},
+  {stt:7, term:"Overall", meaning:"Nhìn chung; Xét trên mọi khía cạnh", rep:["All things considered","Taking everything into account"]},
+  {stt:8, term:"But", meaning:"Tuy nhiên; Dẫu vậy; Mặt khác", rep:["However","Nevertheless","On the other hand"]},
+  {stt:9, term:"So", meaning:"Vì vậy; Do đó; Vì thế", rep:["Therefore / Thus / Hence"]},
+  {stt:10, term:"Good", meaning:"Tốt; Có lợi; Mang lại lợi ích", rep:["Beneficial","Advantageous","Favorable"]},
+  {stt:11, term:"Bad", meaning:"Xấu; Có hại; Gây ảnh hưởng tiêu cực", rep:["Detrimental","Harmful","Adverse"]},
+  {stt:12, term:"Important", meaning:"Quan trọng; Thiết yếu; Có ý nghĩa rất lớn", rep:["Significant","Crucial","Of great importance"]},
+  {stt:13, term:"Big", meaning:"Lớn; Đáng kể; Rất lớn", rep:["Substantial","Considerable","Tremendous"]},
+  {stt:14, term:"Small", meaning:"Nhỏ; Không đáng kể; Rất ít", rep:["Minor","Insignificant","Negligible"]},
+  {stt:15, term:"Many", meaning:"Nhiều; Một số lượng lớn; Một tỷ lệ đáng kể", rep:["A large number of","A considerable proportion of"]},
+  {stt:16, term:"A lot of", meaning:"Rất nhiều; Dồi dào; Một lượng lớn", rep:["Numerous","A great deal of","An abundance of"]},
+  {stt:17, term:"Nowadays", meaning:"Ngày nay; Trong xã hội hiện đại", rep:["In contemporary society","In today's world"]},
+  {stt:18, term:"Always", meaning:"Luôn luôn; Một cách thường xuyên; Một cách nhất quán", rep:["On a regular basis","Consistently / Invariably"]},
+  {stt:19, term:"Sometimes", meaning:"Đôi khi; Trong một số trường hợp; Thỉnh thoảng", rep:["On certain occasions","At times / Periodically"]},
+  {stt:20, term:"In conclusion", meaning:"Kết luận lại; Tóm lại; Để tổng kết", rep:["To conclude","In summary","To recapitulate"]},
+  {stt:21, term:"Fix", meaning:"Sửa chữa; Giải quyết; Khắc phục vấn đề", rep:["Resolve","Rectify","Remedy"]},
+  {stt:22, term:"Cheap", meaning:"Rẻ; Có giá phải chăng; Tiết kiệm chi phí", rep:["Affordable","Inexpensive","Cost-effective"]},
+  {stt:23, term:"Expensive", meaning:"Đắt; Tốn kém; Có giá rất cao", rep:["Costly","Pricey","Exorbitant"]},
+  {stt:24, term:"Easy", meaning:"Dễ; Đơn giản; Không đòi hỏi nhiều công sức", rep:["Straightforward","Effortless","Undemanding"]},
+  {stt:25, term:"Hard", meaning:"Khó; Mang tính thử thách; Gian nan", rep:["Challenging","Demanding","Arduous"]},
+  {stt:26, term:"Really", meaning:"Thực sự; Cực kỳ; Đặc biệt", rep:["Extremely","Highly","Exceptionally"]},
+  {stt:27, term:"Very", meaning:"Rất; Đáng kể; Ở mức độ cao", rep:["Remarkably","Considerably","Substantially"]},
+  {stt:28, term:"More and more", meaning:"Ngày càng nhiều; Có xu hướng gia tăng", rep:["An increasing number of","A growing proportion of"]},
+  {stt:29, term:"Less and less", meaning:"Ngày càng ít; Có xu hướng giảm dần", rep:["A declining number of","A diminishing proportion of"]},
+  {stt:30, term:"Better", meaning:"Tốt hơn; Hiệu quả hơn; Có lợi hơn", rep:["Superior","More effective","More beneficial"]},
+  {stt:31, term:"Worse", meaning:"Tệ hơn; Kém hơn; Gây hại hơn", rep:["Inferior","More harmful","More detrimental"]},
+  {stt:32, term:"Enough", meaning:"Đủ; Đầy đủ; Dồi dào", rep:["Sufficient","Adequate","Ample"]},
+  {stt:33, term:"Not enough", meaning:"Không đủ; Thiếu; Chưa đáp ứng yêu cầu", rep:["Insufficient","Inadequate","Lacking"]},
+  {stt:34, term:"Change", meaning:"Thay đổi; Biến đổi; Điều chỉnh", rep:["Alter","Transform","Modify"]},
+  {stt:35, term:"Keep", meaning:"Giữ; Duy trì; Bảo tồn", rep:["Maintain","Preserve","Retain"]},
+  {stt:36, term:"Like", meaning:"Như; Chẳng hạn như; Cụ thể là", rep:["Such as","Namely","For instance"]},
+  {stt:37, term:"Help", meaning:"Giúp; Hỗ trợ; Tạo điều kiện", rep:["Assist","Facilitate","Aid"]},
+  {stt:38, term:"Get", meaning:"Có được; Đạt được; Thu được", rep:["Obtain","Acquire","Attain"]},
+  {stt:39, term:"Give", meaning:"Cung cấp; Đem lại; Trao cho", rep:["Provide","Offer","Grant"]},
+  {stt:40, term:"Make", meaning:"Tạo ra; Hình thành; Sản sinh", rep:["Create","Generate","Produce"]},
+  {stt:41, term:"Show", meaning:"Thể hiện; Chứng minh; Minh họa", rep:["Demonstrate","Illustrate / Depict"]},
+  {stt:42, term:"Need", meaning:"Cần; Đòi hỏi; Là điều cần thiết", rep:["Require; Necessitate","Be essential to"]},
+  {stt:43, term:"Think about", meaning:"Cân nhắc; Suy xét; Tính đến", rep:["Consider; Reflect on","Take into account"]},
+  {stt:44, term:"Use", meaning:"Sử dụng; Áp dụng; Vận dụng", rep:["Utilize; Employ","Apply"]},
+  {stt:45, term:"Start", meaning:"Bắt đầu; Khởi đầu; Tiến hành", rep:["Commence; Initiate","Embark on"]},
+  {stt:46, term:"Increase", meaning:"Tăng; Gia tăng", rep:["Rise; Grow","Escalate"]},
+  {stt:47, term:"Decrease", meaning:"Giảm; Suy giảm", rep:["Decline; Diminish","Reduce"]},
+  {stt:48, term:"Cause", meaning:"Gây ra; Dẫn đến", rep:["Lead to; Result in","Give rise to"]},
+  {stt:49, term:"Result", meaning:"Kết quả; Hệ quả", rep:["Outcome","Consequence","Repercussion"]},
+  {stt:50, term:"Improve", meaning:"Cải thiện; Nâng cao", rep:["Enhance; Boost","Strengthen"]},
+  {stt:51, term:"Reduce", meaning:"Giảm bớt; Hạn chế", rep:["Minimize; Lessen","Curtail"]},
+  {stt:52, term:"Solve", meaning:"Giải quyết; Xử lý", rep:["Address; Tackle","Overcome"]},
+  {stt:53, term:"Problem", meaning:"Vấn đề; Thách thức", rep:["Issue; Challenge","Obstacle"]},
+  {stt:54, term:"Advantage", meaning:"Lợi thế; Lợi ích", rep:["Benefit; Merit; Upside"]},
+  {stt:55, term:"Disadvantage", meaning:"Nhược điểm; Hạn chế", rep:["Drawback","Downside","Limitation"]},
+  {stt:56, term:"Improve skills", meaning:"Phát triển; Nâng cao kỹ năng", rep:["Develop; Enhance","Refine"]},
+  {stt:57, term:"Important role", meaning:"Đóng vai trò quan trọng", rep:["Play a vital role","Be instrumental in"]},
+  {stt:58, term:"Think", meaning:"Cho rằng", rep:["Hold the opinion that","Be of the opinion that"]},
+  {stt:59, term:"Say", meaning:"Nói; Khẳng định", rep:["State","Assert","Claim"]},
+  {stt:60, term:"Believe", meaning:"Tin rằng; Cho rằng", rep:["Maintain","Contend","Argue"]},
+  {stt:61, term:"Know", meaning:"Biết; Nhận thức rằng", rep:["Be aware that","Recognize that"]},
+  {stt:62, term:"Understand", meaning:"Hiểu", rep:["Comprehend","Grasp"]},
+  {stt:63, term:"Want", meaning:"Mong muốn", rep:["Desire; Aspire to","Seek to"]},
+  {stt:64, term:"Choose", meaning:"Lựa chọn", rep:["Opt for","Select"]},
+  {stt:65, term:"Buy", meaning:"Mua", rep:["Purchase; Acquire"]},
+  {stt:66, term:"Sell", meaning:"Bán", rep:["Market; Trade"]},
+  {stt:67, term:"Build", meaning:"Xây dựng", rep:["Construct","Establish"]},
+  {stt:68, term:"Destroy", meaning:"Phá hủy", rep:["Damage; Devastate","Demolish"]},
+  {stt:69, term:"Protect", meaning:"Bảo vệ", rep:["Safeguard","Preserve","Shield"]},
+  {stt:70, term:"Affect", meaning:"Ảnh hưởng", rep:["Influence","Impact","Shape"]},
+  {stt:71, term:"Develop", meaning:"Phát triển", rep:["Evolve","Progress","Advance"]},
+  {stt:72, term:"Happen", meaning:"Xảy ra", rep:["Occur","Take place"]},
+  {stt:73, term:"Improve quality", meaning:"Nâng cao chất lượng", rep:["Enhance the quality of","Elevate"]},
+  {stt:74, term:"Increase awareness", meaning:"Nâng cao nhận thức", rep:["Raise awareness","Promote awareness"]},
+  {stt:75, term:"Support", meaning:"Ủng hộ", rep:["Advocate","Endorse / Back"]},
+  {stt:76, term:"Oppose", meaning:"Phản đối", rep:["Object to","Resist","Be against"]},
+  {stt:77, term:"Difficult", meaning:"Khó khăn; Phức tạp", rep:["Problematic","Complex","Complicated"]},
+  {stt:78, term:"Possible", meaning:"Khả thi; Có thể thực hiện", rep:["Feasible","Viable","Achievable"]},
+  {stt:79, term:"Necessary", meaning:"Cần thiết", rep:["Essential","Indispensable","Imperative"]},
+  {stt:80, term:"In my opinion", meaning:"Theo quan điểm của tôi", rep:["As far as I am concerned","From my standpoint"]},
+];
+
+const RANGES = [
+  {label:"Tất cả", from:1, to:80},
+  {label:"1–20", from:1, to:20},
+  {label:"21–40", from:21, to:40},
+  {label:"41–60", from:41, to:60},
+  {label:"61–80", from:61, to:80},
+];
+let activeRange = RANGES[0];
+let deck = [...DATA.keys()];
+let idx = 0;
+let flipped = false;
+let known = new Set();
+
+const rangeBar = document.getElementById('rangeBar');
+const card = document.getElementById('card');
+const sttFront = document.getElementById('sttFront');
+const termFront = document.getElementById('termFront');
+const sttBack = document.getElementById('sttBack');
+const meaningBack = document.getElementById('meaningBack');
+const replaceBack = document.getElementById('replaceBack');
+const counter = document.getElementById('counter');
+const scoreDisplay = document.getElementById('scoreDisplay');
+const progressFill = document.getElementById('progressFill');
+
+function buildRangeBar(){
+  rangeBar.innerHTML = '';
+  RANGES.forEach(r=>{
+    const b = document.createElement('button');
+    b.className = 'range-btn' + (r===activeRange ? ' active' : '');
+    b.textContent = r.label;
+    b.onclick = ()=>{ activeRange = r; rebuildDeck(); };
+    rangeBar.appendChild(b);
+  });
+}
+
+function rebuildDeck(){
+  deck = DATA.map((d,i)=>i).filter(i => DATA[i].stt >= activeRange.from && DATA[i].stt <= activeRange.to);
+  idx = 0;
+  flipped = false;
+  card.classList.remove('flipped');
+  buildRangeBar();
+  render();
+}
+
+function render(){
+  if(deck.length === 0){
+    termFront.textContent = "Hết thẻ";
+    meaningBack.textContent = "";
+    replaceBack.innerHTML = "";
+    counter.textContent = "0 / 0";
+    return;
+  }
+  const item = DATA[deck[idx]];
+  sttFront.textContent = '#' + item.stt;
+  termFront.textContent = item.term;
+  sttBack.textContent = '#' + item.stt;
+  meaningBack.textContent = item.meaning;
+  replaceBack.innerHTML = repChoices(item).map(r=>`<li>${esc(r)}</li>`).join('');
+  counter.textContent = `${idx+1} / ${deck.length}`;
+  scoreDisplay.textContent = `Đã thuộc: ${known.size} / ${DATA.length}`;
+  progressFill.style.width = `${(known.size/DATA.length)*100}%`;
+}
+
+function flip(){
+  flipped = !flipped;
+  card.classList.toggle('flipped', flipped);
+}
+
+function next(){
+  flipped = false;
+  card.classList.remove('flipped');
+  idx = (idx+1) % deck.length;
+  render();
+}
+function prev(){
+  flipped = false;
+  card.classList.remove('flipped');
+  idx = (idx-1+deck.length) % deck.length;
+  render();
+}
+function shuffle(){
+  for(let i=deck.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [deck[i],deck[j]] = [deck[j],deck[i]];
+  }
+  idx = 0;
+  flipped = false;
+  card.classList.remove('flipped');
+  render();
+}
+
+card.addEventListener('click', flip);
+document.getElementById('btnNext').addEventListener('click', next);
+document.getElementById('btnPrev').addEventListener('click', prev);
+document.getElementById('btnShuffle').addEventListener('click', shuffle);
+document.getElementById('btnYes').addEventListener('click', ()=>{
+  known.add(deck[idx]);
+  render();
+  next();
+});
+document.getElementById('btnNo').addEventListener('click', ()=>{
+  known.delete(deck[idx]);
+  render();
+  next();
+});
+
+document.addEventListener('keydown', (e)=>{
+  if(['INPUT','SELECT','TEXTAREA'].includes(document.activeElement?.tagName)) return;
+  if(e.code === 'Space'){ e.preventDefault(); flip(); }
+  if(e.code === 'Enter'){ e.preventDefault(); flipped ? next() : flip(); }
+  if(e.code === 'ArrowRight'){ next(); }
+  if(e.code === 'ArrowLeft'){ prev(); }
+});
+
+
+// ===== MODE TABS + CHÍNH TẢ =====
+const modeTabs = [...document.querySelectorAll('.mode-tab')];
+modeTabs.forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    modeTabs.forEach(x=>x.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('flashcardsPanel').classList.toggle('active', btn.dataset.mode==='flashcards');
+    document.getElementById('dictationPanel').classList.toggle('active', btn.dataset.mode==='dictation');
+  });
+});
+
+const dictRange = document.getElementById('dictRange');
+RANGES.forEach((r,i)=>{
+  const o=document.createElement('option');
+  o.value=i; o.textContent=r.label; dictRange.appendChild(o);
+});
+
+let dDeck=[], dIdx=0, dCorrect=0, dWrong=[], dAnswered=false, dPromptRep='';
+
+function dShuffle(a){
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+function dNorm(s){
+  return String(s||'').toLowerCase().trim()
+    .replace(/\s*\/\s*/g,';')
+    .replace(/\s*;\s*/g,';')
+    .replace(/[“”"'.!?(),[\]{}:–—]/g,' ')
+    .replace(/\s+/g,' ');
+}
+function repChoices(item){
+  return item.rep.flatMap(r=>r.split(';')).flatMap(r=>r.split('/')).map(s=>s.trim()).filter(Boolean);
+}
+function dictStart(custom=null){
+  const r=RANGES[Number(dictRange.value)||0];
+  let pool = custom || DATA.filter(x=>x.stt>=r.from && x.stt<=r.to);
+  const n=Math.min(parseInt(document.getElementById('dictCount').value,10),pool.length);
+  dDeck=dShuffle([...pool]).slice(0,n);
+  dIdx=0; dCorrect=0; dWrong=[]; dAnswered=false;
+  document.getElementById('dictSetup').style.display='none';
+  document.getElementById('dictEnd').style.display='none';
+  document.getElementById('dictPlay').style.display='block';
+  dictRender();
+}
+function dictRender(){
+  const x=dDeck[dIdx], dir=document.getElementById('dictDirection').value;
+  dAnswered=false;
+  const reps=repChoices(x);
+  dPromptRep=reps[Math.floor(Math.random()*reps.length)] || x.rep[0];
+  document.getElementById('dictCounter').textContent=`Câu ${dIdx+1} / ${dDeck.length}`;
+  document.getElementById('dictScore').textContent=`Đúng: ${dCorrect}`;
+  document.getElementById('dictProgress').style.width=`${(dIdx/dDeck.length)*100}%`;
+  const isVi=dir.startsWith('vi-');
+  document.getElementById('dictPrompt').textContent=isVi?x.meaning:(dir==='term-rep'?x.term:dPromptRep);
+  document.getElementById('dictHint').textContent=dir==='vi-term'?'Nhập cụm tiếng Anh cơ bản':dir==='vi-rep'?'Nhập một cách diễn đạt nâng cao':dir==='term-rep'?x.meaning:'Gõ lại từ/cụm cơ bản';
+  const a=document.getElementById('dictAnswer');
+  a.value=''; a.disabled=false; a.readOnly=false;
+  a.placeholder=dir==='vi-term'?'Nhập cụm tiếng Anh cơ bản...':dir==='vi-rep'?'Nhập một paraphrase nâng cao...':'Nhập đáp án...';
+  a.focus();
+  document.getElementById('dictListen').style.display=isVi?'none':'';
+  document.getElementById('dictFeedback').className='dict-feedback';
+  document.getElementById('dictFeedback').innerHTML='';
+  document.getElementById('dictCheck').style.display='';
+  document.getElementById('dictNext').style.display='none';
+}
+function dictCheck(){
+  if(dAnswered)return;
+  dAnswered=true;
+  const x=dDeck[dIdx], dir=document.getElementById('dictDirection').value;
+  const ans=dNorm(document.getElementById('dictAnswer').value);
+  const reps=repChoices(x).map(dNorm);
+  let ok = (dir==='term-rep'||dir==='vi-rep') ? reps.includes(ans) : ans===dNorm(x.term);
+  // Không disable: ô cần giữ focus để Enter lần hai chuyển câu.
+  document.getElementById('dictAnswer').readOnly=true;
+  const fb=document.getElementById('dictFeedback');
+  if(ok){
+    dCorrect++;
+    fb.className='dict-feedback good';
+    fb.innerHTML=`✓ Đúng — <b>${esc(x.term)}</b> → <span class="answer-reps">${repChoices(x).map(esc).join(' · ')}</span>`;
+  }else{
+    dWrong.push(x);
+    fb.className='dict-feedback bad';
+    fb.innerHTML=`✗ Đáp án chấp nhận: <b>${esc(x.term)}</b> → <span class="answer-reps">${repChoices(x).map(esc).join(' · ')}</span>`;
+  }
+  document.getElementById('dictScore').textContent=`Đúng: ${dCorrect}`;
+  document.getElementById('dictCheck').style.display='none';
+  document.getElementById('dictNext').style.display='';
+}
+function dictNext(){
+  dIdx++;
+  if(dIdx>=dDeck.length){
+    document.getElementById('dictPlay').style.display='none';
+    document.getElementById('dictEnd').style.display='block';
+    document.getElementById('dictFinalScore').textContent=`${dCorrect} / ${dDeck.length}`;
+    document.getElementById('dictFinalText').textContent=dWrong.length?`Còn ${dWrong.length} mục cần luyện lại.`:'Hoàn thành toàn bộ chính xác.';
+    document.getElementById('dictRetryWrong').style.display=dWrong.length?'':'none';
+    return;
+  }
+  dictRender();
+}
+function dictSpeak(){
+  if(!('speechSynthesis' in window)||!dDeck[dIdx])return;
+  const x=dDeck[dIdx], dir=document.getElementById('dictDirection').value;
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(dir==='term-rep'?x.term:dPromptRep);
+  u.lang='en-US';u.rate=.8;speechSynthesis.speak(u);
+}
+document.getElementById('dictStart').onclick=()=>dictStart();
+document.getElementById('dictCheck').onclick=dictCheck;
+document.getElementById('dictNext').onclick=dictNext;
+document.getElementById('dictListen').onclick=dictSpeak;
+document.getElementById('dictAgain').onclick=()=>{
+  document.getElementById('dictEnd').style.display='none';
+  document.getElementById('dictSetup').style.display='block';
+};
+document.getElementById('dictRetryWrong').onclick=()=>dictStart([...dWrong]);
+document.getElementById('dictAnswer').addEventListener('keydown',e=>{
+  if(e.key==='Enter'){e.preventDefault(); dAnswered?dictNext():dictCheck();}
+});
+
+buildRangeBar();
+render();
+</script>
+</body>
+</html>

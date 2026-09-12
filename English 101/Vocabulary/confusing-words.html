@@ -1,0 +1,1650 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Từ Dễ Nhầm — Mục Lục &amp; Chính Tả</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink: #1C2321;
+    --paper: #E9E5D6;
+    --paper-2: #F4F1E6;
+    --line: #C9C2AA;
+    --red: #A63D40;
+    --red-dim: #8a3235;
+    --ochre: #C98A2C;
+    --ok: #3E6259;
+    --ok-bg: #DCE7DE;
+    --bad: #A63D40;
+    --bad-bg: #F1DDD8;
+    --muted: #6b675a;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background: var(--ink);
+    color: var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size: 22px 22px;
+    pointer-events:none;
+  }
+  .wrap{
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 28px 16px 80px;
+    position:relative;
+  }
+  header.top{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:12px;
+    margin-bottom:18px;
+    border-bottom: 2px solid #3a4440;
+    padding-bottom:14px;
+  }
+  header.top .mark{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.14em;
+    color: var(--ochre);
+    text-transform:uppercase;
+  }
+  header.top h1{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size: clamp(28px,6vw,40px);
+    color: var(--paper-2);
+    margin:2px 0 4px;
+    letter-spacing:-.01em;
+  }
+  header.top p{
+    margin:0;
+    color:#9aa39b;
+    font-size:13.5px;
+  }
+  header.top .catno{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:#7c8580;
+    text-align:right;
+    line-height:1.5;
+    white-space:nowrap;
+  }
+
+  nav.tabs{
+    display:flex;
+    gap:8px;
+    margin-bottom:22px;
+  }
+  nav.tabs button{
+    flex:1;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    padding:11px 10px;
+    background: transparent;
+    color:#9aa39b;
+    border:1px solid #3a4440;
+    border-radius:3px;
+    cursor:pointer;
+    transition: all .15s ease;
+  }
+  nav.tabs button.active{
+    background: var(--paper-2);
+    color: var(--ink);
+    border-color: var(--paper-2);
+    font-weight:600;
+  }
+  nav.tabs button:hover:not(.active){
+    border-color:#5a6560;
+    color:#c8cec8;
+  }
+
+  .panel{ display:none; }
+  .panel.active{ display:block; animation: fadein .25s ease; }
+  @keyframes fadein{ from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:none;} }
+
+  /* ===== Library cards ===== */
+  .lib-intro{
+    color:#aab1a9;
+    font-size:13px;
+    margin: 0 0 16px;
+    line-height:1.6;
+  }
+  .card{
+    background: var(--paper-2);
+    border-radius: 4px;
+    position:relative;
+    margin-bottom:16px;
+    box-shadow: 0 1px 0 rgba(0,0,0,.25), 0 8px 18px -10px rgba(0,0,0,.5);
+    overflow:hidden;
+  }
+  .card::before{
+    content:"";
+    position:absolute;
+    top:14px; left:14px;
+    width:10px; height:10px;
+    border-radius:50%;
+    background: var(--ink);
+    box-shadow: 0 0 0 3px var(--paper-2), 0 0 0 4px #cfc9b4;
+  }
+  .card-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:10px;
+    padding:14px 18px 12px 40px;
+    border-bottom: 1.5px dashed var(--line);
+  }
+  .card-head h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-style:italic;
+    font-size:17px;
+    color: var(--ink);
+    margin:0;
+  }
+  .card-head .no{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color: var(--red);
+    font-weight:600;
+    white-space:nowrap;
+  }
+  .entry{
+    padding:12px 18px 12px 40px;
+    border-bottom: 1px dashed var(--line);
+  }
+  .entry:last-of-type{ border-bottom:none; }
+  .entry .row1{
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  .entry .word{
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:600;
+    font-size:14.5px;
+    color: var(--red-dim);
+  }
+  .entry .pos{
+    font-size:11px;
+    color: var(--muted);
+    font-style:italic;
+  }
+  .entry .vi{
+    font-size:14px;
+    color: var(--ink);
+    margin-top:2px;
+  }
+  .entry .ex{
+    margin-top:5px;
+    font-size:12.5px;
+    color:#4a4a3e;
+    line-height:1.55;
+  }
+  .entry .ex .en{ font-style:italic; }
+  .entry .ex .vi-line{ color:#6b6858; }
+  .tip{
+    padding:10px 18px 14px 40px;
+    font-size:12px;
+    color: var(--ochre);
+    background: rgba(201,138,44,.08);
+  }
+  .tip b{ color:var(--red); }
+
+  /* ===== Quiz ===== */
+  .setup{
+    background: var(--paper-2);
+    border-radius:4px;
+    padding:20px;
+    box-shadow: 0 8px 18px -10px rgba(0,0,0,.5);
+  }
+  .setup h2{
+    font-family:'Fraunces', serif;
+    font-size:20px;
+    margin:0 0 4px;
+  }
+  .setup .sub{ font-size:12.5px; color:var(--muted); margin-bottom:18px; }
+  .field-group{ margin-bottom:16px; }
+  .field-group label.flabel{
+    display:block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color: var(--muted);
+    margin-bottom:8px;
+  }
+  .choice-row{ display:flex; gap:8px; flex-wrap:wrap; }
+  .choice{
+    flex:1;
+    min-width:110px;
+    padding:10px 12px;
+    border:1.5px solid var(--line);
+    border-radius:3px;
+    background: var(--paper);
+    text-align:center;
+    font-size:13px;
+    font-weight:500;
+    cursor:pointer;
+    transition:all .12s ease;
+  }
+  .choice.sel{
+    border-color: var(--red);
+    background: var(--red);
+    color: var(--paper-2);
+  }
+  .tier-row{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px; }
+  .tier-choice{
+    flex:1;
+    min-width:78px;
+    padding:9px 8px;
+    border:1.5px solid #3a4440;
+    border-radius:3px;
+    background: transparent;
+    color:#9aa39b;
+    text-align:center;
+    font-size:12.5px;
+    font-weight:500;
+    cursor:pointer;
+    transition:all .12s ease;
+  }
+  .tier-row#libTierRow .tier-choice{ color: var(--muted); border-color: var(--line); }
+  .tier-choice small{ font-weight:400; opacity:.75; }
+  .tier-choice.sel{
+    border-color: var(--ochre);
+    background: var(--ochre);
+    color: #241a08;
+    font-weight:600;
+  }
+  .tier-badge{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    font-weight:600;
+    padding:2px 7px;
+    border-radius:10px;
+    white-space:nowrap;
+  }
+  .tier-badge.t1{ background:#DCE7DE; color:#264b40; }
+  .tier-badge.t2{ background:#F1E2C4; color:#6b4a10; }
+  .tier-badge.t3{ background:#F1DDD8; color:#6e2224; }
+  .btn{
+    font-family:'IBM Plex Sans', sans-serif;
+    font-weight:600;
+    font-size:14px;
+    padding:12px 20px;
+    border-radius:3px;
+    border:none;
+    cursor:pointer;
+    transition: transform .08s ease, background .15s ease;
+  }
+  .btn:active{ transform: scale(.98); }
+  .btn-primary{ background: var(--red); color:#fff; }
+  .btn-primary:hover{ background: var(--red-dim); }
+  .btn-ghost{ background:transparent; color: var(--ink); border:1.5px solid var(--line); }
+  .btn-full{ width:100%; }
+
+  .quiz-card{
+    background: var(--paper-2);
+    border-radius:4px;
+    padding:22px;
+    box-shadow: 0 8px 18px -10px rgba(0,0,0,.5);
+  }
+  .progress-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color: var(--muted);
+    margin-bottom:8px;
+  }
+  .progress-bar{
+    height:4px;
+    background:var(--line);
+    border-radius:2px;
+    overflow:hidden;
+    margin-bottom:20px;
+  }
+  .progress-fill{
+    height:100%;
+    background: var(--red);
+    transition: width .25s ease;
+  }
+  .prompt-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color: var(--ochre);
+    margin-bottom:8px;
+  }
+  .prompt-main{
+    font-family:'Fraunces', serif;
+    font-size: clamp(22px,5vw,28px);
+    font-weight:600;
+    color: var(--ink);
+    margin-bottom:10px;
+    line-height:1.3;
+  }
+  .prompt-ex{
+    font-size:13.5px;
+    color:#5a5748;
+    font-style:italic;
+    margin-bottom:6px;
+    line-height:1.55;
+  }
+  .listen-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    background:none;
+    border:1.5px solid var(--line);
+    border-radius:20px;
+    padding:6px 14px 6px 12px;
+    font-size:12px;
+    color: var(--ink);
+    cursor:pointer;
+    margin-bottom:16px;
+  }
+  .listen-btn:hover{ border-color: var(--red); color: var(--red); }
+  input.answer{
+    width:100%;
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:16px;
+    padding:13px 14px;
+    border:1.5px solid var(--line);
+    border-radius:3px;
+    background: var(--paper);
+    color: var(--ink);
+    margin-bottom:14px;
+  }
+  input.answer:focus{ outline:none; border-color: var(--red); }
+  .actions-row{ display:flex; gap:10px; }
+  .feedback{
+    margin-top:16px;
+    padding:14px 16px;
+    border-radius:3px;
+    font-size:13.5px;
+    line-height:1.6;
+    display:none;
+  }
+  .feedback.show{ display:block; animation:fadein .2s ease; }
+  .feedback.ok{ background: var(--ok-bg); color:#264b40; border-left:3px solid var(--ok); }
+  .feedback.bad{ background: var(--bad-bg); color:#6e2224; border-left:3px solid var(--bad); }
+  .feedback .correct-ans{ font-weight:600; }
+  .feedback .fb-tip{ margin-top:6px; color:#5a5748; font-size:12.5px; }
+
+  .end-card{ text-align:center; padding:10px 0; }
+  .end-card .score{
+    font-family:'Fraunces', serif;
+    font-size:52px;
+    font-weight:700;
+    color: var(--ink);
+    margin:6px 0;
+  }
+  .end-card .score-sub{ color:var(--muted); font-size:13px; margin-bottom:20px; }
+  .missed-list{ text-align:left; margin:18px 0; }
+  .missed-list .mi{
+    display:flex; justify-content:space-between;
+    padding:8px 0; border-bottom:1px dashed var(--line);
+    font-size:13.5px;
+  }
+  .missed-list .mi .mw{ font-family:'IBM Plex Mono', monospace; color:var(--red-dim); font-weight:600; }
+  .missed-list .mi .mv{ color:var(--muted); }
+  .end-actions{ display:flex; gap:10px; margin-top:10px; }
+
+  footer.foot{
+    text-align:center;
+    color:#5a655f;
+    font-size:11px;
+    margin-top:34px;
+    font-family:'IBM Plex Mono', monospace;
+  }
+
+  /* ===== Giao diện tập trung · Navy – thép ===== */
+  :root{
+    --ink:#172033;--paper:#edf2f6;--paper-2:#f8fafc;--line:#cbd5e1;
+    --red:#27577a;--red-dim:#183f60;--ochre:#52738b;
+    --ok:#28745c;--ok-bg:#e1f1e9;--bad:#b2454d;--bad-bg:#f8e7e8;--muted:#647184;
+  }
+  html{background:#101c2d}
+  body{
+    background:
+      radial-gradient(circle at 8% 2%,rgba(57,87,117,.32),transparent 31%),
+      linear-gradient(160deg,#101c2d 0,#17283d 56%,#112033 100%);
+    color:var(--ink);font-size:16px;line-height:1.55;
+  }
+  body::before{display:none}
+  .wrap{max-width:980px;padding:20px 18px 64px}
+  header.top{align-items:center;margin-bottom:12px;padding:20px 22px;border:1px solid #d8e1e9;border-radius:10px;background:#f8fafc;box-shadow:0 12px 30px rgba(3,12,23,.22)}
+  header.top .mark{color:#356384;font-weight:700}
+  header.top h1{font-family:'IBM Plex Sans',sans-serif;font-size:clamp(30px,5vw,42px);line-height:1.08;color:#142b43;font-style:normal;letter-spacing:-.025em}
+  header.top p,header.top .catno{color:var(--muted);font-size:14px}
+  nav.tabs{position:sticky;top:0;z-index:20;gap:6px;margin-bottom:14px;padding:5px;background:rgba(16,28,45,.95);border:1px solid #31455d;border-radius:9px;box-shadow:0 8px 22px rgba(3,12,23,.2);backdrop-filter:blur(9px)}
+  nav.tabs button{border:0;border-radius:6px;color:#c2ceda;background:transparent;text-transform:none;font-size:13px;letter-spacing:0}
+  nav.tabs button.active{background:#f8fafc;color:#183f60;box-shadow:0 2px 9px rgba(3,12,23,.18);font-weight:700}
+  nav.tabs button:hover:not(.active){background:#263a51;color:#fff}
+  .lib-intro{color:#34465a;background:#f8fafc;border-left:4px solid #356384;border-radius:0 7px 7px 0;padding:12px 14px;font-size:15px;box-shadow:0 5px 15px rgba(3,12,23,.12)}
+  .tier-row{gap:7px;margin-bottom:14px}
+  .tier-choice,.choice{background:#f8fafc;border-color:#cbd5e1;border-radius:7px;color:#4b5d70;font-size:14px}
+  .tier-choice:hover,.choice:hover{background:#e8eff5;border-color:#7893aa}
+  .tier-choice.sel,.choice.sel{background:#27577a;border-color:#27577a;color:#fff;box-shadow:0 5px 14px rgba(24,63,96,.25)}
+  .tier-badge{padding:4px 9px;border-radius:4px;font-size:10.5px}
+  .tier-badge.t1{background:#e8edf1;color:#425466}
+  .tier-badge.t2{background:#e1ebf3;color:#285578}
+  .tier-badge.t3{background:#e5e8f2;color:#414f77}
+  .card,.setup,.quiz-card{border:1px solid #cbd5e1;border-radius:8px;background:var(--paper-2);box-shadow:0 7px 20px rgba(3,12,23,.16)}
+  .card{margin-bottom:8px;overflow:hidden}
+  .card::before{display:none}
+  .card>.card-head{list-style:none;cursor:pointer;align-items:center;padding:13px 15px;border-bottom:0;background:#eaf0f5}
+  .card>.card-head::-webkit-details-marker{display:none}
+  .card>.card-head::before{content:'+';flex:0 0 auto;width:26px;height:26px;display:grid;place-items:center;border-radius:5px;background:#27577a;color:#fff;font:700 16px 'IBM Plex Mono',monospace}
+  .card[open]>.card-head::before{content:'−'}
+  .card[open]>.card-head{border-bottom:1px solid #cbd5e1;background:#e3ebf2}
+  .card-head:hover{background:#dfe8ef}
+  .card-head h3{flex:1;font-family:'IBM Plex Sans',sans-serif;font-style:normal;font-size:18px;font-weight:700;line-height:1.3;color:#1b344d}
+  .card-head .no{color:#456985}
+  .entry{padding:14px 17px 14px 56px;border-color:#dbe3ea}
+  .entry:hover{background:#f1f5f8}
+  .entry .row1{gap:9px;align-items:center}
+  .entry .word{display:inline-block;padding:3px 9px;border:1px solid #e8c38f;border-radius:5px;background:#fff4df;color:#8b1e2d;font-size:18.5px;font-weight:800;letter-spacing:.012em;box-shadow:0 1px 0 rgba(139,30,45,.08)}
+  .entry .pos{display:inline-block;padding:2px 7px;border:1px solid #d1dbe4;border-radius:4px;background:#f2f5f8;color:#647184;font-size:11.5px;font-style:normal;font-weight:600}
+  .entry .vi{margin-top:7px;color:#111827;font-size:15.5px;font-weight:650}
+  .entry .ex{margin-top:7px;color:#405268;font-size:14px}
+  .entry .ex .en{color:#243b57;font-weight:550}
+  .entry .ex .vi-line{color:#718096}
+  .tip{padding:12px 18px 14px 56px;background:#edf3f7;color:#405f76;font-size:13.5px;border-top:1px solid #d6e1e9}
+  .tip b{color:#183f60}
+  .setup{padding:20px}
+  .setup h2,.prompt-main,.end-card .score{font-family:'IBM Plex Sans',sans-serif;font-style:normal;letter-spacing:-.015em}
+  .setup h2{font-size:23px}
+  .setup .sub{font-size:14px}
+  .field-group label.flabel{font-size:12px}
+  .btn{border-radius:6px;font-size:15px}
+  .btn-primary{background:#27577a;color:#fff}
+  .btn-primary:hover{background:#183f60}
+  .btn-ghost{background:#f8fafc;border-color:#bdcbd7;color:#354b60}
+  .quiz-card{padding:22px;background:linear-gradient(145deg,#f8fafc,#edf2f6)}
+  .progress-bar{height:7px;border-radius:999px;background:#d7e0e8}
+  .progress-fill{background:linear-gradient(90deg,#4f7b9b,#27577a)}
+  .prompt-label{color:#52738b;font-weight:700}
+  .prompt-main{padding:11px 14px;border:1px solid #e8c38f;border-left:5px solid #8b1e2d;border-radius:7px;background:#fff4df;color:#8b1e2d;font-size:clamp(28px,5vw,38px);font-weight:800;overflow-wrap:anywhere}
+  .prompt-ex{font-size:15px;color:#56687a}
+  .listen-btn{border-color:#9eb1c1;color:#315b7a;background:#f8fafc}
+  .listen-btn:hover{background:#e5edf4;border-color:#27577a;color:#183f60}
+  input.answer{font-size:18px;border-color:#b9c8d4;border-radius:6px;background:#fff;color:var(--ink);box-shadow:inset 0 1px 2px rgba(3,12,23,.05)}
+  input.answer:focus{border-color:#27577a;box-shadow:0 0 0 3px rgba(39,87,122,.17)}
+  .feedback{font-size:15px;border-radius:8px}
+  .feedback.ok{background:#e1f1e9;color:#205f4b;border-color:#28745c}
+  .feedback.bad{background:#f8e7e8;color:#8c3038;border-color:#b2454d}
+  .feedback .correct-ans{display:inline-block;padding:1px 6px;border-radius:4px;background:#fff;color:#173f67;font-size:1.12em;font-weight:800}
+  footer.foot{color:#9fb0c0}
+  button:focus-visible,input:focus-visible,summary:focus-visible,.choice:focus-visible,.tier-choice:focus-visible{outline:3px solid rgba(119,164,197,.5);outline-offset:2px}
+  @media (max-width:480px){
+    .wrap{padding:12px 10px 48px}
+    header.top{align-items:flex-start;padding:17px 15px}
+    header.top .catno{font-size:11px}
+    nav.tabs{border-radius:8px}
+    .choice{min-width:90px;font-size:13px}
+    .card-head h3{font-size:16px}
+    .entry{padding:11px 13px 11px 16px}
+    .tip{padding:11px 14px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div>
+      <div class="mark">Thư viện từ vựng</div>
+      <h1>Từ Dễ Nhầm</h1>
+      <p>Chính tả Anh–Việt · Việt–Anh</p>
+    </div>
+    <div class="catno" id="catCounter">58 thẻ mục<br>~150 mục từ</div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab-btn active" data-tab="lib">Thư viện</button>
+    <button class="tab-btn" data-tab="quiz">Chính tả</button>
+  </nav>
+
+  <!-- ===================== LIBRARY ===================== -->
+  <section class="panel active" id="panel-lib">
+    <p class="lib-intro">Đọc qua các thẻ mục lục dưới đây trước khi làm bài chính tả. Mỗi thẻ là một nhóm từ dễ nhầm, kèm nghĩa, ví dụ song ngữ và mẹo phân biệt.</p>
+    <div class="tier-row" id="libTierRow">
+      <div class="tier-choice sel" data-tier="all">Tất cả</div>
+      <div class="tier-choice" data-tier="1">Tầng 1<br><small>A2–B1</small></div>
+      <div class="tier-choice" data-tier="2">Tầng 2<br><small>B2–C1</small></div>
+      <div class="tier-choice" data-tier="3">Tầng 3<br><small>C1–C2</small></div>
+    </div>
+    <div id="libList"></div>
+  </section>
+
+  <!-- ===================== QUIZ SETUP ===================== -->
+  <section class="panel" id="panel-quiz">
+
+    <div id="setupBox" class="setup">
+      <h2>Bắt đầu bài chính tả</h2>
+      <div class="sub">Chọn phiên học, chiều dịch và số lượng câu hỏi.</div>
+
+      <div class="field-group">
+        <label class="flabel">Phiên học (Tầng)</label>
+        <div class="tier-row" id="tierRow">
+          <div class="tier-choice sel" data-tier="all">Tất cả<br><small>Trộn 3 tầng</small></div>
+          <div class="tier-choice" data-tier="1">Tầng 1<br><small>A2–B1 · Giao tiếp</small></div>
+          <div class="tier-choice" data-tier="2">Tầng 2<br><small>B2–C1 · IELTS</small></div>
+          <div class="tier-choice" data-tier="3">Tầng 3<br><small>C1–C2 · Academic</small></div>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="flabel">Chiều chính tả</label>
+        <div class="choice-row" id="dirRow">
+          <div class="choice sel" data-dir="en-vi">Anh → Việt<br><small>Đọc từ tiếng Anh, viết nghĩa</small></div>
+          <div class="choice" data-dir="vi-en">Việt → Anh<br><small>Đọc nghĩa, viết từ tiếng Anh</small></div>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="flabel">Số câu hỏi</label>
+        <div class="choice-row" id="countRow">
+          <div class="choice sel" data-count="10">10 câu</div>
+          <div class="choice" data-count="20">20 câu</div>
+          <div class="choice" data-count="all">Tất cả</div>
+        </div>
+      </div>
+
+      <div class="sub" id="poolInfo" style="margin-bottom:14px;"></div>
+
+      <button class="btn btn-primary btn-full" id="startBtn">Bắt đầu</button>
+
+    </div>
+
+    <div id="quizBox" style="display:none;">
+      <div class="quiz-card">
+        <div class="progress-row">
+          <span id="progressText">Câu 1/10</span>
+          <span id="scoreText">Đúng: 0</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+
+        <div class="prompt-label" id="promptLabel">ANH → VIỆT — nghĩa là gì?</div>
+        <div class="prompt-main" id="promptMain">word</div>
+        <div class="prompt-ex" id="promptEx"></div>
+        <button class="listen-btn" id="listenBtn">🔊 Nghe cách đọc</button>
+
+        <input type="text" class="answer" id="answerInput" placeholder="Nhập câu trả lời rồi nhấn Enter…" autocomplete="off" autocapitalize="off" spellcheck="false">
+
+        <div class="actions-row">
+          <button class="btn btn-primary" id="submitBtn" style="flex:2;">Kiểm tra</button>
+          <button class="btn btn-ghost" id="skipBtn" style="flex:1;">Bỏ qua</button>
+        </div>
+
+        <div class="feedback" id="feedbackBox"></div>
+      </div>
+    </div>
+
+    <div id="endBox" style="display:none;">
+      <div class="quiz-card end-card">
+        <div class="prompt-label">Kết quả</div>
+        <div class="score" id="finalScore">0/0</div>
+        <div class="score-sub" id="finalSub">Đúng 0%</div>
+        <div class="missed-list" id="missedList"></div>
+        <div class="end-actions">
+          <button class="btn btn-ghost" style="flex:1;" id="retryMissedBtn">Ôn lại từ sai</button>
+          <button class="btn btn-primary" style="flex:1;" id="restartBtn">Làm lại</button>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <footer class="foot">MỤC LỤC TỪ VỰNG — biên soạn cho việc tự học IELTS</footer>
+</div>
+
+<script>
+/* ========================================================================
+   DATA
+   ======================================================================== */
+function W(w,pos,vi,en,viEx){ return {w,pos,vi,en,viEx}; }
+
+const GROUPS = [
+{ t:"affect → effect → affection → affectionate", tier:2, tip:'affect = HÀNH ĐỘNG (động từ); effect = KẾT QUẢ (danh từ); "affection" không có nghĩa là "sự ảnh hưởng" — đây là điểm rất dễ nhầm.', words:[
+  W("affect","đgt","ảnh hưởng, tác động","The weather affected my mood.","Thời tiết ảnh hưởng đến tâm trạng tôi."),
+  W("effect","dt","ảnh hưởng, tác động, kết quả","The new policy had a major effect on prices.","Chính sách mới có tác động lớn đến giá cả."),
+  W("affection","dt","tình cảm, sự yêu mến","She has great affection for her grandmother.","Cô ấy rất yêu quý bà mình."),
+  W("affectionate","tt","trìu mến, tình cảm","He gave her an affectionate hug.","Anh ấy ôm cô ấy một cách trìu mến."),
+]},
+{ t:"impress → impression → impressive → impressionable", tier:2, tip:'"impressive" (đáng nể) khác hẳn "impressionable" (dễ bị ảnh hưởng) — đừng nhầm hai từ này.', words:[
+  W("impress","đgt","gây ấn tượng","He impressed everyone with his speech.","Anh ấy đã gây ấn tượng với mọi người bằng bài phát biểu."),
+  W("impression","dt","ấn tượng","He made a good impression.","Anh ấy tạo được ấn tượng tốt."),
+  W("impressive","tt","ấn tượng, đáng nể","Her performance was impressive.","Màn trình diễn của cô ấy thật ấn tượng."),
+  W("impressionable","tt","dễ bị ảnh hưởng","She is very impressionable.","Cô ấy rất dễ bị ảnh hưởng."),
+]},
+{ t:"consider → consideration → considerate → considerable", tier:2, tip:"Chỉ khác một hậu tố nhưng nghĩa chuyển rất xa: considerate (chu đáo) ≠ considerable (đáng kể).", words:[
+  W("consider","đgt","cân nhắc, xem xét","Please consider my suggestion.","Hãy cân nhắc đề nghị của tôi."),
+  W("consideration","dt","sự cân nhắc","Thank you for your consideration.","Cảm ơn vì sự cân nhắc của bạn."),
+  W("considerate","tt","chu đáo, biết nghĩ cho người khác","He is very considerate.","Anh ấy rất chu đáo."),
+  W("considerable","tt","đáng kể, lớn","We spent a considerable amount of money.","Chúng tôi đã tiêu một số tiền đáng kể."),
+  W("considering","gt/lt","xét đến, xét theo","Considering the circumstances, she did well.","Xét đến hoàn cảnh, cô ấy đã làm rất tốt."),
+]},
+{ t:"respect → respectful → respectable → respective", tier:2, tip:"respectful (lễ phép) ≠ respectable (đáng kính) ≠ respective (tương ứng của từng người).", words:[
+  W("respect","dt/đgt","sự tôn trọng, tôn trọng","Treat others with respect.","Hãy đối xử với người khác bằng sự tôn trọng."),
+  W("respectful","tt","lễ phép, thể hiện sự tôn trọng","Be respectful to your parents.","Hãy lễ phép với bố mẹ."),
+  W("respectable","tt","đáng kính, đứng đắn","He is a respectable businessman.","Ông ấy là một doanh nhân đáng kính."),
+  W("respective","tt","tương ứng, riêng của từng người","The students returned to their respective classrooms.","Các học sinh trở về lớp học tương ứng của mình."),
+]},
+{ t:"confidence → confident → confidential", tier:2, tip:"Hình thức gần nhau nhưng nghĩa của confidential (bí mật) chuyển hoàn toàn khác.", words:[
+  W("confidence","dt","sự tự tin","She has great confidence.","Cô ấy rất tự tin, có sự tự tin lớn."),
+  W("confident","tt","tự tin","She is confident.","Cô ấy tự tin."),
+  W("confidential","tt","bí mật, mật","This document is confidential.","Tài liệu này là bí mật."),
+]},
+{ t:"succeed → success → successful → successive", tier:2, tip:"succeed = ĐỘNG TỪ (thành công / kế nhiệm); success = danh từ; successful = tính từ; successive = liên tiếp — khác nghĩa với successful.", words:[
+  W("succeed","đgt","thành công, kế nhiệm","She succeeded in passing the exam.","Cô ấy đã thành công trong việc vượt qua kỳ thi."),
+  W("success","dt","thành công","The project was a success.","Dự án đã thành công."),
+  W("successful","tt","thành công","She is a successful entrepreneur.","Cô ấy là một doanh nhân thành công."),
+  W("successive","tt","liên tiếp","He won three successive matches.","Anh ấy đã thắng ba trận đấu liên tiếp."),
+]},
+{ t:"history → historic → historical → historian", tier:2, tip:"historic = có ý nghĩa lịch sử; historical = thuộc về lịch sử nói chung; historian = người NGHIÊN CỨU lịch sử.", words:[
+  W("history","dt","lịch sử","I love studying history.","Tôi thích học lịch sử."),
+  W("historic","tt","có ý nghĩa lịch sử, quan trọng trong lịch sử","It was a historic decision.","Đó là một quyết định có ý nghĩa lịch sử."),
+  W("historical","tt","thuộc về lịch sử","We studied historical documents.","Chúng tôi nghiên cứu các tài liệu lịch sử."),
+  W("historian","dt","nhà sử học","She is a well-known historian.","Cô ấy là một nhà sử học nổi tiếng."),
+]},
+{ t:"classic → classical → typical", tier:1, tip:"classic = kinh điển/tiêu biểu; classical = thuộc trường phái cổ điển; typical = điển hình, thường thấy.", words:[
+  W("classic","tt","kinh điển, tiêu biểu","This is a classic novel.","Đây là một cuốn tiểu thuyết kinh điển."),
+  W("classical","tt","cổ điển, thuộc trường phái cổ điển","I enjoy classical music.","Tôi thích nhạc cổ điển."),
+  W("typical","tt","điển hình, thường thấy","This is typical behavior for teenagers.","Đây là hành vi điển hình của thanh thiếu niên."),
+]},
+{ t:"child → childish → childlike", tier:1, tip:'"-ish" thường mang sắc thái tiêu cực (giống nhưng không tốt); "-like" thường trung tính hoặc tích cực hơn.', words:[
+  W("child","dt","đứa trẻ","Every child deserves love.","Mỗi đứa trẻ đều xứng đáng được yêu thương."),
+  W("childish","tt","trẻ con (nghĩa tiêu cực)","Don't be so childish.","Đừng trẻ con như vậy."),
+  W("childlike","tt","hồn nhiên, ngây thơ (nghĩa tích cực)","She has a childlike innocence.","Cô ấy có sự hồn nhiên như trẻ thơ."),
+]},
+{ t:"sensitive → sensible → senseless → sensory", tier:2, tip:"Nhóm cực dễ nhầm: nhạy cảm / hợp lý / vô nghĩa / thuộc giác quan.", words:[
+  W("sensitive","tt","nhạy cảm","She is very sensitive to criticism.","Cô ấy rất nhạy cảm với những lời phê bình."),
+  W("sensible","tt","hợp lý, sáng suốt","That's a sensible decision.","Đó là một quyết định hợp lý."),
+  W("senseless","tt","vô nghĩa, vô lý","It was a senseless act.","Đó là một hành động vô nghĩa."),
+  W("sensory","tt","thuộc giác quan","The brain processes sensory information.","Não bộ xử lý thông tin giác quan."),
+]},
+{ t:"relate → relation → relationship → relative → relatively", tier:2, tip:"relative có thể là danh từ (người họ hàng) hoặc tính từ (tương đối) — chú ý ngữ cảnh.", words:[
+  W("relate","đgt","liên quan","This issue relates to our project.","Vấn đề này liên quan đến dự án của chúng tôi."),
+  W("relation","dt","mối quan hệ, liên hệ","There's no relation between the two events.","Không có mối liên hệ nào giữa hai sự kiện này."),
+  W("relationship","dt","mối quan hệ","They have a close relationship.","Họ có một mối quan hệ thân thiết."),
+  W("relative","dt/tt","họ hàng / tương đối","He is a close relative of mine.","Anh ấy là họ hàng thân thiết của tôi."),
+  W("relatively","trt","tương đối","The test was relatively easy.","Bài kiểm tra tương đối dễ."),
+]},
+{ t:"operate → operation → operational → operator", tier:2, tip:"operation vừa là 'hoạt động' vừa là 'ca phẫu thuật' tùy ngữ cảnh y khoa.", words:[
+  W("operate","đgt","vận hành, phẫu thuật","The machine operates automatically.","Máy hoạt động tự động."),
+  W("operation","dt","hoạt động, phẫu thuật, chiến dịch","The rescue operation was successful.","Chiến dịch cứu hộ đã thành công."),
+  W("operational","tt","đang hoạt động, thuộc vận hành","The new factory is now operational.","Nhà máy mới hiện đã đi vào hoạt động."),
+  W("operator","dt","người vận hành","She works as a telephone operator.","Cô ấy làm nhân viên tổng đài điện thoại."),
+]},
+{ t:"produce → product → productive → production", tier:2, tip:"productive (năng suất) mô tả con người/quá trình, không phải sản phẩm.", words:[
+  W("produce","đgt","sản xuất","The factory produces cars.","Nhà máy sản xuất ô tô."),
+  W("product","dt","sản phẩm","This is a popular product.","Đây là một sản phẩm phổ biến."),
+  W("productive","tt","năng suất","He had a productive day.","Anh ấy đã có một ngày làm việc năng suất."),
+  W("production","dt","sự sản xuất, sản lượng","Production has increased this year.","Sản lượng đã tăng lên trong năm nay."),
+]},
+{ t:"respond → response → responsible → responsibility → responsive", tier:2, tip:'"responsible" không đơn giản chỉ là "có response"; nghĩa đã phát triển khá xa. "responsive" = phản hồi NHANH, đáp ứng tốt (khác responsible = có trách nhiệm).', words:[
+  W("respond","đgt","phản hồi","Please respond to my email.","Vui lòng phản hồi email của tôi."),
+  W("response","dt","phản hồi","I got no response.","Tôi không nhận được phản hồi nào."),
+  W("responsible","tt","có trách nhiệm","He is responsible for the project.","Anh ấy chịu trách nhiệm cho dự án."),
+  W("responsibility","dt","trách nhiệm","It's your responsibility.","Đó là trách nhiệm của bạn."),
+  W("responsive","tt","phản hồi nhanh, đáp ứng","The customer service team is very responsive.","Đội chăm sóc khách hàng phản hồi rất nhanh."),
+]},
+{ t:"apply → application → applicable → applicant", tier:2, tip:"application vừa là 'đơn đăng ký' vừa là 'sự áp dụng' tùy ngữ cảnh.", words:[
+  W("apply","đgt","áp dụng, nộp đơn","You can apply for the job online.","Bạn có thể nộp đơn xin việc trực tuyến."),
+  W("application","dt","đơn đăng ký, sự áp dụng","I submitted my application.","Tôi đã nộp đơn của mình."),
+  W("applicable","tt","có thể áp dụng","This rule is not applicable here.","Quy tắc này không áp dụng được ở đây."),
+  W("applicant","dt","người nộp đơn, ứng viên","There were fifty applicants for the job.","Có năm mươi ứng viên cho công việc này."),
+]},
+{ t:"vary → various → variety → variable", tier:2, tip:"various (tính từ: đa dạng) khác variety (danh từ: sự đa dạng).", words:[
+  W("vary","đgt","thay đổi","Prices vary depending on the season.","Giá cả thay đổi tùy theo mùa."),
+  W("various","tt","đa dạng, nhiều loại","We discussed various topics.","Chúng tôi đã thảo luận nhiều chủ đề khác nhau."),
+  W("variety","dt","sự đa dạng, chủng loại","There's a wide variety of choices.","Có rất nhiều sự lựa chọn đa dạng."),
+  W("variable","dt/tt","biến số / có thể thay đổi","The results depend on several variables.","Kết quả phụ thuộc vào nhiều biến số."),
+]},
+{ t:"imagine → imagination → imaginative → imaginary → imaginable", tier:2, tip:"imaginative (giàu trí tưởng tượng, tích cực) ≠ imaginary (tưởng tượng, không có thật) ≠ imaginable (CÓ THỂ tưởng tượng được).", words:[
+  W("imagine","đgt","tưởng tượng","Imagine a world without pollution.","Hãy tưởng tượng một thế giới không ô nhiễm."),
+  W("imagination","dt","trí tưởng tượng","She has a vivid imagination.","Cô ấy có trí tưởng tượng phong phú."),
+  W("imaginative","tt","giàu trí tưởng tượng, sáng tạo","She is very imaginative.","Cô ấy rất sáng tạo, giàu trí tưởng tượng."),
+  W("imaginary","tt","tưởng tượng, không có thật","The character is imaginary.","Nhân vật đó là hư cấu."),
+  W("imaginable","tt","có thể tưởng tượng được","It's the best solution imaginable.","Đó là giải pháp tốt nhất có thể tưởng tượng được."),
+]},
+{ t:"advice / advise", tier:1, tip:"advice = danh từ (lời khuyên); advise = động từ (khuyên).", words:[
+  W("advice","dt","lời khuyên","Can you give me some advice?","Bạn có thể cho tôi lời khuyên không?"),
+  W("advise","đgt","khuyên","I advise you to wait.","Tôi khuyên bạn nên chờ."),
+]},
+{ t:"practice / practise", tier:1, tip:"Tiếng Anh-Anh: practice là danh từ, practise là động từ. Tiếng Anh-Mỹ dùng 'practice' cho cả hai.", words:[
+  W("practice","dt","sự luyện tập, việc thực hành","Practice makes perfect.","Có công mài sắt, có ngày nên kim."),
+  W("practise","đgt","luyện tập, thực hành (Anh-Anh)","I practise speaking English every day.","Tôi luyện nói tiếng Anh mỗi ngày."),
+]},
+{ t:"accept / except", tier:1, tip:"accept = chấp nhận (nói CÓ); except = ngoại trừ (KHÔNG bao gồm).", words:[
+  W("accept","đgt","chấp nhận","She accepted the offer.","Cô ấy đã chấp nhận lời đề nghị."),
+  W("except","gt","ngoại trừ","Everyone came except John.","Mọi người đều đến trừ John."),
+]},
+{ t:"lose / loose", tier:1, tip:"lose = mất, thua (động từ); loose = lỏng, không chặt (tính từ).", words:[
+  W("lose","đgt","mất, thua","Don't lose your keys.","Đừng làm mất chìa khóa của bạn."),
+  W("loose","tt","lỏng, không chặt, rộng","This shirt is too loose.","Chiếc áo này quá rộng."),
+]},
+{ t:"breath / breathe", tier:1, tip:"breath = danh từ (hơi thở); breathe = động từ (thở).", words:[
+  W("breath","dt","hơi thở","Take a deep breath.","Hãy hít một hơi thật sâu."),
+  W("breathe","đgt","thở","It's difficult to breathe here.","Ở đây khó thở."),
+]},
+{ t:"quiet / quite", tier:1, tip:"quiet = yên tĩnh; quite = khá, hoàn toàn (tùy ngữ cảnh).", words:[
+  W("quiet","tt","yên tĩnh","It's very quiet here.","Ở đây rất yên tĩnh."),
+  W("quite","trt","khá, hoàn toàn","It's quite expensive.","Nó khá đắt."),
+]},
+{ t:"personal → personnel → personality", tier:2, tip:"personal = cá nhân; personnel = nhân viên, nhân sự (số nhiều, chỉ con người); personality = tính cách.", words:[
+  W("personal","tt","cá nhân","This is my personal opinion.","Đây là ý kiến cá nhân của tôi."),
+  W("personnel","dt","nhân viên, nhân sự","All personnel must wear an ID badge.","Tất cả nhân viên phải đeo thẻ ID."),
+  W("personality","dt","tính cách","She has a warm personality.","Cô ấy có tính cách ấm áp."),
+]},
+{ t:"economic → economical → financial → economics → economy", tier:2, tip:"economic = thuộc nền kinh tế; economical = tiết kiệm; financial = thuộc tiền bạc; economics = MÔN HỌC kinh tế; economy = HỆ THỐNG kinh tế của một nước.", words:[
+  W("economic","tt","thuộc về kinh tế","The country is facing economic problems.","Đất nước đang đối mặt với các vấn đề kinh tế."),
+  W("economical","tt","tiết kiệm, không lãng phí","This car is economical.","Chiếc xe này tiết kiệm nhiên liệu."),
+  W("financial","tt","thuộc về tài chính, tiền bạc","The company is having financial difficulties.","Công ty đang gặp khó khăn về tài chính."),
+  W("economics","dt","kinh tế học","She studied economics at university.","Cô ấy đã học kinh tế học ở đại học."),
+  W("economy","dt","nền kinh tế","The economy is growing steadily.","Nền kinh tế đang tăng trưởng ổn định."),
+]},
+{ t:"especially / specially", tier:1, tip:"especially = nhấn mạnh một đối tượng nổi bật hơn; specially = nhấn mạnh mục đích/cách làm riêng.", words:[
+  W("especially","trt","đặc biệt là, hơn những thứ khác","I especially like this song.","Tôi đặc biệt thích bài hát này."),
+  W("specially","trt","đặc biệt, dành riêng cho một mục đích","This room was specially designed for children.","Căn phòng này được thiết kế đặc biệt dành cho trẻ em."),
+]},
+{ t:"job / work", tier:1, tip:"job = một công việc cụ thể (đếm được); work = công việc nói chung (không đếm được).", words:[
+  W("job","dt","một công việc cụ thể","I got a new job.","Tôi có một công việc mới."),
+  W("work","dt/đgt","công việc nói chung, làm việc","I have a lot of work to do.","Tôi có rất nhiều việc phải làm."),
+]},
+{ t:"fun / funny", tier:1, tip:"fun = vui, thú vị; funny = buồn cười, kỳ lạ (khiến người khác cười).", words:[
+  W("fun","tt/dt","vui, thú vị","The trip was fun.","Chuyến đi rất vui."),
+  W("funny","tt","buồn cười, kỳ lạ","That's a funny joke.","Đó là một câu chuyện cười buồn cười."),
+]},
+{ t:"hard / hardly", tier:1, tip:'"hardly" KHÔNG phải là trạng từ của "hard" theo nghĩa thông thường — nó có nghĩa là "hầu như không".', words:[
+  W("hard","tt/trt","chăm chỉ, khó, mạnh","He works hard.","Anh ấy làm việc chăm chỉ."),
+  W("hardly","trt","hầu như không","I could hardly hear him.","Tôi hầu như không nghe thấy anh ấy nói."),
+]},
+{ t:"late / lately", tier:1, tip:"late = muộn (thời gian); lately = gần đây (khoảng thời gian gần hiện tại).", words:[
+  W("late","tt/trt","muộn","I arrived late.","Tôi đến muộn."),
+  W("lately","trt","gần đây","I haven't seen him lately.","Gần đây tôi không gặp anh ấy."),
+]},
+{ t:"near / nearly", tier:1, tip:"near = gần (khoảng cách); nearly = gần như, sắp (mức độ/thời gian).", words:[
+  W("near","tt/gt","gần","The station is near.","Nhà ga ở gần đây."),
+  W("nearly","trt","gần như, sắp","It's nearly midnight.","Gần nửa đêm rồi."),
+]},
+{ t:"rise → raise → arise → arouse", tier:2, tip:"rise = tự tăng lên; raise = làm cái gì tăng lên (có tân ngữ); arise = VẤN ĐỀ phát sinh; arouse = khơi dậy CẢM XÚC/phản ứng.", words:[
+  W("rise","đgt","tăng lên (tự thân)","Prices are rising.","Giá cả đang tăng lên."),
+  W("raise","đgt","nâng, làm tăng lên (có tân ngữ)","The company raised prices.","Công ty đã tăng giá."),
+  W("arise","đgt","phát sinh","A problem arose during the meeting.","Một vấn đề đã phát sinh trong cuộc họp."),
+  W("arouse","đgt","khơi dậy, kích thích cảm xúc/phản ứng","The speech aroused strong emotions in the audience.","Bài phát biểu đã khơi dậy những cảm xúc mạnh mẽ trong khán giả."),
+]},
+{ t:"lie / lay", tier:1, tip:"lie = người/vật tự nằm xuống; lay = ai đó đặt cái gì xuống (cần tân ngữ).", words:[
+  W("lie","đgt","nằm","I need to lie down.","Tôi cần nằm xuống."),
+  W("lay","đgt","đặt cái gì xuống","Lay the book on the table.","Đặt cuốn sách lên bàn."),
+]},
+{ t:"borrow / lend", tier:1, tip:"borrow = mượn (lấy từ người khác); lend = cho mượn (đưa cho người khác).", words:[
+  W("borrow","đgt","mượn","Can I borrow your pen?","Tôi có thể mượn bút của bạn không?"),
+  W("lend","đgt","cho mượn","Can you lend me your pen?","Bạn có thể cho tôi mượn bút không?"),
+]},
+{ t:"bring / take", tier:1, tip:"bring = mang đến nơi người nói/nghe; take = mang đi khỏi nơi hiện tại.", words:[
+  W("bring","đgt","mang đến (đây)","Bring your passport.","Hãy mang theo hộ chiếu của bạn."),
+  W("take","đgt","mang đi (khỏi đây)","Take this document to the office.","Hãy mang tài liệu này đến văn phòng."),
+]},
+{ t:"recall → remember → remind", tier:1, tip:"recall = nhớ lại, hồi tưởng (chủ động lục lại trí nhớ); remember = tự nhớ (trạng thái); remind = làm cho ai đó nhớ.", words:[
+  W("recall","đgt","nhớ lại, hồi tưởng","I can't recall his name.","Tôi không thể nhớ lại tên anh ấy."),
+  W("remember","đgt","nhớ","I remember his name.","Tôi nhớ tên anh ấy."),
+  W("remind","đgt","nhắc ai nhớ","Please remind me tomorrow.","Hãy nhắc tôi vào ngày mai."),
+]},
+{ t:"say / tell", tier:1, tip:"say + điều gì đó; tell + cho ai đó (cần tân ngữ chỉ người).", words:[
+  W("say","đgt","nói điều gì","She said that she was tired.","Cô ấy nói rằng cô ấy mệt."),
+  W("tell","đgt","nói/kể cho ai","She told me that she was tired.","Cô ấy nói với tôi rằng cô ấy mệt."),
+]},
+{ t:"hear / listen", tier:1, tip:"hear = âm thanh đến tai một cách tự nhiên; listen = chủ động lắng nghe.", words:[
+  W("hear","đgt","nghe thấy","I heard a noise.","Tôi nghe thấy một tiếng động."),
+  W("listen","đgt","lắng nghe","Listen to me.","Hãy lắng nghe tôi."),
+]},
+{ t:"see / look / watch", tier:1, tip:"see = nhìn thấy (thụ động); look = hướng mắt nhìn; watch = xem/theo dõi trong một khoảng thời gian.", words:[
+  W("see","đgt","nhìn thấy","I saw him yesterday.","Tôi đã nhìn thấy anh ấy hôm qua."),
+  W("look","đgt","nhìn","Look at this!","Nhìn cái này đi!"),
+  W("watch","đgt","xem, theo dõi","We watched a movie.","Chúng tôi đã xem một bộ phim."),
+]},
+{ t:"learn / teach", tier:1, tip:"learn = tiếp nhận kiến thức; teach = truyền đạt kiến thức.", words:[
+  W("learn","đgt","học","I learned English at school.","Tôi đã học tiếng Anh ở trường."),
+  W("teach","đgt","dạy","She teaches English.","Cô ấy dạy tiếng Anh."),
+]},
+{ t:"incident / incidence", tier:2, tip:"incident = MỘT sự việc cụ thể; incidence = TỶ LỆ/tần suất xảy ra.", words:[
+  W("incident","dt","sự việc, vụ việc, sự cố","There was a serious incident.","Đã có một sự cố nghiêm trọng."),
+  W("incidence","dt","tỷ lệ, mức độ xảy ra","The incidence of cancer is increasing.","Tỷ lệ mắc ung thư đang tăng lên."),
+]},
+{ t:"imply / infer", tier:2, tip:"Người NÓI/VIẾT thì imply (ngụ ý); người NGHE/ĐỌC thì infer (suy ra).", words:[
+  W("imply","đgt","ngụ ý, hàm ý","He implied that I was wrong.","Anh ấy ngụ ý rằng tôi đã sai."),
+  W("infer","đgt","suy ra","I inferred that he was angry.","Tôi suy ra rằng anh ấy đang giận."),
+]},
+{ t:"complement → compliment → supplement", tier:2, tip:"complement = bổ sung để HOÀN THIỆN; compliment = lời khen; supplement = bổ sung THÊM (không nhất thiết để hoàn thiện).", words:[
+  W("complement","đgt","bổ sung, làm hoàn thiện","The wine complements the food.","Rượu vang làm món ăn thêm hoàn hảo."),
+  W("compliment","dt/đgt","lời khen, khen","She complimented me on my work.","Cô ấy khen ngợi tôi về công việc."),
+  W("supplement","dt/đgt","thứ bổ sung thêm","Take a vitamin supplement daily.","Hãy uống thực phẩm bổ sung vitamin hàng ngày."),
+]},
+{ t:"principal → principle → principally", tier:2, tip:"principal = chính, chủ yếu / hiệu trưởng; principle = nguyên tắc; principally = trạng từ, nghĩa là 'chủ yếu'.", words:[
+  W("principal","tt/dt","chính, chủ yếu; hiệu trưởng","The principal reason is cost.","Lý do chính là chi phí."),
+  W("principle","dt","nguyên tắc","We must follow this principle.","Chúng ta phải tuân theo nguyên tắc này."),
+  W("principally","trt","chủ yếu","The problem is principally caused by poor planning.","Vấn đề chủ yếu là do lập kế hoạch kém."),
+]},
+{ t:"precede / proceed", tier:2, tip:"precede = xảy ra TRƯỚC; proceed = TIẾP TỤC, tiến hành.", words:[
+  W("precede","đgt","xảy ra trước","The introduction precedes the main discussion.","Phần giới thiệu diễn ra trước phần thảo luận chính."),
+  W("proceed","đgt","tiếp tục, tiến hành","We can proceed with the plan.","Chúng ta có thể tiến hành kế hoạch."),
+]},
+{ t:"comprehensive / comprehensible", tier:2, tip:"comprehensive = toàn diện, đầy đủ; comprehensible = có thể hiểu được.", words:[
+  W("comprehensive","tt","toàn diện","We need a comprehensive analysis.","Chúng ta cần một phân tích toàn diện."),
+  W("comprehensible","tt","có thể hiểu được, dễ hiểu","The explanation was clear and comprehensible.","Lời giải thích rõ ràng và dễ hiểu."),
+]},
+{ t:"industrial → industrious → industry", tier:2, tip:"industrial = thuộc công nghiệp; industrious = chăm chỉ (tính cách con người); industry = NGÀNH công nghiệp (danh từ chỉ lĩnh vực).", words:[
+  W("industrial","tt","thuộc công nghiệp","The country has strong industrial growth.","Đất nước có sự tăng trưởng công nghiệp mạnh mẽ."),
+  W("industrious","tt","chăm chỉ","She is an industrious worker.","Cô ấy là một người lao động chăm chỉ."),
+  W("industry","dt","ngành công nghiệp","The tech industry is growing fast.","Ngành công nghệ đang phát triển nhanh chóng."),
+]},
+{ t:"effective → efficient → affective → effectiveness → efficacy", tier:2, tip:"effective = CÓ hiệu quả; efficient = hiệu suất cao; affective = thuộc cảm xúc; effectiveness = TÍNH hiệu quả (danh từ); efficacy = khả năng tạo ra kết quả (thường dùng cho thuốc/phương pháp).", words:[
+  W("effective","tt","có hiệu quả","The treatment was effective.","Phương pháp điều trị có hiệu quả."),
+  W("efficient","tt","hiệu suất cao, ít lãng phí","The new system is more efficient.","Hệ thống mới hiệu quả hơn, ít lãng phí hơn."),
+  W("affective","tt","thuộc về cảm xúc","Affective factors influence learning.","Các yếu tố cảm xúc ảnh hưởng đến việc học."),
+  W("effectiveness","dt","tính hiệu quả","They measured the effectiveness of the new drug.","Họ đo lường tính hiệu quả của loại thuốc mới."),
+  W("efficacy","dt","tính hiệu quả, khả năng tạo ra kết quả","The efficacy of the vaccine was proven in trials.","Hiệu quả của vắc-xin đã được chứng minh trong các thử nghiệm."),
+]},
+{ t:"contingent → continual → continuous → consecutive", tier:2, tip:"contingent = phụ thuộc vào ĐIỀU KIỆN; continual = lặp đi lặp lại (có ngắt quãng); continuous = liên tục, không gián đoạn; consecutive = liên tiếp NHAU theo thứ tự.", words:[
+  W("contingent","tt","phụ thuộc vào điều kiện","Funding is contingent on approval.","Nguồn tài trợ phụ thuộc vào việc phê duyệt."),
+  W("continual","tt","lặp đi lặp lại","There were continual interruptions.","Có những sự gián đoạn lặp đi lặp lại."),
+  W("continuous","tt","liên tục, không gián đoạn","The machine runs continuously.","Máy chạy liên tục không ngừng."),
+  W("consecutive","tt","liên tiếp","She won five consecutive titles.","Cô ấy đã giành năm danh hiệu liên tiếp."),
+]},
+{ t:"alternate / alternative", tier:2, tip:"alternate = xen kẽ, thay phiên; alternative = một lựa chọn thay thế.", words:[
+  W("alternate","đgt/tt","xen kẽ, thay phiên","We take alternate routes.","Chúng tôi đi theo các tuyến đường xen kẽ nhau."),
+  W("alternative","dt/tt","lựa chọn thay thế","We need an alternative solution.","Chúng ta cần một giải pháp thay thế."),
+]},
+{ t:"adapt → adept → adopt", tier:2, tip:"adapt = thích nghi, điều chỉnh bản thân; adept = GIỎI, thành thạo (tính từ); adopt = nhận nuôi, áp dụng cái gì từ bên ngoài.", words:[
+  W("adapt","đgt","thích nghi, điều chỉnh","Animals adapt to their environment.","Động vật thích nghi với môi trường của chúng."),
+  W("adept","tt","giỏi, thành thạo","He is adept at solving problems.","Anh ấy rất giỏi trong việc giải quyết vấn đề."),
+  W("adopt","đgt","nhận nuôi, áp dụng","The company adopted a new policy.","Công ty đã áp dụng một chính sách mới."),
+]},
+{ t:"assure → ensure → insure → assert", tier:2, tip:"assure = đảm bảo VỚI MỘT NGƯỜI; ensure = đảm bảo một KẾT QUẢ xảy ra; insure = mua BẢO HIỂM; assert = KHẲNG ĐỊNH mạnh mẽ (không phải trấn an ai).", words:[
+  W("assure","đgt","đảm bảo với ai đó","I assure you that everything is fine.","Tôi đảm bảo với bạn rằng mọi thứ đều ổn."),
+  W("ensure","đgt","đảm bảo (một điều xảy ra)","We must ensure that everyone is safe.","Chúng ta phải đảm bảo rằng mọi người đều an toàn."),
+  W("insure","đgt","mua bảo hiểm","We insured the car.","Chúng tôi đã mua bảo hiểm cho chiếc xe."),
+  W("assert","đgt","khẳng định mạnh mẽ","She asserted her innocence.","Cô ấy khẳng định mạnh mẽ sự vô tội của mình."),
+]},
+{ t:"moral / morale", tier:2, tip:"moral = thuộc về đạo đức (đúng/sai); morale = tinh thần, sĩ khí.", words:[
+  W("moral","tt","thuộc đạo đức","This raises a moral question.","Điều này đặt ra một câu hỏi về đạo đức."),
+  W("morale","dt","tinh thần, sĩ khí","The team's morale is high.","Tinh thần của đội đang rất cao."),
+]},
+{ t:"human / humane", tier:2, tip:"human = con người, thuộc về con người; humane = nhân đạo, nhân văn (cách đối xử).", words:[
+  W("human","dt/tt","con người, thuộc con người","Human beings need water.","Con người cần nước."),
+  W("humane","tt","nhân đạo, nhân văn","We should treat animals in a humane way.","Chúng ta nên đối xử nhân đạo với động vật."),
+]},
+{ t:"social → sociable → societal", tier:2, tip:"social = thuộc về xã hội nói chung; sociable = hòa đồng (tính cách một người); societal = thuộc XÃ HỘI NÓI CHUNG như một chỉnh thể (trang trọng hơn social).", words:[
+  W("social","tt","thuộc xã hội, xã hội","Social problems are increasing.","Các vấn đề xã hội đang gia tăng."),
+  W("sociable","tt","hòa đồng, thích giao tiếp","She's friendly and sociable.","Cô ấy thân thiện và hòa đồng."),
+  W("societal","tt","thuộc về xã hội nói chung","We face major societal challenges.","Chúng ta đối mặt với những thách thức lớn của toàn xã hội."),
+]},
+{ t:"verbal → oral → verbose", tier:2, tip:"verbal = bằng lời nói/từ ngữ nói chung; oral = bằng miệng (đối lập với viết); verbose = DÀI DÒNG, dùng quá nhiều từ.", words:[
+  W("verbal","tt","bằng lời nói, bằng từ ngữ","We had a verbal agreement.","Chúng tôi đã có một thỏa thuận bằng lời nói."),
+  W("oral","tt","bằng miệng, nói","The exam includes an oral presentation.","Kỳ thi bao gồm phần thuyết trình bằng miệng."),
+  W("verbose","tt","dài dòng, dùng quá nhiều từ","His explanation was too verbose.","Lời giải thích của anh ấy quá dài dòng."),
+]},
+{ t:"conscience → conscious → conscientious → consciousness", tier:2, tip:"conscience = LƯƠNG TÂM (danh từ, cảm giác đúng/sai); conscious = có ý thức, nhận biết được; conscientious = tận tâm, cẩn thận; consciousness = Ý THỨC nói chung (trạng thái nhận thức).", words:[
+  W("conscience","dt","lương tâm","Her conscience wouldn't let her lie.","Lương tâm không cho phép cô ấy nói dối."),
+  W("conscious","tt","có ý thức, nhận thức được","He was conscious of the danger.","Anh ấy ý thức được sự nguy hiểm."),
+  W("conscientious","tt","tận tâm, cẩn thận","She is a conscientious employee.","Cô ấy là một nhân viên tận tâm, cẩn thận."),
+  W("consciousness","dt","ý thức, nhận thức","He lost consciousness after the accident.","Anh ấy mất ý thức sau tai nạn."),
+]},
+{ t:"then / than", tier:1, tip:"then = THỜI GIAN (khi đó, sau đó); than = SO SÁNH (hơn).", words:[
+  W("then","trt","khi đó, sau đó","We had lunch, then went shopping.","Chúng tôi ăn trưa, sau đó đi mua sắm."),
+  W("than","lt","hơn (dùng trong so sánh)","She is taller than her brother.","Cô ấy cao hơn anh trai mình."),
+]},
+{ t:"your / you're", tier:1, tip:"your = SỞ HỮU (của bạn); you're = viết tắt của 'you are'.", words:[
+  W("your","tt sh","của bạn","Is this your bag?","Đây là túi của bạn phải không?"),
+  W("you're","viết tắt","you are — bạn là / bạn đang","You're doing a great job.","Bạn đang làm rất tốt."),
+]},
+{ t:"its / it's", tier:1, tip:"its = SỞ HỮU (của nó, không có dấu nháy); it's = viết tắt của 'it is' hoặc 'it has'.", words:[
+  W("its","tt sh","của nó","The dog wagged its tail.","Con chó vẫy đuôi của nó."),
+  W("it's","viết tắt","it is / it has — nó là / nó đã","It's raining outside.","Trời đang mưa bên ngoài."),
+]},
+{ t:"they're / their / there", tier:1, tip:"they're = they are; their = SỞ HỮU (của họ); there = NƠI CHỐN hoặc sự tồn tại (there is/are).", words:[
+  W("they're","viết tắt","they are — họ là/đang","They're coming to the party.","Họ sẽ đến bữa tiệc."),
+  W("their","tt sh","của họ","This is their house.","Đây là nhà của họ."),
+  W("there","trt/dt","ở đó; có","There is a book on the table.","Có một cuốn sách trên bàn."),
+]},
+{ t:"beside / besides", tier:1, tip:"beside = BÊN CẠNH (vị trí); besides = NGOÀI RA, thêm vào đó (ý nghĩa).", words:[
+  W("beside","gt","bên cạnh","She sat beside me.","Cô ấy ngồi bên cạnh tôi."),
+  W("besides","trt/gt","ngoài ra, bên cạnh đó","Besides English, she speaks French.","Ngoài tiếng Anh, cô ấy còn nói tiếng Pháp."),
+]},
+{ t:"everyday / every day", tier:1, tip:"everyday (một từ) = tính từ, nghĩa là 'thường ngày'; every day (hai từ) = trạng từ, nghĩa là 'mỗi ngày'.", words:[
+  W("everyday","tt","thường ngày, thông thường","These are everyday problems.","Đây là những vấn đề thường ngày."),
+  W("every day","cụm trt","mỗi ngày","I go jogging every day.","Tôi chạy bộ mỗi ngày."),
+]},
+{ t:"maybe / may be", tier:1, tip:"maybe (một từ) = trạng từ, nghĩa là 'có lẽ'; may be (hai từ) = động từ khuyết thiếu 'may' + 'be', nghĩa là 'có thể là'.", words:[
+  W("maybe","trt","có lẽ","Maybe we should leave now.","Có lẽ chúng ta nên đi ngay bây giờ."),
+  W("may be","cụm đgt","có thể là","He may be at home.","Anh ấy có thể đang ở nhà."),
+]},
+{ t:"altogether / all together", tier:1, tip:"altogether = HOÀN TOÀN/tổng cộng; all together = TẤT CẢ cùng nhau (ở một nơi/lúc).", words:[
+  W("altogether","trt","hoàn toàn, tổng cộng","The plan was altogether different.","Kế hoạch hoàn toàn khác."),
+  W("all together","cụm trt","tất cả cùng nhau","We stood all together in the hall.","Chúng tôi đứng tất cả cùng nhau trong sảnh."),
+]},
+{ t:"sometime / sometimes / some time / someday", tier:1, tip:"sometime = MỘT LÚC nào đó không xác định; sometimes = ĐÔI KHI (tần suất); some time = MỘT KHOẢNG thời gian; someday = MỘT NGÀY nào đó trong tương lai.", words:[
+  W("sometime","trt","vào một lúc nào đó","Let's meet sometime next week.","Hãy gặp nhau vào một lúc nào đó tuần tới."),
+  W("sometimes","trt","đôi khi","Sometimes I work from home.","Đôi khi tôi làm việc tại nhà."),
+  W("some time","cụm dt","một khoảng thời gian","I need some time to think.","Tôi cần một khoảng thời gian để suy nghĩ."),
+  W("someday","trt","một ngày nào đó (tương lai)","Someday I will visit Japan.","Một ngày nào đó tôi sẽ đến thăm Nhật Bản."),
+]},
+{ t:"apart / a part", tier:1, tip:"apart = TÁCH RỜI (trạng từ); a part = MỘT PHẦN (danh từ, có mạo từ 'a').", words:[
+  W("apart","trt","tách rời, cách nhau","The two towns are ten miles apart.","Hai thị trấn cách nhau mười dặm."),
+  W("a part","cụm dt","một phần","This is a part of the plan.","Đây là một phần của kế hoạch."),
+]},
+{ t:"farther / further", tier:1, tip:"farther = khoảng cách VẬT LÝ; further = nghĩa TRỪU TƯỢNG (thêm nữa, sâu hơn).", words:[
+  W("farther","trt/tt","xa hơn (khoảng cách vật lý)","We need to walk farther to reach the lake.","Chúng ta cần đi xa hơn để đến hồ."),
+  W("further","trt/tt","thêm nữa, sâu hơn (trừu tượng)","We need further information.","Chúng ta cần thêm thông tin."),
+]},
+{ t:"fewer / less", tier:1, tip:"fewer + danh từ ĐẾM ĐƯỢC; less + danh từ KHÔNG đếm được.", words:[
+  W("fewer","tt","ít hơn (đếm được)","Fewer people attended this year.","Ít người tham dự hơn trong năm nay."),
+  W("less","tt","ít hơn (không đếm được)","I have less time than before.","Tôi có ít thời gian hơn trước."),
+]},
+{ t:"amount / number", tier:1, tip:"amount of + danh từ KHÔNG đếm được; number of + danh từ ĐẾM ĐƯỢC.", words:[
+  W("amount","dt","lượng (không đếm được)","A large amount of money was spent.","Một số tiền lớn đã được chi ra."),
+  W("number","dt","số lượng (đếm được)","A number of students were absent.","Một số học sinh đã vắng mặt."),
+]},
+{ t:"among / between", tier:1, tip:"between = giữa các đối tượng ĐƯỢC PHÂN BIỆT RIÊNG (thường 2 đối tượng); among = giữa/trong MỘT NHÓM (từ 3 trở lên, không phân biệt riêng).", words:[
+  W("among","gt","giữa, trong một nhóm","The prize was shared among five winners.","Giải thưởng được chia sẻ giữa năm người thắng cuộc."),
+  W("between","gt","giữa các đối tượng riêng biệt","There is a wall between the two rooms.","Có một bức tường giữa hai căn phòng."),
+]},
+{ t:"discover / invent", tier:1, tip:"discover = phát hiện thứ ĐÃ TỒN TẠI sẵn; invent = phát minh, tạo ra thứ MỚI chưa từng có.", words:[
+  W("discover","đgt","phát hiện","Columbus discovered America.","Columbus đã phát hiện ra châu Mỹ."),
+  W("invent","đgt","phát minh, tạo ra","Edison invented the light bulb.","Edison đã phát minh ra bóng đèn."),
+]},
+{ t:"explicit / implicit", tier:2, tip:"explicit = nói RÕ RÀNG, trực tiếp; implicit = NGẦM HIỂU, không nói trực tiếp.", words:[
+  W("explicit","tt","rõ ràng, trực tiếp","She gave explicit instructions.","Cô ấy đưa ra những chỉ dẫn rõ ràng."),
+  W("implicit","tt","ngầm hiểu, không nói trực tiếp","There was an implicit agreement between them.","Có một sự đồng thuận ngầm giữa họ."),
+]},
+{ t:"cite / site / sight", tier:2, tip:"cite = TRÍCH DẪN (nguồn); site = ĐỊA ĐIỂM; sight = THỊ GIÁC, cảnh nhìn thấy.", words:[
+  W("cite","đgt","trích dẫn","She cited several studies in her essay.","Cô ấy đã trích dẫn nhiều nghiên cứu trong bài luận."),
+  W("site","dt","địa điểm","This is the site of the new building.","Đây là địa điểm của tòa nhà mới."),
+  W("sight","dt","cảnh nhìn, thị giác","The mountain view was a beautiful sight.","Khung cảnh núi non thật là một cảnh đẹp."),
+]},
+{ t:"stationary / stationery", tier:1, tip:"stationary = ĐỨNG YÊN (tính từ); stationery = VĂN PHÒNG PHẨM (danh từ, có chữ 'e' như 'envelope').", words:[
+  W("stationary","tt","đứng yên, không di chuyển","The car remained stationary at the light.","Chiếc xe vẫn đứng yên tại đèn giao thông."),
+  W("stationery","dt","văn phòng phẩm","We ordered new stationery for the office.","Chúng tôi đã đặt văn phòng phẩm mới cho văn phòng."),
+]},
+{ t:"discrete / discreet", tier:2, tip:"discrete = RIÊNG BIỆT, tách rời (không liên quan); discreet = KÍN ĐÁO, thận trọng (cách cư xử).", words:[
+  W("discrete","tt","riêng biệt, tách rời","The data was divided into discrete categories.","Dữ liệu được chia thành các nhóm riêng biệt."),
+  W("discreet","tt","kín đáo, thận trọng","Please be discreet about this matter.","Xin hãy kín đáo về vấn đề này."),
+]},
+{ t:"desert / dessert", tier:1, tip:"desert = sa mạc/bỏ rơi (1 chữ s); dessert = món tráng miệng (2 chữ s — 'dessert có 2 S vì ai cũng muốn thêm (extra) món ngọt').", words:[
+  W("desert","dt/đgt","sa mạc; bỏ rơi","He deserted his family.","Anh ta đã bỏ rơi gia đình mình."),
+  W("dessert","dt","món tráng miệng","We had ice cream for dessert.","Chúng tôi ăn kem tráng miệng."),
+]},
+{ t:"eminent / imminent / immanent", tier:3, tip:"eminent = NỔI TIẾNG, lỗi lạc; imminent = SẮP xảy ra; immanent = NỘI TẠI, tồn tại bên trong (thuật ngữ triết học).", words:[
+  W("eminent","tt","nổi tiếng, lỗi lạc","She is an eminent scientist.","Bà ấy là một nhà khoa học lỗi lạc."),
+  W("imminent","tt","sắp xảy ra","A storm is imminent.","Một cơn bão sắp xảy ra."),
+  W("immanent","tt","nội tại, tồn tại bên trong","Some philosophers see God as immanent in nature.","Một số triết gia xem Chúa là nội tại trong tự nhiên."),
+]},
+{ t:"credible / credulous / creditable", tier:3, tip:"credible = ĐÁNG TIN (lời nói/bằng chứng); credulous = CẢ TIN (tính cách, dễ bị lừa); creditable = ĐÁNG KHEN, đáng ghi nhận.", words:[
+  W("credible","tt","đáng tin","Her explanation was credible.","Lời giải thích của cô ấy đáng tin."),
+  W("credulous","tt","cả tin, dễ tin","He is too credulous to notice the scam.","Anh ấy quá cả tin nên không nhận ra trò lừa đảo."),
+  W("creditable","tt","đáng khen, đáng ghi nhận","She made a creditable effort.","Cô ấy đã có một nỗ lực đáng khen."),
+]},
+{ t:"causal / casual", tier:2, tip:"causal = thuộc quan hệ NHÂN QUẢ (trang trọng, học thuật); casual = BÌNH THƯỜNG, không trang trọng, tình cờ.", words:[
+  W("causal","tt","thuộc quan hệ nhân quả","There is a causal link between smoking and cancer.","Có một mối quan hệ nhân quả giữa hút thuốc và ung thư."),
+  W("casual","tt","bình thường, không trang trọng","She wore casual clothes to the party.","Cô ấy mặc trang phục bình thường đến bữa tiệc."),
+]},
+{ t:"access / assess", tier:2, tip:"access = TIẾP CẬN, quyền truy cập (danh từ/động từ); assess = ĐÁNH GIÁ (động từ).", words:[
+  W("access","dt/đgt","tiếp cận, quyền truy cập","Students need access to reliable information.","Học sinh cần được tiếp cận với thông tin đáng tin cậy."),
+  W("assess","đgt","đánh giá","The researchers assessed the effectiveness of the program.","Các nhà nghiên cứu đã đánh giá hiệu quả của chương trình."),
+]},
+{ t:"allusion / illusion", tier:3, tip:"allusion = sự ÁM CHỈ (gián tiếp nhắc đến); illusion = ẢO TƯỞNG, ảo giác (điều không có thật).", words:[
+  W("allusion","dt","sự ám chỉ","The poem contains an allusion to Greek mythology.","Bài thơ chứa một sự ám chỉ đến thần thoại Hy Lạp."),
+  W("illusion","dt","ảo tưởng, ảo giác","The belief that money guarantees happiness is an illusion.","Niềm tin rằng tiền bạc đảm bảo hạnh phúc là một ảo tưởng."),
+]},
+{ t:"appraise / apprise", tier:3, tip:"appraise = ĐÁNH GIÁ giá trị/chất lượng; apprise = THÔNG BÁO cho ai biết.", words:[
+  W("appraise","đgt","đánh giá giá trị, chất lượng","The committee appraised the value of the property.","Ủy ban đã đánh giá giá trị của bất động sản."),
+  W("apprise","đgt","thông báo cho ai biết","We need to apprise the manager of the situation.","Chúng ta cần thông báo cho quản lý về tình hình."),
+]},
+{ t:"ascent / assent", tier:3, tip:"ascent = sự ĐI LÊN, leo lên; assent = sự ĐỒNG Ý, tán thành.", words:[
+  W("ascent","dt","sự đi lên, sự leo lên","The climbers began their ascent.","Những người leo núi bắt đầu cuộc leo lên."),
+  W("assent","dt","sự đồng ý, tán thành","The proposal received the committee's assent.","Đề xuất đã nhận được sự đồng ý của ủy ban."),
+]},
+{ t:"canvas / canvass", tier:3, tip:"canvas = VẢI BẠT, tranh vẽ (danh từ, vật liệu); canvass = VẬN ĐỘNG, thăm dò ý kiến (động từ).", words:[
+  W("canvas","dt","vải bạt, tranh vẽ trên vải","The artist painted on canvas.","Họa sĩ vẽ tranh trên vải bạt."),
+  W("canvass","đgt","vận động, thăm dò ý kiến","The organization canvassed local residents.","Tổ chức đã vận động và thăm dò ý kiến cư dân địa phương."),
+]},
+{ t:"collide / collude", tier:3, tip:"collide = VA CHẠM (vật lý); collude = THÔNG ĐỒNG (bí mật hợp tác sai trái).", words:[
+  W("collide","đgt","va chạm","The two vehicles collided.","Hai chiếc xe đã va chạm nhau."),
+  W("collude","đgt","thông đồng","The companies were accused of colluding to fix prices.","Các công ty bị cáo buộc thông đồng để ấn định giá."),
+]},
+{ t:"council / counsel", tier:2, tip:"council = HỘI ĐỒNG (một nhóm người); counsel = LỜI KHUYÊN / cố vấn pháp lý.", words:[
+  W("council","dt","hội đồng","The city council approved the proposal.","Hội đồng thành phố đã phê duyệt đề xuất."),
+  W("counsel","dt/đgt","lời khuyên, cố vấn pháp lý","The lawyer provided legal counsel.","Luật sư đã cung cấp lời khuyên pháp lý."),
+]},
+{ t:"device / devise", tier:2, tip:"device = THIẾT BỊ (danh từ); devise = NGHĨ RA, thiết kế (động từ).", words:[
+  W("device","dt","thiết bị, phương tiện","The device can measure temperature.","Thiết bị này có thể đo nhiệt độ."),
+  W("devise","đgt","nghĩ ra, thiết kế","Scientists devised a new method.","Các nhà khoa học đã nghĩ ra một phương pháp mới."),
+]},
+{ t:"elicit / illicit", tier:3, tip:"elicit = GỢI RA thông tin/phản ứng (động từ); illicit = BẤT HỢP PHÁP (tính từ).", words:[
+  W("elicit","đgt","gợi ra, khiến ai đưa ra thông tin/phản ứng","The question elicited an angry response.","Câu hỏi đã gợi ra một phản ứng giận dữ."),
+  W("illicit","tt","bất hợp pháp","The police discovered an illicit operation.","Cảnh sát đã phát hiện một hoạt động bất hợp pháp."),
+]},
+{ t:"formally / formerly", tier:2, tip:"formally = MỘT CÁCH CHÍNH THỨC; formerly = TRƯỚC ĐÂY (thời gian).", words:[
+  W("formally","trt","một cách chính thức","The agreement was formally approved.","Thỏa thuận đã được phê duyệt một cách chính thức."),
+  W("formerly","trt","trước đây","The building was formerly a hospital.","Tòa nhà này trước đây là một bệnh viện."),
+]},
+{ t:"ingenious / ingenuous", tier:3, tip:"ingenious = KHÉO LÉO, sáng tạo (khen trí thông minh); ingenuous = NGÂY THƠ, chân thật (không giả tạo).", words:[
+  W("ingenious","tt","khéo léo, sáng tạo","She developed an ingenious solution.","Cô ấy đã phát triển một giải pháp khéo léo."),
+  W("ingenuous","tt","ngây thơ, chân thật, không giả tạo","He was ingenuous enough to believe the story.","Anh ấy đủ ngây thơ để tin vào câu chuyện đó."),
+]},
+{ t:"institutional / instinctive", tier:3, tip:"institutional = thuộc về THỂ CHẾ/tổ chức; instinctive = theo BẢN NĂNG.", words:[
+  W("institutional","tt","thuộc về thể chế, tổ chức","Institutional reform is necessary.","Cải cách thể chế là cần thiết."),
+  W("instinctive","tt","theo bản năng","Her response was instinctive.","Phản ứng của cô ấy là theo bản năng."),
+]},
+{ t:"judicial / judicious", tier:3, tip:"judicial = thuộc TƯ PHÁP/tòa án; judicious = SÁNG SUỐT, thận trọng.", words:[
+  W("judicial","tt","thuộc tư pháp, tòa án","The case was reviewed by a judicial authority.","Vụ án đã được xem xét bởi cơ quan tư pháp."),
+  W("judicious","tt","sáng suốt, thận trọng","He made a judicious decision.","Anh ấy đã đưa ra một quyết định sáng suốt."),
+]},
+{ t:"kinetic / kinesthetic", tier:3, tip:"kinetic = thuộc CHUYỂN ĐỘNG nói chung (vật lý); kinesthetic = liên quan đến CẢM GIÁC vận động của cơ thể.", words:[
+  W("kinetic","tt","thuộc chuyển động","Kinetic energy increases with speed.","Động năng tăng theo tốc độ."),
+  W("kinesthetic","tt","liên quan đến cảm giác vận động của cơ thể","Kinesthetic learners benefit from physical activities.","Người học theo kiểu vận động cơ thể được lợi từ các hoạt động thể chất."),
+]},
+{ t:"literal / literary", tier:2, tip:"literal = theo NGHĨA ĐEN (từng chữ); literary = thuộc VĂN HỌC.", words:[
+  W("literal","tt","theo nghĩa đen","The statement should not be interpreted literally.","Câu nói này không nên được hiểu theo nghĩa đen."),
+  W("literary","tt","thuộc văn học","She has a strong literary background.","Cô ấy có nền tảng văn học vững chắc."),
+]},
+{ t:"migratory / migrant", tier:2, tip:"migratory = TÍNH CHẤT di cư (tính từ); migrant = NGƯỜI di cư (danh từ, chỉ người).", words:[
+  W("migratory","tt","có tính di cư","Birds have a migratory pattern.","Các loài chim có tập tính di cư."),
+  W("migrant","dt","người di cư","The country received thousands of migrants.","Đất nước đã tiếp nhận hàng ngàn người di cư."),
+]},
+{ t:"persecution / prosecution", tier:3, tip:"persecution = sự ĐÀN ÁP, ngược đãi; prosecution = sự TRUY TỐ (pháp lý) / bên công tố.", words:[
+  W("persecution","dt","sự đàn áp, ngược đãi","The group faced religious persecution.","Nhóm này đã phải đối mặt với sự đàn áp tôn giáo."),
+  W("prosecution","dt","sự truy tố, bên công tố","The prosecution presented new evidence.","Bên công tố đã trình bày bằng chứng mới."),
+]},
+{ t:"prescribe / proscribe", tier:3, tip:"prescribe = KÊ ĐƠN, quy định (yêu cầu làm); proscribe = CẤM (yêu cầu không làm).", words:[
+  W("prescribe","đgt","kê đơn, quy định","Doctors prescribed antibiotics.","Bác sĩ đã kê đơn thuốc kháng sinh."),
+  W("proscribe","đgt","cấm","The law proscribes certain activities.","Luật cấm một số hoạt động nhất định."),
+]},
+{ t:"precedent / president", tier:3, tip:"precedent = TIỀN LỆ (việc đã xảy ra trước làm mẫu); president = TỔNG THỐNG, chủ tịch (con người).", words:[
+  W("precedent","dt","tiền lệ","The decision set an important precedent.","Quyết định này đã tạo ra một tiền lệ quan trọng."),
+  W("president","dt","tổng thống, chủ tịch","The president addressed the nation.","Tổng thống đã phát biểu trước quốc dân."),
+]},
+{ t:"premise / premises", tier:3, tip:"premise (số ít) = TIỀN ĐỀ (lập luận); premises (luôn số nhiều) = CƠ SỞ, khuôn viên (bất động sản).", words:[
+  W("premise","dt","tiền đề","The argument is based on a false premise.","Lập luận này dựa trên một tiền đề sai lầm."),
+  W("premises","dt (số nhiều)","cơ sở, khuôn viên","Smoking is prohibited on the premises.","Cấm hút thuốc trong khuôn viên này."),
+]},
+{ t:"prophecy / prophesy", tier:3, tip:"prophecy = DANH TỪ (lời tiên tri); prophesy = ĐỘNG TỪ (tiên tri, dự đoán).", words:[
+  W("prophecy","dt","lời tiên tri","The prophecy was fulfilled.","Lời tiên tri đã được ứng nghiệm."),
+  W("prophesy","đgt","tiên tri, dự đoán","He prophesied that the kingdom would fall.","Ông ấy đã tiên đoán rằng vương quốc sẽ sụp đổ."),
+]},
+{ t:"prospective / perspective", tier:2, tip:"prospective = TIỀM NĂNG, sắp tới (tính từ); perspective = QUAN ĐIỂM, góc nhìn (danh từ).", words:[
+  W("prospective","tt","tiềm năng, sắp tới","The company interviewed prospective employees.","Công ty đã phỏng vấn các nhân viên tiềm năng."),
+  W("perspective","dt","quan điểm, góc nhìn","The issue looks different from a historical perspective.","Vấn đề này trông khác đi từ góc nhìn lịch sử."),
+]},
+{ t:"rational / rationale", tier:2, tip:"rational = HỢP LÝ (tính từ, dựa trên lý trí); rationale = CƠ SỞ LÝ LUẬN (danh từ, lý do đằng sau quyết định).", words:[
+  W("rational","tt","hợp lý, dựa trên lý trí","We need a rational explanation.","Chúng ta cần một lời giải thích hợp lý."),
+  W("rationale","dt","cơ sở lý luận, lý do đằng sau quyết định","The report explains the rationale behind the policy.","Báo cáo giải thích cơ sở lý luận đằng sau chính sách."),
+]},
+{ t:"scarce / scarcely", tier:2, tip:"scarce = KHAN HIẾM (tính từ); scarcely = HẦU NHƯ KHÔNG (trạng từ, gần nghĩa với hardly).", words:[
+  W("scarce","tt","khan hiếm","Water is scarce in the region.","Nước khan hiếm ở khu vực này."),
+  W("scarcely","trt","hầu như không","There was scarcely enough food.","Hầu như không đủ thức ăn."),
+]},
+{ t:"statute / status", tier:3, tip:"statute = ĐẠO LUẬT (văn bản pháp lý cụ thể); status = ĐỊA VỊ, tình trạng.", words:[
+  W("statute","dt","đạo luật","The statute was amended last year.","Đạo luật đã được sửa đổi vào năm ngoái."),
+  W("status","dt","địa vị, tình trạng","The company has achieved international status.","Công ty đã đạt được vị thế quốc tế."),
+]},
+{ t:"testify / testimony", tier:3, tip:"testify = ĐỘNG TỪ (làm chứng, hành động); testimony = DANH TỪ (lời khai, kết quả của việc làm chứng).", words:[
+  W("testify","đgt","làm chứng","She testified in court.","Cô ấy đã làm chứng trước tòa."),
+  W("testimony","dt","lời khai, lời chứng","His testimony was considered reliable.","Lời khai của anh ấy được coi là đáng tin cậy."),
+]},
+{ t:"tortuous / torturous", tier:3, tip:"tortuous = QUANH CO, phức tạp (đường đi/lập luận); torturous = ĐAU ĐỚN, cực hình (trải nghiệm).", words:[
+  W("tortuous","tt","quanh co, phức tạp","The road follows a tortuous route.","Con đường đi theo một lộ trình quanh co."),
+  W("torturous","tt","đau đớn, cực hình","The journey was torturous.","Chuyến đi thật là cực hình."),
+]},
+{ t:"urban → urbane → suburban", tier:2, tip:"urban = thuộc ĐÔ THỊ (địa lý); urbane = LỊCH THIỆP, tao nhã (tính cách); suburban = thuộc VÙNG NGOẠI Ô.", words:[
+  W("urban","tt","thuộc đô thị","Urban populations are increasing.","Dân số đô thị đang gia tăng."),
+  W("urbane","tt","lịch thiệp, tao nhã","He was an urbane and sophisticated host.","Ông ấy là một chủ nhà lịch thiệp và tinh tế."),
+  W("suburban","tt","thuộc vùng ngoại ô","They live in a quiet suburban neighborhood.","Họ sống trong một khu dân cư ngoại ô yên tĩnh."),
+]},
+{ t:"waive / wave", tier:2, tip:"waive = TỪ BỎ quyền/yêu cầu (động từ, pháp lý/tài chính); wave = VẪY tay, sóng (động từ/danh từ).", words:[
+  W("waive","đgt","từ bỏ quyền, yêu cầu","The company agreed to waive the fee.","Công ty đã đồng ý miễn khoản phí này."),
+  W("wave","dt/đgt","vẫy, sóng","She waved goodbye.","Cô ấy đã vẫy tay tạm biệt."),
+]},
+{ t:"wary / weary", tier:2, tip:"wary = CẢNH GIÁC (đề phòng điều gì đó); weary = MỆT MỎI (thể chất/tinh thần).", words:[
+  W("wary","tt","cảnh giác","Consumers are wary of misleading advertisements.","Người tiêu dùng cảnh giác với quảng cáo gây hiểu lầm."),
+  W("weary","tt","mệt mỏi","After the journey, they were weary.","Sau chuyến đi, họ đã rất mệt mỏi."),
+]},
+{ t:"weather / whether", tier:1, tip:"weather = THỜI TIẾT (danh từ); whether = LIỆU RẰNG (liên từ, dùng khi có lựa chọn/nghi vấn).", words:[
+  W("weather","dt","thời tiết","The weather is unpredictable.","Thời tiết khó đoán."),
+  W("whether","lt","liệu rằng","I don't know whether he will come.","Tôi không biết liệu anh ấy có đến hay không."),
+]},
+{ t:"wholesale / wholesome", tier:2, tip:"wholesale = BÁN BUÔN (thương mại quy mô lớn); wholesome = LÀNH MẠNH, tốt cho sức khỏe/tinh thần.", words:[
+  W("wholesale","dt/tt","bán buôn","The goods are sold wholesale.","Hàng hóa được bán buôn."),
+  W("wholesome","tt","lành mạnh, tốt cho sức khỏe/tinh thần","They promote wholesome food.","Họ khuyến khích thực phẩm lành mạnh."),
+]},
+{ t:"adverse / averse", tier:2, tip:"adverse = BẤT LỢI (mô tả sự việc/tình huống); averse = KHÔNG THÍCH, ác cảm (mô tả thái độ của người, thường đi với 'to').", words:[
+  W("adverse","tt","bất lợi","The policy had adverse effects.","Chính sách này gây ra những tác động bất lợi."),
+  W("averse","tt","không thích, ác cảm với","He is averse to taking unnecessary risks.","Anh ấy không thích chấp nhận những rủi ro không cần thiết."),
+]},
+{ t:"comprise / compose", tier:2, tip:"comprise: TOÀN THỂ comprise CÁC PHẦN; compose: CÁC PHẦN compose (nên) TOÀN THỂ — ngược chiều nhau.", words:[
+  W("comprise","đgt","bao gồm (toàn thể → các phần)","The committee comprises five members.","Ủy ban bao gồm năm thành viên."),
+  W("compose","đgt","cấu thành, sáng tác (các phần → toàn thể)","Five members compose the committee.","Năm thành viên cấu thành nên ủy ban."),
+]},
+{ t:"constraint / restraint", tier:2, tip:"constraint = hạn chế do YẾU TỐ BÊN NGOÀI (hoàn cảnh/quy định); restraint = sự KIỀM CHẾ của chính bản thân.", words:[
+  W("constraint","dt","sự hạn chế do hoàn cảnh, quy định","Financial constraints limited the project.","Những hạn chế về tài chính đã giới hạn dự án."),
+  W("restraint","dt","sự kiềm chế","He showed remarkable restraint.","Anh ấy đã thể hiện sự kiềm chế đáng kể."),
+]},
+{ t:"defer / differ", tier:2, tip:"defer = TRÌ HOÃN (về thời gian); differ = KHÁC NHAU (về tính chất).", words:[
+  W("defer","đgt","trì hoãn","The decision was deferred until Monday.","Quyết định đã được hoãn lại đến thứ Hai."),
+  W("differ","đgt","khác nhau","Opinions differ considerably.","Các ý kiến khác nhau đáng kể."),
+]},
+{ t:"derive / deprive", tier:2, tip:"derive = BẮT NGUỒN, thu được (từ đâu đó); deprive = TƯỚC ĐOẠT (lấy đi của ai đó).", words:[
+  W("derive","đgt","bắt nguồn, thu được","The word derives from Latin.","Từ này bắt nguồn từ tiếng Latin."),
+  W("deprive","đgt","tước đoạt","The policy deprived many people of basic services.","Chính sách này đã tước đoạt các dịch vụ cơ bản của nhiều người."),
+]},
+{ t:"allude / elude", tier:3, tip:"allude = ÁM CHỈ (nhắc đến gián tiếp); elude = TRÁNH NÉ, không thể nắm bắt (thoát khỏi).", words:[
+  W("allude","đgt","ám chỉ","The author alludes to a historical event.","Tác giả ám chỉ đến một sự kiện lịch sử."),
+  W("elude","đgt","tránh né, không thể nắm bắt","The suspect managed to elude the police.","Nghi phạm đã trốn thoát được cảnh sát."),
+]},
+{ t:"amend / emend", tier:3, tip:"amend = SỬA ĐỔI luật/văn bản chính thức (thay đổi nội dung); emend = SỬA LỖI trong văn bản học thuật (sửa chính tả/lỗi).", words:[
+  W("amend","đgt","sửa đổi (luật, văn bản chính thức)","The constitution was amended.","Hiến pháp đã được sửa đổi."),
+  W("emend","đgt","sửa lỗi trong văn bản (học thuật)","The editor emended several errors in the manuscript.","Biên tập viên đã sửa một số lỗi trong bản thảo."),
+]},
+{ t:"apposite / opposite", tier:3, tip:"apposite = THÍCH HỢP, đúng chỗ (liên quan mật thiết); opposite = ĐỐI DIỆN, trái ngược.", words:[
+  W("apposite","tt","thích hợp, đúng chỗ","Her comment was apposite to the discussion.","Bình luận của cô ấy rất thích hợp với cuộc thảo luận."),
+  W("opposite","tt","đối diện, trái ngược","Their views are completely opposite.","Quan điểm của họ hoàn toàn trái ngược nhau."),
+]},
+{ t:"collusion / collision", tier:3, tip:"collusion = sự THÔNG ĐỒNG (bí mật, có chủ đích); collision = sự VA CHẠM (vật lý, thường ngẫu nhiên).", words:[
+  W("collusion","dt","sự thông đồng","The investigation revealed collusion between the firms.","Cuộc điều tra đã phát hiện sự thông đồng giữa các công ty."),
+  W("collision","dt","sự va chạm","The collision caused severe damage.","Vụ va chạm đã gây ra thiệt hại nghiêm trọng."),
+]},
+{ t:"empirical / imperial", tier:3, tip:"empirical = dựa trên QUAN SÁT/thực nghiệm (khoa học); imperial = thuộc ĐẾ QUỐC (chính trị, lịch sử).", words:[
+  W("empirical","tt","dựa trên quan sát, thực nghiệm","The theory lacks empirical evidence.","Lý thuyết này thiếu bằng chứng thực nghiệm."),
+  W("imperial","tt","thuộc đế quốc","The imperial government controlled the region.","Chính quyền đế quốc đã kiểm soát khu vực này."),
+]},
+{ t:"exhaustive / exhausting", tier:2, tip:"exhaustive = TOÀN DIỆN, đầy đủ (mô tả mức độ chi tiết); exhausting = GÂY MỆT MỎI (mô tả cảm giác).", words:[
+  W("exhaustive","tt","toàn diện, đầy đủ","The researchers conducted an exhaustive review.","Các nhà nghiên cứu đã thực hiện một đánh giá toàn diện."),
+  W("exhausting","tt","gây mệt mỏi","The journey was exhausting.","Chuyến đi thật mệt mỏi."),
+]},
+{ t:"fragile / fraught", tier:2, tip:"fragile = MONG MANH, dễ vỡ (vật/tình huống dễ tổn thương); fraught (with) = ĐẦY RẪY vấn đề/nguy hiểm.", words:[
+  W("fragile","tt","mong manh, dễ vỡ","The economy remains fragile.","Nền kinh tế vẫn còn mong manh."),
+  W("fraught","tt","đầy rẫy, chứa nhiều vấn đề/nguy hiểm","The negotiations were fraught with difficulties.","Các cuộc đàm phán đầy rẫy khó khăn."),
+]},
+{ t:"later / latter", tier:1, tip:"later = SAU ĐÓ, muộn hơn (thời gian); latter = cái/người ĐƯỢC NHẮC ĐẾN SAU trong hai đối tượng.", words:[
+  W("later","trt","sau đó, muộn hơn","I'll call you later.","Tôi sẽ gọi cho bạn sau."),
+  W("latter","tt/dt","cái/người được nhắc đến sau (trong hai)","Between tea and coffee, I prefer the latter.","Giữa trà và cà phê, tôi thích cái được nhắc sau hơn (cà phê)."),
+]},
+{ t:"high / highly", tier:1, tip:"high = CAO (độ cao/mức độ, đứng trước hoặc sau danh từ); highly = RẤT, ở mức độ cao (thường đứng trước tính từ/động từ).", words:[
+  W("high","tt/trt","cao","The plane flew high above the clouds.","Máy bay bay cao trên các đám mây."),
+  W("highly","trt","rất, ở mức độ cao","She is a highly skilled surgeon.","Cô ấy là một bác sĩ phẫu thuật rất lành nghề."),
+]},
+{ t:"already / all ready", tier:1, tip:"already (một từ) = ĐÃ, rồi (thời gian); all ready (hai từ) = TẤT CẢ đã sẵn sàng.", words:[
+  W("already","trt","đã, rồi","She has already left.","Cô ấy đã rời đi rồi."),
+  W("all ready","cụm tt","tất cả đã sẵn sàng","We are all ready for the trip.","Chúng tôi đã sẵn sàng hết cho chuyến đi."),
+]},
+{ t:"awhile / a while", tier:2, tip:"awhile (một từ) = TRẠNG TỪ, trong một khoảng thời gian ngắn; a while (hai từ) = CỤM DANH TỪ, một khoảng thời gian.", words:[
+  W("awhile","trt","trong một khoảng thời gian ngắn","Let's rest awhile before continuing.","Hãy nghỉ một lát trước khi tiếp tục."),
+  W("a while","cụm dt","một khoảng thời gian","I haven't seen him for a while.","Tôi đã không gặp anh ấy trong một khoảng thời gian."),
+]},
+{ t:"whose / who's", tier:1, tip:"whose = SỞ HỮU (của ai); who's = viết tắt của 'who is' hoặc 'who has'.", words:[
+  W("whose","tt sh","của ai","Whose bag is this?","Đây là túi của ai?"),
+  W("who's","viết tắt","who is / who has — ai là/đã","Who's coming to the meeting?","Ai sẽ đến cuộc họp?"),
+]},
+{ t:"coarse / course", tier:1, tip:"coarse = THÔ, ráp (chất liệu/tính cách); course = KHÓA HỌC, quá trình, hướng đi.", words:[
+  W("coarse","tt","thô, ráp","The fabric felt coarse to the touch.","Vải này sờ vào cảm thấy thô ráp."),
+  W("course","dt","khóa học, quá trình, hướng đi","She is taking a course in marketing.","Cô ấy đang học một khóa học về marketing."),
+]},
+{ t:"descent / decent", tier:2, tip:"descent = sự ĐI XUỐNG, nguồn gốc (danh từ); decent = TỬ TẾ, khá tốt (tính từ).", words:[
+  W("descent","dt","sự đi xuống, nguồn gốc","The plane began its descent.","Máy bay bắt đầu hạ độ cao."),
+  W("decent","tt","tử tế, khá tốt","He is a decent person.","Anh ấy là một người tử tế."),
+]},
+{ t:"emigrate → immigrate → migrate", tier:2, tip:"emigrate = RỜI một quốc gia để định cư nơi khác; immigrate = ĐẾN một quốc gia khác để định cư; migrate = di chuyển/di cư nói chung (không chỉ rõ chiều).", words:[
+  W("emigrate","đgt","rời một quốc gia để định cư nơi khác","She emigrated from Vietnam to Canada.","Cô ấy đã rời Việt Nam để định cư ở Canada."),
+  W("immigrate","đgt","đến một quốc gia khác để định cư","Many families immigrated to the United States.","Nhiều gia đình đã nhập cư vào Hoa Kỳ."),
+  W("migrate","đgt","di chuyển, di cư từ nơi này sang nơi khác","Birds migrate south in winter.","Các loài chim di cư về phía nam vào mùa đông."),
+]},
+{ t:"acceptance / exception", tier:2, tip:"acceptance = sự CHẤP NHẬN; exception = NGOẠI LỆ (điều bị loại trừ).", words:[
+  W("acceptance","dt","sự chấp nhận","Her acceptance of the offer surprised everyone.","Việc cô ấy chấp nhận lời đề nghị khiến mọi người bất ngờ."),
+  W("exception","dt","ngoại lệ","Every rule has an exception.","Mọi quy tắc đều có ngoại lệ."),
+]},
+{ t:"occupation / preoccupation", tier:2, tip:"occupation = NGHỀ NGHIỆP, sự chiếm đóng, hoạt động; preoccupation = MỐI BẬN TÂM (điều chiếm hết tâm trí).", words:[
+  W("occupation","dt","nghề nghiệp, sự chiếm đóng, hoạt động","Please state your occupation on the form.","Vui lòng ghi rõ nghề nghiệp của bạn trên biểu mẫu."),
+  W("preoccupation","dt","mối bận tâm","His main preoccupation was his daughter's health.","Mối bận tâm chính của anh ấy là sức khỏe của con gái."),
+]},
+{ t:"population → popularity → populous", tier:2, tip:"population = DÂN SỐ, quần thể (số lượng người); popularity = MỨC ĐỘ ĐƯỢC YÊU THÍCH; populous = ĐÔNG DÂN (tính từ mô tả nơi chốn).", words:[
+  W("population","dt","dân số, quần thể","The population of the city is growing.","Dân số của thành phố đang tăng lên."),
+  W("popularity","dt","mức độ phổ biến","The singer's popularity increased overnight.","Mức độ nổi tiếng của ca sĩ tăng lên chỉ sau một đêm."),
+  W("populous","tt","đông dân","China is the most populous country in Asia.","Trung Quốc là quốc gia đông dân nhất châu Á."),
+]},
+{ t:"industrialise / individualise", tier:2, tip:"industrialise = CÔNG NGHIỆP HÓA (phát triển ngành công nghiệp); individualise = CÁ NHÂN HÓA (làm cho phù hợp với từng cá nhân).", words:[
+  W("industrialise","đgt","công nghiệp hóa","The country industrialised rapidly in the 1980s.","Đất nước đã công nghiệp hóa nhanh chóng vào những năm 1980."),
+  W("individualise","đgt","cá nhân hóa","Teachers should individualise learning plans.","Giáo viên nên cá nhân hóa các kế hoạch học tập."),
+]},
+{ t:"adaptation / adoption", tier:2, tip:"adaptation = sự THÍCH NGHI, sự điều chỉnh; adoption = sự TIẾP NHẬN, áp dụng, nhận nuôi.", words:[
+  W("adaptation","dt","sự thích nghi, sự điều chỉnh","The film is an adaptation of the novel.","Bộ phim là một sự chuyển thể từ cuốn tiểu thuyết."),
+  W("adoption","dt","sự tiếp nhận, áp dụng, nhận nuôi","The adoption of new technology increased productivity.","Việc áp dụng công nghệ mới đã tăng năng suất."),
+]},
+{ t:"employ → employee → employer → employment", tier:1, tip:"employ = TUYỂN DỤNG (động từ); employee = NGƯỜI LAO ĐỘNG (bị thuê); employer = NGƯỜI SỬ DỤNG LAO ĐỘNG (người thuê); employment = VIỆC LÀM (tình trạng có việc).", words:[
+  W("employ","đgt","tuyển dụng, sử dụng","The company employs over 500 people.","Công ty tuyển dụng hơn 500 người."),
+  W("employee","dt","người lao động","Every employee received a bonus.","Mỗi người lao động đều nhận được tiền thưởng."),
+  W("employer","dt","người sử dụng lao động","Her employer offered her a promotion.","Người sử dụng lao động đã đề nghị thăng chức cho cô ấy."),
+  W("employment","dt","việc làm, tình trạng có việc làm","He is currently seeking employment.","Anh ấy hiện đang tìm kiếm việc làm."),
+]},
+{ t:"education / educational", tier:1, tip:"education = GIÁO DỤC (danh từ, khái niệm chung); educational = THUỘC VỀ giáo dục, có tính giáo dục (tính từ).", words:[
+  W("education","dt","giáo dục","Education is a basic human right.","Giáo dục là một quyền cơ bản của con người."),
+  W("educational","tt","thuộc về giáo dục, có tính giáo dục","This is an educational documentary.","Đây là một bộ phim tài liệu mang tính giáo dục."),
+]},
+{ t:"environment / environmental", tier:1, tip:"environment = MÔI TRƯỜNG (danh từ); environmental = THUỘC VỀ môi trường (tính từ).", words:[
+  W("environment","dt","môi trường","We must protect the environment.","Chúng ta phải bảo vệ môi trường."),
+  W("environmental","tt","thuộc về môi trường","The factory caused environmental damage.","Nhà máy đã gây ra thiệt hại về môi trường."),
+]},
+{ t:"practical / practicable", tier:2, tip:"practical = THỰC TẾ, thiết thực (mô tả tính chất chung); practicable = CÓ THỂ THỰC HIỆN ĐƯỢC (khả thi trong hoàn cảnh cụ thể).", words:[
+  W("practical","tt","thực tế, thiết thực","She gave some practical advice.","Cô ấy đã đưa ra một số lời khuyên thiết thực."),
+  W("practicable","tt","có thể thực hiện được","The plan is not practicable given the budget.","Kế hoạch này không khả thi với ngân sách hiện tại."),
+]},
+{ t:"regular → regularly / regulate → regulation → regulatory", tier:2, tip:"regular nói về sự ĐỀU ĐẶN hoặc thông thường; regulate là KIỂM SOÁT/điều chỉnh bằng quy tắc. Regulation và regulatory thuộc nhánh regulate, không mang nghĩa 'đều đặn'.", words:[
+  W("regular","tt","đều đặn, thường xuyên; thông thường","Regular exercise can improve your sleep.","Tập thể dục đều đặn có thể cải thiện giấc ngủ."),
+  W("regularly","trt","một cách đều đặn, thường xuyên","The equipment is inspected regularly.","Thiết bị được kiểm tra thường xuyên."),
+  W("regulate","đgt","điều chỉnh, kiểm soát bằng quy định","The agency regulates food production.","Cơ quan này quản lý hoạt động sản xuất thực phẩm."),
+  W("regulation","dt","quy định; sự điều chỉnh, kiểm soát","The new regulations protect consumers.","Các quy định mới bảo vệ người tiêu dùng."),
+  W("regulatory","tt","thuộc việc quản lý hoặc quy định","The medicine is awaiting regulatory approval.","Loại thuốc này đang chờ phê duyệt của cơ quan quản lý."),
+]},
+{ t:"modify / amplify / intensify", tier:2, tip:"modify = THAY ĐỔI một phần; amplify = LÀM TO/MẠNH hoặc khuếch đại; intensify = làm một trạng thái, hoạt động hay vấn đề trở nên GAY GẮT hơn.", words:[
+  W("modify","đgt","sửa đổi, điều chỉnh một phần","We modified the design to reduce costs.","Chúng tôi điều chỉnh thiết kế để giảm chi phí."),
+  W("modification","dt","sự sửa đổi, phần được điều chỉnh","The plan requires minor modifications.","Kế hoạch cần một vài điều chỉnh nhỏ."),
+  W("amplify","đgt","khuếch đại; làm tăng tác động","The microphone amplified her voice.","Chiếc micro khuếch đại giọng nói của cô ấy."),
+  W("amplification","dt","sự khuếch đại; sự làm rõ hoặc mở rộng","The signal needs further amplification.","Tín hiệu cần được khuếch đại thêm."),
+  W("intensify","đgt","làm tăng cường, trở nên gay gắt hơn","The conflict intensified overnight.","Cuộc xung đột trở nên gay gắt hơn chỉ sau một đêm."),
+]},
+{ t:"identify → identification / identity / identical", tier:2, tip:"identify = NHẬN DIỆN; identity = DANH TÍNH/bản sắc; identical = GIỐNG HỆT NHAU. Identification còn có thể chỉ giấy tờ nhận dạng.", words:[
+  W("identify","đgt","nhận diện, xác định","Researchers identified the main cause of the problem.","Các nhà nghiên cứu đã xác định nguyên nhân chính của vấn đề."),
+  W("identification","dt","sự nhận diện; giấy tờ tùy thân","You must show identification at the entrance.","Bạn phải xuất trình giấy tờ tùy thân tại lối vào."),
+  W("identity","dt","danh tính, bản sắc","The witness kept her identity secret.","Nhân chứng giữ kín danh tính của mình."),
+  W("identical","tt","giống hệt nhau","The two documents are almost identical.","Hai tài liệu gần như giống hệt nhau."),
+]},
+{ t:"qualify → qualified → qualification / quality", tier:2, tip:"qualify = ĐỦ ĐIỀU KIỆN hoặc làm ai đủ điều kiện; qualification = bằng cấp/điều kiện; quality = CHẤT LƯỢNG, không phải 'sự đủ điều kiện'.", words:[
+  W("qualify","đgt","đủ điều kiện; làm cho đủ điều kiện","This certificate qualifies you to teach abroad.","Chứng chỉ này giúp bạn đủ điều kiện giảng dạy ở nước ngoài."),
+  W("qualified","tt","có đủ trình độ, đủ điều kiện","We need a qualified laboratory technician.","Chúng tôi cần một kỹ thuật viên phòng thí nghiệm có đủ trình độ."),
+  W("qualification","dt","bằng cấp, trình độ; điều kiện cần","Experience is an essential qualification for the role.","Kinh nghiệm là một điều kiện thiết yếu cho vị trí này."),
+  W("quality","dt","chất lượng; phẩm chất","The laboratory checks the quality of every sample.","Phòng thí nghiệm kiểm tra chất lượng của từng mẫu."),
+]},
+{ t:"compete → competition → competitive / competent → competence", tier:2, tip:"competitive thuộc COMPETE: có tính cạnh tranh; competent thuộc năng lực: CÓ ĐỦ KHẢ NĂNG. Một người có thể competent nhưng không competitive, và ngược lại.", words:[
+  W("compete","đgt","cạnh tranh, thi đấu","Small firms struggle to compete with large companies.","Các công ty nhỏ gặp khó khăn khi cạnh tranh với các công ty lớn."),
+  W("competition","dt","sự cạnh tranh; cuộc thi","Competition in the market is increasing.","Sự cạnh tranh trên thị trường đang gia tăng."),
+  W("competitive","tt","có tính cạnh tranh; thích cạnh tranh","The company offers competitive prices.","Công ty đưa ra mức giá có tính cạnh tranh."),
+  W("competent","tt","có đủ năng lực, thành thạo","She is a competent and reliable analyst.","Cô ấy là một chuyên viên phân tích có năng lực và đáng tin cậy."),
+  W("competence","dt","năng lực, sự thành thạo","The interview tests technical competence.","Buổi phỏng vấn kiểm tra năng lực chuyên môn."),
+]},
+{ t:"depend → dependent / dependable / dependency", tier:2, tip:"dependent = PHỤ THUỘC vào; dependable = ĐÁNG TIN CẬY. Dependency là tình trạng phụ thuộc; không đồng nghĩa với dependability (độ đáng tin cậy).", words:[
+  W("depend","đgt","phụ thuộc, tùy thuộc","The result depends on the quality of the data.","Kết quả phụ thuộc vào chất lượng dữ liệu."),
+  W("dependent","tt","phụ thuộc","Young children are dependent on adults.","Trẻ nhỏ phụ thuộc vào người lớn."),
+  W("dependable","tt","đáng tin cậy","We need a dependable method for storing records.","Chúng ta cần một phương pháp đáng tin cậy để lưu hồ sơ."),
+  W("dependency","dt","sự phụ thuộc, tình trạng lệ thuộc","The policy aims to reduce dependency on imported fuel.","Chính sách nhằm giảm sự phụ thuộc vào nhiên liệu nhập khẩu."),
+]},
+{ t:"expand / extend / expend", tier:2, tip:"expand = MỞ RỘNG về quy mô/phạm vi; extend = KÉO DÀI hoặc mở rộng giới hạn; expend = TIÊU TỐN tiền, thời gian hoặc năng lượng.", words:[
+  W("expand","đgt","mở rộng, nở ra","The company plans to expand its services.","Công ty dự định mở rộng các dịch vụ của mình."),
+  W("extend","đgt","kéo dài; gia hạn; mở rộng tới","They extended the deadline by one week.","Họ đã gia hạn thời hạn thêm một tuần."),
+  W("expend","đgt","tiêu tốn, sử dụng hết","The team expended considerable effort on the project.","Nhóm đã bỏ ra rất nhiều công sức cho dự án."),
+  W("expenditure","dt","khoản chi tiêu; sự tiêu dùng nguồn lực","Public expenditure increased last year.","Chi tiêu công đã tăng trong năm ngoái."),
+]},
+{ t:"confirm / conform", tier:2, tip:"confirm = XÁC NHẬN điều gì là đúng/chắc chắn; conform = TUÂN THEO hoặc phù hợp với tiêu chuẩn, thường đi với to.", words:[
+  W("confirm","đgt","xác nhận, chứng thực","Please confirm your appointment by email.","Vui lòng xác nhận cuộc hẹn qua email."),
+  W("confirmation","dt","sự xác nhận","We are waiting for written confirmation.","Chúng tôi đang chờ xác nhận bằng văn bản."),
+  W("conform","đgt","tuân theo, phù hợp với","All samples must conform to the required standard.","Tất cả mẫu phải phù hợp với tiêu chuẩn bắt buộc."),
+  W("conformity","dt","sự tuân thủ, sự phù hợp","The products were tested for conformity with safety rules.","Các sản phẩm được kiểm tra mức độ phù hợp với quy định an toàn."),
+]},
+{ t:"conserve / preserve / reserve", tier:2, tip:"conserve = sử dụng và bảo vệ CẨN THẬN để tránh hao hụt; preserve = GIỮ nguyên trạng/chống hư hỏng; reserve = DÀNH RIÊNG hoặc đặt trước.", words:[
+  W("conserve","đgt","bảo tồn; sử dụng tiết kiệm","We should conserve water during the dry season.","Chúng ta nên tiết kiệm nước trong mùa khô."),
+  W("conservation","dt","sự bảo tồn, sử dụng có quản lý","The project supports wildlife conservation.","Dự án hỗ trợ công tác bảo tồn động vật hoang dã."),
+  W("preserve","đgt","giữ gìn nguyên trạng, bảo quản","The archive preserves important historical records.","Kho lưu trữ bảo quản các hồ sơ lịch sử quan trọng."),
+  W("preservation","dt","sự bảo tồn, bảo quản","Food preservation reduces waste.","Việc bảo quản thực phẩm giúp giảm lãng phí."),
+  W("reserve","đgt/dt","dành riêng, đặt trước; nguồn dự trữ","I reserved a seat near the window.","Tôi đã đặt trước một chỗ ngồi gần cửa sổ."),
+  W("reservation","dt","sự đặt chỗ; sự dè dặt","We made a dinner reservation for seven o'clock.","Chúng tôi đã đặt bàn ăn tối lúc bảy giờ."),
+]},
+{ t:"attribute / contribute / distribute", tier:3, tip:"attribute A to B = QUY A CHO B; contribute to = ĐÓNG GÓP/GÓP PHẦN vào; distribute = PHÂN PHỐI. Ba từ có hình thức gần nhau nhưng cấu trúc đi kèm khác hẳn.", words:[
+  W("attribute","đgt/dt","quy cho; thuộc tính, đặc điểm","Researchers attribute the decline to several factors.","Các nhà nghiên cứu cho rằng sự suy giảm là do một số yếu tố."),
+  W("attribution","dt","sự quy kết; việc ghi nguồn/tác giả","The report requires proper attribution of all sources.","Bản báo cáo yêu cầu ghi nguồn chính xác cho mọi tài liệu."),
+  W("contribute","đgt","đóng góp; góp phần","Poor ventilation contributed to the problem.","Hệ thống thông gió kém đã góp phần gây ra vấn đề."),
+  W("contribution","dt","sự đóng góp, phần đóng góp","Her research made an important contribution to the field.","Nghiên cứu của cô ấy đã đóng góp quan trọng cho lĩnh vực này."),
+  W("distribute","đgt","phân phối, phân phát","The organization distributes food to local families.","Tổ chức phân phát thực phẩm cho các gia đình địa phương."),
+  W("distribution","dt","sự phân phối, sự phân bố","The map shows the distribution of the species.","Bản đồ cho thấy sự phân bố của loài này."),
+]},
+];
+
+/* ========================================================================
+   BUILD LIBRARY VIEW
+   ======================================================================== */
+const libList = document.getElementById('libList');
+let totalWords = 0;
+GROUPS.forEach(g => totalWords += g.words.length);
+document.getElementById('catCounter').innerHTML = `${GROUPS.length} thẻ mục<br>${totalWords} mục từ`;
+
+const TIER_LABEL = {1:'Tầng 1 · A2–B1', 2:'Tầng 2 · B2–C1', 3:'Tầng 3 · C1–C2'};
+
+function renderLibrary(tierFilter){
+  libList.innerHTML = '';
+  let n = 0;
+  GROUPS.forEach((g) => {
+    if(tierFilter !== 'all' && String(g.tier) !== String(tierFilter)) return;
+    n++;
+    const card = document.createElement('details');
+    card.className = 'card';
+    if(n === 1) card.open = true;
+    const head = document.createElement('summary');
+    head.className = 'card-head';
+    head.innerHTML = `<h3>${g.t}</h3><span class="tier-badge t${g.tier}">${TIER_LABEL[g.tier]}</span>`;
+    card.appendChild(head);
+    g.words.forEach(w => {
+      const e = document.createElement('div');
+      e.className = 'entry';
+      e.innerHTML = `
+        <div class="row1"><span class="word">${w.w}</span><span class="pos">(${w.pos})</span></div>
+        <div class="vi">${w.vi}</div>
+        <div class="ex"><span class="en">"${w.en}"</span><br><span class="vi-line">${w.viEx}</span></div>
+      `;
+      card.appendChild(e);
+    });
+    if(g.tip){
+      const tipEl = document.createElement('div');
+      tipEl.className = 'tip';
+      tipEl.innerHTML = `<b>Mẹo:</b> ${g.tip}`;
+      card.appendChild(tipEl);
+    }
+    libList.appendChild(card);
+  });
+  if(n === 0){
+    libList.innerHTML = '<p style="color:#aab1a9;font-size:13px;text-align:center;">Không có thẻ nào ở tầng này.</p>';
+  }
+}
+renderLibrary('all');
+
+document.querySelectorAll('#libTierRow .tier-choice').forEach(c => {
+  c.addEventListener('click', () => {
+    document.querySelectorAll('#libTierRow .tier-choice').forEach(x => x.classList.remove('sel'));
+    c.classList.add('sel');
+    renderLibrary(c.dataset.tier);
+  });
+});
+
+/* ========================================================================
+   FLATTEN QUIZ ITEMS
+   ======================================================================== */
+let QUIZ_ITEMS = [];
+GROUPS.forEach(g => {
+  g.words.forEach(w => {
+    QUIZ_ITEMS.push({ ...w, group: g.t, tip: g.tip, tier: g.tier });
+  });
+});
+
+/* ========================================================================
+   TABS
+   ======================================================================== */
+document.querySelectorAll('.tab-btn').forEach(btn => {
+
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+/* ========================================================================
+   QUIZ LOGIC
+   ======================================================================== */
+let direction = 'en-vi';
+let questionCount = 10;
+let quizTier = 'all';
+let sessionItems = [];
+let currentIndex = 0;
+let correctCount = 0;
+let missed = [];
+let answered = false;
+
+function currentPool(){
+  return quizTier === 'all' ? QUIZ_ITEMS : QUIZ_ITEMS.filter(it => String(it.tier) === String(quizTier));
+}
+function updatePoolInfo(){
+  const n = currentPool().length;
+  const tierLabel = quizTier === 'all' ? 'tất cả các tầng' : TIER_LABEL[quizTier];
+  document.getElementById('poolInfo').textContent = `Có ${n} từ khả dụng ở ${tierLabel}.`;
+}
+
+document.querySelectorAll('#tierRow .tier-choice').forEach(c => {
+  c.addEventListener('click', () => {
+    document.querySelectorAll('#tierRow .tier-choice').forEach(x => x.classList.remove('sel'));
+    c.classList.add('sel');
+    quizTier = c.dataset.tier;
+    updatePoolInfo();
+  });
+});
+updatePoolInfo();
+
+document.querySelectorAll('#dirRow .choice').forEach(c => {
+  c.addEventListener('click', () => {
+    document.querySelectorAll('#dirRow .choice').forEach(x => x.classList.remove('sel'));
+    c.classList.add('sel');
+    direction = c.dataset.dir;
+  });
+});
+document.querySelectorAll('#countRow .choice').forEach(c => {
+  c.addEventListener('click', () => {
+    document.querySelectorAll('#countRow .choice').forEach(x => x.classList.remove('sel'));
+    c.classList.add('sel');
+    questionCount = c.dataset.count;
+  });
+});
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]] = [a[j],a[i]];
+  }
+  return a;
+}
+
+function normalizeVN(str){
+  return str.toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/đ/g,'d')
+    .replace(/[^a-z0-9\s]/g,'')
+    .replace(/\s+/g,' ')
+    .trim();
+}
+function normalizeEN(str){
+  return str.toLowerCase().replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,' ').trim();
+}
+
+function startQuiz(){
+  let pool = shuffle(currentPool());
+  if(pool.length === 0){
+    document.getElementById('poolInfo').textContent = 'Không có từ nào ở tầng này — hãy chọn tầng khác.';
+    return;
+  }
+  if(questionCount !== 'all'){
+    pool = pool.slice(0, parseInt(questionCount));
+  }
+  sessionItems = pool;
+  currentIndex = 0;
+  correctCount = 0;
+  missed = [];
+  document.getElementById('setupBox').style.display = 'none';
+  document.getElementById('endBox').style.display = 'none';
+  document.getElementById('quizBox').style.display = 'block';
+  renderQuestion();
+}
+
+function renderQuestion(){
+  answered = false;
+  const item = sessionItems[currentIndex];
+  document.getElementById('progressText').textContent = `Câu ${currentIndex+1}/${sessionItems.length}`;
+  document.getElementById('scoreText').textContent = `Đúng: ${correctCount}`;
+  document.getElementById('progressFill').style.width = (currentIndex/sessionItems.length*100) + '%';
+
+  const feedbackBox = document.getElementById('feedbackBox');
+  feedbackBox.className = 'feedback';
+  feedbackBox.innerHTML = '';
+
+  const input = document.getElementById('answerInput');
+  input.value = '';
+  input.disabled = false;
+  input.focus();
+
+  document.getElementById('submitBtn').textContent = 'Kiểm tra';
+
+  if(direction === 'en-vi'){
+    document.getElementById('promptLabel').textContent = 'ANH → VIỆT — từ này nghĩa là gì?';
+    document.getElementById('promptMain').textContent = item.w;
+    document.getElementById('promptEx').innerHTML = `<em>"${item.en}"</em>`;
+    input.placeholder = 'Nhập nghĩa tiếng Việt…';
+  } else {
+    document.getElementById('promptLabel').textContent = 'VIỆT → ANH — từ tiếng Anh là gì?';
+    document.getElementById('promptMain').textContent = item.vi.split(',')[0];
+    document.getElementById('promptEx').innerHTML = `<em>${item.viEx}</em>`;
+    input.placeholder = 'Nhập từ tiếng Anh…';
+  }
+}
+
+function checkAnswer(){
+  if(answered) return;
+  const item = sessionItems[currentIndex];
+  const raw = document.getElementById('answerInput').value.trim();
+  if(!raw) return;
+
+  let isCorrect = false;
+  const feedbackBox = document.getElementById('feedbackBox');
+
+  if(direction === 'en-vi'){
+    const userN = normalizeVN(raw);
+    const accepted = item.vi.split(',').map(s => normalizeVN(s.replace(/\(.*?\)/g,'')));
+    isCorrect = accepted.some(a => a.length>0 && (userN === a || userN.includes(a) || a.includes(userN)));
+  } else {
+    const userN = normalizeEN(raw);
+    isCorrect = userN === normalizeEN(item.w);
+  }
+
+  answered = true;
+  correctCount += isCorrect ? 1 : 0;
+  if(!isCorrect) missed.push(item);
+
+  document.getElementById('answerInput').disabled = true;
+  document.getElementById('scoreText').textContent = `Đúng: ${correctCount}`;
+  document.getElementById('submitBtn').textContent = 'Câu tiếp theo →';
+  document.getElementById('submitBtn').focus();
+
+  feedbackBox.className = 'feedback show ' + (isCorrect ? 'ok' : 'bad');
+  const correctDisplay = direction === 'en-vi' ? item.vi : item.w;
+  feedbackBox.innerHTML = isCorrect
+    ? `✓ Chính xác! <span class="correct-ans">${correctDisplay}</span>`
+    : `✗ Chưa đúng. Đáp án: <span class="correct-ans">${correctDisplay}</span>`;
+  if(item.tip){
+    feedbackBox.innerHTML += `<div class="fb-tip">Mẹo: ${item.tip}</div>`;
+  }
+}
+
+function nextQuestion(){
+  currentIndex++;
+  if(currentIndex >= sessionItems.length){
+    endQuiz();
+  } else {
+    renderQuestion();
+  }
+}
+
+function endQuiz(){
+  document.getElementById('quizBox').style.display = 'none';
+  document.getElementById('endBox').style.display = 'block';
+  const total = sessionItems.length;
+  document.getElementById('finalScore').textContent = `${correctCount}/${total}`;
+  const pct = total ? Math.round(correctCount/total*100) : 0;
+  document.getElementById('finalSub').textContent = `Đúng ${pct}%`;
+
+  const missedList = document.getElementById('missedList');
+  missedList.innerHTML = '';
+  if(missed.length === 0){
+    missedList.innerHTML = '<div style="text-align:center;color:var(--muted);font-size:13px;">Xuất sắc — không sai câu nào!</div>';
+    document.getElementById('retryMissedBtn').style.display = 'none';
+  } else {
+    document.getElementById('retryMissedBtn').style.display = 'block';
+    missed.forEach(m => {
+      const row = document.createElement('div');
+      row.className = 'mi';
+      row.innerHTML = `<span class="mw">${m.w}</span><span class="mv">${m.vi}</span>`;
+      missedList.appendChild(row);
+    });
+  }
+}
+
+document.getElementById('startBtn').addEventListener('click', startQuiz);
+document.getElementById('submitBtn').addEventListener('click', () => {
+  if(!answered){ checkAnswer(); } else { nextQuestion(); }
+});
+document.getElementById('skipBtn').addEventListener('click', () => {
+  if(!answered){
+    const item = sessionItems[currentIndex];
+    missed.push(item);
+    answered = true;
+    document.getElementById('answerInput').disabled = true;
+    const feedbackBox = document.getElementById('feedbackBox');
+    feedbackBox.className = 'feedback show bad';
+    const correctDisplay = direction === 'en-vi' ? item.vi : item.w;
+    feedbackBox.innerHTML = `Đáp án: <span class="correct-ans">${correctDisplay}</span>`;
+    document.getElementById('submitBtn').textContent = 'Câu tiếp theo →';
+    document.getElementById('submitBtn').focus();
+  } else {
+    nextQuestion();
+  }
+});
+document.getElementById('answerInput').addEventListener('keydown', (e) => {
+  if(e.key === 'Enter' && !e.isComposing && !e.repeat){
+    e.preventDefault();
+    checkAnswer();
+  }
+});
+document.getElementById('restartBtn').addEventListener('click', () => {
+  document.getElementById('endBox').style.display = 'none';
+  document.getElementById('setupBox').style.display = 'block';
+});
+document.getElementById('retryMissedBtn').addEventListener('click', () => {
+  sessionItems = shuffle(missed);
+  currentIndex = 0;
+  correctCount = 0;
+  const prevMissedCount = missed.length;
+  missed = [];
+  document.getElementById('endBox').style.display = 'none';
+  document.getElementById('quizBox').style.display = 'block';
+  renderQuestion();
+});
+
+/* ========================================================================
+   TEXT-TO-SPEECH (listen button)
+   ======================================================================== */
+document.getElementById('listenBtn').addEventListener('click', () => {
+  const item = sessionItems[currentIndex];
+  if(!item || !('speechSynthesis' in window)) return;
+  const utter = new SpeechSynthesisUtterance(item.w + '. ' + item.en);
+  utter.lang = 'en-US';
+  utter.rate = 0.92;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(utter);
+});
+</script>
+</body>
+</html>

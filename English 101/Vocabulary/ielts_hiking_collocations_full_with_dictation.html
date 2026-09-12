@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IELTS Hiking · Collocations Flashcards (Units 1–19, Full Set)</title>
+<style>
+  :root{
+    --ink:#1c2430; --sub:#5b6675; --line:#e2e6ec; --bg:#f4f6f9;
+    --card:#ffffff; --accent:#2f5d8a; --accent2:#c0392b; --soft:#eef2f7;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; font-family:Georgia,'Times New Roman',serif; background:var(--bg); color:var(--ink); padding:24px 16px 60px;}
+  header{max-width:1200px; margin:0 auto 6px; border-bottom:2px solid var(--ink); padding-bottom:10px; font-family:Arial,Helvetica,sans-serif;}
+  header h1{font-size:16px; margin:0;}
+  header .sub{font-size:12px; color:var(--sub); margin-top:2px;}
+  .toolbar{max-width:1200px; margin:14px auto 18px; display:flex; gap:10px; flex-wrap:wrap; align-items:center; font-family:Arial,Helvetica,sans-serif; font-size:13px; position:sticky; top:0; background:var(--bg); padding:10px 0; z-index:5;}
+  .toolbar button, .toolbar select{border:1px solid var(--ink); background:var(--card); color:var(--ink); padding:6px 12px; border-radius:6px; cursor:pointer; font-size:13px;}
+  .toolbar button:hover{background:var(--ink); color:#fff;}
+  .progress{color:var(--sub); margin-left:auto;}
+  .filter-input{font-family:Arial,sans-serif; padding:6px 10px; border:1px solid var(--line); border-radius:6px; font-size:13px; min-width:180px;}
+  .unit-nav{max-width:1200px; margin:0 auto 10px; font-family:Arial,sans-serif; font-size:12px; color:var(--sub); display:flex; flex-wrap:wrap; gap:6px;}
+  .unit-nav a{color:var(--accent); text-decoration:none; border:1px solid var(--line); padding:3px 8px; border-radius:5px;}
+  .unit-nav a:hover{background:var(--soft);}
+  .unit-block{max-width:1200px; margin:0 auto 30px; scroll-margin-top:70px;}
+  .unit-title{font-family:Arial,sans-serif; font-size:15px; font-weight:bold; color:var(--accent); border-bottom:1px solid var(--line); padding-bottom:6px; margin:26px 0 12px;}
+  .word-group{margin-bottom:18px;}
+  .word-head{font-family:Arial,sans-serif; font-size:13px; font-weight:bold; color:var(--accent2); margin:14px 0 8px;}
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:14px;}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:10px; min-height:170px; padding:14px; cursor:pointer; position:relative; transition:box-shadow .15s, transform .1s; display:flex; flex-direction:column;}
+  .card:hover{box-shadow:0 4px 14px rgba(0,0,0,.08); transform:translateY(-1px);}
+  .card .tag{position:absolute; top:8px; right:10px; font-family:Arial,sans-serif; font-size:10px; color:var(--sub); background:var(--soft); padding:2px 6px; border-radius:4px;}
+  .card .dots{display:flex; gap:4px; margin-top:auto; padding-top:8px;}
+  .dot{width:6px; height:6px; border-radius:50%; background:var(--line);}
+  .dot.on{background:var(--accent);}
+  .colloc{font-size:16.5px; font-weight:bold; margin-bottom:4px; padding-right:60px;}
+  .label{font-family:Arial,sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:.5px; color:var(--accent); margin-bottom:4px; font-weight:bold;}
+  .vi{font-size:15px; line-height:1.4;}
+  .ex-en{font-size:13.5px; line-height:1.45;}
+  .ex-vi{font-size:13px; color:var(--sub); font-style:italic; line-height:1.45; margin-top:6px;}
+  .hint{font-family:Arial,sans-serif; font-size:11px; color:var(--sub); margin-top:auto; padding-top:8px; text-align:right;}
+
+  /* ===== DICTATION ===== */
+  .study-tabs{
+    max-width:1200px;margin:12px auto 2px;display:flex;gap:8px;
+    font-family:Arial,Helvetica,sans-serif;
+  }
+  .study-tab{
+    flex:1;border:1px solid var(--ink);background:var(--card);color:var(--ink);
+    padding:9px 14px;border-radius:7px;cursor:pointer;font-weight:700;font-size:13px;
+  }
+  .study-tab.active{background:var(--ink);color:#fff;}
+  .study-panel{display:none;}
+  .study-panel.active{display:block;}
+
+  .dict-wrap{
+    max-width:900px;margin:14px auto 0;background:var(--card);
+    border:1px solid var(--line);border-radius:12px;padding:22px;
+    box-shadow:0 4px 16px rgba(0,0,0,.05);
+    font-family:Arial,Helvetica,sans-serif;
+  }
+  .dict-wrap h2{margin:0 0 5px;font-size:21px;color:var(--accent);}
+  .dict-sub{font-size:13px;color:var(--sub);margin-bottom:18px;line-height:1.5;}
+  .dict-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px;}
+  .dict-field label{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.08em;
+    color:var(--sub);font-weight:700;margin-bottom:5px;}
+  .dict-field select,.dict-answer{
+    width:100%;padding:10px 11px;border:1px solid var(--line);border-radius:7px;
+    background:#fff;color:var(--ink);font-size:14px;
+  }
+  .dict-meta{display:flex;justify-content:space-between;gap:10px;font-size:12px;color:var(--sub);margin-bottom:7px;}
+  .dict-progress{height:5px;background:var(--line);border-radius:99px;overflow:hidden;margin-bottom:18px;}
+  .dict-progress > div{height:100%;width:0;background:var(--accent);}
+  .dict-prompt{font-family:Georgia,'Times New Roman',serif;font-size:clamp(24px,4vw,32px);
+    font-weight:bold;line-height:1.3;margin:8px 0 7px;}
+  .dict-hint{font-size:12px;color:var(--sub);margin-bottom:12px;line-height:1.45;}
+  .dict-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+  .dict-btn{
+    border:1px solid var(--ink);background:var(--ink);color:#fff;padding:10px 14px;
+    border-radius:7px;cursor:pointer;font-weight:700;font-size:13px;
+  }
+  .dict-btn.secondary{background:#fff;color:var(--ink);}
+  .dict-feedback{display:none;margin-top:12px;padding:11px 13px;border-radius:8px;line-height:1.5;font-size:13px;}
+  .dict-feedback.good{display:block;background:#e7f5ec;color:#21633f;}
+  .dict-feedback.bad{display:block;background:#fae8e6;color:#9c382f;}
+  .dict-end{display:none;text-align:center;padding:8px 0 2px;}
+  .dict-end-score{font-size:34px;font-weight:800;color:var(--accent);margin-bottom:5px;}
+  @media(max-width:700px){
+    .dict-grid{grid-template-columns:1fr;}
+    .dict-wrap{margin-left:0;margin-right:0;padding:16px;}
+  }
+
+</style>
+</head>
+<body>
+
+<header>
+  <h1>IELTS HIKING · COLLOCATIONS BANK</h1>
+  <div class="sub">Flashcards đầy đủ · Unit 1–19 · Vocabulary for IELTS – Collocations</div>
+</header>
+<div class="study-tabs">
+  <button class="study-tab active" data-study="cards">FLASHCARDS</button>
+  <button class="study-tab" data-study="dictation">CHÍNH TẢ</button>
+</div>
+
+<div id="cardsPanel" class="study-panel active">
+
+
+<div class="toolbar">
+  <button id="flipAll0">Mặt 1: Collocation</button>
+  <button id="flipAll1">Mặt 2: Nghĩa</button>
+  <button id="flipAll2">Mặt 3: Ví dụ</button>
+  <select id="unitFilter">
+    <option value="all">Tất cả Units (1–19)</option>
+    <option value="1">Unit 1 · People, relationships & character</option>
+    <option value="2">Unit 2 · Health – illness & treatment</option>
+    <option value="3">Unit 3 · Academic subjects & activities</option>
+    <option value="4">Unit 4 · Travel & experiences</option>
+    <option value="5">Unit 5 · Dimensions & actions</option>
+    <option value="6">Unit 6 · City life</option>
+    <option value="7">Unit 7 · Reporting verbs</option>
+    <option value="8">Unit 8 · Cultural interests</option>
+    <option value="9">Unit 9 · Natural processes & scientific study</option>
+    <option value="10">Unit 10 · Climate & weather</option>
+    <option value="11">Unit 11 · Graphs & figures</option>
+    <option value="12">Unit 12 · Describing changes</option>
+    <option value="13">Unit 13 · Similarities & differences</option>
+    <option value="14">Unit 14 · Cause & effect</option>
+    <option value="15">Unit 15 · Signposting words</option>
+    <option value="16">Unit 16 · Qualifying adverbs</option>
+    <option value="17">Unit 17 · Problems & solutions</option>
+    <option value="18">Unit 18 · Ideas</option>
+    <option value="19">Unit 19 · Quantity, degree & certainty</option>
+  </select>
+  <input class="filter-input" id="filterBox" placeholder="Tìm từ / collocation...">
+  <span class="progress" id="progress"></span>
+</div>
+
+<div class="unit-nav" id="unitNav"></div>
+
+<div id="content"></div>
+</div>
+
+<div id="dictationPanel" class="study-panel">
+  <div class="dict-wrap">
+    <div id="dictSetup">
+      <h2>Chính tả Collocations</h2>
+      <div class="dict-sub">
+        Luyện trực tiếp giữa <b>Collocation tiếng Anh</b> và <b>Nghĩa tiếng Việt</b>.
+      </div>
+
+      <div class="dict-grid">
+        <div class="dict-field">
+          <label>Unit</label>
+          <select id="dictUnit">
+            <option value="all">Tất cả Units (1–19)</option>
+          </select>
+        </div>
+        <div class="dict-field">
+          <label>Hướng luyện</label>
+          <select id="dictDirection">
+            <option value="en-vi">English Collocation → Vietnamese</option>
+            <option value="vi-en">Vietnamese → English Collocation</option>
+          </select>
+        </div>
+        <div class="dict-field">
+          <label>Số câu</label>
+          <select id="dictCount">
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="50">50</option>
+            <option value="9999">Tất cả</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="dict-btn" id="dictStart">BẮT ĐẦU</button>
+    </div>
+
+    <div id="dictPlay" style="display:none">
+      <div class="dict-meta">
+        <span id="dictCounter">Câu 1</span>
+        <span id="dictScore">Đúng: 0</span>
+      </div>
+      <div class="dict-progress"><div id="dictProgress"></div></div>
+
+      <div class="dict-prompt" id="dictPrompt">—</div>
+      <div class="dict-hint" id="dictHint"></div>
+
+      <input id="dictAnswer" class="dict-answer" autocomplete="off" spellcheck="false" placeholder="Nhập đáp án...">
+
+      <div class="dict-actions">
+        <button class="dict-btn" id="dictCheck">KIỂM TRA</button>
+        <button class="dict-btn secondary" id="dictNext" style="display:none">TIẾP →</button>
+      </div>
+      <div id="dictFeedback" class="dict-feedback"></div>
+    </div>
+
+    <div id="dictEnd" class="dict-end">
+      <div id="dictFinalScore" class="dict-end-score">0 / 0</div>
+      <div id="dictFinalText"></div>
+      <div class="dict-actions" style="justify-content:center;margin-top:14px;">
+        <button class="dict-btn" id="dictAgain">LÀM LẠI</button>
+        <button class="dict-btn secondary" id="dictRetryWrong">LUYỆN CÂU SAI</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+const DATA = [
+// ===== UNIT 1 =====
+{u:1,w:"client",pos:"n. – khách hàng",c:"a firm's client",vi:"khách hàng của một công ty",en:"Most of our firm's clients are small businesses needing legal advice.",exvi:"Phần lớn khách hàng của công ty chúng tôi là các doanh nghiệp nhỏ cần tư vấn pháp lý."},
+{u:1,w:"client",pos:"n. – khách hàng",c:"advise / represent a client",vi:"tư vấn / đại diện cho khách hàng",en:"1) Lawyers are paid to advise their clients on complex contracts.<br>2) A good solicitor will represent a client fairly in court.",exvi:"1) Luật sư được trả tiền để tư vấn cho khách hàng về các hợp đồng phức tạp.<br>2) Một luật sư giỏi sẽ đại diện cho khách hàng một cách công bằng tại tòa."},
+{u:1,w:"client",pos:"n. – khách hàng",c:"a prospective client",vi:"khách hàng tiềm năng",en:"We always prepare carefully before meeting a prospective client.",exvi:"Chúng tôi luôn chuẩn bị kỹ trước khi gặp một khách hàng tiềm năng."},
+
+{u:1,w:"parent",pos:"n. – cha mẹ, phụ huynh",c:"the parents of someone",vi:"cha mẹ của ai đó",en:"The parents of young children often struggle to find time for themselves.",exvi:"Cha mẹ của trẻ nhỏ thường khó tìm được thời gian cho bản thân."},
+{u:1,w:"parent",pos:"n. – cha mẹ, phụ huynh",c:"a foster / adoptive / birth parent",vi:"cha mẹ nuôi dưỡng / cha mẹ nhận nuôi / cha mẹ ruột",en:"1) A foster parent looks after a child for a short period.<br>2) Her adoptive parents raised her with great love.<br>3) Some children never meet their birth parents.",exvi:"1) Cha mẹ nuôi dưỡng chăm sóc một đứa trẻ trong thời gian ngắn.<br>2) Cha mẹ nhận nuôi đã nuôi dạy cô bằng tình yêu thương lớn lao.<br>3) Một số đứa trẻ không bao giờ gặp được cha mẹ ruột."},
+{u:1,w:"parent",pos:"n. – cha mẹ, phụ huynh",c:"a single / lone parent",vi:"cha/mẹ đơn thân",en:"1) Being a single parent while working full-time is exhausting.<br>2) Lone parents often rely on support from the government.",exvi:"1) Làm cha/mẹ đơn thân khi vẫn đi làm toàn thời gian rất mệt mỏi.<br>2) Các bậc cha mẹ đơn thân thường phải dựa vào hỗ trợ của chính phủ."},
+
+{u:1,w:"sibling",pos:"n. – anh / chị / em ruột",c:"a younger / elder sibling",vi:"em / anh chị lớn hơn",en:"1) My younger sibling always copies everything I do.<br>2) As the elder sibling, I had to set a good example.",exvi:"1) Đứa em của tôi luôn bắt chước mọi thứ tôi làm.<br>2) Là anh/chị lớn, tôi phải làm gương tốt."},
+{u:1,w:"sibling",pos:"n. – anh / chị / em ruột",c:"sibling rivalry",vi:"sự ganh đua giữa anh chị em",en:"Sibling rivalry is common when children are close in age.",exvi:"Sự ganh đua giữa anh chị em rất phổ biến khi các con xấp xỉ tuổi nhau."},
+
+{u:1,w:"autonomous",pos:"adj. – tự chủ, tự trị",c:"an autonomous individual",vi:"một cá nhân tự chủ",en:"University encourages students to become autonomous individuals who think for themselves.",exvi:"Đại học khuyến khích sinh viên trở thành những cá nhân tự chủ biết tự suy nghĩ."},
+{u:1,w:"autonomous",pos:"adj. – tự chủ, tự trị",c:"an autonomous region / republic / province",vi:"vùng / nước cộng hòa / tỉnh tự trị",en:"1) The area was granted status as an autonomous region.<br>2) It became an autonomous republic after the war.<br>3) The government created an autonomous province with its own laws.",exvi:"1) Khu vực này được trao quy chế là một vùng tự trị.<br>2) Nó trở thành một nước cộng hòa tự trị sau chiến tranh.<br>3) Chính phủ lập ra một tỉnh tự trị có luật riêng."},
+{u:1,w:"autonomous",pos:"adj. – tự chủ, tự trị",c:"fiercely / relatively / largely autonomous",vi:"tự chủ mạnh mẽ / tương đối / phần lớn",en:"1) Each department is fiercely autonomous and resists central control.<br>2) The team is relatively autonomous but still reports to a manager.<br>3) The branch remains largely autonomous in daily decisions.",exvi:"1) Mỗi phòng ban tự chủ rất mạnh và chống lại sự kiểm soát tập trung.<br>2) Nhóm tương đối tự chủ nhưng vẫn báo cáo cho một quản lý.<br>3) Chi nhánh phần lớn tự chủ trong các quyết định hằng ngày."},
+
+{u:1,w:"consistent",pos:"adj. – nhất quán, ổn định",c:"a consistent player / performer",vi:"một cầu thủ / người thể hiện ổn định",en:"1) He is a consistent player who rarely has a bad game.<br>2) Investors prefer a consistent performer over a risky one.",exvi:"1) Anh ấy là một cầu thủ ổn định, hiếm khi chơi tệ.<br>2) Nhà đầu tư thích một bên thể hiện ổn định hơn là rủi ro."},
+{u:1,w:"consistent",pos:"adj. – nhất quán, ổn định",c:"consistent with something",vi:"phù hợp / nhất quán với điều gì",en:"Her answers were consistent with the facts we already knew.",exvi:"Câu trả lời của cô ấy nhất quán với những dữ kiện chúng tôi đã biết."},
+{u:1,w:"consistent",pos:"adj. – nhất quán, ổn định",c:"consistent with a finding / hypothesis",vi:"phù hợp với một phát hiện / giả thuyết",en:"1) The results are consistent with the findings of earlier studies.<br>2) The data is consistent with our original hypothesis.",exvi:"1) Kết quả phù hợp với các phát hiện của những nghiên cứu trước.<br>2) Dữ liệu phù hợp với giả thuyết ban đầu của chúng tôi."},
+{u:1,w:"consistent",pos:"adj. – nhất quán, ổn định",c:"entirely / fairly / broadly consistent",vi:"hoàn toàn / khá / nhìn chung nhất quán",en:"1) His story was entirely consistent from start to finish.<br>2) The two reports are fairly consistent with each other.<br>3) Public opinion is broadly consistent across regions.",exvi:"1) Câu chuyện của anh ấy hoàn toàn nhất quán từ đầu đến cuối.<br>2) Hai bản báo cáo khá nhất quán với nhau.<br>3) Ý kiến công chúng nhìn chung nhất quán giữa các vùng."},
+
+{u:1,w:"conventional",pos:"adj. – truyền thống, thông thường",c:"conventional wisdom / thinking",vi:"quan niệm / lối nghĩ thông thường",en:"1) Conventional wisdom says you should save before you spend.<br>2) Her research challenges conventional thinking about sleep.",exvi:"1) Quan niệm thông thường cho rằng nên tiết kiệm trước khi chi tiêu.<br>2) Nghiên cứu của cô thách thức lối nghĩ thông thường về giấc ngủ."},
+{u:1,w:"conventional",pos:"adj. – truyền thống, thông thường",c:"conventional treatment / methods",vi:"phương pháp điều trị / cách làm truyền thống",en:"1) Some patients prefer conventional treatment to alternative medicine.<br>2) Conventional methods are still effective for most farmers.",exvi:"1) Một số bệnh nhân thích điều trị truyền thống hơn y học thay thế.<br>2) Các phương pháp truyền thống vẫn hiệu quả với phần lớn nông dân."},
+{u:1,w:"conventional",pos:"adj. – truyền thống, thông thường",c:"conventional forces / weapons",vi:"lực lượng / vũ khí thông thường (phi hạt nhân)",en:"1) The country still relies on conventional forces for defence.<br>2) Conventional weapons cause most casualties in modern wars.",exvi:"1) Quốc gia này vẫn dựa vào lực lượng thông thường để phòng thủ.<br>2) Vũ khí thông thường gây ra phần lớn thương vong trong các cuộc chiến hiện đại."},
+
+{u:1,w:"co-operative",pos:"adj. – hợp tác",c:"a co-operative approach / effort / relationship",vi:"cách tiếp cận / nỗ lực / mối quan hệ hợp tác",en:"1) Solving climate change requires a co-operative approach between nations.<br>2) The project succeeded thanks to a co-operative effort.<br>3) They built a co-operative relationship over many years.",exvi:"1) Giải quyết biến đổi khí hậu cần một cách tiếp cận hợp tác giữa các quốc gia.<br>2) Dự án thành công nhờ một nỗ lực hợp tác.<br>3) Họ xây dựng mối quan hệ hợp tác qua nhiều năm."},
+
+{u:1,w:"efficient",pos:"adj. – hiệu quả",c:"an efficient use of something",vi:"việc sử dụng hiệu quả thứ gì",en:"Recycling is an efficient use of limited resources.",exvi:"Tái chế là cách sử dụng hiệu quả các nguồn lực hạn chế."},
+{u:1,w:"efficient",pos:"adj. – hiệu quả",c:"an efficient way of doing something",vi:"một cách làm hiệu quả",en:"Email is an efficient way of reaching many people at once.",exvi:"Email là một cách hiệu quả để tiếp cận nhiều người cùng lúc."},
+{u:1,w:"efficient",pos:"adj. – hiệu quả",c:"an efficient manner",vi:"một cách thức hiệu quả",en:"The staff dealt with our complaint in an efficient manner.",exvi:"Nhân viên xử lý khiếu nại của chúng tôi một cách hiệu quả."},
+{u:1,w:"efficient",pos:"adj. – hiệu quả",c:"highly / extremely efficient",vi:"hiệu quả cao / cực kỳ hiệu quả",en:"1) Modern factories are highly efficient and waste very little.<br>2) The new engine is extremely efficient.",exvi:"1) Các nhà máy hiện đại có hiệu quả cao và lãng phí rất ít.<br>2) Động cơ mới cực kỳ hiệu quả."},
+{u:1,w:"efficient",pos:"adj. – hiệu quả",c:"fuel / energy efficient",vi:"tiết kiệm nhiên liệu / năng lượng",en:"1) Buyers increasingly want fuel-efficient cars.<br>2) Energy-efficient homes have much lower bills.",exvi:"1) Người mua ngày càng muốn xe tiết kiệm nhiên liệu.<br>2) Những ngôi nhà tiết kiệm năng lượng có hóa đơn thấp hơn nhiều."},
+
+{u:1,w:"flexible",pos:"adj. – linh hoạt",c:"a flexible approach / system / arrangement",vi:"cách tiếp cận / hệ thống / sự sắp xếp linh hoạt",en:"1) Teachers need a flexible approach to suit different learners.<br>2) A flexible system lets students study at their own pace.<br>3) We came to a flexible arrangement about working from home.",exvi:"1) Giáo viên cần cách tiếp cận linh hoạt để phù hợp với nhiều người học.<br>2) Một hệ thống linh hoạt cho phép sinh viên học theo tốc độ riêng.<br>3) Chúng tôi đạt được thỏa thuận linh hoạt về việc làm tại nhà."},
+{u:1,w:"flexible",pos:"adj. – linh hoạt",c:"flexible working / working hours",vi:"làm việc linh hoạt / giờ làm linh hoạt",en:"1) Many companies now offer flexible working.<br>2) Flexible working hours help parents balance their lives.",exvi:"1) Nhiều công ty hiện cho phép làm việc linh hoạt.<br>2) Giờ làm linh hoạt giúp các bậc cha mẹ cân bằng cuộc sống."},
+{u:1,w:"flexible",pos:"adj. – linh hoạt",c:"a flexible rate / market",vi:"mức giá / thị trường linh hoạt",en:"1) The bank offers a flexible rate that changes with the economy.<br>2) A flexible labour market makes it easier to hire and fire.",exvi:"1) Ngân hàng đưa ra mức lãi suất linh hoạt thay đổi theo nền kinh tế.<br>2) Thị trường lao động linh hoạt giúp việc thuê và sa thải dễ dàng hơn."},
+
+{u:1,w:"idealistic",pos:"adj. – lý tưởng hóa",c:"an idealistic notion / vision / view",vi:"quan niệm / tầm nhìn / quan điểm lý tưởng hóa",en:"1) He has an idealistic notion that money can't change people.<br>2) Young activists often share an idealistic vision of the future.<br>3) She holds an idealistic view of human nature.",exvi:"1) Anh ấy có quan niệm lý tưởng rằng tiền không thể thay đổi con người.<br>2) Các nhà hoạt động trẻ thường chia sẻ một tầm nhìn lý tưởng về tương lai.<br>3) Cô ấy giữ một quan điểm lý tưởng về bản chất con người."},
+
+{u:1,w:"tolerant",pos:"adj. – khoan dung, cởi mở",c:"tolerant of something",vi:"khoan dung / chấp nhận điều gì",en:"We should be more tolerant of people who are different from us.",exvi:"Chúng ta nên khoan dung hơn với những người khác mình."},
+{u:1,w:"tolerant",pos:"adj. – khoan dung, cởi mở",c:"a tolerant society / country / attitude",vi:"xã hội / đất nước / thái độ cởi mở",en:"1) A tolerant society welcomes people of all backgrounds.<br>2) Canada is often seen as a tolerant country.<br>3) A tolerant attitude helps reduce conflict.",exvi:"1) Một xã hội cởi mở chào đón những người thuộc mọi nền tảng.<br>2) Canada thường được xem là một đất nước cởi mở.<br>3) Một thái độ cởi mở giúp giảm xung đột."},
+{u:1,w:"tolerant",pos:"adj. – khoan dung, cởi mở",c:"racially tolerant",vi:"khoan dung về sắc tộc",en:"Big cities tend to be more racially tolerant than small towns.",exvi:"Các thành phố lớn thường khoan dung về sắc tộc hơn so với các thị trấn nhỏ."},
+
+{u:1,w:"vulnerable",pos:"adj. – dễ bị tổn thương",c:"vulnerable to something",vi:"dễ bị ảnh hưởng bởi điều gì",en:"Elderly people are especially vulnerable to the cold.",exvi:"Người cao tuổi đặc biệt dễ bị ảnh hưởng bởi cái lạnh."},
+{u:1,w:"vulnerable",pos:"adj. – dễ bị tổn thương",c:"vulnerable to attack / damage / fire",vi:"dễ bị tấn công / hư hại / cháy",en:"1) Without walls, the city was vulnerable to attack.<br>2) Old buildings are vulnerable to damage in earthquakes.<br>3) Dry forests are vulnerable to fire in summer.",exvi:"1) Không có tường thành, thành phố dễ bị tấn công.<br>2) Các tòa nhà cũ dễ bị hư hại khi động đất.<br>3) Rừng khô dễ bị cháy vào mùa hè."},
+{u:1,w:"vulnerable",pos:"adj. – dễ bị tổn thương",c:"vulnerable children / women / people",vi:"trẻ em / phụ nữ / những người yếu thế",en:"1) Charities aim to protect vulnerable children.<br>2) The shelter supports vulnerable women.<br>3) The policy is designed to help vulnerable people.",exvi:"1) Các tổ chức từ thiện hướng đến bảo vệ trẻ em yếu thế.<br>2) Mái ấm hỗ trợ những phụ nữ yếu thế.<br>3) Chính sách được thiết kế để giúp những người yếu thế."},
+{u:1,w:"vulnerable",pos:"adj. – dễ bị tổn thương",c:"a vulnerable position",vi:"một vị thế yếu / dễ bị tổn thương",en:"Borrowing too much can leave families in a vulnerable position.",exvi:"Vay mượn quá nhiều có thể đẩy các gia đình vào vị thế dễ bị tổn thương."},
+{u:1,w:"vulnerable",pos:"adj. – dễ bị tổn thương",c:"especially / highly / increasingly vulnerable",vi:"đặc biệt / rất / ngày càng dễ bị tổn thương",en:"1) Coastal towns are especially vulnerable to flooding.<br>2) Newborns are highly vulnerable to infection.<br>3) Species are increasingly vulnerable as habitats shrink.",exvi:"1) Các thị trấn ven biển đặc biệt dễ bị ngập lụt.<br>2) Trẻ sơ sinh rất dễ bị nhiễm trùng.<br>3) Các loài ngày càng dễ bị tổn thương khi môi trường sống thu hẹp."},
+
+// ===== UNIT 2 =====
+{u:2,w:"addiction",pos:"n. – sự nghiện",c:"addiction to something",vi:"sự nghiện thứ gì",en:"Addiction to social media is a growing problem among teenagers.",exvi:"Việc nghiện mạng xã hội là một vấn đề ngày càng tăng ở thanh thiếu niên."},
+{u:2,w:"addiction",pos:"n. – sự nghiện",c:"drug / nicotine / alcohol addiction",vi:"nghiện ma túy / nicotine / rượu",en:"1) Drug addiction destroys both health and relationships.<br>2) Nicotine addiction makes quitting smoking extremely hard.<br>3) Alcohol addiction often runs in families.",exvi:"1) Nghiện ma túy phá hủy cả sức khỏe lẫn các mối quan hệ.<br>2) Nghiện nicotine khiến việc bỏ thuốc cực kỳ khó.<br>3) Nghiện rượu thường mang tính di truyền trong gia đình."},
+{u:2,w:"addiction",pos:"n. – sự nghiện",c:"a long-term / chronic / serious addiction",vi:"sự nghiện lâu dài / mãn tính / nghiêm trọng",en:"1) Recovering from a long-term addiction takes years.<br>2) He sought help for a chronic addiction.<br>3) A serious addiction can ruin a person's career.",exvi:"1) Phục hồi sau một cơn nghiện lâu dài mất nhiều năm.<br>2) Anh ấy tìm kiếm sự giúp đỡ cho một cơn nghiện mãn tính.<br>3) Một cơn nghiện nghiêm trọng có thể hủy hoại sự nghiệp của một người."},
+{u:2,w:"addiction",pos:"n. – sự nghiện",c:"cure / treat / overcome / fight an addiction",vi:"chữa / điều trị / vượt qua / chống lại cơn nghiện",en:"1) Doctors are still searching for ways to cure addiction.<br>2) Clinics treat addiction with therapy and medication.<br>3) Many people struggle to overcome addiction alone.",exvi:"1) Các bác sĩ vẫn đang tìm cách chữa khỏi cơn nghiện.<br>2) Các phòng khám điều trị nghiện bằng liệu pháp tâm lý và thuốc.<br>3) Nhiều người chật vật để tự mình vượt qua cơn nghiện."},
+{u:2,w:"addiction",pos:"n. – sự nghiện",c:"an addiction problem / clinic / counsellor",vi:"vấn đề nghiện / phòng khám / chuyên viên tư vấn cai nghiện",en:"1) He finally admitted he had an addiction problem.<br>2) She was referred to an addiction clinic.<br>3) An addiction counsellor helped him recover.",exvi:"1) Cuối cùng anh ấy thừa nhận mình có vấn đề về nghiện.<br>2) Cô ấy được giới thiệu đến một phòng khám cai nghiện.<br>3) Một chuyên viên tư vấn cai nghiện đã giúp anh ấy hồi phục."},
+
+{u:2,w:"allergy",pos:"n. – dị ứng",c:"an allergy to something",vi:"dị ứng với thứ gì",en:"She has an allergy to dust, so she cleans her room every day.",exvi:"Cô ấy bị dị ứng với bụi nên ngày nào cũng dọn phòng."},
+{u:2,w:"allergy",pos:"n. – dị ứng",c:"develop / diagnose / trigger an allergy",vi:"phát triển / chẩn đoán / kích hoạt dị ứng",en:"1) Some adults suddenly develop an allergy to seafood.<br>2) Doctors can diagnose an allergy with a simple skin test.<br>3) Pollen can trigger an allergy in spring.",exvi:"1) Một số người lớn đột nhiên bị dị ứng với hải sản.<br>2) Bác sĩ có thể chẩn đoán dị ứng bằng một bài kiểm tra da đơn giản.<br>3) Phấn hoa có thể kích hoạt dị ứng vào mùa xuân."},
+{u:2,w:"allergy",pos:"n. – dị ứng",c:"a severe / common / life-threatening allergy",vi:"dị ứng nặng / phổ biến / đe dọa tính mạng",en:"1) A severe allergy can require emergency treatment.<br>2) Hay fever is a very common allergy.<br>3) A peanut allergy can be life-threatening.",exvi:"1) Một cơn dị ứng nặng có thể cần cấp cứu.<br>2) Sốt cỏ khô là một dạng dị ứng rất phổ biến.<br>3) Dị ứng đậu phộng có thể đe dọa tính mạng."},
+{u:2,w:"allergy",pos:"n. – dị ứng",c:"a food / peanut / skin allergy",vi:"dị ứng thực phẩm / đậu phộng / da",en:"1) Restaurants must take a food allergy seriously.<br>2) His peanut allergy means he reads every label.<br>3) A skin allergy can cause itching and rashes.",exvi:"1) Các nhà hàng phải xem trọng việc dị ứng thực phẩm.<br>2) Dị ứng đậu phộng khiến anh ấy phải đọc kỹ mọi nhãn mác.<br>3) Dị ứng da có thể gây ngứa và phát ban."},
+{u:2,w:"allergy",pos:"n. – dị ứng",c:"allergy sufferers / symptoms",vi:"người bị dị ứng / triệu chứng dị ứng",en:"1) Allergy sufferers often feel worse in spring.<br>2) Allergy symptoms include sneezing and watery eyes.",exvi:"1) Người bị dị ứng thường cảm thấy tệ hơn vào mùa xuân.<br>2) Triệu chứng dị ứng gồm hắt hơi và chảy nước mắt."},
+
+{u:2,w:"dehydration",pos:"n. – sự mất nước",c:"avoid / prevent / cause dehydration",vi:"tránh / ngăn ngừa / gây mất nước",en:"1) Drinking water regularly helps you avoid dehydration.<br>2) Athletes drink electrolytes to prevent dehydration.<br>3) Hot weather can quickly cause dehydration.",exvi:"1) Uống nước thường xuyên giúp bạn tránh mất nước.<br>2) Vận động viên uống chất điện giải để ngăn mất nước.<br>3) Thời tiết nóng có thể nhanh chóng gây mất nước."},
+{u:2,w:"dehydration",pos:"n. – sự mất nước",c:"severe / mild / extreme dehydration",vi:"mất nước nghiêm trọng / nhẹ / cực độ",en:"1) Severe dehydration may require hospital treatment.<br>2) Even mild dehydration can cause headaches.<br>3) Extreme dehydration is dangerous for young children.",exvi:"1) Mất nước nghiêm trọng có thể cần điều trị tại bệnh viện.<br>2) Ngay cả mất nước nhẹ cũng có thể gây đau đầu.<br>3) Mất nước cực độ rất nguy hiểm với trẻ nhỏ."},
+
+{u:2,w:"disease",pos:"n. – bệnh tật",c:"a fatal / deadly / chronic disease",vi:"bệnh gây tử vong / chết người / mãn tính",en:"1) Rabies is a fatal disease if left untreated.<br>2) Malaria remains a deadly disease in many countries.<br>3) Diabetes is a chronic disease that lasts a lifetime.",exvi:"1) Bệnh dại gây tử vong nếu không được điều trị.<br>2) Sốt rét vẫn là một căn bệnh chết người ở nhiều nước.<br>3) Tiểu đường là một bệnh mãn tính kéo dài suốt đời."},
+{u:2,w:"disease",pos:"n. – bệnh tật",c:"heart / lung / kidney disease",vi:"bệnh tim / phổi / thận",en:"1) A poor diet increases the risk of heart disease.<br>2) Smoking is a major cause of lung disease.<br>3) Kidney disease often develops slowly and silently.",exvi:"1) Chế độ ăn kém làm tăng nguy cơ bệnh tim.<br>2) Hút thuốc là nguyên nhân chính gây bệnh phổi.<br>3) Bệnh thận thường tiến triển chậm và âm thầm."},
+{u:2,w:"disease",pos:"n. – bệnh tật",c:"transmit / contract / develop a disease",vi:"lây truyền / mắc / phát triển bệnh",en:"1) Mosquitoes can transmit a disease to humans.<br>2) You can contract a disease from contaminated water.<br>3) Without exercise, people may develop a disease earlier.",exvi:"1) Muỗi có thể truyền bệnh cho con người.<br>2) Bạn có thể mắc bệnh từ nguồn nước ô nhiễm.<br>3) Không tập thể dục, người ta có thể mắc bệnh sớm hơn."},
+{u:2,w:"disease",pos:"n. – bệnh tật",c:"prevent / treat / cure a disease",vi:"phòng ngừa / điều trị / chữa khỏi bệnh",en:"1) Vaccines help prevent many serious diseases.<br>2) Doctors can now treat the disease with new drugs.<br>3) Scientists hope to cure the disease one day.",exvi:"1) Vắc-xin giúp phòng ngừa nhiều bệnh nghiêm trọng.<br>2) Bác sĩ giờ có thể điều trị bệnh bằng thuốc mới.<br>3) Các nhà khoa học hy vọng một ngày sẽ chữa khỏi bệnh."},
+
+{u:2,w:"infection",pos:"n. – sự nhiễm trùng",c:"a viral / bacterial / respiratory infection",vi:"nhiễm trùng do virus / vi khuẩn / hô hấp",en:"1) A viral infection usually clears up on its own.<br>2) A bacterial infection often needs antibiotics.<br>3) A respiratory infection can make breathing difficult.",exvi:"1) Nhiễm virus thường tự khỏi.<br>2) Nhiễm khuẩn thường cần kháng sinh.<br>3) Nhiễm trùng đường hô hấp có thể khiến việc thở khó khăn."},
+{u:2,w:"infection",pos:"n. – sự nhiễm trùng",c:"a chest / ear / lung infection",vi:"nhiễm trùng ngực / tai / phổi",en:"1) A chest infection left him coughing for weeks.<br>2) Children often get an ear infection after a cold.<br>3) A lung infection can be serious for the elderly.",exvi:"1) Một đợt nhiễm trùng ngực khiến anh ấy ho suốt nhiều tuần.<br>2) Trẻ em thường bị nhiễm trùng tai sau khi cảm lạnh.<br>3) Nhiễm trùng phổi có thể nghiêm trọng với người già."},
+{u:2,w:"infection",pos:"n. – sự nhiễm trùng",c:"contract / transmit / spread an infection",vi:"mắc / lây truyền / phát tán nhiễm trùng",en:"1) Patients can contract an infection in hospital.<br>2) Dirty hands easily transmit an infection.<br>3) Crowded places help spread an infection quickly.",exvi:"1) Bệnh nhân có thể bị nhiễm trùng ngay trong bệnh viện.<br>2) Tay bẩn dễ làm lây truyền nhiễm trùng.<br>3) Nơi đông đúc khiến nhiễm trùng lây lan nhanh."},
+{u:2,w:"infection",pos:"n. – sự nhiễm trùng",c:"prevent / combat / treat an infection",vi:"ngăn ngừa / chống lại / điều trị nhiễm trùng",en:"1) Washing hands helps prevent infection.<br>2) The body's immune system combats infection.<br>3) Doctors treat the infection with antibiotics.",exvi:"1) Rửa tay giúp ngăn ngừa nhiễm trùng.<br>2) Hệ miễn dịch của cơ thể chống lại nhiễm trùng.<br>3) Bác sĩ điều trị nhiễm trùng bằng kháng sinh."},
+{u:2,w:"infection",pos:"n. – sự nhiễm trùng",c:"infection control / prevention",vi:"kiểm soát / phòng ngừa nhiễm trùng",en:"1) Hospitals follow strict infection control rules.<br>2) Good hygiene is the basis of infection prevention.",exvi:"1) Bệnh viện tuân theo các quy tắc kiểm soát nhiễm trùng nghiêm ngặt.<br>2) Vệ sinh tốt là nền tảng của việc phòng ngừa nhiễm trùng."},
+
+{u:2,w:"obesity",pos:"n. – béo phì",c:"tackle / prevent / reduce obesity",vi:"giải quyết / ngăn ngừa / giảm béo phì",en:"1) Governments are trying to tackle obesity through education.<br>2) A balanced diet helps prevent obesity.<br>3) More exercise can reduce obesity in children.",exvi:"1) Các chính phủ đang cố giải quyết béo phì thông qua giáo dục.<br>2) Chế độ ăn cân bằng giúp ngăn ngừa béo phì.<br>3) Vận động nhiều hơn có thể giảm béo phì ở trẻ em."},
+{u:2,w:"obesity",pos:"n. – béo phì",c:"the obesity epidemic / rate / problem",vi:"nạn dịch / tỉ lệ / vấn đề béo phì",en:"1) The obesity epidemic is straining health systems.<br>2) The obesity rate has doubled in two decades.<br>3) Fast food contributes to the obesity problem.",exvi:"1) Nạn dịch béo phì đang gây áp lực lên hệ thống y tế.<br>2) Tỉ lệ béo phì đã tăng gấp đôi trong hai thập kỷ.<br>3) Đồ ăn nhanh góp phần vào vấn đề béo phì."},
+{u:2,w:"obesity",pos:"n. – béo phì",c:"childhood / adult obesity",vi:"béo phì ở trẻ em / người lớn",en:"1) Childhood obesity often leads to health problems later.<br>2) Adult obesity raises the risk of heart disease.",exvi:"1) Béo phì ở trẻ em thường dẫn đến các vấn đề sức khỏe về sau.<br>2) Béo phì ở người lớn làm tăng nguy cơ bệnh tim."},
+
+{u:2,w:"stroke",pos:"n. – đột quỵ",c:"a minor / severe / fatal stroke",vi:"đột quỵ nhẹ / nặng / gây tử vong",en:"1) He recovered quickly after a minor stroke.<br>2) A severe stroke can leave a patient paralysed.<br>3) Sadly, she died after a fatal stroke.",exvi:"1) Anh ấy hồi phục nhanh sau một cơn đột quỵ nhẹ.<br>2) Một cơn đột quỵ nặng có thể khiến bệnh nhân bị liệt.<br>3) Đáng buồn là cô ấy qua đời sau một cơn đột quỵ gây tử vong."},
+{u:2,w:"stroke",pos:"n. – đột quỵ",c:"a stroke victim / patient / unit",vi:"nạn nhân / bệnh nhân / khoa đột quỵ",en:"1) A stroke victim needs immediate medical attention.<br>2) The stroke patient slowly relearned how to walk.<br>3) She was rushed to the hospital's stroke unit.",exvi:"1) Một nạn nhân đột quỵ cần được chăm sóc y tế ngay lập tức.<br>2) Bệnh nhân đột quỵ dần học lại cách đi.<br>3) Cô ấy được đưa gấp đến khoa đột quỵ của bệnh viện."},
+{u:2,w:"stroke",pos:"n. – đột quỵ",c:"suffer / have / prevent a stroke",vi:"bị / lên cơn / phòng ngừa đột quỵ",en:"1) He suffered a stroke at the age of sixty.<br>2) She had a stroke but made a full recovery.<br>3) Controlling blood pressure helps prevent a stroke.",exvi:"1) Ông ấy bị đột quỵ ở tuổi sáu mươi.<br>2) Cô ấy lên cơn đột quỵ nhưng đã hồi phục hoàn toàn.<br>3) Kiểm soát huyết áp giúp phòng ngừa đột quỵ."},
+
+{u:2,w:"administer",pos:"v. – cho dùng (thuốc), thực hiện",c:"administer something to someone",vi:"cho ai dùng thứ gì",en:"Nurses administer the medicine to patients on time.",exvi:"Y tá cho bệnh nhân dùng thuốc đúng giờ."},
+{u:2,w:"administer",pos:"v. – cho dùng (thuốc), thực hiện",c:"administer a dose / injection / vaccine / drug",vi:"cho dùng một liều / mũi tiêm / vắc-xin / thuốc",en:"1) The doctor administered a small dose first.<br>2) A nurse administered the injection quickly.<br>3) Volunteers helped administer the vaccine to thousands.",exvi:"1) Bác sĩ cho dùng một liều nhỏ trước.<br>2) Một y tá tiêm mũi đó rất nhanh.<br>3) Các tình nguyện viên đã giúp tiêm vắc-xin cho hàng nghìn người."},
+{u:2,w:"administer",pos:"v. – cho dùng (thuốc), thực hiện",c:"orally / intravenously administered",vi:"cho dùng đường uống / đường tĩnh mạch",en:"1) The medicine is orally administered twice a day.<br>2) In emergencies, drugs are intravenously administered.",exvi:"1) Thuốc được dùng đường uống hai lần một ngày.<br>2) Trong trường hợp khẩn cấp, thuốc được truyền qua đường tĩnh mạch."},
+
+{u:2,w:"diagnose",pos:"v. – chẩn đoán",c:"someone is diagnosed with something",vi:"ai đó được chẩn đoán mắc bệnh gì",en:"He was diagnosed with diabetes after a routine check-up.",exvi:"Anh ấy được chẩn đoán mắc tiểu đường sau một lần khám định kỳ."},
+{u:2,w:"diagnose",pos:"v. – chẩn đoán",c:"diagnosed with cancer / diabetes / leukaemia",vi:"được chẩn đoán mắc ung thư / tiểu đường / bạch cầu",en:"1) She was diagnosed with cancer at an early stage.<br>2) Many adults are diagnosed with diabetes too late.<br>3) The child was diagnosed with leukaemia last year.",exvi:"1) Cô ấy được chẩn đoán mắc ung thư ở giai đoạn sớm.<br>2) Nhiều người lớn được chẩn đoán tiểu đường quá muộn.<br>3) Đứa trẻ được chẩn đoán mắc bệnh bạch cầu năm ngoái."},
+{u:2,w:"diagnose",pos:"v. – chẩn đoán",c:"diagnosed with a disorder / disease / tumour",vi:"được chẩn đoán mắc rối loạn / bệnh / khối u",en:"1) He was diagnosed with a sleep disorder.<br>2) She was diagnosed with a rare disease.<br>3) Doctors diagnosed him with a brain tumour.",exvi:"1) Anh ấy được chẩn đoán mắc rối loạn giấc ngủ.<br>2) Cô ấy được chẩn đoán mắc một căn bệnh hiếm.<br>3) Bác sĩ chẩn đoán anh ấy có một khối u não."},
+
+{u:2,w:"examine",pos:"v. – khám, kiểm tra",c:"a doctor / specialist examines someone",vi:"bác sĩ / chuyên gia khám cho ai đó",en:"1) A doctor examined the patient and ordered tests.<br>2) A specialist examined her knee before surgery.",exvi:"1) Một bác sĩ khám cho bệnh nhân và yêu cầu xét nghiệm.<br>2) Một chuyên gia khám đầu gối của cô ấy trước khi phẫu thuật."},
+{u:2,w:"examine",pos:"v. – khám, kiểm tra",c:"examine a patient",vi:"khám cho bệnh nhân",en:"The nurse examined each patient in the waiting room.",exvi:"Y tá khám cho từng bệnh nhân trong phòng chờ."},
+{u:2,w:"examine",pos:"v. – khám, kiểm tra",c:"examine someone carefully",vi:"khám cho ai một cách kỹ lưỡng",en:"The doctor examined the child carefully before giving advice.",exvi:"Bác sĩ khám cho đứa trẻ một cách kỹ lưỡng trước khi đưa lời khuyên."},
+
+{u:2,w:"screen",pos:"v. – sàng lọc, tầm soát",c:"screen someone for something",vi:"sàng lọc ai đó để tìm bệnh gì",en:"Hospitals now screen newborns for hearing problems.",exvi:"Các bệnh viện hiện sàng lọc trẻ sơ sinh để phát hiện vấn đề thính giác."},
+{u:2,w:"screen",pos:"v. – sàng lọc, tầm soát",c:"screen for a disease / condition",vi:"tầm soát một bệnh / tình trạng",en:"1) Regular check-ups screen for disease before symptoms appear.<br>2) Doctors screen for any condition that runs in the family.",exvi:"1) Khám định kỳ giúp tầm soát bệnh trước khi triệu chứng xuất hiện.<br>2) Bác sĩ tầm soát bất kỳ tình trạng nào có tính di truyền trong gia đình."},
+{u:2,w:"screen",pos:"v. – sàng lọc, tầm soát",c:"routinely / properly screen",vi:"sàng lọc thường quy / đúng cách",en:"1) Airports routinely screen passengers for security.<br>2) Blood donations must be properly screened.",exvi:"1) Sân bay sàng lọc hành khách một cách thường quy để bảo đảm an ninh.<br>2) Máu hiến phải được sàng lọc đúng cách."},
+
+{u:2,w:"vaccinate",pos:"v. – tiêm chủng",c:"vaccinated against something",vi:"được tiêm phòng chống lại bệnh gì",en:"All students must be vaccinated against measles before school.",exvi:"Tất cả học sinh phải được tiêm phòng sởi trước khi đến trường."},
+{u:2,w:"vaccinate",pos:"v. – tiêm chủng",c:"vaccinated against measles / flu / rabies",vi:"tiêm phòng sởi / cúm / dại",en:"1) Children are vaccinated against measles when young.<br>2) Elderly people are vaccinated against flu each winter.<br>3) Pet owners have their dogs vaccinated against rabies.",exvi:"1) Trẻ em được tiêm phòng sởi khi còn nhỏ.<br>2) Người cao tuổi được tiêm phòng cúm mỗi mùa đông.<br>3) Người nuôi thú cưng cho chó của họ tiêm phòng dại."},
+{u:2,w:"vaccinate",pos:"v. – tiêm chủng",c:"fully vaccinated",vi:"đã tiêm phòng đầy đủ",en:"Travellers should be fully vaccinated before visiting some countries.",exvi:"Du khách nên tiêm phòng đầy đủ trước khi đến một số quốc gia."},
+
+// ===== UNIT 3 =====
+{u:3,w:"archaeology",pos:"n. – khảo cổ học",c:"an archaeology student / professor / department",vi:"sinh viên / giáo sư / khoa khảo cổ học",en:"1) As an archaeology student, she spends summers on digs.<br>2) An archaeology professor gave a talk on ancient tombs.<br>3) The archaeology department received new funding.",exvi:"1) Là sinh viên khảo cổ, cô ấy dành mùa hè để khai quật.<br>2) Một giáo sư khảo cổ đã thuyết trình về các ngôi mộ cổ.<br>3) Khoa khảo cổ nhận được nguồn tài trợ mới."},
+{u:3,w:"archaeology",pos:"n. – khảo cổ học",c:"maritime / industrial / classical archaeology",vi:"khảo cổ hàng hải / công nghiệp / cổ điển",en:"1) Maritime archaeology studies shipwrecks on the seabed.<br>2) Industrial archaeology explores old factories and mines.<br>3) Classical archaeology focuses on Greece and Rome.",exvi:"1) Khảo cổ hàng hải nghiên cứu các xác tàu đắm dưới đáy biển.<br>2) Khảo cổ công nghiệp khám phá các nhà máy và hầm mỏ cũ.<br>3) Khảo cổ cổ điển tập trung vào Hy Lạp và La Mã."},
+
+{u:3,w:"astronomy",pos:"n. – thiên văn học",c:"an astronomy professor / enthusiast / mission",vi:"giáo sư / người đam mê / sứ mệnh thiên văn học",en:"1) An astronomy professor explained how stars are born.<br>2) As an astronomy enthusiast, he owns three telescopes.<br>3) The astronomy mission sent back stunning images.",exvi:"1) Một giáo sư thiên văn giải thích cách các ngôi sao hình thành.<br>2) Là người đam mê thiên văn, anh ấy sở hữu ba kính viễn vọng.<br>3) Sứ mệnh thiên văn đã gửi về những hình ảnh tuyệt đẹp."},
+{u:3,w:"astronomy",pos:"n. – thiên văn học",c:"planetary / theoretical / modern astronomy",vi:"thiên văn hành tinh / lý thuyết / hiện đại",en:"1) Planetary astronomy studies the planets in our solar system.<br>2) Theoretical astronomy relies heavily on mathematics.<br>3) Modern astronomy depends on powerful space telescopes.",exvi:"1) Thiên văn hành tinh nghiên cứu các hành tinh trong hệ mặt trời.<br>2) Thiên văn lý thuyết phụ thuộc nhiều vào toán học.<br>3) Thiên văn hiện đại dựa vào các kính viễn vọng không gian mạnh mẽ."},
+
+{u:3,w:"economics",pos:"n. – kinh tế học",c:"an economics professor / degree / department",vi:"giáo sư / bằng / khoa kinh tế học",en:"1) An economics professor warned about rising inflation.<br>2) She earned an economics degree from a top university.<br>3) The economics department runs a popular evening course.",exvi:"1) Một giáo sư kinh tế cảnh báo về lạm phát gia tăng.<br>2) Cô ấy lấy bằng kinh tế từ một trường đại học hàng đầu.<br>3) Khoa kinh tế tổ chức một khóa học buổi tối được ưa chuộng."},
+{u:3,w:"economics",pos:"n. – kinh tế học",c:"Keynesian / classical / experimental economics",vi:"kinh tế học Keynes / cổ điển / thực nghiệm",en:"1) Keynesian economics supports government spending in a crisis.<br>2) Classical economics trusts the free market to balance itself.<br>3) Experimental economics tests theories with real participants.",exvi:"1) Kinh tế học Keynes ủng hộ chi tiêu của chính phủ trong khủng hoảng.<br>2) Kinh tế học cổ điển tin rằng thị trường tự do tự cân bằng.<br>3) Kinh tế học thực nghiệm kiểm chứng lý thuyết với người tham gia thật.",},
+{u:3,w:"economics",pos:"n. – kinh tế học",c:"free-market / development economics",vi:"kinh tế thị trường tự do / kinh tế phát triển",en:"1) Free-market economics argues for less government control.<br>2) Development economics studies how poor countries can grow.",exvi:"1) Kinh tế thị trường tự do ủng hộ ít sự can thiệp của chính phủ.<br>2) Kinh tế phát triển nghiên cứu cách các nước nghèo có thể tăng trưởng."},
+
+{u:3,w:"geology",pos:"n. – địa chất học",c:"the geology of somewhere",vi:"địa chất của một nơi nào đó",en:"Scientists are studying the geology of the ocean floor.",exvi:"Các nhà khoa học đang nghiên cứu địa chất của đáy đại dương."},
+{u:3,w:"geology",pos:"n. – địa chất học",c:"the geology of the area / region / island",vi:"địa chất của khu vực / vùng / hòn đảo",en:"1) The geology of the area explains its rich mineral deposits.<br>2) The geology of the region attracts many researchers.<br>3) The geology of the island was shaped by volcanoes.",exvi:"1) Địa chất của khu vực giải thích cho các mỏ khoáng sản giàu có.<br>2) Địa chất của vùng thu hút nhiều nhà nghiên cứu.<br>3) Địa chất của hòn đảo được hình thành bởi núi lửa."},
+
+{u:3,w:"linguistics",pos:"n. – ngôn ngữ học",c:"modern / historical / applied linguistics",vi:"ngôn ngữ học hiện đại / lịch sử / ứng dụng",en:"1) Modern linguistics examines how children acquire language.<br>2) Historical linguistics traces how words change over time.<br>3) Applied linguistics improves the way we teach languages.",exvi:"1) Ngôn ngữ học hiện đại nghiên cứu cách trẻ em tiếp thu ngôn ngữ.<br>2) Ngôn ngữ học lịch sử truy tìm cách từ ngữ thay đổi theo thời gian.<br>3) Ngôn ngữ học ứng dụng cải thiện cách chúng ta dạy ngôn ngữ."},
+
+{u:3,w:"psychology",pos:"n. – tâm lý học",c:"educational / evolutionary psychology",vi:"tâm lý học giáo dục / tiến hóa",en:"1) Educational psychology helps teachers understand learning.<br>2) Evolutionary psychology explains many human instincts.",exvi:"1) Tâm lý học giáo dục giúp giáo viên hiểu về việc học.<br>2) Tâm lý học tiến hóa giải thích nhiều bản năng của con người."},
+{u:3,w:"psychology",pos:"n. – tâm lý học",c:"clinical / cognitive psychology",vi:"tâm lý học lâm sàng / nhận thức",en:"1) Clinical psychology treats anxiety and depression.<br>2) Cognitive psychology studies memory and attention.",exvi:"1) Tâm lý học lâm sàng điều trị lo âu và trầm cảm.<br>2) Tâm lý học nhận thức nghiên cứu trí nhớ và sự chú ý."},
+
+{u:3,w:"sociology",pos:"n. – xã hội học",c:"the sociology of religion / science",vi:"xã hội học về tôn giáo / khoa học",en:"1) The sociology of religion looks at how beliefs shape society.<br>2) The sociology of science studies how research is funded.",exvi:"1) Xã hội học về tôn giáo xem xét cách niềm tin định hình xã hội.<br>2) Xã hội học về khoa học nghiên cứu cách nghiên cứu được tài trợ."},
+{u:3,w:"sociology",pos:"n. – xã hội học",c:"a sociology professor / lecturer / student",vi:"giáo sư / giảng viên / sinh viên xã hội học",en:"1) A sociology professor studied online communities.<br>2) The sociology lecturer set us a project on inequality.<br>3) As a sociology student, I survey people's habits.",exvi:"1) Một giáo sư xã hội học đã nghiên cứu các cộng đồng trực tuyến.<br>2) Giảng viên xã hội học giao cho chúng tôi đề tài về bất bình đẳng.<br>3) Là sinh viên xã hội học, tôi khảo sát thói quen của mọi người."},
+
+{u:3,w:"analyse",pos:"v. – phân tích",c:"analyse data / statistics / results / trends",vi:"phân tích dữ liệu / số liệu / kết quả / xu hướng",en:"1) Researchers analyse data to find useful patterns.<br>2) Economists analyse statistics to predict growth.<br>3) We analyse the results before drawing conclusions.<br>4) Analysts analyse trends to advise businesses.",exvi:"1) Nhà nghiên cứu phân tích dữ liệu để tìm ra các quy luật hữu ích.<br>2) Nhà kinh tế phân tích số liệu để dự đoán tăng trưởng.<br>3) Chúng tôi phân tích kết quả trước khi rút ra kết luận.<br>4) Chuyên viên phân tích xu hướng để tư vấn cho doanh nghiệp."},
+{u:3,w:"analyse",pos:"v. – phân tích",c:"analyse something critically / carefully",vi:"phân tích điều gì một cách phản biện / cẩn thận",en:"1) Students must analyse sources critically, not just accept them.<br>2) Scientists analyse each sample carefully.",exvi:"1) Sinh viên phải phân tích nguồn một cách phản biện, không chỉ chấp nhận.<br>2) Nhà khoa học phân tích từng mẫu một cách cẩn thận."},
+
+{u:3,w:"define",pos:"v. – định nghĩa",c:"define something as / in terms of something",vi:"định nghĩa điều gì là / theo nghĩa của điều gì",en:"1) The law defines a child as anyone under eighteen.<br>2) Success is often defined in terms of money.",exvi:"1) Luật định nghĩa trẻ em là bất kỳ ai dưới mười tám tuổi.<br>2) Thành công thường được định nghĩa theo tiền bạc."},
+{u:3,w:"define",pos:"v. – định nghĩa",c:"define a term / concept",vi:"định nghĩa một thuật ngữ / khái niệm",en:"1) The textbook clearly defines each new term.<br>2) It is important to define the concept before debating it.",exvi:"1) Sách giáo khoa định nghĩa rõ từng thuật ngữ mới.<br>2) Việc định nghĩa khái niệm trước khi tranh luận là quan trọng."},
+{u:3,w:"define",pos:"v. – định nghĩa",c:"clearly / narrowly / broadly defined",vi:"được định nghĩa rõ ràng / hẹp / rộng",en:"1) The rules must be clearly defined to avoid confusion.<br>2) The term is narrowly defined in this study.<br>3) 'Art' can be broadly defined to include many things.",exvi:"1) Các quy tắc phải được định nghĩa rõ ràng để tránh nhầm lẫn.<br>2) Thuật ngữ được định nghĩa hẹp trong nghiên cứu này.<br>3) 'Nghệ thuật' có thể được định nghĩa rộng để bao gồm nhiều thứ."},
+
+{u:3,w:"evaluate",pos:"v. – đánh giá",c:"evaluate a situation / impact / risk",vi:"đánh giá một tình huống / tác động / rủi ro",en:"1) Managers must evaluate the situation before acting.<br>2) We need to evaluate the impact of the new policy.<br>3) Investors carefully evaluate the risk first.",exvi:"1) Nhà quản lý phải đánh giá tình huống trước khi hành động.<br>2) Chúng ta cần đánh giá tác động của chính sách mới.<br>3) Nhà đầu tư đánh giá rủi ro cẩn thận trước tiên."},
+{u:3,w:"evaluate",pos:"v. – đánh giá",c:"evaluate the effectiveness of something",vi:"đánh giá hiệu quả của điều gì",en:"The study evaluates the effectiveness of online learning.",exvi:"Nghiên cứu đánh giá hiệu quả của việc học trực tuyến."},
+{u:3,w:"evaluate",pos:"v. – đánh giá",c:"carefully evaluate something",vi:"đánh giá điều gì một cách cẩn thận",en:"You should carefully evaluate every option before deciding.",exvi:"Bạn nên đánh giá cẩn thận từng lựa chọn trước khi quyết định."},
+
+{u:3,w:"investigate",pos:"v. – điều tra, nghiên cứu",c:"investigate a link / case / complaint",vi:"điều tra một mối liên hệ / vụ việc / khiếu nại",en:"1) Scientists investigate the link between diet and disease.<br>2) Police investigate every serious case.<br>3) The company will investigate the customer's complaint.",exvi:"1) Nhà khoa học điều tra mối liên hệ giữa chế độ ăn và bệnh tật.<br>2) Cảnh sát điều tra mọi vụ việc nghiêm trọng.<br>3) Công ty sẽ điều tra khiếu nại của khách hàng."},
+{u:3,w:"investigate",pos:"v. – điều tra, nghiên cứu",c:"thoroughly / properly investigate",vi:"điều tra kỹ lưỡng / đúng cách",en:"1) The accident must be thoroughly investigated.<br>2) Every claim should be properly investigated.",exvi:"1) Vụ tai nạn phải được điều tra kỹ lưỡng.<br>2) Mọi tuyên bố nên được điều tra đúng cách."},
+
+{u:3,w:"claim",pos:"v. – tuyên bố, khẳng định",c:"claim falsely / rightly / wrongly",vi:"tuyên bố sai sự thật / đúng đắn / sai lầm",en:"1) The advert falsely claims the product cures illness.<br>2) She rightly claims that the data supports her view.<br>3) He wrongly claimed that the test was easy.",exvi:"1) Quảng cáo tuyên bố sai sự thật rằng sản phẩm chữa được bệnh.<br>2) Cô ấy khẳng định đúng đắn rằng dữ liệu ủng hộ quan điểm của mình.<br>3) Anh ấy đã sai lầm khi cho rằng bài kiểm tra dễ.",},
+{u:3,w:"claim",pos:"v. – tuyên bố, khẳng định",c:"claim repeatedly",vi:"liên tục khẳng định",en:"Politicians repeatedly claim that the economy is improving.",exvi:"Các chính trị gia liên tục khẳng định rằng nền kinh tế đang cải thiện."},
+
+{u:3,w:"evidence",pos:"n. – bằng chứng",c:"evidence of / for something",vi:"bằng chứng về / cho điều gì",en:"1) There is clear evidence of climate change.<br>2) Scientists found evidence for their new theory.",exvi:"1) Có bằng chứng rõ ràng về biến đổi khí hậu.<br>2) Các nhà khoa học tìm thấy bằng chứng cho lý thuyết mới của họ."},
+{u:3,w:"evidence",pos:"n. – bằng chứng",c:"find / gather / collect evidence",vi:"tìm / thu thập / góp nhặt bằng chứng",en:"1) Researchers find evidence by running experiments.<br>2) Detectives gather evidence at the scene.<br>3) We collect evidence from many different sources.",exvi:"1) Nhà nghiên cứu tìm bằng chứng bằng cách làm thí nghiệm.<br>2) Thám tử thu thập bằng chứng tại hiện trường.<br>3) Chúng tôi góp nhặt bằng chứng từ nhiều nguồn khác nhau."},
+{u:3,w:"evidence",pos:"n. – bằng chứng",c:"clear / strong / conclusive evidence",vi:"bằng chứng rõ ràng / mạnh mẽ / thuyết phục",en:"1) There is clear evidence that smoking harms health.<br>2) Strong evidence supports this conclusion.<br>3) The court needed conclusive evidence to convict him.",exvi:"1) Có bằng chứng rõ ràng rằng hút thuốc gây hại sức khỏe.<br>2) Bằng chứng mạnh mẽ ủng hộ kết luận này.<br>3) Tòa cần bằng chứng thuyết phục để kết tội anh ta."},
+
+{u:3,w:"hypothesis",pos:"n. – giả thuyết",c:"test / support / confirm a hypothesis",vi:"kiểm chứng / ủng hộ / xác nhận một giả thuyết",en:"1) Experiments are designed to test a hypothesis.<br>2) The results support the original hypothesis.<br>3) Further data confirmed the hypothesis.",exvi:"1) Các thí nghiệm được thiết kế để kiểm chứng một giả thuyết.<br>2) Kết quả ủng hộ giả thuyết ban đầu.<br>3) Dữ liệu sâu hơn đã xác nhận giả thuyết."},
+{u:3,w:"hypothesis",pos:"n. – giả thuyết",c:"a null / testable / alternative hypothesis",vi:"giả thuyết không / có thể kiểm chứng / thay thế",en:"1) The null hypothesis assumes there is no real effect.<br>2) A good hypothesis must be a testable hypothesis.<br>3) Scientists also consider an alternative hypothesis.",exvi:"1) Giả thuyết không cho rằng không có tác động thực sự.<br>2) Một giả thuyết tốt phải là giả thuyết có thể kiểm chứng.<br>3) Các nhà khoa học cũng cân nhắc một giả thuyết thay thế."},
+
+{u:3,w:"theory",pos:"n. – lý thuyết",c:"a theory of something",vi:"lý thuyết về điều gì",en:"Einstein developed a theory of relativity that changed physics.",exvi:"Einstein đã phát triển một lý thuyết về tính tương đối làm thay đổi vật lý."},
+{u:3,w:"theory",pos:"n. – lý thuyết",c:"develop / propose / formulate a theory",vi:"phát triển / đề xuất / xây dựng một lý thuyết",en:"1) Scientists develop a theory to explain their findings.<br>2) She proposed a new theory about memory.<br>3) It took years to formulate the theory clearly.",exvi:"1) Các nhà khoa học phát triển một lý thuyết để giải thích phát hiện của họ.<br>2) Cô ấy đề xuất một lý thuyết mới về trí nhớ.<br>3) Phải mất nhiều năm để xây dựng lý thuyết một cách rõ ràng."},
+{u:3,w:"theory",pos:"n. – lý thuyết",c:"a scientific / evolutionary theory",vi:"một lý thuyết khoa học / tiến hóa",en:"1) A scientific theory must be supported by evidence.<br>2) The evolutionary theory explains the diversity of life.",exvi:"1) Một lý thuyết khoa học phải được bằng chứng ủng hộ.<br>2) Lý thuyết tiến hóa giải thích sự đa dạng của sự sống."},
+
+// ===== UNIT 4 =====
+{u:4,w:"accompany",pos:"v. – đi cùng, hộ tống",c:"accompanied by someone",vi:"được ai đó đi cùng",en:"The children were accompanied by their teacher on the trip.",exvi:"Bọn trẻ được giáo viên đi cùng trong chuyến đi."},
+{u:4,w:"accompany",pos:"v. – đi cùng, hộ tống",c:"accompanied by a bodyguard / adult / escort",vi:"được hộ tống bởi vệ sĩ / người lớn / người hộ tống",en:"1) The star was accompanied by a bodyguard everywhere.<br>2) Young travellers must be accompanied by an adult.<br>3) The convoy was accompanied by a police escort.",exvi:"1) Ngôi sao luôn được một vệ sĩ đi cùng khắp nơi.<br>2) Du khách nhỏ tuổi phải có người lớn đi kèm.<br>3) Đoàn xe được cảnh sát hộ tống."},
+
+{u:4,w:"delay",pos:"v. – trì hoãn, làm chậm",c:"delay the onset / start of something",vi:"làm chậm sự khởi phát / bắt đầu của điều gì",en:"1) Exercise can delay the onset of many diseases.<br>2) Bad weather delayed the start of the journey.",exvi:"1) Tập thể dục có thể làm chậm sự khởi phát của nhiều bệnh.<br>2) Thời tiết xấu làm chậm thời điểm bắt đầu chuyến đi."},
+
+{u:4,w:"encounter",pos:"v. – gặp phải",c:"encounter resistance / opposition",vi:"gặp phải sự kháng cự / phản đối",en:"1) The plan encountered resistance from local residents.<br>2) New ideas often encounter opposition at first.",exvi:"1) Kế hoạch gặp phải sự kháng cự từ người dân địa phương.<br>2) Ý tưởng mới thường gặp phản đối lúc đầu."},
+{u:4,w:"encounter",pos:"v. – gặp phải",c:"encounter a difficulty / problem",vi:"gặp phải một khó khăn / vấn đề",en:"1) Travellers may encounter a difficulty crossing the border.<br>2) We encountered a serious problem with the booking.",exvi:"1) Du khách có thể gặp khó khăn khi qua biên giới.<br>2) Chúng tôi gặp một vấn đề nghiêm trọng với việc đặt chỗ."},
+
+{u:4,w:"overcome",pos:"v. – vượt qua",c:"overcome a problem / difficulty / obstacle",vi:"vượt qua một vấn đề / khó khăn / trở ngại",en:"1) With effort, she overcame every problem on the way.<br>2) He overcame great difficulty to finish the race.<br>3) Determined people overcome any obstacle.",exvi:"1) Bằng nỗ lực, cô ấy vượt qua mọi vấn đề trên đường.<br>2) Anh ấy vượt qua khó khăn lớn để hoàn thành cuộc đua.<br>3) Người quyết tâm vượt qua mọi trở ngại."},
+{u:4,w:"overcome",pos:"v. – vượt qua",c:"overcome an injury / deficit",vi:"vượt qua một chấn thương / sự thua kém",en:"1) The athlete worked hard to overcome an injury.<br>2) The team overcame a two-goal deficit to win.",exvi:"1) Vận động viên đã nỗ lực để vượt qua chấn thương.<br>2) Đội bóng lội ngược dòng từ thế thua hai bàn để chiến thắng."},
+
+{u:4,w:"seek",pos:"v. – tìm kiếm",c:"seek help / advice / refuge / treatment",vi:"tìm kiếm sự giúp đỡ / lời khuyên / nơi trú ẩn / điều trị",en:"1) Don't be afraid to seek help when you struggle.<br>2) She sought advice from an experienced teacher.<br>3) Thousands sought refuge from the floods.<br>4) He sought treatment for his back pain.",exvi:"1) Đừng ngại tìm sự giúp đỡ khi bạn gặp khó khăn.<br>2) Cô ấy tìm lời khuyên từ một giáo viên giàu kinh nghiệm.<br>3) Hàng nghìn người tìm nơi trú ẩn khỏi lũ lụt.<br>4) Anh ấy tìm cách điều trị chứng đau lưng."},
+{u:4,w:"seek",pos:"v. – tìm kiếm",c:"seek approval / permission / compensation",vi:"tìm kiếm sự chấp thuận / cho phép / bồi thường",en:"1) You must seek approval before starting the project.<br>2) Tourists seek permission to enter the reserve.<br>3) The victims sought compensation from the company.",exvi:"1) Bạn phải xin chấp thuận trước khi bắt đầu dự án.<br>2) Du khách xin phép để vào khu bảo tồn.<br>3) Các nạn nhân đòi bồi thường từ công ty."},
+{u:4,w:"seek",pos:"v. – tìm kiếm",c:"actively / urgently / desperately seek",vi:"chủ động / khẩn cấp / tuyệt vọng tìm kiếm",en:"1) The company is actively seeking new partners.<br>2) Refugees urgently sought food and shelter.<br>3) He desperately sought a way out of debt.",exvi:"1) Công ty đang chủ động tìm kiếm đối tác mới.<br>2) Người tị nạn khẩn cấp tìm thức ăn và chỗ ở.<br>3) Anh ấy tuyệt vọng tìm cách thoát khỏi nợ nần."},
+
+{u:4,w:"challenge",pos:"n. – thử thách",c:"present / pose / accept / face / meet a challenge",vi:"đặt ra / chấp nhận / đối mặt / vượt qua thử thách",en:"1) Climate change poses a huge challenge to the world.<br>2) She gladly accepted the challenge.<br>3) Every traveller must face the challenge of a new culture.<br>4) The team met the challenge and succeeded.",exvi:"1) Biến đổi khí hậu đặt ra một thử thách to lớn cho thế giới.<br>2) Cô ấy vui vẻ chấp nhận thử thách.<br>3) Mỗi du khách phải đối mặt với thử thách của một nền văn hóa mới.<br>4) Đội đã vượt qua thử thách và thành công."},
+{u:4,w:"challenge",pos:"n. – thử thách",c:"a serious / real / major / great challenge",vi:"một thử thách nghiêm trọng / thực sự / lớn / to lớn",en:"1) Poverty remains a serious challenge for the region.<br>2) Learning a language is a real challenge.<br>3) Funding is a major challenge for the project.",exvi:"1) Nghèo đói vẫn là một thử thách nghiêm trọng với khu vực.<br>2) Học một ngôn ngữ là một thử thách thực sự.<br>3) Kinh phí là một thử thách lớn cho dự án."},
+
+{u:4,w:"destination",pos:"n. – điểm đến",c:"a tourist / holiday / popular / favourite destination",vi:"điểm đến du lịch / nghỉ dưỡng / nổi tiếng / yêu thích",en:"1) The city is a famous tourist destination.<br>2) The island is a perfect holiday destination.<br>3) It has become a popular destination for students.<br>4) Japan is my favourite destination.",exvi:"1) Thành phố này là một điểm đến du lịch nổi tiếng.<br>2) Hòn đảo là một điểm nghỉ dưỡng hoàn hảo.<br>3) Nó đã trở thành điểm đến phổ biến với sinh viên.<br>4) Nhật Bản là điểm đến yêu thích của tôi."},
+{u:4,w:"destination",pos:"n. – điểm đến",c:"a final / ultimate destination",vi:"điểm đến cuối cùng / sau cùng",en:"1) After three flights, we reached our final destination.<br>2) For many climbers, Everest is the ultimate destination.",exvi:"1) Sau ba chuyến bay, chúng tôi đến điểm đến cuối cùng.<br>2) Với nhiều người leo núi, Everest là điểm đến sau cùng."},
+
+{u:4,w:"route",pos:"n. – tuyến đường",c:"take / follow / choose a route",vi:"đi theo / chọn một tuyến đường",en:"1) We took a different route to avoid traffic.<br>2) Just follow this route until you reach the river.<br>3) Hikers can choose an easier route.",exvi:"1) Chúng tôi đi một tuyến khác để tránh kẹt xe.<br>2) Cứ theo tuyến đường này cho đến khi tới con sông.<br>3) Người đi bộ đường dài có thể chọn một tuyến dễ hơn."},
+{u:4,w:"route",pos:"n. – tuyến đường",c:"a main / direct / scenic route",vi:"tuyến đường chính / trực tiếp / có cảnh đẹp",en:"1) The main route into the city is often crowded.<br>2) The direct route saves an hour.<br>3) We took the scenic route along the coast.",exvi:"1) Tuyến đường chính vào thành phố thường đông đúc.<br>2) Tuyến đường trực tiếp tiết kiệm một giờ.<br>3) Chúng tôi đi theo tuyến đường có cảnh đẹp dọc bờ biển."},
+{u:4,w:"route",pos:"n. – tuyến đường",c:"a trade / escape / supply route",vi:"tuyến thương mại / thoát hiểm / tiếp tế",en:"1) The river was once an important trade route.<br>2) The tunnel served as an escape route.<br>3) The army cut off the enemy's supply route.",exvi:"1) Con sông từng là một tuyến thương mại quan trọng.<br>2) Đường hầm được dùng làm lối thoát hiểm.<br>3) Quân đội cắt đứt tuyến tiếp tế của địch."},
+
+{u:4,w:"intense",pos:"adj. – mãnh liệt, dữ dội",c:"intense heat / pain / pressure / scrutiny",vi:"sức nóng / cơn đau / áp lực / sự soi xét dữ dội",en:"1) The intense heat made walking exhausting.<br>2) She felt intense pain in her knee.<br>3) Athletes perform under intense pressure.<br>4) The decision came under intense scrutiny.",exvi:"1) Sức nóng dữ dội khiến việc đi bộ kiệt sức.<br>2) Cô ấy cảm thấy cơn đau dữ dội ở đầu gối.<br>3) Vận động viên thi đấu dưới áp lực dữ dội.<br>4) Quyết định bị soi xét gắt gao."},
+{u:4,w:"intense",pos:"adj. – mãnh liệt, dữ dội",c:"intense competition / rivalry",vi:"sự cạnh tranh / kình địch gay gắt",en:"1) There is intense competition for top universities.<br>2) The two teams have an intense rivalry.",exvi:"1) Có sự cạnh tranh gay gắt để vào các trường đại học hàng đầu.<br>2) Hai đội có một sự kình địch gay gắt."},
+
+{u:4,w:"pivotal",pos:"adj. – then chốt, mấu chốt",c:"a pivotal role / moment / figure",vi:"vai trò / khoảnh khắc / nhân vật then chốt",en:"1) Mentors play a pivotal role in a student's success.<br>2) That trip was a pivotal moment in my life.<br>3) She was a pivotal figure in the movement.",exvi:"1) Người cố vấn đóng vai trò then chốt trong thành công của học sinh.<br>2) Chuyến đi đó là một khoảnh khắc bước ngoặt trong đời tôi.<br>3) Cô ấy là một nhân vật then chốt trong phong trào."},
+{u:4,w:"pivotal",pos:"adj. – then chốt, mấu chốt",c:"prove / become pivotal",vi:"trở nên / chứng tỏ là then chốt",en:"1) That single decision proved pivotal to our win.<br>2) The new evidence became pivotal in the case.",exvi:"1) Quyết định duy nhất đó hóa ra lại mang tính then chốt cho chiến thắng.<br>2) Bằng chứng mới trở nên mấu chốt trong vụ án."},
+
+{u:4,w:"profound",pos:"adj. – sâu sắc",c:"a profound sense of something",vi:"một cảm giác sâu sắc về điều gì",en:"Travelling gave me a profound sense of freedom.",exvi:"Việc đi du lịch mang cho tôi một cảm giác tự do sâu sắc."},
+{u:4,w:"profound",pos:"adj. – sâu sắc",c:"a profound change / impact / effect / influence",vi:"sự thay đổi / tác động / ảnh hưởng sâu sắc",en:"1) The internet has had a profound change on society.<br>2) The trip had a profound impact on her career.<br>3) Music can have a profound effect on mood.<br>4) His teacher had a profound influence on him.",exvi:"1) Internet đã tạo ra một sự thay đổi sâu sắc cho xã hội.<br>2) Chuyến đi có tác động sâu sắc đến sự nghiệp của cô ấy.<br>3) Âm nhạc có thể tác động sâu sắc đến tâm trạng.<br>4) Thầy của anh ấy có ảnh hưởng sâu sắc đến anh."},
+
+{u:4,w:"valuable",pos:"adj. – quý giá, có giá trị",c:"a valuable asset / lesson / resource / experience",vi:"tài sản / bài học / nguồn lực / trải nghiệm quý giá",en:"1) Honest staff are a valuable asset to any company.<br>2) Failure taught me a valuable lesson.<br>3) Water is a valuable resource we must protect.<br>4) Studying abroad was a valuable experience.",exvi:"1) Nhân viên trung thực là tài sản quý giá của bất kỳ công ty nào.<br>2) Thất bại đã dạy tôi một bài học quý giá.<br>3) Nước là một nguồn tài nguyên quý mà chúng ta phải bảo vệ.<br>4) Du học là một trải nghiệm quý giá."},
+{u:4,w:"valuable",pos:"adj. – quý giá, có giá trị",c:"a valuable contribution / item",vi:"đóng góp / món đồ có giá trị",en:"1) Volunteers make a valuable contribution to the community.<br>2) The museum displays many valuable items.",exvi:"1) Tình nguyện viên đóng góp giá trị cho cộng đồng.<br>2) Bảo tàng trưng bày nhiều món đồ có giá trị."},
+{u:4,w:"valuable",pos:"adj. – quý giá, có giá trị",c:"prove / become valuable",vi:"trở nên / chứng tỏ có giá trị",en:"1) These skills will prove valuable in your career.<br>2) The old map became valuable to historians.",exvi:"1) Những kỹ năng này sẽ chứng tỏ giá trị trong sự nghiệp của bạn.<br>2) Tấm bản đồ cũ trở nên quý giá với các nhà sử học."},
+
+// ===== UNIT 5 =====
+{u:5,w:"circumference",pos:"n. – chu vi",c:"the circumference of something",vi:"chu vi của vật gì",en:"Scientists measured the circumference of the Earth long ago.",exvi:"Các nhà khoa học đã đo chu vi Trái Đất từ lâu."},
+{u:5,w:"circumference",pos:"n. – chu vi",c:"measure the circumference",vi:"đo chu vi",en:"Use a tape to measure the circumference of the trunk.",exvi:"Dùng thước dây để đo chu vi của thân cây."},
+
+{u:5,w:"height",pos:"n. – chiều cao",c:"reach a height of x",vi:"đạt tới độ cao x",en:"The tower reaches a height of 300 metres.",exvi:"Tòa tháp đạt độ cao 300 mét."},
+{u:5,w:"height",pos:"n. – chiều cao",c:"of medium / normal / average height",vi:"có chiều cao trung bình / bình thường",en:"1) He is a man of medium height.<br>2) The plant grows to a normal height of one metre.<br>3) She is of average height for her age.",exvi:"1) Anh ấy là một người đàn ông có chiều cao trung bình.<br>2) Cây mọc đến chiều cao bình thường là một mét.<br>3) Cô ấy có chiều cao trung bình so với tuổi."},
+{u:5,w:"height",pos:"n. – chiều cao",c:"the maximum / minimum height",vi:"độ cao tối đa / tối thiểu",en:"1) The maximum height of the building is fixed by law.<br>2) There is a minimum height for this ride.",exvi:"1) Độ cao tối đa của tòa nhà được luật quy định.<br>2) Có một chiều cao tối thiểu cho trò chơi này."},
+
+{u:5,w:"length",pos:"n. – chiều dài",c:"the length of something",vi:"chiều dài của vật gì",en:"The length of the bridge is nearly two kilometres.",exvi:"Chiều dài của cây cầu gần hai ki-lô-mét."},
+{u:5,w:"length",pos:"n. – chiều dài",c:"something stretches / extends the length of something",vi:"vật gì kéo dài suốt chiều dài của vật gì",en:"1) The beach stretches the length of the bay.<br>2) A wall extends the length of the garden.",exvi:"1) Bãi biển trải dài suốt vịnh.<br>2) Một bức tường kéo dài hết chiều dài khu vườn."},
+{u:5,w:"length",pos:"n. – chiều dài",c:"the entire / full / overall length of something",vi:"toàn bộ / trọn / tổng chiều dài của vật gì",en:"1) We walked the entire length of the trail.<br>2) The full length of the river is mapped.<br>3) The overall length of the train is 200 metres.",exvi:"1) Chúng tôi đi bộ suốt toàn bộ con đường mòn.<br>2) Trọn chiều dài con sông đã được vẽ bản đồ.<br>3) Tổng chiều dài của đoàn tàu là 200 mét."},
+
+{u:5,w:"radius",pos:"n. – bán kính",c:"within a radius of something",vi:"trong phạm vi bán kính của điều gì",en:"There are no shops within a radius of five kilometres.",exvi:"Không có cửa hàng nào trong bán kính năm ki-lô-mét."},
+{u:5,w:"radius",pos:"n. – bán kính",c:"a 50-mile / ten-mile / 1km radius",vi:"bán kính 50 dặm / mười dặm / 1km",en:"1) The storm affected everything within a 50-mile radius.<br>2) People came from within a ten-mile radius.<br>3) The signal covers a 1km radius.",exvi:"1) Cơn bão ảnh hưởng đến mọi thứ trong bán kính 50 dặm.<br>2) Người dân đến từ trong phạm vi bán kính mười dặm.<br>3) Tín hiệu phủ một bán kính 1km."},
+
+{u:5,w:"volume",pos:"n. – khối lượng, dung lượng",c:"the volume of traffic / data",vi:"lưu lượng giao thông / dữ liệu",en:"1) The volume of traffic doubles during rush hour.<br>2) The volume of data online grows every year.",exvi:"1) Lưu lượng giao thông tăng gấp đôi vào giờ cao điểm.<br>2) Lượng dữ liệu trực tuyến tăng lên mỗi năm."},
+{u:5,w:"volume",pos:"n. – khối lượng, dung lượng",c:"the sheer / huge / high volume",vi:"khối lượng khổng lồ / lớn / cao",en:"1) The sheer volume of work was overwhelming.<br>2) A huge volume of waste ends up in the sea.<br>3) The high volume of sales surprised everyone.",exvi:"1) Khối lượng công việc khổng lồ thật quá sức.<br>2) Một lượng rác lớn cuối cùng trôi ra biển.<br>3) Doanh số bán cao khiến mọi người ngạc nhiên."},
+{u:5,w:"volume",pos:"n. – khối lượng, dung lượng",c:"increase / reduce volume",vi:"tăng / giảm khối lượng",en:"1) The factory increased production volume last year.<br>2) Recycling helps reduce the volume of rubbish.",exvi:"1) Nhà máy đã tăng khối lượng sản xuất năm ngoái.<br>2) Tái chế giúp giảm khối lượng rác."},
+
+{u:5,w:"width",pos:"n. – chiều rộng",c:"the width of something",vi:"chiều rộng của vật gì",en:"The width of the road was too narrow for two cars.",exvi:"Chiều rộng của con đường quá hẹp cho hai xe."},
+{u:5,w:"width",pos:"n. – chiều rộng",c:"increase / extend the width",vi:"tăng / mở rộng chiều rộng",en:"1) The council plans to increase the width of the path.<br>2) They extended the width of the bridge for safety.",exvi:"1) Hội đồng dự định tăng chiều rộng của lối đi.<br>2) Họ mở rộng chiều rộng cầu để an toàn hơn."},
+
+{u:5,w:"adjust",pos:"v. – điều chỉnh",c:"adjust to something",vi:"thích nghi với điều gì",en:"It takes time to adjust to life in a new country.",exvi:"Cần thời gian để thích nghi với cuộc sống ở một đất nước mới."},
+{u:5,w:"adjust",pos:"v. – điều chỉnh",c:"adjust figures / rates",vi:"điều chỉnh số liệu / mức giá",en:"1) Economists adjust figures for inflation.<br>2) The bank may adjust interest rates next month.",exvi:"1) Nhà kinh tế điều chỉnh số liệu theo lạm phát.<br>2) Ngân hàng có thể điều chỉnh lãi suất tháng tới."},
+{u:5,w:"adjust",pos:"v. – điều chỉnh",c:"seasonally / automatically / manually adjusted",vi:"được điều chỉnh theo mùa / tự động / thủ công",en:"1) The data is seasonally adjusted to allow comparison.<br>2) The system is automatically adjusted at night.<br>3) The seat can be manually adjusted.",exvi:"1) Dữ liệu được điều chỉnh theo mùa để có thể so sánh.<br>2) Hệ thống được điều chỉnh tự động vào ban đêm.<br>3) Ghế có thể được điều chỉnh thủ công."},
+
+{u:5,w:"convey",pos:"v. – truyền đạt",c:"convey a sense / impression of something",vi:"truyền đạt một cảm giác / ấn tượng về điều gì",en:"1) The film conveys a strong sense of hope.<br>2) Her speech conveyed an impression of confidence.",exvi:"1) Bộ phim truyền tải một cảm giác hy vọng mạnh mẽ.<br>2) Bài phát biểu của cô tạo ấn tượng về sự tự tin."},
+{u:5,w:"convey",pos:"v. – truyền đạt",c:"convey something vividly / powerfully / accurately",vi:"truyền đạt điều gì một cách sống động / mạnh mẽ / chính xác",en:"1) The photo conveys the scene vividly.<br>2) The poem powerfully conveys grief.<br>3) A good map conveys distance accurately.",exvi:"1) Bức ảnh truyền tải khung cảnh một cách sống động.<br>2) Bài thơ truyền tải nỗi đau một cách mạnh mẽ.<br>3) Một bản đồ tốt thể hiện khoảng cách một cách chính xác."},
+{u:5,w:"convey",pos:"v. – truyền đạt",c:"convey a message",vi:"truyền tải một thông điệp",en:"Advertisements aim to convey a clear message quickly.",exvi:"Quảng cáo nhằm truyền tải một thông điệp rõ ràng một cách nhanh chóng."},
+
+{u:5,w:"launch",pos:"v. – ra mắt, phát động",c:"launch a product / brand / book",vi:"ra mắt một sản phẩm / thương hiệu / cuốn sách",en:"1) The company will launch a new product this spring.<br>2) They launched a fresh brand for young buyers.<br>3) The author launched her book at a big event.",exvi:"1) Công ty sẽ ra mắt một sản phẩm mới vào mùa xuân này.<br>2) Họ tung ra một thương hiệu mới cho người mua trẻ.<br>3) Tác giả ra mắt cuốn sách của mình tại một sự kiện lớn."},
+{u:5,w:"launch",pos:"v. – ra mắt, phát động",c:"launch a campaign / an attack",vi:"phát động một chiến dịch / cuộc tấn công",en:"1) The charity launched a campaign to plant trees.<br>2) The army launched an attack at dawn.",exvi:"1) Tổ chức từ thiện phát động chiến dịch trồng cây.<br>2) Quân đội phát động một cuộc tấn công lúc bình minh."},
+
+{u:5,w:"reinforce",pos:"v. – củng cố, làm vững thêm",c:"reinforce a perception / view / belief",vi:"củng cố một nhận thức / quan điểm / niềm tin",en:"1) The media can reinforce a negative perception.<br>2) The results reinforce my view on exercise.<br>3) Such stories reinforce a common belief.",exvi:"1) Truyền thông có thể củng cố một nhận thức tiêu cực.<br>2) Kết quả củng cố quan điểm của tôi về tập thể dục.<br>3) Những câu chuyện như vậy củng cố một niềm tin phổ biến."},
+{u:5,w:"reinforce",pos:"v. – củng cố, làm vững thêm",c:"reinforce a stereotype / message",vi:"củng cố một định kiến / thông điệp",en:"1) Cartoons sometimes reinforce a stereotype.<br>2) Repetition reinforces the main message.",exvi:"1) Phim hoạt hình đôi khi củng cố một định kiến.<br>2) Sự lặp lại củng cố thông điệp chính."},
+
+{u:5,w:"secure",pos:"v. – giành được, bảo đảm",c:"secure a victory / place / deal",vi:"giành được chiến thắng / suất / thỏa thuận",en:"1) The team secured a victory in the final minute.<br>2) She secured a place at a top university.<br>3) The firm secured a major deal abroad.",exvi:"1) Đội giành chiến thắng ở phút cuối.<br>2) Cô ấy giành được một suất vào trường đại học hàng đầu.<br>3) Công ty giành được một thỏa thuận lớn ở nước ngoài."},
+{u:5,w:"secure",pos:"v. – giành được, bảo đảm",c:"secure the approval / support of someone",vi:"giành được sự chấp thuận / ủng hộ của ai",en:"1) The plan secured the approval of the board.<br>2) The leader secured the support of voters.",exvi:"1) Kế hoạch giành được sự chấp thuận của hội đồng.<br>2) Nhà lãnh đạo giành được sự ủng hộ của cử tri."},
+{u:5,w:"secure",pos:"v. – giành được, bảo đảm",c:"secure funding / peace",vi:"bảo đảm nguồn tài trợ / hòa bình",en:"1) The school secured funding for new computers.<br>2) The treaty helped secure peace in the region.",exvi:"1) Trường học bảo đảm được nguồn tài trợ cho máy tính mới.<br>2) Hiệp ước giúp bảo đảm hòa bình cho khu vực."},
+
+{u:5,w:"suspend",pos:"v. – treo, tạm ngừng",c:"temporarily / indefinitely suspend something",vi:"tạm thời / vô thời hạn đình chỉ điều gì",en:"1) The service was temporarily suspended for repairs.<br>2) The flights were indefinitely suspended after the storm.",exvi:"1) Dịch vụ tạm thời bị ngừng để sửa chữa.<br>2) Các chuyến bay bị đình chỉ vô thời hạn sau cơn bão."},
+{u:5,w:"suspend",pos:"v. – treo, tạm ngừng",c:"suspended from a ceiling / hook",vi:"được treo từ trần nhà / móc",en:"1) A lamp was suspended from the ceiling.<br>2) The tools were suspended from a hook on the wall.",exvi:"1) Một chiếc đèn được treo từ trần nhà.<br>2) Các dụng cụ được treo trên một cái móc trên tường."},
+
+// ===== UNIT 6 =====
+{u:6,w:"commuter",pos:"n. – người đi làm xa hằng ngày",c:"a commuter train / bus",vi:"tàu / xe buýt dành cho người đi làm",en:"1) The commuter train is packed every morning.<br>2) She takes the commuter bus into the city.",exvi:"1) Chuyến tàu dành cho người đi làm chật kín mỗi sáng.<br>2) Cô ấy đi xe buýt dành cho người đi làm vào thành phố."},
+{u:6,w:"commuter",pos:"n. – người đi làm xa hằng ngày",c:"a commuter town / belt",vi:"thị trấn / vành đai dân cư đi làm xa",en:"1) Many families live in a commuter town outside the city.<br>2) House prices in the commuter belt keep rising.",exvi:"1) Nhiều gia đình sống ở một thị trấn ngoại ô đi làm xa.<br>2) Giá nhà ở vành đai dân cư đi làm xa cứ tăng lên."},
+
+{u:6,w:"congestion",pos:"n. – sự tắc nghẽn (giao thông)",c:"traffic / road congestion",vi:"tắc nghẽn giao thông / đường sá",en:"1) Traffic congestion wastes hours of people's time.<br>2) Road congestion is worst during rush hour.",exvi:"1) Tắc nghẽn giao thông làm lãng phí hàng giờ thời gian của người dân.<br>2) Tắc đường nghiêm trọng nhất vào giờ cao điểm."},
+{u:6,w:"congestion",pos:"n. – sự tắc nghẽn (giao thông)",c:"cause / reduce / ease congestion",vi:"gây ra / giảm / làm dịu tắc nghẽn",en:"1) Too many cars cause congestion in the centre.<br>2) Better buses could reduce congestion.<br>3) A new road may ease congestion.",exvi:"1) Quá nhiều xe gây tắc nghẽn ở trung tâm.<br>2) Xe buýt tốt hơn có thể giảm tắc nghẽn.<br>3) Một con đường mới có thể làm dịu tắc nghẽn."},
+{u:6,w:"congestion",pos:"n. – sự tắc nghẽn (giao thông)",c:"a congestion charge",vi:"phí tắc nghẽn (phí vào trung tâm)",en:"London introduced a congestion charge to cut traffic.",exvi:"London đã áp dụng phí tắc nghẽn để giảm giao thông."},
+
+{u:6,w:"immigrant",pos:"n. – người nhập cư",c:"a skilled / illegal immigrant",vi:"người nhập cư có tay nghề / bất hợp pháp",en:"1) The country welcomes skilled immigrants.<br>2) The government cracked down on illegal immigrants.",exvi:"1) Quốc gia chào đón những người nhập cư có tay nghề.<br>2) Chính phủ siết chặt với người nhập cư bất hợp pháp."},
+{u:6,w:"immigrant",pos:"n. – người nhập cư",c:"a first-generation / second-generation immigrant",vi:"người nhập cư thế hệ thứ nhất / thứ hai",en:"1) As a first-generation immigrant, he worked very hard.<br>2) Second-generation immigrants often feel at home in two cultures.",exvi:"1) Là người nhập cư thế hệ thứ nhất, anh ấy đã làm việc rất chăm chỉ.<br>2) Người nhập cư thế hệ thứ hai thường thấy thân thuộc với hai nền văn hóa."},
+{u:6,w:"immigrant",pos:"n. – người nhập cư",c:"an immigrant population / community / worker",vi:"dân số / cộng đồng / lao động nhập cư",en:"1) The city has a large immigrant population.<br>2) The immigrant community celebrates its own festivals.<br>3) Many immigrant workers support local industries.",exvi:"1) Thành phố có một lượng dân nhập cư lớn.<br>2) Cộng đồng nhập cư tổ chức các lễ hội riêng.<br>3) Nhiều lao động nhập cư hỗ trợ các ngành công nghiệp địa phương."},
+
+{u:6,w:"infrastructure",pos:"n. – cơ sở hạ tầng",c:"build / improve / destroy infrastructure",vi:"xây dựng / cải thiện / phá hủy cơ sở hạ tầng",en:"1) The government plans to build new infrastructure.<br>2) Better roads improve infrastructure.<br>3) The earthquake destroyed much of the infrastructure.",exvi:"1) Chính phủ dự định xây dựng cơ sở hạ tầng mới.<br>2) Đường sá tốt hơn cải thiện cơ sở hạ tầng.<br>3) Trận động đất đã phá hủy phần lớn cơ sở hạ tầng."},
+{u:6,w:"infrastructure",pos:"n. – cơ sở hạ tầng",c:"transport / rail / security infrastructure",vi:"hạ tầng giao thông / đường sắt / an ninh",en:"1) Good transport infrastructure attracts businesses.<br>2) The country is upgrading its rail infrastructure.<br>3) Airports rely on strong security infrastructure.",exvi:"1) Hạ tầng giao thông tốt thu hút doanh nghiệp.<br>2) Quốc gia đang nâng cấp hạ tầng đường sắt.<br>3) Sân bay dựa vào hạ tầng an ninh vững chắc."},
+
+{u:6,w:"inhabitant",pos:"n. – cư dân",c:"the inhabitants of somewhere",vi:"cư dân của một nơi nào đó",en:"The inhabitants of the village rely on farming.",exvi:"Cư dân của ngôi làng sống dựa vào nông nghiệp."},
+{u:6,w:"inhabitant",pos:"n. – cư dân",c:"indigenous / native / local inhabitants",vi:"cư dân bản địa / gốc / địa phương",en:"1) The indigenous inhabitants have lived here for centuries.<br>2) Native inhabitants protect the forest.<br>3) Local inhabitants opposed the new factory.",exvi:"1) Cư dân bản địa đã sống ở đây hàng thế kỷ.<br>2) Cư dân gốc bảo vệ khu rừng.<br>3) Cư dân địa phương phản đối nhà máy mới."},
+
+{u:6,w:"neighbourhood",pos:"n. – khu phố, khu dân cư",c:"a safe / good / quiet neighbourhood",vi:"khu phố an toàn / tốt / yên tĩnh",en:"1) Parents want to raise children in a safe neighbourhood.<br>2) It is a good neighbourhood with friendly people.<br>3) They moved to a quiet neighbourhood.",exvi:"1) Cha mẹ muốn nuôi con trong một khu phố an toàn.<br>2) Đó là một khu dân cư tốt với những người thân thiện.<br>3) Họ chuyển đến một khu phố yên tĩnh."},
+{u:6,w:"neighbourhood",pos:"n. – khu phố, khu dân cư",c:"a residential / run-down neighbourhood",vi:"khu dân cư / khu phố xuống cấp",en:"1) The area is a quiet residential neighbourhood.<br>2) The city is improving a run-down neighbourhood.",exvi:"1) Khu vực này là một khu dân cư yên tĩnh.<br>2) Thành phố đang cải tạo một khu phố xuống cấp."},
+
+{u:6,w:"resident",pos:"n. – cư dân, người dân",c:"evacuate / warn / advise residents",vi:"sơ tán / cảnh báo / khuyến cáo cư dân",en:"1) Police evacuated residents before the flood.<br>2) Officials warned residents about the storm.<br>3) The council advised residents to save water.",exvi:"1) Cảnh sát sơ tán cư dân trước trận lụt.<br>2) Giới chức cảnh báo cư dân về cơn bão.<br>3) Hội đồng khuyến cáo cư dân tiết kiệm nước."},
+{u:6,w:"resident",pos:"n. – cư dân, người dân",c:"local / permanent / elderly residents",vi:"cư dân địa phương / lâu dài / cao tuổi",en:"1) Local residents enjoy the new park.<br>2) The flats are for permanent residents only.<br>3) Elderly residents receive extra support.",exvi:"1) Cư dân địa phương thích công viên mới.<br>2) Các căn hộ chỉ dành cho cư dân lâu dài.<br>3) Cư dân cao tuổi nhận được hỗ trợ thêm."},
+
+{u:6,w:"historic",pos:"adj. – mang tính lịch sử",c:"a historic agreement / decision / victory",vi:"thỏa thuận / quyết định / chiến thắng lịch sử",en:"1) The two nations signed a historic agreement.<br>2) The court made a historic decision.<br>3) The team celebrated a historic victory.",exvi:"1) Hai quốc gia ký một thỏa thuận lịch sử.<br>2) Tòa đưa ra một quyết định lịch sử.<br>3) Đội ăn mừng một chiến thắng lịch sử."},
+{u:6,w:"historic",pos:"adj. – mang tính lịch sử",c:"a historic event / occasion / moment",vi:"sự kiện / dịp / khoảnh khắc lịch sử",en:"1) The landing was a historic event.<br>2) The wedding was a historic occasion.<br>3) It was a historic moment for the country.",exvi:"1) Cuộc đổ bộ là một sự kiện lịch sử.<br>2) Đám cưới là một dịp lịch sử.<br>3) Đó là một khoảnh khắc lịch sử của đất nước."},
+
+{u:6,w:"pioneering",pos:"adj. – tiên phong, mở đường",c:"pioneering work / surgery / research",vi:"công trình / phẫu thuật / nghiên cứu tiên phong",en:"1) Her pioneering work changed medicine.<br>2) The doctor performed pioneering surgery.<br>3) The lab is famous for pioneering research.",exvi:"1) Công trình tiên phong của bà đã thay đổi y học.<br>2) Bác sĩ thực hiện một ca phẫu thuật tiên phong.<br>3) Phòng thí nghiệm nổi tiếng với nghiên cứu tiên phong."},
+{u:6,w:"pioneering",pos:"adj. – tiên phong, mở đường",c:"a pioneering technique / concept",vi:"kỹ thuật / khái niệm tiên phong",en:"1) Surgeons use a pioneering technique to save lives.<br>2) It was a pioneering concept at the time.",exvi:"1) Bác sĩ phẫu thuật dùng một kỹ thuật tiên phong để cứu người.<br>2) Đó là một khái niệm tiên phong vào thời điểm ấy."},
+
+{u:6,w:"rural",pos:"adj. – thuộc nông thôn",c:"a rural area / community / population",vi:"khu vực / cộng đồng / dân cư nông thôn",en:"1) Many young people leave rural areas for the city.<br>2) The rural community is very close-knit.<br>3) The rural population is slowly shrinking.",exvi:"1) Nhiều người trẻ rời khu vực nông thôn để lên thành phố.<br>2) Cộng đồng nông thôn rất gắn bó.<br>3) Dân cư nông thôn đang dần thu hẹp."},
+{u:6,w:"rural",pos:"adj. – thuộc nông thôn",c:"a rural economy / road",vi:"kinh tế / đường nông thôn",en:"1) Farming supports the rural economy.<br>2) Rural roads are often narrow and winding.",exvi:"1) Nông nghiệp nâng đỡ nền kinh tế nông thôn.<br>2) Đường nông thôn thường hẹp và quanh co."},
+
+{u:6,w:"urban",pos:"adj. – thuộc đô thị",c:"urban sprawl / renewal / planning",vi:"sự bành trướng đô thị / cải tạo / quy hoạch đô thị",en:"1) Urban sprawl swallows up farmland.<br>2) Urban renewal has revived the old docks.<br>3) Good urban planning makes cities livable.",exvi:"1) Sự bành trướng đô thị nuốt chửng đất nông nghiệp.<br>2) Việc cải tạo đô thị đã hồi sinh khu bến tàu cũ.<br>3) Quy hoạch đô thị tốt khiến thành phố đáng sống."},
+{u:6,w:"urban",pos:"adj. – thuộc đô thị",c:"an urban neighbourhood / environment",vi:"khu phố / môi trường đô thị",en:"1) She grew up in a busy urban neighbourhood.<br>2) The urban environment can feel stressful.",exvi:"1) Cô ấy lớn lên ở một khu phố đô thị nhộn nhịp.<br>2) Môi trường đô thị có thể khiến người ta căng thẳng."},
+
+// ===== UNIT 7 =====
+{u:7,w:"acknowledge",pos:"v. – thừa nhận, công nhận",c:"acknowledge the existence / importance of something",vi:"thừa nhận sự tồn tại / tầm quan trọng của điều gì",en:"1) The report acknowledges the existence of the problem.<br>2) Most people acknowledge the importance of education.",exvi:"1) Báo cáo thừa nhận sự tồn tại của vấn đề.<br>2) Hầu hết mọi người công nhận tầm quan trọng của giáo dục."},
+{u:7,w:"acknowledge",pos:"v. – thừa nhận, công nhận",c:"acknowledge the need for something",vi:"thừa nhận sự cần thiết của điều gì",en:"The government acknowledges the need for cleaner energy.",exvi:"Chính phủ thừa nhận sự cần thiết của năng lượng sạch hơn."},
+{u:7,w:"acknowledge",pos:"v. – thừa nhận, công nhận",c:"widely / universally acknowledged",vi:"được công nhận rộng rãi / phổ quát",en:"1) It is widely acknowledged that exercise improves health.<br>2) She is universally acknowledged as a great leader.",exvi:"1) Người ta công nhận rộng rãi rằng tập thể dục cải thiện sức khỏe.<br>2) Bà được công nhận rộng khắp là một nhà lãnh đạo vĩ đại."},
+
+{u:7,w:"advocate",pos:"v. – ủng hộ, cổ vũ",c:"advocate reform / legislation",vi:"ủng hộ cải cách / luật pháp",en:"1) Many experts advocate reform of the tax system.<br>2) Campaigners advocate legislation to protect wildlife.",exvi:"1) Nhiều chuyên gia ủng hộ cải cách hệ thống thuế.<br>2) Các nhà vận động ủng hộ luật bảo vệ động vật hoang dã."},
+{u:7,w:"advocate",pos:"v. – ủng hộ, cổ vũ",c:"openly / strongly / publicly advocate",vi:"công khai / mạnh mẽ / công khai ủng hộ",en:"1) She openly advocates equal pay.<br>2) He strongly advocates renewable energy.<br>3) The group publicly advocates animal rights.",exvi:"1) Cô ấy công khai ủng hộ trả lương bình đẳng.<br>2) Anh ấy mạnh mẽ ủng hộ năng lượng tái tạo.<br>3) Nhóm này công khai ủng hộ quyền động vật."},
+
+{u:7,w:"dispute",pos:"v. – tranh cãi, phản bác",c:"dispute a claim / assertion / allegation",vi:"phản bác một tuyên bố / khẳng định / cáo buộc",en:"1) Scientists dispute the claim that the data is wrong.<br>2) She disputed his assertion about the cause.<br>3) The company disputed the allegation of fraud.",exvi:"1) Các nhà khoa học phản bác tuyên bố rằng dữ liệu sai.<br>2) Cô ấy phản bác khẳng định của anh ta về nguyên nhân.<br>3) Công ty phản bác cáo buộc gian lận."},
+{u:7,w:"dispute",pos:"v. – tranh cãi, phản bác",c:"hotly / bitterly disputed",vi:"bị tranh cãi gay gắt / kịch liệt",en:"1) The result was hotly disputed by both sides.<br>2) The border has been bitterly disputed for years.",exvi:"1) Kết quả bị cả hai bên tranh cãi gay gắt.<br>2) Đường biên giới đã bị tranh chấp kịch liệt trong nhiều năm."},
+
+{u:7,w:"justify",pos:"v. – biện minh, chứng minh là hợp lý",c:"entirely / amply justified",vi:"hoàn toàn / hết sức chính đáng",en:"1) The extra cost was entirely justified by the results.<br>2) Her caution proved amply justified.",exvi:"1) Chi phí tăng thêm là hoàn toàn chính đáng nhờ kết quả.<br>2) Sự thận trọng của cô ấy hóa ra hết sức chính đáng."},
+{u:7,w:"justify",pos:"v. – biện minh, chứng minh là hợp lý",c:"morally / economically justified",vi:"biện minh về mặt đạo đức / kinh tế",en:"1) The war could not be morally justified.<br>2) The investment is economically justified.",exvi:"1) Cuộc chiến không thể biện minh về mặt đạo đức.<br>2) Khoản đầu tư là hợp lý về mặt kinh tế."},
+{u:7,w:"justify",pos:"v. – biện minh, chứng minh là hợp lý",c:"justify a war / action / expense",vi:"biện minh cho một cuộc chiến / hành động / khoản chi",en:"1) Leaders tried to justify the war to the public.<br>2) Nothing can justify such a cruel action.<br>3) The benefits justify the expense.",exvi:"1) Các nhà lãnh đạo cố biện minh cho cuộc chiến trước công chúng.<br>2) Không gì có thể biện minh cho một hành động tàn nhẫn như vậy.<br>3) Lợi ích biện minh cho khoản chi."},
+
+{u:7,w:"object",pos:"v. – phản đối",c:"object to something",vi:"phản đối điều gì",en:"Local people objected to the new airport plan.",exvi:"Người dân địa phương phản đối kế hoạch xây sân bay mới."},
+{u:7,w:"object",pos:"v. – phản đối",c:"object to the idea / use of something",vi:"phản đối ý tưởng / việc sử dụng điều gì",en:"1) Many parents object to the idea of longer school days.<br>2) Residents object to the use of the park for events.",exvi:"1) Nhiều phụ huynh phản đối ý tưởng kéo dài ngày học.<br>2) Cư dân phản đối việc sử dụng công viên cho các sự kiện."},
+{u:7,w:"object",pos:"v. – phản đối",c:"object strongly",vi:"phản đối mạnh mẽ",en:"Environmental groups objected strongly to the project.",exvi:"Các nhóm môi trường phản đối mạnh mẽ dự án này."},
+
+{u:7,w:"question",pos:"v. – chất vấn, đặt nghi vấn",c:"question the validity / legality of something",vi:"đặt nghi vấn về tính hợp lệ / hợp pháp của điều gì",en:"1) Critics question the validity of the study.<br>2) Lawyers questioned the legality of the decision.",exvi:"1) Các nhà phê bình đặt nghi vấn về tính hợp lệ của nghiên cứu.<br>2) Luật sư chất vấn tính hợp pháp của quyết định."},
+{u:7,w:"question",pos:"v. – chất vấn, đặt nghi vấn",c:"question the wisdom / motives of someone",vi:"nghi ngờ sự khôn ngoan / động cơ của ai",en:"1) Many questioned the wisdom of cutting the budget.<br>2) People began to question his motives.",exvi:"1) Nhiều người nghi ngờ sự khôn ngoan của việc cắt giảm ngân sách.<br>2) Người ta bắt đầu nghi ngờ động cơ của anh ta."},
+
+{u:7,w:"suggest",pos:"v. – cho thấy, gợi ý",c:"evidence / research suggests",vi:"bằng chứng / nghiên cứu cho thấy",en:"1) Evidence suggests that sleep improves memory.<br>2) Research suggests a link between stress and illness.",exvi:"1) Bằng chứng cho thấy giấc ngủ cải thiện trí nhớ.<br>2) Nghiên cứu cho thấy mối liên hệ giữa căng thẳng và bệnh tật."},
+{u:7,w:"suggest",pos:"v. – cho thấy, gợi ý",c:"data / findings suggest something",vi:"dữ liệu / phát hiện cho thấy điều gì",en:"1) The data suggests a steady rise in temperatures.<br>2) The findings suggest that the policy is working.",exvi:"1) Dữ liệu cho thấy nhiệt độ tăng đều.<br>2) Các phát hiện cho thấy chính sách đang hiệu quả."},
+{u:7,w:"suggest",pos:"v. – cho thấy, gợi ý",c:"strongly / tentatively suggest",vi:"cho thấy rõ rệt / một cách dè dặt",en:"1) The results strongly suggest a connection.<br>2) Early data tentatively suggests improvement.",exvi:"1) Kết quả cho thấy rõ rệt một sự liên hệ.<br>2) Dữ liệu ban đầu gợi ý một cách dè dặt về sự cải thiện."},
+
+{u:7,w:"benefit",pos:"n. – lợi ích",c:"the benefit of something",vi:"lợi ích của điều gì",en:"Many students underestimate the benefit of regular reading.",exvi:"Nhiều học sinh đánh giá thấp lợi ích của việc đọc sách thường xuyên."},
+{u:7,w:"benefit",pos:"n. – lợi ích",c:"health / economic / social benefit",vi:"lợi ích về sức khỏe / kinh tế / xã hội",en:"1) Cycling has a clear health benefit.<br>2) Tourism brings an economic benefit to the town.<br>3) Volunteering has a real social benefit.",exvi:"1) Đạp xe mang lại lợi ích sức khỏe rõ ràng.<br>2) Du lịch mang lại lợi ích kinh tế cho thị trấn.<br>3) Hoạt động tình nguyện mang lại lợi ích xã hội thực sự."},
+{u:7,w:"benefit",pos:"n. – lợi ích",c:"reap the benefit of something",vi:"gặt hái lợi ích của điều gì",en:"Those who study hard now will reap the benefit later.",exvi:"Những ai học chăm chỉ bây giờ sẽ gặt hái lợi ích về sau."},
+
+{u:7,w:"debate",pos:"n. – cuộc tranh luận",c:"a debate on / over / about something",vi:"cuộc tranh luận về điều gì",en:"1) There is a heated debate on climate policy.<br>2) The debate over immigration continues.<br>3) A debate about school hours divided parents.",exvi:"1) Có một cuộc tranh luận gay gắt về chính sách khí hậu.<br>2) Cuộc tranh luận về nhập cư vẫn tiếp diễn.<br>3) Một cuộc tranh luận về giờ học chia rẽ các phụ huynh."},
+{u:7,w:"debate",pos:"n. – cuộc tranh luận",c:"a lively / intense / ongoing debate",vi:"cuộc tranh luận sôi nổi / gay gắt / đang diễn ra",en:"1) The topic sparked a lively debate in class.<br>2) An intense debate followed the announcement.<br>3) It remains an ongoing debate among scientists.",exvi:"1) Chủ đề này khơi ra một cuộc tranh luận sôi nổi trong lớp.<br>2) Một cuộc tranh luận gay gắt diễn ra sau thông báo.<br>3) Đó vẫn là một cuộc tranh luận đang diễn ra giữa các nhà khoa học."},
+{u:7,w:"debate",pos:"n. – cuộc tranh luận",c:"spark / provoke / trigger a debate",vi:"khơi mào / châm ngòi cho một cuộc tranh luận",en:"1) The article sparked a national debate.<br>2) His comments provoked a fierce debate.<br>3) The new law triggered a public debate.",exvi:"1) Bài báo khơi mào một cuộc tranh luận toàn quốc.<br>2) Lời bình luận của anh ta châm ngòi một cuộc tranh luận dữ dội.<br>3) Luật mới làm bùng lên một cuộc tranh luận công khai."},
+
+{u:7,w:"drawback",pos:"n. – nhược điểm, mặt hạn chế",c:"have drawbacks",vi:"có nhược điểm",en:"Online learning has drawbacks as well as advantages.",exvi:"Học trực tuyến có nhược điểm cũng như ưu điểm."},
+{u:7,w:"drawback",pos:"n. – nhược điểm, mặt hạn chế",c:"outweigh / overcome drawbacks",vi:"lớn hơn / khắc phục các nhược điểm",en:"1) The benefits clearly outweigh the drawbacks.<br>2) Careful planning can overcome these drawbacks.",exvi:"1) Lợi ích rõ ràng lớn hơn các nhược điểm.<br>2) Lập kế hoạch cẩn thận có thể khắc phục những nhược điểm này."},
+{u:7,w:"drawback",pos:"n. – nhược điểm, mặt hạn chế",c:"the main / major drawback",vi:"nhược điểm chính / lớn",en:"1) The main drawback of the plan is its cost.<br>2) A major drawback is the lack of parking.",exvi:"1) Nhược điểm chính của kế hoạch là chi phí.<br>2) Một nhược điểm lớn là thiếu chỗ đậu xe."},
+
+{u:7,w:"proof",pos:"n. – bằng chứng, sự chứng minh",c:"proof of identity / residency",vi:"bằng chứng về danh tính / nơi cư trú",en:"1) You must show proof of identity to vote.<br>2) The bank asked for proof of residency.",exvi:"1) Bạn phải xuất trình bằng chứng danh tính để bỏ phiếu.<br>2) Ngân hàng yêu cầu bằng chứng về nơi cư trú."},
+{u:7,w:"proof",pos:"n. – bằng chứng, sự chứng minh",c:"conclusive / irrefutable / concrete proof",vi:"bằng chứng thuyết phục / không thể chối cãi / cụ thể",en:"1) There is no conclusive proof that the diet works.<br>2) The video was irrefutable proof of the event.<br>3) We need concrete proof before accusing anyone.",exvi:"1) Không có bằng chứng thuyết phục rằng chế độ ăn đó hiệu quả.<br>2) Đoạn video là bằng chứng không thể chối cãi về sự việc.<br>3) Chúng ta cần bằng chứng cụ thể trước khi buộc tội ai."},
+
+{u:7,w:"politician",pos:"n. – chính trị gia",c:"a leading / senior / prominent politician",vi:"một chính trị gia hàng đầu / cấp cao / nổi bật",en:"1) A leading politician backed the reform.<br>2) A senior politician resigned today.<br>3) She is a prominent politician in the region.",exvi:"1) Một chính trị gia hàng đầu ủng hộ cải cách.<br>2) Một chính trị gia cấp cao từ chức hôm nay.<br>3) Bà ấy là một chính trị gia nổi bật trong vùng."},
+{u:7,w:"politician",pos:"n. – chính trị gia",c:"a corrupt / opposition politician",vi:"một chính trị gia tham nhũng / đối lập",en:"1) Voters are tired of corrupt politicians.<br>2) An opposition politician criticised the budget.",exvi:"1) Cử tri đã chán những chính trị gia tham nhũng.<br>2) Một chính trị gia đối lập chỉ trích ngân sách."},
+
+// ===== UNIT 8 =====
+{u:8,w:"current affairs",pos:"n. – thời sự",c:"a current affairs programme",vi:"một chương trình thời sự",en:"I watch a current affairs programme to stay informed.",exvi:"Tôi xem một chương trình thời sự để cập nhật tin tức."},
+
+{u:8,w:"drama",pos:"n. – kịch, phim truyền hình",c:"a drama is set / filmed somewhere",vi:"một bộ phim lấy bối cảnh / được quay ở đâu đó",en:"1) The drama is set in nineteenth-century London.<br>2) The drama was filmed in New Zealand.",exvi:"1) Bộ phim lấy bối cảnh London thế kỷ XIX.<br>2) Bộ phim được quay ở New Zealand."},
+{u:8,w:"drama",pos:"n. – kịch, phim truyền hình",c:"a drama is based on something",vi:"một bộ phim dựa trên điều gì",en:"The drama is based on a true story.",exvi:"Bộ phim dựa trên một câu chuyện có thật."},
+{u:8,w:"drama",pos:"n. – kịch, phim truyền hình",c:"a drama unfolds / begins",vi:"một bộ phim mở ra / bắt đầu",en:"1) The drama unfolds over three generations.<br>2) The drama begins with a mysterious phone call.",exvi:"1) Câu chuyện mở ra qua ba thế hệ.<br>2) Bộ phim bắt đầu bằng một cuộc gọi bí ẩn."},
+
+{u:8,w:"opera",pos:"n. – nhạc kịch ô-pê-ra",c:"an opera singer / house",vi:"ca sĩ / nhà hát ô-pê-ra",en:"1) She trained for years to be an opera singer.<br>2) We watched a performance at the opera house.",exvi:"1) Cô ấy luyện tập nhiều năm để trở thành ca sĩ ô-pê-ra.<br>2) Chúng tôi xem một buổi biểu diễn tại nhà hát ô-pê-ra."},
+
+{u:8,w:"orchestra",pos:"n. – dàn nhạc",c:"a chamber / symphony orchestra",vi:"dàn nhạc thính phòng / giao hưởng",en:"1) A chamber orchestra played in the small hall.<br>2) The symphony orchestra performed Beethoven.",exvi:"1) Một dàn nhạc thính phòng chơi trong khán phòng nhỏ.<br>2) Dàn nhạc giao hưởng biểu diễn Beethoven."},
+{u:8,w:"orchestra",pos:"n. – dàn nhạc",c:"conduct an orchestra",vi:"chỉ huy một dàn nhạc",en:"He has conducted the orchestra for over twenty years.",exvi:"Ông ấy đã chỉ huy dàn nhạc hơn hai mươi năm."},
+
+{u:8,w:"poetry",pos:"n. – thơ ca",c:"write / compose / publish poetry",vi:"viết / sáng tác / xuất bản thơ",en:"1) She writes poetry in her free time.<br>2) He composed poetry about the sea.<br>3) The university press publishes poetry.",exvi:"1) Cô ấy làm thơ vào thời gian rảnh.<br>2) Anh ấy sáng tác thơ về biển.<br>3) Nhà xuất bản của trường đại học xuất bản thơ."},
+{u:8,w:"poetry",pos:"n. – thơ ca",c:"recite / read / quote poetry",vi:"ngâm / đọc / trích dẫn thơ",en:"1) Children recite poetry at the school concert.<br>2) I love to read poetry before bed.<br>3) He often quotes poetry in his speeches.",exvi:"1) Trẻ em ngâm thơ tại buổi hòa nhạc của trường.<br>2) Tôi thích đọc thơ trước khi ngủ.<br>3) Anh ấy thường trích dẫn thơ trong các bài phát biểu."},
+
+{u:8,w:"classical",pos:"adj. – cổ điển",c:"classical music / ballet",vi:"nhạc / ba-lê cổ điển",en:"1) Classical music helps me concentrate.<br>2) She has studied classical ballet since childhood.",exvi:"1) Nhạc cổ điển giúp tôi tập trung.<br>2) Cô ấy học ba-lê cổ điển từ nhỏ."},
+{u:8,w:"classical",pos:"adj. – cổ điển",c:"classical architecture / mythology",vi:"kiến trúc / thần thoại cổ điển",en:"1) The museum is a fine example of classical architecture.<br>2) The story draws on classical mythology.",exvi:"1) Bảo tàng là một ví dụ đẹp về kiến trúc cổ điển.<br>2) Câu chuyện lấy cảm hứng từ thần thoại cổ điển."},
+
+{u:8,w:"attend",pos:"v. – tham dự",c:"attend a meeting / conference / funeral",vi:"dự một cuộc họp / hội nghị / đám tang",en:"1) I have to attend a meeting this afternoon.<br>2) Thousands attended the conference.<br>3) Many friends attended the funeral.",exvi:"1) Tôi phải dự một cuộc họp chiều nay.<br>2) Hàng nghìn người tham dự hội nghị.<br>3) Nhiều bạn bè đến dự đám tang."},
+{u:8,w:"attend",pos:"v. – tham dự",c:"attend regularly / rarely",vi:"tham dự thường xuyên / hiếm khi",en:"1) She attends the gym regularly.<br>2) He rarely attends class on Mondays.",exvi:"1) Cô ấy đến phòng gym thường xuyên.<br>2) Anh ấy hiếm khi đến lớp vào thứ Hai."},
+
+{u:8,w:"broadcast",pos:"v. – phát sóng",c:"broadcast on television / radio",vi:"phát sóng trên truyền hình / đài",en:"1) The match was broadcast on television.<br>2) The interview was broadcast on radio.",exvi:"1) Trận đấu được phát sóng trên truyền hình.<br>2) Buổi phỏng vấn được phát trên đài."},
+{u:8,w:"broadcast",pos:"v. – phát sóng",c:"broadcast live",vi:"phát sóng trực tiếp",en:"The ceremony was broadcast live around the world.",exvi:"Buổi lễ được phát sóng trực tiếp khắp thế giới."},
+
+{u:8,w:"establish",pos:"v. – thiết lập, gây dựng",c:"establish a link / relationship",vi:"thiết lập một mối liên hệ / quan hệ",en:"1) The study establishes a link between diet and mood.<br>2) The two schools established a relationship.",exvi:"1) Nghiên cứu thiết lập mối liên hệ giữa chế độ ăn và tâm trạng.<br>2) Hai trường đã thiết lập một mối quan hệ."},
+{u:8,w:"establish",pos:"v. – thiết lập, gây dựng",c:"firmly / quickly establish something",vi:"thiết lập điều gì một cách vững chắc / nhanh chóng",en:"1) The brand firmly established itself in the market.<br>2) She quickly established a good reputation.",exvi:"1) Thương hiệu đã khẳng định vững chắc vị thế trên thị trường.<br>2) Cô ấy nhanh chóng tạo dựng được danh tiếng tốt."},
+
+{u:8,w:"observe",pos:"v. – quan sát",c:"observe behaviour",vi:"quan sát hành vi",en:"Scientists observe the behaviour of animals in the wild.",exvi:"Các nhà khoa học quan sát hành vi của động vật trong tự nhiên."},
+{u:8,w:"observe",pos:"v. – quan sát",c:"closely observe",vi:"quan sát kỹ lưỡng",en:"Doctors closely observe patients after surgery.",exvi:"Bác sĩ theo dõi kỹ bệnh nhân sau phẫu thuật."},
+
+{u:8,w:"organise",pos:"v. – tổ chức, sắp xếp",c:"organise things by group / topic",vi:"sắp xếp mọi thứ theo nhóm / chủ đề",en:"1) I organise my notes by topic.<br>2) The files are organised by group.",exvi:"1) Tôi sắp xếp ghi chú theo chủ đề.<br>2) Các tệp được sắp xếp theo nhóm."},
+{u:8,w:"organise",pos:"v. – tổ chức, sắp xếp",c:"organise a meeting / event / demonstration",vi:"tổ chức một cuộc họp / sự kiện / cuộc biểu tình",en:"1) She organised a meeting for all staff.<br>2) The club organised a charity event.<br>3) Students organised a peaceful demonstration.",exvi:"1) Cô ấy tổ chức một cuộc họp cho toàn thể nhân viên.<br>2) Câu lạc bộ tổ chức một sự kiện từ thiện.<br>3) Sinh viên tổ chức một cuộc biểu tình ôn hòa."},
+{u:8,w:"organise",pos:"v. – tổ chức, sắp xếp",c:"well / poorly organised",vi:"được tổ chức tốt / kém",en:"1) The event was well organised and ran smoothly.<br>2) The trip was poorly organised and chaotic.",exvi:"1) Sự kiện được tổ chức tốt và diễn ra suôn sẻ.<br>2) Chuyến đi được tổ chức kém và hỗn loạn."},
+
+{u:8,w:"participate",pos:"v. – tham gia",c:"participate in a discussion / activity / debate",vi:"tham gia một cuộc thảo luận / hoạt động / tranh luận",en:"1) Students are encouraged to participate in discussions.<br>2) Everyone can participate in the activity.<br>3) She participated in the debate confidently.",exvi:"1) Sinh viên được khuyến khích tham gia thảo luận.<br>2) Mọi người đều có thể tham gia hoạt động.<br>3) Cô ấy tham gia tranh luận một cách tự tin."},
+{u:8,w:"participate",pos:"v. – tham gia",c:"participate equally / willingly / effectively",vi:"tham gia bình đẳng / sẵn lòng / hiệu quả",en:"1) Both partners should participate equally.<br>2) The children participated willingly.<br>3) To participate effectively, you must prepare.",exvi:"1) Cả hai bên nên tham gia một cách bình đẳng.<br>2) Bọn trẻ tham gia một cách sẵn lòng.<br>3) Để tham gia hiệu quả, bạn phải chuẩn bị."},
+
+// ===== UNIT 9 =====
+{u:9,w:"condense",pos:"v. – ngưng tụ",c:"condense into rain / droplets",vi:"ngưng tụ thành mưa / giọt nước",en:"1) Water vapour condenses into rain.<br>2) Steam condenses into tiny droplets on the glass.",exvi:"1) Hơi nước ngưng tụ thành mưa.<br>2) Hơi nước ngưng tụ thành những giọt nhỏ trên kính."},
+{u:9,w:"condense",pos:"v. – ngưng tụ",c:"vapour / moisture / steam condenses",vi:"hơi nước / hơi ẩm / hơi nóng ngưng tụ",en:"1) As it cools, the vapour condenses.<br>2) Moisture condenses on cold windows in winter.",exvi:"1) Khi nguội đi, hơi nước ngưng tụ.<br>2) Hơi ẩm ngưng tụ trên cửa sổ lạnh vào mùa đông."},
+
+{u:9,w:"contract",pos:"v. – co lại",c:"the muscles / ventricles contract",vi:"các cơ / tâm thất co lại",en:"1) The muscles contract to move the bone.<br>2) The heart's ventricles contract to pump blood.",exvi:"1) Các cơ co lại để làm xương cử động.<br>2) Tâm thất của tim co lại để bơm máu."},
+{u:9,w:"contract",pos:"v. – co lại",c:"contract rhythmically / rapidly",vi:"co lại nhịp nhàng / nhanh chóng",en:"1) The heart muscles contract rhythmically.<br>2) The fibres contract rapidly during movement.",exvi:"1) Các cơ tim co lại một cách nhịp nhàng.<br>2) Các sợi cơ co lại nhanh chóng khi vận động."},
+
+{u:9,w:"expand",pos:"v. – mở rộng, nở ra",c:"an expanding universe / economy / population",vi:"vũ trụ / nền kinh tế / dân số đang mở rộng",en:"1) Scientists describe an expanding universe.<br>2) An expanding economy creates more jobs.<br>3) An expanding population needs more housing.",exvi:"1) Các nhà khoa học mô tả một vũ trụ đang giãn nở.<br>2) Một nền kinh tế mở rộng tạo ra nhiều việc làm hơn.<br>3) Một dân số tăng lên cần nhiều nhà ở hơn."},
+{u:9,w:"expand",pos:"v. – mở rộng, nở ra",c:"expand capacity / production",vi:"mở rộng công suất / sản xuất",en:"1) The factory plans to expand capacity next year.<br>2) The company expanded production to meet demand.",exvi:"1) Nhà máy dự định mở rộng công suất vào năm tới.<br>2) Công ty mở rộng sản xuất để đáp ứng nhu cầu."},
+{u:9,w:"expand",pos:"v. – mở rộng, nở ra",c:"expand rapidly / dramatically",vi:"mở rộng nhanh chóng / mạnh mẽ",en:"1) The city expanded rapidly in the 1990s.<br>2) Online shopping expanded dramatically.",exvi:"1) Thành phố mở rộng nhanh chóng vào những năm 1990.<br>2) Mua sắm trực tuyến mở rộng mạnh mẽ."},
+
+{u:9,w:"flow",pos:"v. – chảy",c:"water / blood flows",vi:"nước / máu chảy",en:"1) The river water flows towards the sea.<br>2) Blood flows through the arteries.",exvi:"1) Nước sông chảy ra biển.<br>2) Máu chảy qua các động mạch."},
+{u:9,w:"flow",pos:"v. – chảy",c:"flow freely / steadily / constantly",vi:"chảy tự do / đều đặn / liên tục",en:"1) The river flows freely after the dam was removed.<br>2) Traffic flowed steadily all morning.<br>3) Information flows constantly online.",exvi:"1) Con sông chảy tự do sau khi đập được dỡ bỏ.<br>2) Giao thông lưu thông đều đặn suốt buổi sáng.<br>3) Thông tin lưu chuyển liên tục trên mạng."},
+
+{u:9,w:"estimate",pos:"v. – ước tính",c:"estimate something at x",vi:"ước tính điều gì ở mức x",en:"Experts estimate the damage at two million dollars.",exvi:"Các chuyên gia ước tính thiệt hại ở mức hai triệu đô la."},
+{u:9,w:"estimate",pos:"v. – ước tính",c:"estimate cost / value / revenue",vi:"ước tính chi phí / giá trị / doanh thu",en:"1) We estimate the cost of the project carefully.<br>2) Surveyors estimate the value of the land.<br>3) The firm estimates revenue for next year.",exvi:"1) Chúng tôi ước tính chi phí dự án cẩn thận.<br>2) Người định giá ước tính giá trị của khu đất.<br>3) Công ty ước tính doanh thu cho năm tới."},
+{u:9,w:"estimate",pos:"v. – ước tính",c:"an estimated percentage / amount",vi:"một tỉ lệ / lượng ước tính",en:"1) An estimated percentage of students study abroad.<br>2) An estimated amount of food is wasted daily.",exvi:"1) Một tỉ lệ ước tính sinh viên đi du học.<br>2) Một lượng thực phẩm ước tính bị lãng phí mỗi ngày."},
+
+{u:9,w:"predict",pos:"v. – dự đoán",c:"predict an event / outcome",vi:"dự đoán một sự kiện / kết quả",en:"1) No one can predict an event like an earthquake.<br>2) Analysts try to predict the outcome of the election.",exvi:"1) Không ai có thể dự đoán một sự kiện như động đất.<br>2) Các chuyên gia cố dự đoán kết quả của cuộc bầu cử."},
+{u:9,w:"predict",pos:"v. – dự đoán",c:"predict a rise / decline / recovery",vi:"dự đoán một sự tăng / giảm / phục hồi",en:"1) Economists predict a rise in prices.<br>2) Experts predict a decline in sales.<br>3) The bank predicts a slow recovery.",exvi:"1) Các nhà kinh tế dự đoán giá sẽ tăng.<br>2) Chuyên gia dự đoán doanh số sẽ giảm.<br>3) Ngân hàng dự đoán một sự phục hồi chậm."},
+{u:9,w:"predict",pos:"v. – dự đoán",c:"difficult / impossible to predict",vi:"khó / không thể dự đoán",en:"1) The weather is difficult to predict.<br>2) Human behaviour is almost impossible to predict.",exvi:"1) Thời tiết rất khó dự đoán.<br>2) Hành vi con người gần như không thể dự đoán."},
+
+{u:9,w:"state",pos:"v. – nêu rõ, phát biểu",c:"state a fact / reason / preference",vi:"nêu một sự thật / lý do / sở thích",en:"1) The report simply states a fact.<br>2) Please state a reason for your absence.<br>3) Customers can state a preference for delivery time.",exvi:"1) Báo cáo chỉ nêu một sự thật.<br>2) Vui lòng nêu lý do vắng mặt.<br>3) Khách hàng có thể nêu thời gian giao hàng mong muốn."},
+{u:9,w:"state",pos:"v. – nêu rõ, phát biểu",c:"state clearly / explicitly",vi:"nêu rõ ràng / một cách dứt khoát",en:"1) The rules state clearly what is allowed.<br>2) The contract explicitly states the deadline.",exvi:"1) Các quy tắc nêu rõ điều gì được phép.<br>2) Hợp đồng nêu dứt khoát thời hạn."},
+{u:9,w:"state",pos:"v. – nêu rõ, phát biểu",c:"a report / rule states something",vi:"một báo cáo / quy định nêu điều gì",en:"1) The report states that sales have risen.<br>2) The rule states that pets are not allowed.",exvi:"1) Báo cáo nêu rằng doanh số đã tăng.<br>2) Quy định nêu rằng không được mang thú cưng."},
+
+{u:9,w:"accurate",pos:"adj. – chính xác",c:"accurate information / figures",vi:"thông tin / số liệu chính xác",en:"1) Travellers need accurate information about the weather.<br>2) The report relies on accurate figures.",exvi:"1) Du khách cần thông tin chính xác về thời tiết.<br>2) Báo cáo dựa trên số liệu chính xác."},
+{u:9,w:"accurate",pos:"adj. – chính xác",c:"an accurate description / prediction",vi:"một mô tả / dự đoán chính xác",en:"1) She gave an accurate description of the man.<br>2) The model made an accurate prediction.",exvi:"1) Cô ấy đưa ra một mô tả chính xác về người đàn ông.<br>2) Mô hình đưa ra một dự đoán chính xác."},
+{u:9,w:"accurate",pos:"adj. – chính xác",c:"reasonably / factually accurate",vi:"tương đối / về mặt dữ kiện là chính xác",en:"1) The map is reasonably accurate.<br>2) The article is factually accurate.",exvi:"1) Bản đồ tương đối chính xác.<br>2) Bài báo chính xác về mặt dữ kiện."},
+
+{u:9,w:"likely",pos:"adj. – có khả năng",c:"likely to happen / cause / continue",vi:"có khả năng xảy ra / gây ra / tiếp diễn",en:"1) Storms are likely to happen this weekend.<br>2) Smoking is likely to cause health problems.<br>3) The trend is likely to continue.",exvi:"1) Bão có khả năng xảy ra vào cuối tuần này.<br>2) Hút thuốc có khả năng gây ra các vấn đề sức khỏe.<br>3) Xu hướng này có khả năng tiếp diễn."},
+{u:9,w:"likely",pos:"adj. – có khả năng",c:"highly / increasingly likely",vi:"rất / ngày càng có khả năng",en:"1) It is highly likely that prices will rise.<br>2) Floods are increasingly likely due to climate change.",exvi:"1) Rất có khả năng giá sẽ tăng.<br>2) Lũ lụt ngày càng có khả năng xảy ra do biến đổi khí hậu."},
+{u:9,w:"likely",pos:"adj. – có khả năng",c:"a likely outcome / candidate",vi:"một kết quả / ứng viên nhiều khả năng",en:"1) A draw is the most likely outcome.<br>2) She is a likely candidate for the job.",exvi:"1) Hòa là kết quả nhiều khả năng nhất.<br>2) Cô ấy là một ứng viên sáng giá cho công việc."},
+
+// ===== UNIT 10 =====
+{u:10,w:"current",pos:"n. – dòng (chảy/khí/điện)",c:"a current of air / electricity",vi:"một luồng không khí / dòng điện",en:"1) A cold current of air came through the window.<br>2) A current of electricity runs through the wire.",exvi:"1) Một luồng không khí lạnh tràn qua cửa sổ.<br>2) Một dòng điện chạy qua dây."},
+{u:10,w:"current",pos:"n. – dòng (chảy/khí/điện)",c:"a strong / ocean current",vi:"một dòng chảy mạnh / dòng hải lưu",en:"1) Swimmers were warned about the strong current.<br>2) Ocean currents affect the world's climate.",exvi:"1) Người bơi được cảnh báo về dòng chảy mạnh.<br>2) Các dòng hải lưu ảnh hưởng đến khí hậu thế giới."},
+
+{u:10,w:"drought",pos:"n. – hạn hán",c:"a prolonged / severe / devastating drought",vi:"một đợt hạn hán kéo dài / nghiêm trọng / tàn khốc",en:"1) A prolonged drought ruined the harvest.<br>2) A severe drought left rivers dry.<br>3) A devastating drought forced families to move.",exvi:"1) Một đợt hạn hán kéo dài đã phá hỏng vụ mùa.<br>2) Một đợt hạn hán nghiêm trọng khiến các con sông khô cạn.<br>3) Một đợt hạn hán tàn khốc buộc các gia đình phải di dời."},
+{u:10,w:"drought",pos:"n. – hạn hán",c:"drought affects / hits somewhere",vi:"hạn hán ảnh hưởng / tấn công một nơi",en:"1) The drought affects millions of farmers.<br>2) Drought hits the region almost every summer.",exvi:"1) Hạn hán ảnh hưởng đến hàng triệu nông dân.<br>2) Hạn hán tấn công khu vực gần như mỗi mùa hè."},
+
+{u:10,w:"flood",pos:"n. – lũ lụt",c:"a devastating / flash flood",vi:"một trận lũ tàn khốc / lũ quét",en:"1) A devastating flood destroyed hundreds of homes.<br>2) A flash flood swept through the valley in minutes.",exvi:"1) Một trận lũ tàn khốc đã phá hủy hàng trăm ngôi nhà.<br>2) Một trận lũ quét tràn qua thung lũng chỉ trong vài phút."},
+{u:10,w:"flood",pos:"n. – lũ lụt",c:"a flood hits / sweeps somewhere",vi:"một trận lũ tấn công / cuốn qua một nơi",en:"1) The flood hit the city without warning.<br>2) The flood swept away cars and bridges.",exvi:"1) Trận lũ tấn công thành phố mà không báo trước.<br>2) Trận lũ cuốn trôi xe cộ và cầu cống."},
+
+{u:10,w:"glacier",pos:"n. – sông băng",c:"an Antarctic / Alaskan glacier",vi:"một sông băng ở Nam Cực / Alaska",en:"1) Scientists study an Antarctic glacier each year.<br>2) An Alaskan glacier draws many tourists.",exvi:"1) Các nhà khoa học nghiên cứu một sông băng ở Nam Cực mỗi năm.<br>2) Một sông băng ở Alaska thu hút nhiều du khách."},
+{u:10,w:"glacier",pos:"n. – sông băng",c:"a glacier melts / retreats",vi:"một sông băng tan chảy / lùi dần",en:"1) The glacier melts faster every year.<br>2) The glacier has retreated by several kilometres.",exvi:"1) Sông băng tan chảy nhanh hơn mỗi năm.<br>2) Sông băng đã lùi lại vài ki-lô-mét."},
+
+{u:10,w:"hurricane",pos:"n. – bão lớn (cuồng phong)",c:"a devastating / powerful hurricane",vi:"một cơn bão tàn khốc / mạnh",en:"1) A devastating hurricane flattened the town.<br>2) A powerful hurricane is approaching the coast.",exvi:"1) Một cơn bão tàn khốc đã san phẳng thị trấn.<br>2) Một cơn bão mạnh đang tiến vào bờ biển."},
+{u:10,w:"hurricane",pos:"n. – bão lớn (cuồng phong)",c:"a hurricane hits / destroys somewhere",vi:"một cơn bão tấn công / phá hủy một nơi",en:"1) The hurricane hit the island at night.<br>2) The hurricane destroyed the harbour.",exvi:"1) Cơn bão tấn công hòn đảo vào ban đêm.<br>2) Cơn bão phá hủy bến cảng."},
+
+{u:10,w:"typhoon",pos:"n. – bão nhiệt đới",c:"a powerful / deadly typhoon",vi:"một cơn bão nhiệt đới mạnh / chết người",en:"1) A powerful typhoon forced thousands to evacuate.<br>2) A deadly typhoon claimed many lives.",exvi:"1) Một cơn bão mạnh buộc hàng nghìn người phải sơ tán.<br>2) Một cơn bão chết người đã cướp đi nhiều sinh mạng."},
+
+// ===== UNIT 11 =====
+{u:11,w:"bar chart",pos:"n. – biểu đồ cột",c:"a bar chart shows / illustrates something",vi:"biểu đồ cột cho thấy / minh họa điều gì",en:"1) The bar chart shows sales over five years.<br>2) The bar chart illustrates changes in population.",exvi:"1) Biểu đồ cột cho thấy doanh số trong năm năm.<br>2) Biểu đồ cột minh họa những thay đổi về dân số."},
+{u:11,w:"bar chart",pos:"n. – biểu đồ cột",c:"a bar chart compares something",vi:"biểu đồ cột so sánh điều gì",en:"The bar chart compares spending in three countries.",exvi:"Biểu đồ cột so sánh mức chi tiêu ở ba quốc gia."},
+
+{u:11,w:"diagram",pos:"n. – sơ đồ",c:"a diagram illustrates / shows something",vi:"sơ đồ minh họa / cho thấy điều gì",en:"1) The diagram illustrates how the machine works.<br>2) The diagram shows the stages of the process.",exvi:"1) Sơ đồ minh họa cách máy hoạt động.<br>2) Sơ đồ cho thấy các giai đoạn của quá trình."},
+{u:11,w:"diagram",pos:"n. – sơ đồ",c:"a simple / complex / schematic diagram",vi:"sơ đồ đơn giản / phức tạp / có tính nguyên lý",en:"1) A simple diagram makes the idea easy to follow.<br>2) The complex diagram took time to read.<br>3) A schematic diagram explains the wiring.",exvi:"1) Một sơ đồ đơn giản giúp ý tưởng dễ hiểu.<br>2) Sơ đồ phức tạp mất thời gian để đọc.<br>3) Một sơ đồ nguyên lý giải thích hệ thống dây điện."},
+
+{u:11,w:"pie chart",pos:"n. – biểu đồ tròn",c:"a pie chart shows / displays something",vi:"biểu đồ tròn cho thấy / thể hiện điều gì",en:"1) The pie chart shows how people spend their income.<br>2) The pie chart displays the share of each region.",exvi:"1) Biểu đồ tròn cho thấy cách mọi người chi tiêu thu nhập.<br>2) Biểu đồ tròn thể hiện tỉ trọng của từng khu vực."},
+
+{u:11,w:"row",pos:"n. – hàng, dãy",c:"arrange things in a row",vi:"sắp xếp mọi thứ thành một hàng",en:"The chairs were arranged in a neat row.",exvi:"Những chiếc ghế được sắp thành một hàng ngay ngắn."},
+{u:11,w:"row",pos:"n. – hàng, dãy",c:"the front / back row",vi:"hàng trước / hàng sau",en:"1) Students in the front row answered first.<br>2) He prefers to sit in the back row.",exvi:"1) Học sinh ở hàng đầu trả lời trước.<br>2) Anh ấy thích ngồi ở hàng cuối."},
+
+{u:11,w:"segment",pos:"n. – phần, đoạn, mảng",c:"a segment of something",vi:"một phần / đoạn của điều gì",en:"Each segment of the pie chart shows a different age group.",exvi:"Mỗi phần của biểu đồ tròn cho thấy một nhóm tuổi khác nhau."},
+{u:11,w:"segment",pos:"n. – phần, đoạn, mảng",c:"a fast-growing / profitable segment",vi:"một phân khúc tăng trưởng nhanh / sinh lời",en:"1) Electric cars are a fast-growing segment.<br>2) Luxury goods are a profitable segment.",exvi:"1) Ô tô điện là một phân khúc tăng trưởng nhanh.<br>2) Hàng xa xỉ là một phân khúc sinh lời."},
+
+{u:11,w:"stage",pos:"n. – giai đoạn",c:"a stage of development / evolution",vi:"một giai đoạn phát triển / tiến hóa",en:"1) The child is at an early stage of development.<br>2) The diagram shows each stage of evolution.",exvi:"1) Đứa trẻ đang ở giai đoạn phát triển sớm.<br>2) Sơ đồ cho thấy từng giai đoạn tiến hóa."},
+{u:11,w:"stage",pos:"n. – giai đoạn",c:"a stage of a cycle / process",vi:"một giai đoạn của một chu trình / quy trình",en:"1) Rain is one stage of the water cycle.<br>2) The final stage of the process is packaging.",exvi:"1) Mưa là một giai đoạn của vòng tuần hoàn nước.<br>2) Giai đoạn cuối của quy trình là đóng gói."},
+
+{u:11,w:"depict",pos:"v. – mô tả, khắc họa",c:"a painting / photograph depicts something",vi:"một bức tranh / bức ảnh khắc họa điều gì",en:"1) The painting depicts a quiet village.<br>2) The photograph depicts life during the war.",exvi:"1) Bức tranh khắc họa một ngôi làng yên bình.<br>2) Bức ảnh khắc họa cuộc sống trong chiến tranh."},
+{u:11,w:"depict",pos:"v. – mô tả, khắc họa",c:"vividly / accurately depicted",vi:"được khắc họa sống động / chính xác",en:"1) The scene is vividly depicted in the novel.<br>2) The map accurately depicts the coastline.",exvi:"1) Khung cảnh được khắc họa sống động trong cuốn tiểu thuyết.<br>2) Bản đồ thể hiện chính xác đường bờ biển."},
+
+{u:11,w:"represent",pos:"v. – đại diện, thể hiện",c:"represent a difference / increase / shift",vi:"thể hiện một sự khác biệt / gia tăng / thay đổi",en:"1) Each colour represents a difference in income.<br>2) The line represents an increase in sales.<br>3) The arrow represents a shift in policy.",exvi:"1) Mỗi màu thể hiện một sự khác biệt về thu nhập.<br>2) Đường biểu diễn thể hiện sự gia tăng doanh số.<br>3) Mũi tên thể hiện một sự thay đổi trong chính sách."},
+
+// ===== UNIT 12 =====
+{u:12,w:"abandon",pos:"v. – từ bỏ, bỏ rơi",c:"abandon a project / plan / ship",vi:"từ bỏ một dự án / kế hoạch / con tàu",en:"1) The company abandoned the project after the losses.<br>2) They abandoned the plan when funding ran out.<br>3) The crew had to abandon ship.",exvi:"1) Công ty từ bỏ dự án sau những thua lỗ.<br>2) Họ từ bỏ kế hoạch khi hết kinh phí.<br>3) Thủy thủ đoàn phải bỏ tàu."},
+{u:12,w:"abandon",pos:"v. – từ bỏ, bỏ rơi",c:"an abandoned building / vehicle",vi:"một tòa nhà / chiếc xe bị bỏ hoang",en:"1) The abandoned building has become unsafe.<br>2) Police towed away the abandoned vehicle.",exvi:"1) Tòa nhà bị bỏ hoang đã trở nên không an toàn.<br>2) Cảnh sát kéo đi chiếc xe bị bỏ lại."},
+
+{u:12,w:"alter",pos:"v. – thay đổi, làm biến đổi",c:"alter the course / outcome of something",vi:"thay đổi tiến trình / kết quả của điều gì",en:"1) The discovery altered the course of history.<br>2) One goal altered the outcome of the match.",exvi:"1) Phát hiện này đã thay đổi tiến trình lịch sử.<br>2) Một bàn thắng đã thay đổi kết quả trận đấu."},
+{u:12,w:"alter",pos:"v. – thay đổi, làm biến đổi",c:"radically / fundamentally alter something",vi:"thay đổi điều gì một cách triệt để / căn bản",en:"1) The internet has radically altered communication.<br>2) The reform fundamentally altered the system.",exvi:"1) Internet đã thay đổi triệt để cách giao tiếp.<br>2) Cuộc cải cách đã thay đổi căn bản hệ thống."},
+
+{u:12,w:"decline",pos:"v. – suy giảm",c:"decline from x to y / by x",vi:"giảm từ x xuống y / giảm đi x",en:"1) Sales declined from 500 to 300 units.<br>2) The population declined by ten percent.",exvi:"1) Doanh số giảm từ 500 xuống 300 đơn vị.<br>2) Dân số giảm mười phần trăm."},
+{u:12,w:"decline",pos:"v. – suy giảm",c:"steadily / rapidly / sharply decline",vi:"suy giảm đều đặn / nhanh chóng / mạnh",en:"1) Attendance steadily declined over the year.<br>2) Profits rapidly declined after the scandal.<br>3) Demand sharply declined last quarter.",exvi:"1) Số người tham dự giảm đều trong cả năm.<br>2) Lợi nhuận giảm nhanh sau vụ bê bối.<br>3) Nhu cầu giảm mạnh trong quý vừa rồi."},
+
+{u:12,w:"develop",pos:"v. – phát triển",c:"develop into something",vi:"phát triển thành điều gì",en:"A small idea developed into a successful business.",exvi:"Một ý tưởng nhỏ đã phát triển thành một doanh nghiệp thành công."},
+{u:12,w:"develop",pos:"v. – phát triển",c:"develop a technique / strategy / idea",vi:"phát triển một kỹ thuật / chiến lược / ý tưởng",en:"1) Scientists developed a new technique for testing.<br>2) The team developed a clever strategy.<br>3) She developed her idea into a full plan.",exvi:"1) Các nhà khoa học phát triển một kỹ thuật xét nghiệm mới.<br>2) Đội đã phát triển một chiến lược thông minh.<br>3) Cô ấy phát triển ý tưởng thành một kế hoạch hoàn chỉnh."},
+
+{u:12,w:"diminish",pos:"v. – giảm bớt, suy giảm",c:"diminish in importance / size / number",vi:"giảm về tầm quan trọng / kích thước / số lượng",en:"1) The town diminished in importance over time.<br>2) The forests have diminished in size.<br>3) Wild tigers have diminished in number.",exvi:"1) Thị trấn giảm dần tầm quan trọng theo thời gian.<br>2) Các khu rừng đã thu nhỏ về diện tích.<br>3) Hổ hoang dã đã giảm về số lượng."},
+{u:12,w:"diminish",pos:"v. – giảm bớt, suy giảm",c:"gradually / considerably diminished",vi:"giảm dần dần / đáng kể",en:"1) His influence gradually diminished.<br>2) The risk has considerably diminished.",exvi:"1) Ảnh hưởng của ông ấy giảm dần.<br>2) Rủi ro đã giảm đáng kể."},
+
+{u:12,w:"evolve",pos:"v. – tiến hóa, phát triển dần",c:"evolve from / into something",vi:"tiến hóa từ / thành điều gì",en:"1) Birds evolved from dinosaurs.<br>2) The shop evolved into a global chain.",exvi:"1) Loài chim tiến hóa từ khủng long.<br>2) Cửa hàng phát triển thành một chuỗi toàn cầu."},
+{u:12,w:"evolve",pos:"v. – tiến hóa, phát triển dần",c:"language / technology evolves",vi:"ngôn ngữ / công nghệ phát triển",en:"1) Language evolves as society changes.<br>2) Technology evolves at an incredible pace.",exvi:"1) Ngôn ngữ phát triển khi xã hội thay đổi.<br>2) Công nghệ phát triển với tốc độ đáng kinh ngạc."},
+
+{u:12,w:"modify",pos:"v. – sửa đổi, biến đổi",c:"genetically / chemically modified",vi:"biến đổi gen / hóa học",en:"1) Some crops are genetically modified.<br>2) The product contains chemically modified starch.",exvi:"1) Một số cây trồng bị biến đổi gen.<br>2) Sản phẩm chứa tinh bột biến đổi hóa học."},
+{u:12,w:"modify",pos:"v. – sửa đổi, biến đổi",c:"significantly / extensively modified",vi:"được sửa đổi đáng kể / sâu rộng",en:"1) The design was significantly modified.<br>2) The original plan was extensively modified.",exvi:"1) Thiết kế đã được sửa đổi đáng kể.<br>2) Kế hoạch ban đầu được sửa đổi sâu rộng."},
+
+{u:12,w:"shift",pos:"v. – dịch chuyển, thay đổi",c:"shift one's weight / position",vi:"đổi tư thế / vị trí",en:"1) He shifted his weight from foot to foot.<br>2) She shifted position to see better.",exvi:"1) Anh ấy đổi trọng tâm từ chân này sang chân kia.<br>2) Cô ấy đổi vị trí để nhìn rõ hơn."},
+{u:12,w:"shift",pos:"v. – dịch chuyển, thay đổi",c:"shift the focus / emphasis / balance",vi:"chuyển trọng tâm / sự nhấn mạnh / cán cân",en:"1) The report shifts the focus to rural areas.<br>2) Schools should shift the emphasis to skills.<br>3) The change shifted the balance of power.",exvi:"1) Báo cáo chuyển trọng tâm sang các vùng nông thôn.<br>2) Trường học nên chuyển sự nhấn mạnh sang kỹ năng.<br>3) Sự thay đổi đã dịch chuyển cán cân quyền lực."},
+
+{u:12,w:"transform",pos:"v. – biến đổi hoàn toàn",c:"transform a country / business / area",vi:"biến đổi một đất nước / doanh nghiệp / khu vực",en:"1) Technology transformed the country in a decade.<br>2) New leadership transformed the business.<br>3) Investment transformed the whole area.",exvi:"1) Công nghệ đã biến đổi đất nước trong một thập kỷ.<br>2) Ban lãnh đạo mới đã thay đổi hoàn toàn doanh nghiệp.<br>3) Đầu tư đã biến đổi toàn bộ khu vực."},
+{u:12,w:"transform",pos:"v. – biến đổi hoàn toàn",c:"completely / dramatically transform something",vi:"biến đổi điều gì hoàn toàn / mạnh mẽ",en:"1) The renovation completely transformed the house.<br>2) Smartphones dramatically transformed daily life.",exvi:"1) Việc cải tạo đã thay đổi hoàn toàn ngôi nhà.<br>2) Điện thoại thông minh đã thay đổi mạnh mẽ cuộc sống hằng ngày."},
+
+{u:12,w:"decade",pos:"n. – thập kỷ",c:"the last / next decade",vi:"thập kỷ vừa qua / tới",en:"1) The city has grown hugely over the last decade.<br>2) Technology will change a lot in the next decade.",exvi:"1) Thành phố đã phát triển mạnh trong thập kỷ vừa qua.<br>2) Công nghệ sẽ thay đổi nhiều trong thập kỷ tới."},
+{u:12,w:"decade",pos:"n. – thập kỷ",c:"a decade later / ago",vi:"một thập kỷ sau / trước",en:"1) A decade later, the area was unrecognisable.<br>2) The factory closed a decade ago.",exvi:"1) Một thập kỷ sau, khu vực này thay đổi đến không nhận ra.<br>2) Nhà máy đã đóng cửa một thập kỷ trước."},
+{u:12,w:"decade",pos:"n. – thập kỷ",c:"decades of war / conflict / neglect",vi:"hàng thập kỷ chiến tranh / xung đột / bị bỏ bê",en:"1) Decades of war left the country in ruins.<br>2) Decades of conflict divided the region.<br>3) Decades of neglect damaged the old building.",exvi:"1) Hàng thập kỷ chiến tranh khiến đất nước hoang tàn.<br>2) Hàng thập kỷ xung đột chia rẽ khu vực.<br>3) Hàng thập kỷ bị bỏ bê đã làm hư hại tòa nhà cũ."},
+
+{u:12,w:"millennium",pos:"n. – thiên niên kỷ",c:"celebrate / approach / reach the millennium",vi:"ăn mừng / tiến đến / chạm tới thiên niên kỷ",en:"1) The whole world celebrated the new millennium.<br>2) As we approached the millennium, hopes were high.",exvi:"1) Cả thế giới ăn mừng thiên niên kỷ mới.<br>2) Khi tiến đến thiên niên kỷ mới, hy vọng dâng cao."},
+{u:12,w:"millennium",pos:"n. – thiên niên kỷ",c:"a new / next millennium",vi:"một thiên niên kỷ mới / kế tiếp",en:"A new millennium brought new technology and ideas.",exvi:"Một thiên niên kỷ mới mang đến công nghệ và ý tưởng mới."},
+
+// ===== UNIT 13 =====
+{u:13,w:"compare",pos:"v. – so sánh",c:"compare something with / to something",vi:"so sánh điều gì với điều gì",en:"1) The essay compares city life with country life.<br>2) People often compare their lives to others online.",exvi:"1) Bài luận so sánh cuộc sống thành phố với nông thôn.<br>2) Người ta thường so sánh cuộc sống của mình với người khác trên mạng."},
+
+{u:13,w:"resemble",pos:"v. – giống, tương tự",c:"closely / strongly resemble something",vi:"rất giống / giống hệt điều gì",en:"1) The copy closely resembles the original.<br>2) The two languages strongly resemble each other.",exvi:"1) Bản sao rất giống bản gốc.<br>2) Hai ngôn ngữ này giống nhau đến lạ."},
+
+{u:13,w:"alike",pos:"adj. – giống nhau",c:"look / sound / think alike",vi:"trông / nghe / nghĩ giống nhau",en:"1) The twins look exactly alike.<br>2) The two songs sound alike.<br>3) Good friends often think alike.",exvi:"1) Cặp song sinh trông giống hệt nhau.<br>2) Hai bài hát nghe giống nhau.<br>3) Bạn thân thường nghĩ giống nhau."},
+
+{u:13,w:"analogous",pos:"adj. – tương tự, có thể so sánh",c:"analogous to something",vi:"tương tự với điều gì",en:"The brain is sometimes described as analogous to a computer.",exvi:"Bộ não đôi khi được mô tả là tương tự một chiếc máy tính."},
+
+{u:13,w:"equivalent",pos:"n./adj. – tương đương",c:"the equivalent of something",vi:"tương đương với điều gì",en:"He earns the equivalent of a teacher's salary.",exvi:"Anh ấy kiếm được số tiền tương đương lương của một giáo viên."},
+{u:13,w:"equivalent",pos:"n./adj. – tương đương",c:"a modern / cultural equivalent",vi:"phiên bản tương đương hiện đại / về văn hóa",en:"1) The smartphone is the modern equivalent of the letter.<br>2) The festival has no cultural equivalent abroad.",exvi:"1) Điện thoại thông minh là phiên bản hiện đại của lá thư.<br>2) Lễ hội này không có thứ tương đương về văn hóa ở nước ngoài."},
+
+{u:13,w:"identical",pos:"adj. – giống hệt",c:"identical to / with something",vi:"giống hệt với điều gì",en:"Her answer was identical to mine.",exvi:"Câu trả lời của cô ấy giống hệt của tôi."},
+{u:13,w:"identical",pos:"adj. – giống hệt",c:"an identical copy / twin",vi:"một bản sao / cặp sinh đôi giống hệt",en:"1) The painting is an identical copy of the original.<br>2) They are identical twins.",exvi:"1) Bức tranh là một bản sao giống hệt bản gốc.<br>2) Họ là cặp sinh đôi giống hệt nhau."},
+
+{u:13,w:"contrast",pos:"v. – đối lập, tương phản",c:"contrast with something",vi:"tương phản với điều gì",en:"Her calm voice contrasted with the chaos around her.",exvi:"Giọng nói điềm tĩnh của cô tương phản với sự hỗn loạn xung quanh."},
+{u:13,w:"contrast",pos:"v. – đối lập, tương phản",c:"contrast sharply / starkly",vi:"tương phản rõ rệt / hoàn toàn",en:"1) The rich district contrasts sharply with the poor one.<br>2) His words contrast starkly with his actions.",exvi:"1) Khu giàu có tương phản rõ rệt với khu nghèo.<br>2) Lời nói của anh ta tương phản hoàn toàn với hành động."},
+
+{u:13,w:"differ",pos:"v. – khác biệt",c:"differ from something",vi:"khác với điều gì",en:"British English differs from American English in spelling.",exvi:"Tiếng Anh-Anh khác với tiếng Anh-Mỹ về chính tả."},
+{u:13,w:"differ",pos:"v. – khác biệt",c:"differ significantly / markedly",vi:"khác biệt đáng kể / rõ rệt",en:"1) The two reports differ significantly.<br>2) Prices differ markedly between regions.",exvi:"1) Hai bản báo cáo khác nhau đáng kể.<br>2) Giá cả khác nhau rõ rệt giữa các vùng."},
+
+{u:13,w:"differentiate",pos:"v. – phân biệt",c:"differentiate between things",vi:"phân biệt giữa các thứ",en:"Young children cannot always differentiate between fact and fantasy.",exvi:"Trẻ nhỏ không phải lúc nào cũng phân biệt được sự thật và tưởng tượng."},
+{u:13,w:"differentiate",pos:"v. – phân biệt",c:"differentiate something from something",vi:"phân biệt điều gì với điều gì",en:"Strong branding differentiates a product from its rivals.",exvi:"Thương hiệu mạnh giúp phân biệt một sản phẩm với các đối thủ."},
+
+{u:13,w:"distinguish",pos:"v. – phân biệt, nhận ra",c:"distinguish between things",vi:"phân biệt giữa các thứ",en:"It is hard to distinguish between the two colours.",exvi:"Thật khó phân biệt giữa hai màu sắc này."},
+{u:13,w:"distinguish",pos:"v. – phân biệt, nhận ra",c:"clearly / easily distinguish",vi:"phân biệt rõ ràng / dễ dàng",en:"1) The labels help you clearly distinguish each type.<br>2) Experts can easily distinguish a fake.",exvi:"1) Các nhãn giúp bạn phân biệt rõ ràng từng loại.<br>2) Chuyên gia có thể dễ dàng nhận ra hàng giả."},
+
+{u:13,w:"vary",pos:"v. – thay đổi, khác nhau",c:"vary from region to region / person to person",vi:"khác nhau giữa các vùng / từng người",en:"1) Customs vary from region to region.<br>2) Tastes vary from person to person.",exvi:"1) Phong tục khác nhau giữa các vùng.<br>2) Sở thích khác nhau ở từng người."},
+{u:13,w:"vary",pos:"v. – thay đổi, khác nhau",c:"vary considerably / widely",vi:"thay đổi đáng kể / rất nhiều",en:"1) Prices vary considerably between shops.<br>2) Opinions vary widely on this issue.",exvi:"1) Giá cả thay đổi đáng kể giữa các cửa hàng.<br>2) Quan điểm về vấn đề này rất khác nhau."},
+
+{u:13,w:"distinct",pos:"adj. – riêng biệt, rõ rệt",c:"distinct from something",vi:"khác biệt với điều gì",en:"The two species are quite distinct from each other.",exvi:"Hai loài này khá khác biệt với nhau."},
+{u:13,w:"distinct",pos:"adj. – riêng biệt, rõ rệt",c:"a distinct category / type / species",vi:"một loại / kiểu / loài riêng biệt",en:"1) These languages form a distinct category.<br>2) It is a distinct type of music.",exvi:"1) Những ngôn ngữ này tạo thành một nhóm riêng biệt.<br>2) Đó là một thể loại nhạc riêng biệt."},
+
+{u:13,w:"diverse",pos:"adj. – đa dạng",c:"ethnically / culturally diverse",vi:"đa dạng về sắc tộc / văn hóa",en:"1) The city is ethnically diverse.<br>2) The school has a culturally diverse student body.",exvi:"1) Thành phố này đa dạng về sắc tộc.<br>2) Trường học có một cộng đồng học sinh đa dạng về văn hóa."},
+{u:13,w:"diverse",pos:"adj. – đa dạng",c:"a diverse group / population",vi:"một nhóm / dân cư đa dạng",en:"1) The team is a diverse group of experts.<br>2) The country has a very diverse population.",exvi:"1) Đội ngũ là một nhóm chuyên gia đa dạng.<br>2) Đất nước này có một dân cư rất đa dạng."},
+
+// ===== UNIT 14 =====
+{u:14,w:"chain reaction",pos:"n. – phản ứng dây chuyền",c:"trigger / set off a chain reaction",vi:"kích hoạt / châm ngòi một phản ứng dây chuyền",en:"1) One small failure triggered a chain reaction.<br>2) The news set off a chain reaction in the markets.",exvi:"1) Một sự cố nhỏ đã kích hoạt một phản ứng dây chuyền.<br>2) Tin tức đó châm ngòi một phản ứng dây chuyền trên thị trường."},
+{u:14,w:"chain reaction",pos:"n. – phản ứng dây chuyền",c:"a chain reaction of events",vi:"một chuỗi phản ứng dây chuyền của các sự kiện",en:"The accident caused a chain reaction of events.",exvi:"Vụ tai nạn đã gây ra một chuỗi sự kiện dây chuyền."},
+
+{u:14,w:"consequence",pos:"n. – hậu quả",c:"the consequences of war / action / failure",vi:"hậu quả của chiến tranh / hành động / thất bại",en:"1) The consequences of war are felt for generations.<br>2) Every action has consequences, good or bad.<br>3) The consequences of failure taught her to try again.",exvi:"1) Hậu quả của chiến tranh kéo dài qua nhiều thế hệ.<br>2) Mọi hành động đều có hậu quả, tốt hoặc xấu.<br>3) Hậu quả của thất bại đã dạy cô ấy thử lại lần nữa."},
+{u:14,w:"consequence",pos:"n. – hậu quả",c:"suffer / face / accept the consequences",vi:"gánh chịu / đối mặt / chấp nhận hậu quả",en:"1) Future generations will suffer the consequences.<br>2) He must face the consequences of his choice.<br>3) You have to accept the consequences of your actions.",exvi:"1) Các thế hệ tương lai sẽ gánh chịu hậu quả.<br>2) Anh ấy phải đối mặt với hậu quả của lựa chọn của mình.<br>3) Bạn phải chấp nhận hậu quả của hành động của mình."},
+{u:14,w:"consequence",pos:"n. – hậu quả",c:"serious / severe / unintended consequences",vi:"hậu quả nghiêm trọng / nặng nề / không lường trước",en:"1) Pollution has serious consequences for health.<br>2) The policy had severe consequences for farmers.<br>3) The change brought unintended consequences.",exvi:"1) Ô nhiễm gây ra những hậu quả nghiêm trọng cho sức khỏe.<br>2) Chính sách gây hậu quả nặng nề cho nông dân.<br>3) Sự thay đổi mang lại những hậu quả không lường trước."},
+
+{u:14,w:"impact",pos:"n. – tác động, ảnh hưởng",c:"an impact on the environment / economy",vi:"tác động đến môi trường / nền kinh tế",en:"1) Plastic has a huge impact on the environment.<br>2) The pandemic had a major impact on the economy.",exvi:"1) Nhựa có tác động to lớn đến môi trường.<br>2) Đại dịch có tác động lớn đến nền kinh tế."},
+{u:14,w:"impact",pos:"n. – tác động, ảnh hưởng",c:"a significant / profound / lasting impact",vi:"tác động đáng kể / sâu sắc / lâu dài",en:"1) The teacher had a significant impact on my life.<br>2) The war had a profound impact on the nation.<br>3) The reform had a lasting impact on schools.",exvi:"1) Người thầy đã có tác động đáng kể đến cuộc đời tôi.<br>2) Cuộc chiến có tác động sâu sắc đến quốc gia.<br>3) Cuộc cải cách có tác động lâu dài đến các trường học."},
+
+{u:14,w:"influence",pos:"n. – sự ảnh hưởng",c:"have / exert influence on someone",vi:"có / gây ảnh hưởng lên ai đó",en:"1) Parents have a strong influence on their children.<br>2) Advertising exerts a powerful influence on buyers.",exvi:"1) Cha mẹ có ảnh hưởng mạnh mẽ lên con cái.<br>2) Quảng cáo gây ảnh hưởng mạnh mẽ lên người mua."},
+{u:14,w:"influence",pos:"n. – sự ảnh hưởng",c:"a major / good / bad influence",vi:"một ảnh hưởng lớn / tốt / xấu",en:"1) Social media is a major influence on teenagers.<br>2) She was a good influence on the team.<br>3) Bad friends can be a bad influence.",exvi:"1) Mạng xã hội là một ảnh hưởng lớn đối với thanh thiếu niên.<br>2) Cô ấy là một ảnh hưởng tốt cho cả đội.<br>3) Bạn xấu có thể là một ảnh hưởng xấu."},
+
+{u:14,w:"outcome",pos:"n. – kết quả, kết cục",c:"the outcome of something",vi:"kết quả của điều gì",en:"Nobody could predict the outcome of the election.",exvi:"Không ai có thể đoán trước kết quả của cuộc bầu cử."},
+{u:14,w:"outcome",pos:"n. – kết quả, kết cục",c:"a successful / likely outcome",vi:"một kết quả thành công / nhiều khả năng",en:"1) Hard work leads to a successful outcome.<br>2) A compromise is the most likely outcome.",exvi:"1) Làm việc chăm chỉ dẫn đến một kết quả thành công.<br>2) Một sự thỏa hiệp là kết quả nhiều khả năng nhất."},
+
+{u:14,w:"repercussion",pos:"n. – hệ lụy, hậu quả lan rộng",c:"serious / potential / negative repercussions",vi:"những hệ lụy nghiêm trọng / tiềm tàng / tiêu cực",en:"1) The decision had serious repercussions.<br>2) The plan carries potential repercussions.<br>3) The scandal had negative repercussions for the company.",exvi:"1) Quyết định này gây ra những hệ lụy nghiêm trọng.<br>2) Kế hoạch mang theo những hệ lụy tiềm tàng.<br>3) Vụ bê bối gây hệ lụy tiêu cực cho công ty."},
+{u:14,w:"repercussion",pos:"n. – hệ lụy, hậu quả lan rộng",c:"have / fear repercussions",vi:"gây ra / lo sợ hệ lụy",en:"1) The new tax could have wide repercussions.<br>2) Workers feared repercussions for speaking out.",exvi:"1) Loại thuế mới có thể gây hệ lụy rộng khắp.<br>2) Người lao động lo sợ hệ lụy khi lên tiếng."},
+
+{u:14,w:"affect",pos:"v. – ảnh hưởng đến",c:"badly / adversely / directly affect something",vi:"ảnh hưởng xấu / bất lợi / trực tiếp đến điều gì",en:"1) The drought badly affected the harvest.<br>2) Noise can adversely affect concentration.<br>3) The new rule directly affects students.",exvi:"1) Hạn hán ảnh hưởng xấu đến vụ mùa.<br>2) Tiếng ồn có thể ảnh hưởng bất lợi đến sự tập trung.<br>3) Quy định mới ảnh hưởng trực tiếp đến học sinh."},
+{u:14,w:"affect",pos:"v. – ảnh hưởng đến",c:"affect the outcome / quality / performance",vi:"ảnh hưởng đến kết quả / chất lượng / hiệu suất",en:"1) Weather can affect the outcome of the game.<br>2) Poor materials affect the quality of the product.<br>3) Lack of sleep affects performance at work.",exvi:"1) Thời tiết có thể ảnh hưởng đến kết quả trận đấu.<br>2) Nguyên liệu kém ảnh hưởng đến chất lượng sản phẩm.<br>3) Thiếu ngủ ảnh hưởng đến hiệu suất làm việc."},
+
+{u:14,w:"contribute",pos:"v. – góp phần",c:"contribute to something",vi:"góp phần vào điều gì",en:"Cars contribute to air pollution in cities.",exvi:"Ô tô góp phần gây ô nhiễm không khí ở các thành phố."},
+{u:14,w:"contribute",pos:"v. – góp phần",c:"a contributing factor",vi:"một yếu tố góp phần",en:"Stress is a contributing factor in many illnesses.",exvi:"Căng thẳng là một yếu tố góp phần gây ra nhiều bệnh."},
+{u:14,w:"contribute",pos:"v. – góp phần",c:"contribute greatly / significantly",vi:"đóng góp lớn / đáng kể",en:"1) Tourism contributes greatly to the local economy.<br>2) Exercise contributes significantly to good health.",exvi:"1) Du lịch đóng góp lớn cho nền kinh tế địa phương.<br>2) Tập thể dục góp phần đáng kể vào sức khỏe tốt."},
+
+{u:14,w:"determine",pos:"v. – quyết định, xác định",c:"determine the outcome / future",vi:"quyết định kết quả / tương lai",en:"1) The final exam will determine the outcome.<br>2) Education can determine a child's future.",exvi:"1) Bài thi cuối kỳ sẽ quyết định kết quả.<br>2) Giáo dục có thể quyết định tương lai của một đứa trẻ."},
+{u:14,w:"determine",pos:"v. – quyết định, xác định",c:"determine the cause / extent of something",vi:"xác định nguyên nhân / mức độ của điều gì",en:"1) Investigators will determine the cause of the fire.<br>2) Tests determine the extent of the damage.",exvi:"1) Điều tra viên sẽ xác định nguyên nhân vụ cháy.<br>2) Các xét nghiệm xác định mức độ thiệt hại."},
+
+{u:14,w:"generate",pos:"v. – tạo ra, sinh ra",c:"generate excitement / publicity / controversy",vi:"tạo ra sự hào hứng / chú ý của truyền thông / tranh cãi",en:"1) The trailer generated huge excitement.<br>2) The event generated a lot of publicity.<br>3) His comments generated controversy.",exvi:"1) Đoạn giới thiệu tạo ra sự hào hứng lớn.<br>2) Sự kiện thu hút rất nhiều sự chú ý của truyền thông.<br>3) Những lời bình luận của anh ta gây tranh cãi."},
+{u:14,w:"generate",pos:"v. – tạo ra, sinh ra",c:"generate income / electricity / power",vi:"tạo ra thu nhập / điện / năng lượng",en:"1) The business generates a steady income.<br>2) Wind farms generate clean electricity.<br>3) The dam generates power for the whole region.",exvi:"1) Doanh nghiệp tạo ra một nguồn thu nhập ổn định.<br>2) Các trang trại gió tạo ra điện sạch.<br>3) Con đập tạo ra năng lượng cho cả khu vực."},
+
+{u:14,w:"provoke",pos:"v. – khơi dậy, gây ra",c:"provoke outrage / anger / controversy",vi:"khơi dậy sự phẫn nộ / tức giận / tranh cãi",en:"1) The decision provoked public outrage.<br>2) His rude remark provoked anger.<br>3) The film provoked controversy.",exvi:"1) Quyết định này khơi dậy sự phẫn nộ của công chúng.<br>2) Lời nói thô lỗ của anh ta gây ra sự tức giận.<br>3) Bộ phim gây tranh cãi."},
+{u:14,w:"provoke",pos:"v. – khơi dậy, gây ra",c:"provoke a reaction / response / debate",vi:"gây ra một phản ứng / hồi đáp / cuộc tranh luận",en:"1) The advert provoked a strong reaction.<br>2) The speech provoked an angry response.<br>3) The report provoked a national debate.",exvi:"1) Quảng cáo gây ra một phản ứng mạnh mẽ.<br>2) Bài phát biểu gây ra một phản ứng giận dữ.<br>3) Báo cáo làm dấy lên một cuộc tranh luận toàn quốc."},
+
+{u:14,w:"result",pos:"v. – dẫn đến / bắt nguồn",c:"result in a loss / increase / reduction",vi:"dẫn đến sự thua lỗ / gia tăng / sụt giảm",en:"1) The strike resulted in a big loss.<br>2) The campaign resulted in an increase in sales.<br>3) The new method resulted in a reduction of waste.",exvi:"1) Cuộc đình công dẫn đến khoản lỗ lớn.<br>2) Chiến dịch dẫn đến sự gia tăng doanh số.<br>3) Phương pháp mới giúp giảm bớt rác thải."},
+{u:14,w:"result",pos:"v. – dẫn đến / bắt nguồn",c:"result from use / a failure / lack",vi:"bắt nguồn từ việc sử dụng / một sự thất bại / sự thiếu hụt",en:"1) Many accidents result from careless use.<br>2) The problem resulted from a failure to plan.<br>3) Illness can result from a lack of vitamins.",exvi:"1) Nhiều tai nạn bắt nguồn từ việc sử dụng bất cẩn.<br>2) Vấn đề bắt nguồn từ việc không lập kế hoạch.<br>3) Bệnh tật có thể bắt nguồn từ sự thiếu hụt vitamin."},
+
+{u:14,w:"stem",pos:"v. – bắt nguồn từ",c:"stem from something",vi:"bắt nguồn từ điều gì",en:"Her confidence stems from years of practice.",exvi:"Sự tự tin của cô ấy bắt nguồn từ nhiều năm luyện tập."},
+{u:14,w:"stem",pos:"v. – bắt nguồn từ",c:"a problem stems from a fact / misconception",vi:"một vấn đề bắt nguồn từ một sự thật / quan niệm sai",en:"1) The conflict stems from a simple misunderstanding.<br>2) The fear stems from a common misconception.",exvi:"1) Cuộc xung đột bắt nguồn từ một sự hiểu lầm đơn giản.<br>2) Nỗi sợ bắt nguồn từ một quan niệm sai phổ biến."},
+
+{u:14,w:"trigger",pos:"v. – kích hoạt, làm bùng phát",c:"trigger a crisis / war / debate",vi:"làm bùng phát một cuộc khủng hoảng / chiến tranh / tranh luận",en:"1) The collapse triggered a financial crisis.<br>2) The incident triggered a war.<br>3) The proposal triggered a heated debate.",exvi:"1) Sự sụp đổ làm bùng phát một cuộc khủng hoảng tài chính.<br>2) Vụ việc làm bùng nổ một cuộc chiến.<br>3) Đề xuất làm dấy lên một cuộc tranh luận gay gắt."},
+{u:14,w:"trigger",pos:"v. – kích hoạt, làm bùng phát",c:"trigger a tsunami / landslide / avalanche",vi:"gây ra một trận sóng thần / lở đất / lở tuyết",en:"1) The earthquake triggered a tsunami.<br>2) Heavy rain triggered a landslide.<br>3) The noise triggered an avalanche.",exvi:"1) Trận động đất gây ra một trận sóng thần.<br>2) Mưa lớn gây ra một vụ lở đất.<br>3) Tiếng ồn gây ra một trận lở tuyết."},
+
+// ===== UNIT 15 =====
+{u:15,w:"initial",pos:"adj. – ban đầu",c:"an initial reaction / response / impression",vi:"phản ứng / hồi đáp / ấn tượng ban đầu",en:"1) My initial reaction was one of shock.<br>2) The initial response to the plan was positive.<br>3) The initial impression of the city was wonderful.",exvi:"1) Phản ứng ban đầu của tôi là sự sốc.<br>2) Hồi đáp ban đầu với kế hoạch là tích cực.<br>3) Ấn tượng ban đầu về thành phố thật tuyệt vời."},
+{u:15,w:"initial",pos:"adj. – ban đầu",c:"the initial stages / results",vi:"các giai đoạn / kết quả ban đầu",en:"1) The project is still in its initial stages.<br>2) The initial results look promising.",exvi:"1) Dự án vẫn đang ở giai đoạn ban đầu.<br>2) Kết quả ban đầu trông đầy hứa hẹn."},
+
+{u:15,w:"latter",pos:"adj./n. – cái sau, phần sau",c:"choose / prefer the latter",vi:"chọn / thích cái sau",en:"Between coffee and tea, I always prefer the latter.",exvi:"Giữa cà phê và trà, tôi luôn thích cái sau (trà)."},
+{u:15,w:"latter",pos:"adj./n. – cái sau, phần sau",c:"the latter stage / part / category",vi:"giai đoạn / phần / nhóm sau",en:"1) Mistakes happened in the latter stage of the game.<br>2) The latter part of the book is the best.",exvi:"1) Những sai lầm xảy ra ở giai đoạn sau của trận đấu.<br>2) Phần sau của cuốn sách là hay nhất."},
+
+{u:15,w:"prior",pos:"adj. – trước đó",c:"prior approval / permission / consent",vi:"sự chấp thuận / cho phép / đồng ý trước",en:"1) You need prior approval to take leave.<br>2) Visitors must get prior permission to enter.<br>3) The data was used without prior consent.",exvi:"1) Bạn cần được chấp thuận trước để nghỉ phép.<br>2) Khách phải xin phép trước để vào.<br>3) Dữ liệu được dùng mà không có sự đồng ý trước."},
+{u:15,w:"prior",pos:"adj. – trước đó",c:"prior knowledge / experience",vi:"kiến thức / kinh nghiệm trước đó",en:"1) The course requires no prior knowledge.<br>2) Prior experience is an advantage for this job.",exvi:"1) Khóa học không đòi hỏi kiến thức trước đó.<br>2) Kinh nghiệm trước đó là một lợi thế cho công việc này."},
+
+{u:15,w:"subsequent",pos:"adj. – tiếp theo, sau đó",c:"a subsequent year / event / generation",vi:"một năm / sự kiện / thế hệ tiếp theo",en:"1) Sales grew in subsequent years.<br>2) The subsequent event was even bigger.<br>3) Subsequent generations enjoyed the benefits.",exvi:"1) Doanh số tăng trong những năm tiếp theo.<br>2) Sự kiện sau đó còn lớn hơn.<br>3) Các thế hệ sau được hưởng những lợi ích."},
+{u:15,w:"subsequent",pos:"adj. – tiếp theo, sau đó",c:"a subsequent investigation / enquiry",vi:"một cuộc điều tra / truy vấn sau đó",en:"1) A subsequent investigation revealed the truth.<br>2) The subsequent enquiry took months.",exvi:"1) Một cuộc điều tra sau đó đã hé lộ sự thật.<br>2) Cuộc truy vấn sau đó kéo dài nhiều tháng."},
+
+{u:15,w:"overall",pos:"adj. – tổng thể, nhìn chung",c:"overall spending / revenue",vi:"tổng chi tiêu / doanh thu",en:"1) Overall spending rose last year.<br>2) Overall revenue fell slightly.",exvi:"1) Tổng chi tiêu tăng vào năm ngoái.<br>2) Tổng doanh thu giảm nhẹ."},
+{u:15,w:"overall",pos:"adj. – tổng thể, nhìn chung",c:"an overall impression / increase / majority",vi:"ấn tượng / mức tăng / đa số tổng thể",en:"1) The overall impression was very positive.<br>2) There was an overall increase in demand.<br>3) The party won an overall majority.",exvi:"1) Ấn tượng tổng thể rất tích cực.<br>2) Có một sự gia tăng chung về nhu cầu.<br>3) Đảng giành được đa số tuyệt đối."},
+
+// ===== UNIT 16 =====
+{u:16,w:"comparatively",pos:"adv. – tương đối, so ra thì",c:"comparatively little / small",vi:"tương đối ít / nhỏ",en:"1) The country spends comparatively little on defence.<br>2) The town is comparatively small.",exvi:"1) Quốc gia này chi tương đối ít cho quốc phòng.<br>2) Thị trấn này tương đối nhỏ."},
+{u:16,w:"comparatively",pos:"adv. – tương đối, so ra thì",c:"comparatively rare / inexpensive",vi:"tương đối hiếm / rẻ",en:"1) Such storms are comparatively rare here.<br>2) The phone is comparatively inexpensive.",exvi:"1) Những cơn bão như vậy tương đối hiếm ở đây.<br>2) Chiếc điện thoại này tương đối rẻ."},
+
+{u:16,w:"indefinitely",pos:"adv. – vô thời hạn",c:"continue indefinitely",vi:"tiếp diễn vô thời hạn",en:"The situation cannot continue indefinitely.",exvi:"Tình hình không thể tiếp diễn vô thời hạn."},
+{u:16,w:"indefinitely",pos:"adv. – vô thời hạn",c:"be suspended / postponed indefinitely",vi:"bị đình chỉ / hoãn vô thời hạn",en:"1) The flights were suspended indefinitely.<br>2) The match was postponed indefinitely.",exvi:"1) Các chuyến bay bị đình chỉ vô thời hạn.<br>2) Trận đấu bị hoãn vô thời hạn."},
+
+{u:16,w:"inevitably",pos:"adv. – tất yếu, không thể tránh khỏi",c:"inevitably lead to / result in something",vi:"tất yếu dẫn đến / gây ra điều gì",en:"1) Overuse of resources inevitably leads to shortages.<br>2) Carelessness inevitably results in mistakes.",exvi:"1) Việc lạm dụng tài nguyên tất yếu dẫn đến thiếu hụt.<br>2) Sự bất cẩn tất yếu gây ra sai lầm."},
+
+{u:16,w:"particularly",pos:"adv. – đặc biệt là",c:"particularly useful / important / relevant",vi:"đặc biệt hữu ích / quan trọng / liên quan",en:"1) This tip is particularly useful for beginners.<br>2) Sleep is particularly important for children.<br>3) The example is particularly relevant here.",exvi:"1) Mẹo này đặc biệt hữu ích cho người mới.<br>2) Giấc ngủ đặc biệt quan trọng với trẻ em.<br>3) Ví dụ này đặc biệt liên quan ở đây."},
+{u:16,w:"particularly",pos:"adv. – đặc biệt là",c:"particularly vulnerable / concerned",vi:"đặc biệt dễ bị tổn thương / lo ngại",en:"1) The elderly are particularly vulnerable to the heat.<br>2) Parents are particularly concerned about safety.",exvi:"1) Người cao tuổi đặc biệt dễ bị ảnh hưởng bởi nắng nóng.<br>2) Phụ huynh đặc biệt lo ngại về vấn đề an toàn."},
+
+{u:16,w:"provisionally",pos:"adv. – tạm thời",c:"provisionally agreed / accepted / scheduled",vi:"được tạm đồng ý / chấp nhận / lên lịch",en:"1) The deal was provisionally agreed.<br>2) Her paper was provisionally accepted.<br>3) The meeting is provisionally scheduled for May.",exvi:"1) Thỏa thuận được tạm đồng ý.<br>2) Bài báo của cô ấy được tạm chấp nhận.<br>3) Cuộc họp tạm được lên lịch vào tháng Năm."},
+
+{u:16,w:"relatively",pos:"adv. – một cách tương đối",c:"relatively small / low / short",vi:"tương đối nhỏ / thấp / ngắn",en:"1) The risk is relatively small.<br>2) The cost is relatively low.<br>3) The journey is relatively short.",exvi:"1) Rủi ro là tương đối nhỏ.<br>2) Chi phí tương đối thấp.<br>3) Hành trình tương đối ngắn."},
+{u:16,w:"relatively",pos:"adv. – một cách tương đối",c:"relatively easy / cheap / recently",vi:"tương đối dễ / rẻ / gần đây",en:"1) The exam was relatively easy.<br>2) The flights were relatively cheap.<br>3) The law was passed relatively recently.",exvi:"1) Bài thi tương đối dễ.<br>2) Vé máy bay tương đối rẻ.<br>3) Luật được thông qua tương đối gần đây."},
+
+// ===== UNIT 17 =====
+{u:17,w:"crisis",pos:"n. – khủng hoảng",c:"an economic / financial / humanitarian crisis",vi:"khủng hoảng kinh tế / tài chính / nhân đạo",en:"1) The country faced a deep economic crisis.<br>2) The bank collapse caused a financial crisis.<br>3) The war led to a humanitarian crisis.",exvi:"1) Đất nước đối mặt với một cuộc khủng hoảng kinh tế sâu sắc.<br>2) Sự sụp đổ của ngân hàng gây ra một cuộc khủng hoảng tài chính.<br>3) Cuộc chiến dẫn đến một cuộc khủng hoảng nhân đạo."},
+{u:17,w:"crisis",pos:"n. – khủng hoảng",c:"resolve / face a crisis",vi:"giải quyết / đối mặt với khủng hoảng",en:"1) Leaders worked together to resolve the crisis.<br>2) The government had to face a serious crisis.",exvi:"1) Các nhà lãnh đạo hợp tác để giải quyết khủng hoảng.<br>2) Chính phủ phải đối mặt với một cuộc khủng hoảng nghiêm trọng."},
+
+{u:17,w:"dilemma",pos:"n. – tình thế tiến thoái lưỡng nan",c:"pose / face / solve a dilemma",vi:"đặt ra / đối mặt / giải quyết một thế lưỡng nan",en:"1) New technology poses a difficult dilemma.<br>2) Parents often face this dilemma.<br>3) It is not easy to solve such a dilemma.",exvi:"1) Công nghệ mới đặt ra một thế lưỡng nan khó khăn.<br>2) Phụ huynh thường đối mặt với tình thế lưỡng nan này.<br>3) Không dễ để giải quyết một thế lưỡng nan như vậy."},
+{u:17,w:"dilemma",pos:"n. – tình thế tiến thoái lưỡng nan",c:"a moral / ethical dilemma",vi:"một thế lưỡng nan về đạo đức / luân lý",en:"1) The doctor faced a moral dilemma.<br>2) The experiment raised an ethical dilemma.",exvi:"1) Bác sĩ đối mặt với một thế lưỡng nan về đạo đức.<br>2) Thí nghiệm làm nảy sinh một thế lưỡng nan về luân lý."},
+
+{u:17,w:"damage",pos:"v. – làm hư hại, gây tổn hại",c:"damage the environment",vi:"gây tổn hại cho môi trường",en:"Plastic waste seriously damages the environment.",exvi:"Rác thải nhựa gây tổn hại nghiêm trọng cho môi trường."},
+{u:17,w:"damage",pos:"v. – làm hư hại, gây tổn hại",c:"damage someone's reputation / credibility",vi:"làm tổn hại danh tiếng / uy tín của ai",en:"1) The scandal damaged his reputation.<br>2) The lie damaged her credibility.",exvi:"1) Vụ bê bối làm tổn hại danh tiếng của anh ta.<br>2) Lời nói dối làm tổn hại uy tín của cô ấy."},
+{u:17,w:"damage",pos:"v. – làm hư hại, gây tổn hại",c:"badly / severely / permanently damage something",vi:"làm hư hại nặng / nghiêm trọng / vĩnh viễn",en:"1) The fire badly damaged the building.<br>2) The storm severely damaged the crops.<br>3) Pollution can permanently damage health.",exvi:"1) Đám cháy làm hư hại nặng tòa nhà.<br>2) Cơn bão làm hư hại nghiêm trọng mùa màng.<br>3) Ô nhiễm có thể gây tổn hại vĩnh viễn cho sức khỏe."},
+
+{u:17,w:"deteriorate",pos:"v. – xấu đi, suy giảm",c:"a condition / situation deteriorates",vi:"một tình trạng / tình hình xấu đi",en:"1) The patient's condition deteriorated overnight.<br>2) The political situation deteriorated quickly.",exvi:"1) Tình trạng của bệnh nhân xấu đi qua đêm.<br>2) Tình hình chính trị nhanh chóng xấu đi."},
+{u:17,w:"deteriorate",pos:"v. – xấu đi, suy giảm",c:"rapidly / steadily deteriorate",vi:"xấu đi nhanh chóng / dần dần",en:"1) Her health rapidly deteriorated.<br>2) The roads steadily deteriorated over the years.",exvi:"1) Sức khỏe của cô ấy nhanh chóng xấu đi.<br>2) Đường sá dần xuống cấp qua các năm."},
+
+{u:17,w:"exacerbate",pos:"v. – làm trầm trọng thêm",c:"exacerbate a problem / situation / conflict",vi:"làm trầm trọng thêm một vấn đề / tình hình / xung đột",en:"1) Cutting funds will exacerbate the problem.<br>2) Panic buying exacerbated the situation.<br>3) Foreign interference exacerbated the conflict.",exvi:"1) Cắt giảm ngân quỹ sẽ làm trầm trọng thêm vấn đề.<br>2) Việc mua hàng hoảng loạn làm tình hình tệ hơn.<br>3) Sự can thiệp từ bên ngoài làm xung đột thêm trầm trọng."},
+{u:17,w:"exacerbate",pos:"v. – làm trầm trọng thêm",c:"exacerbate tensions / symptoms",vi:"làm gia tăng căng thẳng / triệu chứng",en:"1) The remark exacerbated tensions between the groups.<br>2) Stress can exacerbate symptoms of illness.",exvi:"1) Lời nhận xét làm gia tăng căng thẳng giữa các nhóm.<br>2) Căng thẳng có thể làm trầm trọng thêm các triệu chứng bệnh."},
+
+{u:17,w:"address",pos:"v. – giải quyết, xử lý (vấn đề)",c:"address a problem / issue / concern",vi:"giải quyết một vấn đề / khía cạnh / mối lo ngại",en:"1) The plan aims to address the housing problem.<br>2) We must address this issue urgently.<br>3) The report addresses public concerns.",exvi:"1) Kế hoạch nhằm giải quyết vấn đề nhà ở.<br>2) Chúng ta phải giải quyết khía cạnh này gấp.<br>3) Báo cáo giải quyết những mối lo ngại của công chúng."},
+{u:17,w:"address",pos:"v. – giải quyết, xử lý (vấn đề)",c:"urgently / directly address something",vi:"giải quyết điều gì khẩn cấp / trực tiếp",en:"1) The crisis must be urgently addressed.<br>2) The speech directly addressed the criticism.",exvi:"1) Cuộc khủng hoảng phải được giải quyết khẩn cấp.<br>2) Bài phát biểu giải quyết trực tiếp lời chỉ trích."},
+
+{u:17,w:"eradicate",pos:"v. – xóa bỏ, loại trừ",c:"eradicate disease / poverty / illiteracy",vi:"xóa bỏ bệnh tật / nghèo đói / nạn mù chữ",en:"1) Vaccines helped eradicate the disease.<br>2) The programme aims to eradicate poverty.<br>3) Education can eradicate illiteracy.",exvi:"1) Vắc-xin đã giúp xóa bỏ căn bệnh.<br>2) Chương trình nhằm xóa bỏ nghèo đói.<br>3) Giáo dục có thể xóa bỏ nạn mù chữ."},
+{u:17,w:"eradicate",pos:"v. – xóa bỏ, loại trừ",c:"virtually / completely eradicated",vi:"gần như / hoàn toàn bị xóa bỏ",en:"1) The illness has been virtually eradicated.<br>2) Smallpox was completely eradicated.",exvi:"1) Căn bệnh gần như đã bị xóa bỏ.<br>2) Bệnh đậu mùa đã bị xóa bỏ hoàn toàn."},
+
+{u:17,w:"intervene",pos:"v. – can thiệp",c:"intervene in a dispute / conflict / crisis",vi:"can thiệp vào một tranh chấp / xung đột / khủng hoảng",en:"1) The teacher intervened in the dispute.<br>2) The UN intervened in the conflict.<br>3) The bank intervened in the crisis.",exvi:"1) Giáo viên can thiệp vào cuộc tranh chấp.<br>2) Liên Hợp Quốc can thiệp vào cuộc xung đột.<br>3) Ngân hàng can thiệp vào cuộc khủng hoảng."},
+{u:17,w:"intervene",pos:"v. – can thiệp",c:"intervene personally / directly",vi:"đích thân / trực tiếp can thiệp",en:"1) The president intervened personally.<br>2) The government intervened directly in the market.",exvi:"1) Tổng thống đích thân can thiệp.<br>2) Chính phủ can thiệp trực tiếp vào thị trường."},
+
+{u:17,w:"resolve",pos:"v. – giải quyết (dứt điểm)",c:"resolve a dispute / conflict / issue",vi:"giải quyết một tranh chấp / xung đột / vấn đề",en:"1) The two sides resolved the dispute through talks.<br>2) Diplomacy helped resolve the conflict.<br>3) We resolved the issue within a day.",exvi:"1) Hai bên giải quyết tranh chấp thông qua đàm phán.<br>2) Ngoại giao đã giúp giải quyết xung đột.<br>3) Chúng tôi giải quyết vấn đề trong một ngày."},
+{u:17,w:"resolve",pos:"v. – giải quyết (dứt điểm)",c:"peacefully / amicably resolve something",vi:"giải quyết điều gì một cách ôn hòa / êm đẹp",en:"1) The neighbours peacefully resolved their argument.<br>2) The companies amicably resolved the matter.",exvi:"1) Những người hàng xóm giải quyết tranh cãi một cách ôn hòa.<br>2) Các công ty giải quyết vấn đề một cách êm đẹp."},
+
+{u:17,w:"tackle",pos:"v. – giải quyết, đương đầu",c:"tackle a problem / issue / task",vi:"giải quyết một vấn đề / khía cạnh / nhiệm vụ",en:"1) The city is trying to tackle the problem of waste.<br>2) We need to tackle this issue together.<br>3) She tackled the difficult task calmly.",exvi:"1) Thành phố đang cố giải quyết vấn đề rác thải.<br>2) Chúng ta cần cùng nhau giải quyết khía cạnh này.<br>3) Cô ấy đương đầu với nhiệm vụ khó khăn một cách bình tĩnh."},
+{u:17,w:"tackle",pos:"v. – giải quyết, đương đầu",c:"tackle crime / corruption",vi:"đẩy lùi tội phạm / tham nhũng",en:"1) More police were hired to tackle crime.<br>2) The new law aims to tackle corruption.",exvi:"1) Thêm cảnh sát được tuyển để đẩy lùi tội phạm.<br>2) Luật mới nhằm đẩy lùi tham nhũng."},
+
+// ===== UNIT 18 =====
+{u:18,w:"concept",pos:"n. – khái niệm",c:"the concept of freedom / democracy / justice",vi:"khái niệm về tự do / dân chủ / công lý",en:"1) The essay explores the concept of freedom.<br>2) Children gradually learn the concept of democracy.<br>3) The book discusses the concept of justice.",exvi:"1) Bài luận khám phá khái niệm về tự do.<br>2) Trẻ em dần học khái niệm về dân chủ.<br>3) Cuốn sách bàn về khái niệm công lý."},
+{u:18,w:"concept",pos:"n. – khái niệm",c:"a basic / abstract / key concept",vi:"một khái niệm cơ bản / trừu tượng / then chốt",en:"1) Students must grasp the basic concept first.<br>2) Time is an abstract concept.<br>3) This is a key concept in the course.",exvi:"1) Học sinh phải nắm khái niệm cơ bản trước.<br>2) Thời gian là một khái niệm trừu tượng.<br>3) Đây là một khái niệm then chốt trong khóa học."},
+
+{u:18,w:"consensus",pos:"n. – sự đồng thuận",c:"reach / build / achieve a consensus",vi:"đạt được / xây dựng một sự đồng thuận",en:"1) The committee finally reached a consensus.<br>2) Good leaders build a consensus before acting.<br>3) It took hours to achieve a consensus.",exvi:"1) Ủy ban cuối cùng đã đạt được sự đồng thuận.<br>2) Nhà lãnh đạo giỏi xây dựng sự đồng thuận trước khi hành động.<br>3) Phải mất nhiều giờ để đạt được sự đồng thuận."},
+{u:18,w:"consensus",pos:"n. – sự đồng thuận",c:"a scientific / broad / general consensus",vi:"một sự đồng thuận khoa học / rộng rãi / chung",en:"1) There is a scientific consensus on climate change.<br>2) The plan has broad consensus.<br>3) The general consensus is that it works.",exvi:"1) Có một sự đồng thuận khoa học về biến đổi khí hậu.<br>2) Kế hoạch nhận được sự đồng thuận rộng rãi.<br>3) Sự đồng thuận chung là nó hiệu quả."},
+
+{u:18,w:"framework",pos:"n. – khuôn khổ, khung",c:"a legal / regulatory / political framework",vi:"khuôn khổ pháp lý / quản lý / chính trị",en:"1) A clear legal framework protects workers.<br>2) The industry needs a regulatory framework.<br>3) Reforms require a stable political framework.",exvi:"1) Một khuôn khổ pháp lý rõ ràng bảo vệ người lao động.<br>2) Ngành công nghiệp cần một khung quản lý.<br>3) Cải cách cần một khuôn khổ chính trị ổn định."},
+{u:18,w:"framework",pos:"n. – khuôn khổ, khung",c:"a conceptual / theoretical framework",vi:"một khuôn khổ khái niệm / lý thuyết",en:"1) The study uses a clear conceptual framework.<br>2) She built a theoretical framework for her research.",exvi:"1) Nghiên cứu sử dụng một khuôn khổ khái niệm rõ ràng.<br>2) Cô ấy xây dựng một khung lý thuyết cho nghiên cứu của mình."},
+
+{u:18,w:"ideology",pos:"n. – hệ tư tưởng",c:"embrace / reject an ideology",vi:"đón nhận / chối bỏ một hệ tư tưởng",en:"1) Many young people embraced the new ideology.<br>2) The country rejected the old ideology.",exvi:"1) Nhiều người trẻ đón nhận hệ tư tưởng mới.<br>2) Đất nước chối bỏ hệ tư tưởng cũ."},
+{u:18,w:"ideology",pos:"n. – hệ tư tưởng",c:"a political / religious / economic ideology",vi:"một hệ tư tưởng chính trị / tôn giáo / kinh tế",en:"1) The party is built on a clear political ideology.<br>2) The conflict was driven by religious ideology.<br>3) The reform reflects a new economic ideology.",exvi:"1) Đảng được xây dựng trên một hệ tư tưởng chính trị rõ ràng.<br>2) Cuộc xung đột bị thúc đẩy bởi hệ tư tưởng tôn giáo.<br>3) Cải cách phản ánh một hệ tư tưởng kinh tế mới."},
+
+{u:18,w:"model",pos:"n. – mô hình, hình mẫu",c:"a model of efficiency / excellence",vi:"một hình mẫu về hiệu quả / sự xuất sắc",en:"1) The factory is a model of efficiency.<br>2) Her work is a model of excellence.",exvi:"1) Nhà máy là một hình mẫu về hiệu quả.<br>2) Công việc của cô ấy là một hình mẫu của sự xuất sắc."},
+{u:18,w:"model",pos:"n. – mô hình, hình mẫu",c:"introduce / adopt / follow a model",vi:"giới thiệu / áp dụng / theo một mô hình",en:"1) The school introduced a new teaching model.<br>2) Many countries adopted the same model.<br>3) We follow a simple business model.",exvi:"1) Trường học giới thiệu một mô hình giảng dạy mới.<br>2) Nhiều quốc gia đã áp dụng cùng một mô hình.<br>3) Chúng tôi theo một mô hình kinh doanh đơn giản."},
+
+{u:18,w:"perspective",pos:"n. – góc nhìn, quan điểm",c:"from the perspective of someone",vi:"từ góc nhìn của ai đó",en:"The story is told from the perspective of a child.",exvi:"Câu chuyện được kể từ góc nhìn của một đứa trẻ."},
+{u:18,w:"perspective",pos:"n. – góc nhìn, quan điểm",c:"a different / new / fresh perspective",vi:"một góc nhìn khác / mới / mới mẻ",en:"1) Travel gives you a different perspective on life.<br>2) She brought a new perspective to the team.<br>3) A fresh perspective can solve old problems.",exvi:"1) Du lịch cho bạn một góc nhìn khác về cuộc sống.<br>2) Cô ấy mang đến một góc nhìn mới cho cả đội.<br>3) Một góc nhìn mới mẻ có thể giải quyết những vấn đề cũ."},
+
+{u:18,w:"stance",pos:"n. – lập trường",c:"adopt / take a stance on something",vi:"đưa ra / giữ một lập trường về điều gì",en:"1) The company adopted a clear stance on the issue.<br>2) She took a firm stance against the plan.",exvi:"1) Công ty đưa ra một lập trường rõ ràng về vấn đề.<br>2) Cô ấy giữ lập trường kiên định chống lại kế hoạch."},
+{u:18,w:"stance",pos:"n. – lập trường",c:"a neutral / tough / moral stance",vi:"một lập trường trung lập / cứng rắn / đạo đức",en:"1) The country took a neutral stance in the war.<br>2) The government took a tough stance on crime.<br>3) He took a moral stance against cheating.",exvi:"1) Quốc gia giữ lập trường trung lập trong cuộc chiến.<br>2) Chính phủ có lập trường cứng rắn với tội phạm.<br>3) Anh ấy giữ lập trường đạo đức chống lại sự gian lận."},
+
+{u:18,w:"ambiguous",pos:"adj. – mơ hồ, đa nghĩa",c:"deliberately / highly ambiguous",vi:"cố tình / rất mơ hồ",en:"1) The answer was deliberately ambiguous.<br>2) The wording is highly ambiguous.",exvi:"1) Câu trả lời cố tình mơ hồ.<br>2) Cách diễn đạt rất mơ hồ."},
+{u:18,w:"ambiguous",pos:"adj. – mơ hồ, đa nghĩa",c:"ambiguous language / wording",vi:"ngôn ngữ / cách diễn đạt mơ hồ",en:"Ambiguous wording in the contract caused confusion.",exvi:"Cách diễn đạt mơ hồ trong hợp đồng gây nhầm lẫn."},
+
+{u:18,w:"biased",pos:"adj. – thiên vị, thiên lệch",c:"biased against / in favour of someone",vi:"thiên vị chống lại / ủng hộ ai đó",en:"1) The article seemed biased against the protesters.<br>2) The system is biased in favour of the rich.",exvi:"1) Bài báo có vẻ thiên lệch chống lại người biểu tình.<br>2) Hệ thống thiên vị người giàu."},
+{u:18,w:"biased",pos:"adj. – thiên vị, thiên lệch",c:"biased reporting / research",vi:"đưa tin / nghiên cứu thiên lệch",en:"1) Biased reporting misleads the public.<br>2) Biased research cannot be trusted.",exvi:"1) Đưa tin thiên lệch khiến công chúng hiểu sai.<br>2) Nghiên cứu thiên lệch không thể tin cậy."},
+
+{u:18,w:"compelling",pos:"adj. – thuyết phục, hấp dẫn",c:"a compelling argument / reason",vi:"một lập luận / lý do thuyết phục",en:"1) She made a compelling argument for change.<br>2) There is a compelling reason to act now.",exvi:"1) Cô ấy đưa ra một lập luận thuyết phục cho sự thay đổi.<br>2) Có một lý do thuyết phục để hành động ngay."},
+{u:18,w:"compelling",pos:"adj. – thuyết phục, hấp dẫn",c:"compelling evidence / data",vi:"bằng chứng / dữ liệu thuyết phục",en:"1) The study provides compelling evidence.<br>2) Compelling data supports the conclusion.",exvi:"1) Nghiên cứu đưa ra bằng chứng thuyết phục.<br>2) Dữ liệu thuyết phục ủng hộ kết luận."},
+
+{u:18,w:"flawed",pos:"adj. – sai sót, có khiếm khuyết",c:"a flawed assumption / premise",vi:"một giả định / tiền đề sai",en:"1) The plan was based on a flawed assumption.<br>2) The argument rests on a flawed premise.",exvi:"1) Kế hoạch dựa trên một giả định sai.<br>2) Lập luận dựa trên một tiền đề sai."},
+{u:18,w:"flawed",pos:"adj. – sai sót, có khiếm khuyết",c:"flawed logic / reasoning",vi:"logic / lập luận sai",en:"1) His conclusion follows from flawed logic.<br>2) The essay shows flawed reasoning.",exvi:"1) Kết luận của anh ta xuất phát từ logic sai.<br>2) Bài luận cho thấy lập luận sai."},
+
+{u:18,w:"valid",pos:"adj. – hợp lý, có giá trị",c:"a valid reason / point / argument",vi:"một lý do / luận điểm / lập luận hợp lý",en:"1) You need a valid reason to miss the exam.<br>2) She made a valid point in the debate.<br>3) That is a valid argument worth considering.",exvi:"1) Bạn cần một lý do hợp lý để vắng thi.<br>2) Cô ấy nêu một luận điểm hợp lý trong cuộc tranh luận.<br>3) Đó là một lập luận hợp lý đáng cân nhắc."},
+{u:18,w:"valid",pos:"adj. – hợp lý, có giá trị",c:"perfectly / equally valid",vi:"hoàn toàn / cũng hợp lý như nhau",en:"1) Both opinions are perfectly valid.<br>2) Her concern is equally valid.",exvi:"1) Cả hai ý kiến đều hoàn toàn hợp lý.<br>2) Mối lo ngại của cô ấy cũng hợp lý như vậy."},
+
+// ===== UNIT 19 =====
+{u:19,w:"abundant",pos:"adj. – dồi dào, phong phú",c:"abundant wildlife / evidence / resources",vi:"động vật hoang dã / bằng chứng / tài nguyên dồi dào",en:"1) The reserve is home to abundant wildlife.<br>2) There is abundant evidence for this claim.<br>3) The country has abundant natural resources.",exvi:"1) Khu bảo tồn là nơi sinh sống của hệ động vật hoang dã phong phú.<br>2) Có bằng chứng dồi dào cho tuyên bố này.<br>3) Đất nước này có nguồn tài nguyên thiên nhiên dồi dào."},
+{u:19,w:"abundant",pos:"adj. – dồi dào, phong phú",c:"an abundant supply of something",vi:"một nguồn cung dồi dào của điều gì",en:"The region has an abundant supply of clean water.",exvi:"Khu vực này có nguồn cung nước sạch dồi dào."},
+
+{u:19,w:"marked",pos:"adj. – rõ rệt, đáng kể",c:"a marked contrast / improvement / increase",vi:"sự tương phản / cải thiện / gia tăng rõ rệt",en:"1) There is a marked contrast between the two cities.<br>2) The team showed a marked improvement.<br>3) There was a marked increase in sales.",exvi:"1) Có một sự tương phản rõ rệt giữa hai thành phố.<br>2) Đội đã cho thấy sự cải thiện rõ rệt.<br>3) Có một sự gia tăng rõ rệt về doanh số."},
+{u:19,w:"marked",pos:"adj. – rõ rệt, đáng kể",c:"clearly / most marked",vi:"rõ ràng / rõ rệt nhất",en:"1) The difference is clearly marked on the graph.<br>2) The change was most marked among teenagers.",exvi:"1) Sự khác biệt được thể hiện rõ ràng trên biểu đồ.<br>2) Sự thay đổi rõ rệt nhất ở nhóm thanh thiếu niên."},
+
+{u:19,w:"negligible",pos:"adj. – không đáng kể",c:"a negligible impact / effect / contribution",vi:"tác động / ảnh hưởng / đóng góp không đáng kể",en:"1) The change had a negligible impact on costs.<br>2) The drug had a negligible effect.<br>3) Their contribution was negligible.",exvi:"1) Sự thay đổi có tác động không đáng kể đến chi phí.<br>2) Loại thuốc có tác dụng không đáng kể.<br>3) Đóng góp của họ là không đáng kể."},
+{u:19,w:"negligible",pos:"adj. – không đáng kể",c:"a negligible amount / risk / cost",vi:"một lượng / rủi ro / chi phí không đáng kể",en:"1) Only a negligible amount was wasted.<br>2) The risk is negligible.<br>3) The extra cost is negligible.",exvi:"1) Chỉ một lượng không đáng kể bị lãng phí.<br>2) Rủi ro là không đáng kể.<br>3) Chi phí tăng thêm không đáng kể."},
+
+{u:19,w:"marginally",pos:"adv. – một chút, không đáng kể",c:"increase / rise / improve marginally",vi:"tăng / nhích lên / cải thiện một chút",en:"1) Prices increased marginally last month.<br>2) Sales rose marginally.<br>3) Her grades improved marginally.",exvi:"1) Giá tăng nhẹ vào tháng trước.<br>2) Doanh số nhích lên một chút.<br>3) Điểm của cô ấy cải thiện một chút."},
+{u:19,w:"marginally",pos:"adv. – một chút, không đáng kể",c:"marginally higher / lower",vi:"cao hơn / thấp hơn một chút",en:"1) This year's figure is marginally higher.<br>2) The temperature was marginally lower.",exvi:"1) Con số năm nay cao hơn một chút.<br>2) Nhiệt độ thấp hơn một chút."},
+
+{u:19,w:"definitive",pos:"adj. – dứt khoát, xác định",c:"a definitive answer / conclusion",vi:"một câu trả lời / kết luận dứt khoát",en:"1) Scientists cannot yet give a definitive answer.<br>2) The study reached a definitive conclusion.",exvi:"1) Các nhà khoa học vẫn chưa thể đưa ra câu trả lời dứt khoát.<br>2) Nghiên cứu đã đi đến một kết luận dứt khoát."},
+{u:19,w:"definitive",pos:"adj. – dứt khoát, xác định",c:"definitive proof",vi:"bằng chứng xác đáng",en:"There is still no definitive proof of life on other planets.",exvi:"Vẫn chưa có bằng chứng xác đáng về sự sống trên các hành tinh khác."},
+
+{u:19,w:"tentative",pos:"adj. – dè dặt, thăm dò",c:"a tentative step / agreement / deal",vi:"một bước đi / thỏa thuận / giao kèo thăm dò",en:"1) The two sides took a tentative step towards peace.<br>2) They reached a tentative agreement.<br>3) A tentative deal was signed.",exvi:"1) Hai bên thực hiện một bước đi thăm dò hướng tới hòa bình.<br>2) Họ đạt được một thỏa thuận sơ bộ.<br>3) Một giao kèo sơ bộ đã được ký."},
+{u:19,w:"tentative",pos:"adj. – dè dặt, thăm dò",c:"a tentative conclusion / theory",vi:"một kết luận / lý thuyết dè dặt",en:"1) The researchers offered a tentative conclusion.<br>2) It is only a tentative theory for now.",exvi:"1) Các nhà nghiên cứu đưa ra một kết luận dè dặt.<br>2) Hiện tại đó chỉ là một lý thuyết mang tính thăm dò."}
+];
+
+const UNIT_TITLES = {
+  1:"Unit 1 · People, relationships & character",
+  2:"Unit 2 · Health – illness & treatment",
+  3:"Unit 3 · Academic subjects & activities",
+  4:"Unit 4 · Travel & experiences",
+  5:"Unit 5 · Dimensions & actions",
+  6:"Unit 6 · City life",
+  7:"Unit 7 · Reporting verbs",
+  8:"Unit 8 · Cultural interests",
+  9:"Unit 9 · Natural processes & scientific study",
+  10:"Unit 10 · Climate & weather",
+  11:"Unit 11 · Graphs & figures (Writing Task 1)",
+  12:"Unit 12 · Describing changes",
+  13:"Unit 13 · Similarities & differences",
+  14:"Unit 14 · Cause & effect",
+  15:"Unit 15 · Signposting words",
+  16:"Unit 16 · Qualifying adverbs",
+  17:"Unit 17 · Problems & solutions",
+  18:"Unit 18 · Ideas",
+  19:"Unit 19 · Quantity, degree & certainty"
+};
+const ALL_UNITS = Object.keys(UNIT_TITLES).map(Number);
+
+let flipState = new Array(DATA.length).fill(0);
+let activeUnit = "all";
+let searchQ = "";
+
+function faceHTML(item, state){
+  if(state===0){
+    return `<div class="colloc">${item.c}</div><div class="hint">Nhấn để xem nghĩa →</div>`;
+  }
+  if(state===1){
+    return `<div class="label">Nghĩa tiếng Việt</div><div class="vi">${item.vi}</div><div class="hint">Nhấn để xem ví dụ →</div>`;
+  }
+  return `<div class="label">Ví dụ</div><div class="ex-en">${item.en}</div><div class="ex-vi">${item.exvi}</div><div class="hint">Nhấn để quay lại →</div>`;
+}
+
+function dotsHTML(state){
+  let d='<div class="dots">';
+  for(let i=0;i<3;i++){ d+= `<span class="dot ${i<=state?'on':''}"></span>`; }
+  d+='</div>';
+  return d;
+}
+
+function matchesFilter(item){
+  if(activeUnit!=="all" && String(item.u)!==activeUnit) return false;
+  if(searchQ){
+    const hay = (item.w+" "+item.c+" "+item.vi).toLowerCase();
+    if(!hay.includes(searchQ)) return false;
+  }
+  return true;
+}
+
+function buildNav(){
+  const nav = document.getElementById('unitNav');
+  nav.innerHTML = ALL_UNITS.map(u=>`<a href="#unit-${u}">U${u}</a>`).join('');
+}
+
+function render(){
+  const content = document.getElementById('content');
+  content.innerHTML='';
+  ALL_UNITS.forEach(u=>{
+    const items = DATA.map((it,idx)=>({it,idx})).filter(o=>o.it.u===u && matchesFilter(o.it));
+    if(items.length===0) return;
+    const block = document.createElement('div');
+    block.className='unit-block';
+    block.id = `unit-${u}`;
+    block.innerHTML = `<div class="unit-title">${UNIT_TITLES[u]}</div>`;
+    const groups = {};
+    items.forEach(o=>{
+      if(!groups[o.it.w]) groups[o.it.w]=[];
+      groups[o.it.w].push(o);
+    });
+    Object.keys(groups).forEach(word=>{
+      const wg = document.createElement('div');
+      wg.className='word-group';
+      wg.innerHTML = `<div class="word-head">▸ ${word} <span style="font-weight:normal; color:var(--sub)">(${groups[word][0].it.pos})</span></div>`;
+      const grid = document.createElement('div');
+      grid.className='grid';
+      groups[word].forEach(o=>{
+        const card = document.createElement('div');
+        card.className='card';
+        card.innerHTML = `<span class="tag">U${o.it.u}</span>` + faceHTML(o.it, flipState[o.idx]) + dotsHTML(flipState[o.idx]);
+        card.addEventListener('click', ()=>{
+          flipState[o.idx] = (flipState[o.idx]+1) % 3;
+          card.innerHTML = `<span class="tag">U${o.it.u}</span>` + faceHTML(o.it, flipState[o.idx]) + dotsHTML(flipState[o.idx]);
+          updateProgress();
+        });
+        grid.appendChild(card);
+      });
+      wg.appendChild(grid);
+      block.appendChild(wg);
+    });
+    content.appendChild(block);
+  });
+  updateProgress();
+}
+
+function updateProgress(){
+  const visible = DATA.filter(matchesFilter);
+  const doneCount = DATA.filter((it,idx)=> matchesFilter(it) && flipState[idx]===2).length;
+  document.getElementById('progress').textContent = `Đã xem đầy đủ: ${doneCount}/${visible.length} collocation`;
+}
+
+document.getElementById('flipAll0').onclick = ()=>{ flipState.fill(0); render(); };
+document.getElementById('flipAll1').onclick = ()=>{ flipState.fill(1); render(); };
+document.getElementById('flipAll2').onclick = ()=>{ flipState.fill(2); render(); };
+document.getElementById('unitFilter').addEventListener('change',(e)=>{ activeUnit = e.target.value; render(); });
+document.getElementById('filterBox').addEventListener('input',(e)=>{ searchQ = e.target.value.trim().toLowerCase(); render(); });
+
+
+// ===== TAB FLASHCARDS / CHÍNH TẢ =====
+document.querySelectorAll('.study-tab').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.study-tab').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.study-panel').forEach(x=>x.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.study==='cards' ? 'cardsPanel' : 'dictationPanel').classList.add('active');
+  });
+});
+
+// ===== CHÍNH TẢ =====
+const dictUnit = document.getElementById('dictUnit');
+ALL_UNITS.forEach(u=>{
+  const o=document.createElement('option');
+  o.value=u;
+  o.textContent=UNIT_TITLES[u];
+  dictUnit.appendChild(o);
+});
+
+let dDeck=[], dIndex=0, dCorrect=0, dWrong=[], dAnswered=false;
+
+function dShuffle(a){
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+function dNorm(s){
+  return String(s??'')
+    .toLocaleLowerCase('vi')
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d')
+    .replace(/<br\s*\/?>/gi,' ')
+    .replace(/[“”"'.!?;,()[\]{}:–—]/g,' ')
+    .replace(/\s*\/\s*/g,' / ')
+    .replace(/\s+/g,' ')
+    .trim();
+}
+
+function dStart(custom=null){
+  const unit=dictUnit.value;
+  let pool=custom || DATA.filter(x=>unit==='all' || String(x.u)===unit);
+  const n=Math.min(parseInt(document.getElementById('dictCount').value,10),pool.length);
+  dDeck=dShuffle([...pool]).slice(0,n);
+
+  if(!dDeck.length){
+    alert('Không có dữ liệu phù hợp.');
+    return;
+  }
+
+  dIndex=0; dCorrect=0; dWrong=[]; dAnswered=false;
+  document.getElementById('dictSetup').style.display='none';
+  document.getElementById('dictEnd').style.display='none';
+  document.getElementById('dictPlay').style.display='block';
+  dRender();
+}
+
+function dRender(){
+  const x=dDeck[dIndex];
+  const dir=document.getElementById('dictDirection').value;
+  dAnswered=false;
+
+  document.getElementById('dictCounter').textContent=`Câu ${dIndex+1} / ${dDeck.length}`;
+  document.getElementById('dictScore').textContent=`Đúng: ${dCorrect}`;
+  document.getElementById('dictProgress').style.width=`${(dIndex/dDeck.length)*100}%`;
+
+  document.getElementById('dictPrompt').innerHTML =
+    dir==='en-vi' ? x.c : x.vi;
+
+  document.getElementById('dictHint').textContent =
+    `Unit ${x.u} · ${x.w} · ${x.pos}`;
+
+  const a=document.getElementById('dictAnswer');
+  a.value='';
+  a.disabled=false;
+  a.placeholder=dir==='en-vi' ? 'Nhập nghĩa tiếng Việt...' : 'Nhập collocation tiếng Anh...';
+  a.focus();
+
+  const fb=document.getElementById('dictFeedback');
+  fb.className='dict-feedback';
+  fb.innerHTML='';
+
+  document.getElementById('dictCheck').style.display='';
+  document.getElementById('dictNext').style.display='none';
+}
+
+function dCheck(){
+  if(dAnswered) return;
+  dAnswered=true;
+
+  const x=dDeck[dIndex];
+  const dir=document.getElementById('dictDirection').value;
+  const ans=dNorm(document.getElementById('dictAnswer').value);
+  const target=dNorm(dir==='en-vi' ? x.vi : x.c);
+
+  let ok=false;
+
+  if(dir==='vi-en'){
+    // English collocation: require exact normalized phrase.
+    ok = ans===target;
+  }else{
+    // Vietnamese: accept exact answer or a substantial contained phrase.
+    const words=ans.split(' ').filter(Boolean);
+    ok = ans===target || (words.length>=3 && target.includes(ans));
+  }
+
+  document.getElementById('dictAnswer').disabled=true;
+  const fb=document.getElementById('dictFeedback');
+
+  if(ok){
+    dCorrect++;
+    fb.className='dict-feedback good';
+    fb.innerHTML=`✓ Đúng — <b>${x.c}</b> = ${x.vi}`;
+  }else{
+    dWrong.push(x);
+    fb.className='dict-feedback bad';
+    fb.innerHTML=`✗ Đáp án: <b>${x.c}</b> = ${x.vi}`;
+  }
+
+  document.getElementById('dictScore').textContent=`Đúng: ${dCorrect}`;
+  document.getElementById('dictCheck').style.display='none';
+  document.getElementById('dictNext').style.display='';
+}
+
+function dNext(){
+  dIndex++;
+  if(dIndex>=dDeck.length){
+    document.getElementById('dictPlay').style.display='none';
+    document.getElementById('dictEnd').style.display='block';
+    document.getElementById('dictFinalScore').textContent=`${dCorrect} / ${dDeck.length}`;
+    document.getElementById('dictFinalText').textContent =
+      dWrong.length ? `Còn ${dWrong.length} collocation cần luyện lại.` : 'Hoàn thành toàn bộ chính xác.';
+    document.getElementById('dictRetryWrong').style.display=dWrong.length ? '' : 'none';
+    return;
+  }
+  dRender();
+}
+
+document.getElementById('dictStart').onclick=()=>dStart();
+document.getElementById('dictCheck').onclick=dCheck;
+document.getElementById('dictNext').onclick=dNext;
+
+document.getElementById('dictAgain').onclick=()=>{
+  document.getElementById('dictEnd').style.display='none';
+  document.getElementById('dictSetup').style.display='block';
+};
+
+document.getElementById('dictRetryWrong').onclick=()=>dStart([...dWrong]);
+
+document.getElementById('dictAnswer').addEventListener('keydown',e=>{
+  if(e.key==='Enter'){
+    e.preventDefault();
+    dAnswered ? dNext() : dCheck();
+  }
+});
+
+buildNav();
+render();
+</script>
+</body>
+</html>
