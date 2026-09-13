@@ -3,3 +3,15 @@
 @media(max-width:720px){.container{width:min(100% - 28px,1160px)}.nav-wrap{height:72px}.menu-toggle{display:block}.main-nav{display:none;position:absolute;top:70px;left:14px;right:14px;flex-direction:column;align-items:stretch;gap:0;padding:10px;border:1px solid #283344;border-radius:15px;background:#111b2b;box-shadow:var(--shadow)}.main-nav a{padding:12px}.nav-open .main-nav{display:flex}.hero-grid{min-height:620px;padding-top:50px}.hero-copy{padding:70px 0 45px}.hero h1{font-size:50px}.hero-copy>p{font-size:15px}.hero-search{padding:6px 6px 6px 14px}.hero-search button{padding:11px;font-size:13px}.hero-meta{gap:15px;flex-wrap:wrap}.section{padding:70px 0}.section-heading{display:block;margin-bottom:28px}.section-heading>p{margin-top:13px}.section-heading .text-button{margin-top:15px;padding:0}.topic-grid{grid-template-columns:1fr 1fr}.topic-card{min-height:220px}.featured-grid,.document-grid{grid-template-columns:1fr 1fr}.about-card{display:block;padding:37px 27px}.about-card h2{font-size:31px}.about-card .light-button{display:inline-block;margin-top:15px}.footer-inner{display:flex;flex-direction:column;align-items:flex-start}.footer-links{flex-wrap:wrap}.copyright{width:100%}.viewer-bar{height:64px;grid-template-columns:auto 1fr;padding:0 13px}.viewer-back span,.viewer-actions a:first-child{display:none}.viewer-actions a{padding:7px 9px}.viewer-shell{height:calc(100vh - 64px)}}
 @media(max-width:480px){.hero h1{font-size:43px}.hero-search button{font-size:0}.hero-search button:after{content:"→";font-size:18px}.topic-grid,.featured-grid,.document-grid{grid-template-columns:1fr}.topic-card{min-height:195px}.document-grid .document-card{min-height:330px}.section-heading h2{font-size:34px}.library-head p{margin-top:8px}.footer-links{gap:16px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+
+/* English101 lesson illustration system */
+.topic-icon{display:flex;align-items:center;justify-content:center;width:100%;height:92px;padding:4px;overflow:hidden;border:1px solid var(--line);border-radius:16px;background:var(--paper)!important}
+.topic-icon img{display:block;width:100%;height:100%;object-fit:contain}
+.topic-copy{margin-top:18px}
+.document-icon,.document-icon.coral,.document-icon.blue,.document-icon.violet,.document-icon.green,.document-icon.amber{display:flex;align-items:center;justify-content:center;width:100%;height:124px;margin-top:22px;padding:5px;overflow:hidden;border:1px solid var(--line);border-radius:16px;background:var(--paper)!important;box-shadow:none}
+.document-icon img{display:block;width:100%;height:100%;object-fit:contain}
+.featured-card .document-icon{height:150px}
+.document-card h3{margin-top:18px}
+.document-grid .document-card{min-height:424px}
+@media(max-width:720px){.topic-icon{height:86px}.document-icon,.featured-card .document-icon{height:132px}.document-grid .document-card{min-height:410px}}
+@media(max-width:480px){.topic-icon{height:104px}.document-icon,.featured-card .document-icon{height:158px}.document-grid .document-card{min-height:430px}}
