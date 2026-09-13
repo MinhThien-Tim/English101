@@ -19,14 +19,15 @@
     $("#topic-grid").innerHTML = categories.map((category) => {
       const info = categoryInfo[category];
       const count = documents.filter((doc) => doc.category === category).length;
-      return `<button class="topic-card ${info.color}" data-category="${category}"><span class="topic-icon">${info.icon}</span><span class="topic-copy"><strong>${info.label}</strong><small>${info.text}</small></span><span class="topic-count">${count}<small>tài liệu</small></span><span class="topic-arrow">↗</span></button>`;
+      const active = state.category === category;
+      return `<button class="topic-card ${info.color}${active ? " active" : ""}" data-category="${category}" aria-pressed="${active}"><span class="topic-icon">${info.icon}</span><span class="topic-copy"><strong>${info.label}</strong><small>${info.text}</small></span><span class="topic-count">${count}<small>tài liệu</small></span><span class="topic-arrow">↗</span></button>`;
     }).join("");
   }
 
   function cardTemplate(doc, featured) {
     const info = categoryInfo[doc.category];
     const download = doc.downloadable ? `<a class="icon-button" href="${doc.path}" download title="Tải xuống" aria-label="Tải ${escapeHTML(doc.title)}">↓</a>` : "";
-    return `<article class="document-card ${featured ? "featured-card" : ""}"><div class="card-top"><span class="file-badge ${info.color}">${doc.type}</span><span class="category-label">${info.label}</span></div><div class="document-icon ${info.color}"><span>${doc.type === "PDF" ? "PDF" : "<>"}</span></div><h3>${escapeHTML(doc.title)}</h3><p>${escapeHTML(doc.description)}</p><div class="card-actions"><a class="view-button" href="${viewerUrl(doc)}">Đọc trực tiếp <span>→</span></a>${download}</div></article>`;
+    return `<article class="document-card ${info.color} ${featured ? "featured-card" : ""}"><div class="card-top"><span class="file-badge ${info.color}">${doc.type}</span><span class="category-label">${info.label}</span></div><div class="document-icon ${info.color}"><span>${doc.type === "PDF" ? "PDF" : "<>"}</span></div><h3>${escapeHTML(doc.title)}</h3><p>${escapeHTML(doc.description)}</p><div class="card-actions"><a class="view-button" href="${viewerUrl(doc)}">Đọc trực tiếp <span>→</span></a>${download}</div></article>`;
   }
 
   function renderFeatured() {
@@ -53,6 +54,7 @@
 
   function selectCategory(category) {
     state.category = category;
+    renderTopics();
     renderLibrary();
     $("#library").scrollIntoView({ behavior: "smooth" });
   }
