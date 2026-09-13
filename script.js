@@ -3,12 +3,24 @@
   const documents = window.ENGLISH_101_DOCUMENTS || [];
   const categories = ["Grammar", "Vocabulary", "Writing", "Verb", "Guide"];
   const categoryInfo = {
-    Grammar: { icon: "Aa", label: "Ngữ pháp", text: "Nắm vững cấu trúc và quy tắc nền tảng.", color: "coral" },
-    Vocabulary: { icon: "W", label: "Từ vựng", text: "Mở rộng vốn từ theo chủ đề và trình độ.", color: "blue" },
-    Writing: { icon: "✎", label: "Kỹ năng viết", text: "Biến ý tưởng thành câu chữ tự nhiên.", color: "violet" },
-    Verb: { icon: "V", label: "Động từ", text: "Làm chủ động từ, biến thể và cụm từ.", color: "green" },
-    Guide: { icon: "⌁", label: "Hướng dẫn", text: "Lộ trình và phương pháp học hiệu quả.", color: "amber" }
+    Grammar: { icon: "grammar.svg", label: "Ngữ pháp", text: "Nắm vững cấu trúc và quy tắc nền tảng.", color: "coral" },
+    Vocabulary: { icon: "vocabulary.svg", label: "Từ vựng", text: "Mở rộng vốn từ theo chủ đề và trình độ.", color: "blue" },
+    Writing: { icon: "writing.svg", label: "Kỹ năng viết", text: "Biến ý tưởng thành câu chữ tự nhiên.", color: "violet" },
+    Verb: { icon: "verb-forms.svg", label: "Động từ", text: "Làm chủ động từ, biến thể và cụm từ.", color: "green" },
+    Guide: { icon: "guide.svg", label: "Hướng dẫn", text: "Lộ trình và phương pháp học hiệu quả.", color: "amber" }
   };
+  const iconById = {
+    "grammar-handbook":"grammar.svg","conjunctions":"grammar.svg","suffix-lab":"roots-suffixes.svg",
+    "prepositions":"prepositions.svg","parts-of-speech":"confused-words.svg","tense-quiz":"tenses.svg",
+    "vocabulary-atlas":"vocabulary.svg","root-atlas":"roots-suffixes.svg","c1-vocabulary":"vocabulary.svg",
+    "confusing-words":"confused-words.svg","ielts-collocations":"collocations.svg","hiking-collocations":"collocations.svg",
+    "vocab-writing":"learning-pipeline.svg","reading-translation":"reading-translation.svg","reading-translation-alt":"reading-translation.svg",
+    "vocab-1-2":"vocabulary.svg","vocab-3-4":"vocabulary.svg","vocab-5-6":"vocabulary.svg",
+    "essay-guide":"essay-writing.svg","writing-pipeline":"learning-pipeline.svg","english-verbs":"verb-forms.svg",
+    "verb-forms":"verb-forms.svg","paraphrase":"paraphrasing.svg","phrasal-verbs":"phrasal-verbs.svg",
+    "deep-reading":"deep-reading.svg","english-grammar-notes":"grammar.svg","english-learning-101":"english-learning.svg"
+  };
+  const iconUrl = (name) => `assets/icons/${name}`;
   const state = { category: "All", query: "" };
   const $ = (selector) => document.querySelector(selector);
   const escapeHTML = (value) => String(value).replace(/[&<>'"]/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[char]));
@@ -19,14 +31,14 @@
     $("#topic-grid").innerHTML = categories.map((category) => {
       const info = categoryInfo[category];
       const count = documents.filter((doc) => doc.category === category).length;
-      return `<button class="topic-card ${info.color}" data-category="${category}"><span class="topic-icon">${info.icon}</span><span class="topic-copy"><strong>${info.label}</strong><small>${info.text}</small></span><span class="topic-count">${count}<small>tài liệu</small></span><span class="topic-arrow">↗</span></button>`;
+      return `<button class="topic-card ${info.color}" data-category="${category}"><span class="topic-icon"><img src="${iconUrl(info.icon)}" alt="" width="400" height="300"></span><span class="topic-copy"><strong>${info.label}</strong><small>${info.text}</small></span><span class="topic-count">${count}<small>tài liệu</small></span><span class="topic-arrow">↗</span></button>`;
     }).join("");
   }
 
   function cardTemplate(doc, featured) {
     const info = categoryInfo[doc.category];
     const download = doc.downloadable ? `<a class="icon-button" href="${doc.path}" download title="Tải xuống" aria-label="Tải ${escapeHTML(doc.title)}">↓</a>` : "";
-    return `<article class="document-card ${featured ? "featured-card" : ""}"><div class="card-top"><span class="file-badge ${info.color}">${doc.type}</span><span class="category-label">${info.label}</span></div><div class="document-icon ${info.color}"><span>${doc.type === "PDF" ? "PDF" : "<>"}</span></div><h3>${escapeHTML(doc.title)}</h3><p>${escapeHTML(doc.description)}</p><div class="card-actions"><a class="view-button" href="${viewerUrl(doc)}">Đọc trực tiếp <span>→</span></a>${download}</div></article>`;
+    return `<article class="document-card ${featured ? "featured-card" : ""}"><div class="card-top"><span class="file-badge ${info.color}">${doc.type}</span><span class="category-label">${info.label}</span></div><div class="document-icon ${info.color}"><img src="${iconUrl(iconById[doc.id] || info.icon)}" alt="" width="400" height="300" loading="lazy"></div><h3>${escapeHTML(doc.title)}</h3><p>${escapeHTML(doc.description)}</p><div class="card-actions"><a class="view-button" href="${viewerUrl(doc)}">Đọc trực tiếp <span>→</span></a>${download}</div></article>`;
   }
 
   function renderFeatured() {
