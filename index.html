@@ -1,26 +1,107 @@
 <!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Lesson Library — mục lục học tiếng Anh gọn, rõ và dễ tra cứu.">
-  <title>Lesson Library – Compact Study Index</title>
-  <link rel="icon" href="assets/favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="English 101 — kho tài liệu Grammar, Vocabulary, Writing, Verb và Guide miễn phí.">
+  <meta name="theme-color" content="#0b1220">
+  <title>English 101 — Learn with clarity</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20260913-calm-topics-1">
 </head>
 <body>
-  <a class="skip" href="#lessons">Đến danh sách bài học</a>
-  <header><div class="shell nav"><a class="brand" href="#"><b>E<span>101</span></b><strong>English 101<small>LEARN WITH CLARITY</small></strong></a><div class="update"><i></i> Thư viện đang cập nhật</div></div></header>
+  <!-- Inline lesson icons: avoids external SVG source restrictions -->
+  <svg class="lesson-icon-sprite" aria-hidden="true" focusable="false"><symbol id="lesson-icon-collocations" viewBox="0 0 400 300"><rect width="400" height="300" rx="28" fill="#FBFAF7"/><path d="M42 88c0-17 13-30 30-30h112v65c0 12 10 22 22 22s22-10 22-22V58h100c17 0 30 13 30 30v124c0 17-13 30-30 30H228v-64c0-12-10-22-22-22s-22 10-22 22v64H72c-17 0-30-13-30-30V88Z" fill="#377CF6" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="M228 58h100c17 0 30 13 30 30v124c0 17-13 30-30 30H228v-64c0-12-10-22-22-22V145c12 0 22-10 22-22V58Z" fill="#2EA67A" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="m196 31 9 18 19 9-19 9-9 18-9-18-19-9 19-9 9-18Z" fill="#377CF6" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></symbol><symbol id="lesson-icon-confused-words" viewBox="0 0 400 300"><rect width="400" height="300" rx="28" fill="#FBFAF7"/><rect x="40" y="92" width="142" height="124" rx="24" fill="#377CF6" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><rect x="218" y="92" width="142" height="124" rx="24" fill="#FF6B4A" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><circle cx="78" cy="127" r="14" fill="#FF6B4A" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><circle cx="256" cy="127" r="14" fill="#377CF6" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="M74 171h73M252 171h73M169 62c26-18 51-18 77 0m-4-20 4 20-20 2M231 244c-26 18-51 18-77 0m4 20-4-20 20-2" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></symbol><symbol id="lesson-icon-deep-reading" viewBox="0 0 400 300"><rect width="400" height="300" rx="28" fill="#FBFAF7"/><path d="M52 86c55-8 98 6 148 40 50-34 93-48 148-40v126c-55-8-98 6-148 40-50-34-93-48-148-40V86Z" fill="#fff" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="M200 126v126M92 138h68M92 168h83" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="M238 138h63" stroke="#EEA632" stroke-width="20" stroke-linecap="round"/><circle cx="262" cy="154" r="58" fill="#DCE8FF" fill-opacity=".72" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="m304 196 48 48" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="m320 52 8 16 17 8-17 8-8 16-8-16-17-8 17-8 8-16Z" fill="#377CF6" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></symbol><symbol id="lesson-icon-english-learning" viewBox="0 0 400 300"><rect width="400" height="300" rx="28" fill="#FBFAF7"/><path d="M56 88c55-8 99 7 144 40 45-33 89-48 144-40v142c-55-8-99 7-144 40-45-33-89-48-144-40V88Z" fill="#377CF6" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="M200 128v142M102 137h58M240 137h58" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="m200 46 11 22 24 11-24 11-11 22-11-22-24-11 24-11 11-22Z" fill="#FF6B4A" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></symbol><symbol id="lesson-icon-essay-writing" viewBox="0 0 400 300"><rect width="400" height="300" rx="28" fill="#FBFAF7"/><path d="M74 38h176l46 46v178H74V38Z" fill="#fff" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="M250 38v48h46M112 118h112M112 158h92M112 198h68" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="m276 126 42 31-76 103-44 20 7-48 71-106Z" fill="#FF6B4A" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="m320 54 8 16 17 8-17 8-8 16-8-16-17-8 17-8 8-16Z" fill="#8867E8" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></symbol><symbol id="lesson-icon-grammar" viewBox="0 0 400 300"><rect width="400" height="300" rx="28" fill="#FBFAF7"/><rect x="72" y="70" width="256" height="160" rx="26" fill="#FF6B4A" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="M126 122h148M126 164h96" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="m278 48 15 15 28-31" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></symbol><symbol id="lesson-icon-guide" viewBox="0 0 400 300"><rect width="400" height="300" rx="28" fill="#FBFAF7"/><path d="M54 62c56-10 101 5 146 40 45-35 90-50 146-40v170c-56-10-101 5-146 40-45-35-90-50-146-40V62Z" fill="#fff" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="M200 102v170M91 120c41-8 67 0 86 18M309 111c-38 10-63 28-83 56" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><circle cx="286" cy="109" r="17" fill="#EEA632" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="M177 138c-9 50-34 83-70 95" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></symbol><symbol id="lesson-icon-home" viewBox="0 0 400 300"><rect width="400" height="300" rx="28" fill="#FBFAF7"/><path d="m65 145 135-98 135 98v116H65V145Z" fill="#377CF6" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="M154 261v-84h92v84M106 123h188" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><circle cx="310" cy="62" r="22" fill="#FF6B4A" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></symbol><symbol id="lesson-icon-interface" viewBox="0 0 400 300"><rect width="400" height="300" rx="28" fill="#FBFAF7"/><rect x="54" y="55" width="292" height="80" rx="22" fill="#FF6B4A" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><rect x="54" y="165" width="292" height="80" rx="22" fill="#fff" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="m275 45 24 22 42-39M99 94h138M99 204h138" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></symbol><symbol id="lesson-icon-learning-pipeline" viewBox="0 0 400 300"><rect width="400" height="300" rx="28" fill="#FBFAF7"/><rect x="37" y="108" width="82" height="82" rx="22" fill="#377CF6" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><rect x="159" y="108" width="82" height="82" rx="22" fill="#8867E8" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><rect x="281" y="108" width="82" height="82" rx="22" fill="#FF6B4A" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="M119 149h40m-16-16 16 16-16 16M241 149h40m-16-16 16 16-16 16M78 78c65-39 179-39 244 0M78 220c65 39 179 39 244 0" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></symbol><symbol id="lesson-icon-menu" viewBox="0 0 400 300"><rect width="400" height="300" rx="28" fill="#FBFAF7"/><rect x="54" y="55" width="292" height="54" rx="18" fill="#FF6B4A" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><rect x="54" y="124" width="292" height="54" rx="18" fill="#377CF6" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><rect x="54" y="193" width="292" height="54" rx="18" fill="#8867E8" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></symbol><symbol id="lesson-icon-paraphrasing" viewBox="0 0 400 300"><rect width="400" height="300" rx="28" fill="#FBFAF7"/><g fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"><rect x="44" y="87" width="134" height="112" rx="24" fill="#8867E8"/><rect x="222" y="101" width="134" height="112" rx="24" fill="#2EA67A"/><path d="M86 130h50M86 160h70M264 144h50M264 174h70M147 55c53-30 105-23 143 14m-4-24 4 24-24-2M253 245c-53 30-105 23-143-14m4 24-4-24 24 2"/></g></symbol><symbol id="lesson-icon-phrasal-verbs" viewBox="0 0 400 300"><rect width="400" height="300" rx="28" fill="#FBFAF7"/><rect x="46" y="91" width="188" height="118" rx="26" fill="#2EA67A" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><rect x="256" y="112" width="98" height="76" rx="22" fill="#FF6B4A" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="M104 150h70m-20-20 20 20-20 20M234 150h22M82 238c77 28 157 28 236 0m-19-12 19 12-16 16" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></symbol><symbol id="lesson-icon-prepositions" viewBox="0 0 400 300"><rect width="400" height="300" rx="28" fill="#FBFAF7"/><g fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"><path d="M102 176 200 140l98 36-98 38-98-38Zm0 0v58l98 38 98-38v-58" fill="#EEA632"/><circle cx="200" cy="76" r="34" fill="#FF6B4A"/><path d="M200 112c1 18-1 35-1 48m-16-18 16 18 18-18"/></g></symbol><symbol id="lesson-icon-reading-translation" viewBox="0 0 400 300"><rect width="400" height="300" rx="28" fill="#FBFAF7"/><path d="M42 94c54-7 101 8 158 47 57-39 104-54 158-47v130c-54-7-101 8-158 47-57-39-104-54-158-47V94Z" fill="#377CF6" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><rect x="238" y="48" width="98" height="70" rx="18" fill="#FF6B4A" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><rect x="281" y="78" width="83" height="64" rx="18" fill="#EEA632" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="M200 141v130m11-91c34-3 54-15 73-38m-2 19 2-19-19-2" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></symbol><symbol id="lesson-icon-roots-suffixes" viewBox="0 0 400 300"><rect width="400" height="300" rx="28" fill="#FBFAF7"/><rect x="139" y="42" width="122" height="74" rx="22" fill="#377CF6" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><rect x="38" y="208" width="94" height="58" rx="18" fill="#FF6B4A" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><rect x="153" y="208" width="94" height="58" rx="18" fill="#8867E8" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><rect x="268" y="208" width="94" height="58" rx="18" fill="#7FB8FF" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="M200 116v45M85 208v-18c0-16 13-29 29-29h172c16 0 29 13 29 29v18M200 161v47" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></symbol><symbol id="lesson-icon-tenses" viewBox="0 0 400 300"><rect width="400" height="300" rx="28" fill="#FBFAF7"/><g fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"><path d="M62 178h276m-20-20 20 20-20 20"/><circle cx="94" cy="178" r="24" fill="#FF6B4A"/><circle cx="200" cy="178" r="24" fill="#377CF6"/><circle cx="306" cy="178" r="24" fill="#FF6B4A"/><circle cx="200" cy="88" r="43" fill="#DCE8FF"/><path d="M200 63v27l20 13"/></g></symbol><symbol id="lesson-icon-verb-forms" viewBox="0 0 400 300"><rect width="400" height="300" rx="28" fill="#FBFAF7"/><rect x="58" y="54" width="284" height="66" rx="20" fill="#2EA67A" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><rect x="86" y="132" width="256" height="66" rx="20" fill="#FF6B4A" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><rect x="58" y="210" width="284" height="66" rx="20" fill="#377CF6" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="M98 87h92M126 165h92M98 243h92M304 120v12m0 66v12m-18-10 18 10 18-10" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></symbol><symbol id="lesson-icon-vocabulary" viewBox="0 0 400 300"><rect width="400" height="300" rx="28" fill="#FBFAF7"/><path d="M98 168c42-5 73 3 102 28 29-25 60-33 102-28v69c-42-5-73 3-102 28-29-25-60-33-102-28v-69Z" fill="#fff" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><rect x="72" y="58" width="78" height="64" rx="14" fill="#377CF6" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><rect x="161" y="42" width="78" height="64" rx="14" fill="#FF6B4A" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><rect x="250" y="58" width="78" height="64" rx="14" fill="#377CF6" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="M111 122v34m89-50v90m89-74v34" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></symbol><symbol id="lesson-icon-writing" viewBox="0 0 400 300"><rect width="400" height="300" rx="28" fill="#FBFAF7"/><rect x="62" y="54" width="276" height="192" rx="28" fill="#8867E8" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="M108 105h152M108 146h112M108 187h82" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="m282 104 45 34-77 102-45 19 8-48 69-107Z" fill="#FF6B4A" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></symbol></svg>
+  <a class="skip-link" href="#library">Đi đến kho tài liệu</a>
+  <header class="site-header" id="top">
+    <div class="nav-wrap container">
+      <a class="brand" href="#top" aria-label="English 101 - Trang chủ">
+        <span class="brand-mark">E<span>101</span></span>
+        <span>English 101<small>Learn with clarity</small></span>
+      </a>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Mở menu"><span></span><span></span><span></span></button>
+      <nav class="main-nav" id="main-nav" aria-label="Điều hướng chính">
+        <a href="#topics">Chủ đề</a><a href="#featured">Nổi bật</a><a href="#library">Tài liệu</a><a href="#blog">Blog</a><a href="#about">Giới thiệu</a>
+      </nav>
+    </div>
+  </header>
+
   <main>
-    <section class="shell hero"><div><em>LESSON LIBRARY</em><h1>Mục lục bài học</h1><p>Tìm đúng bài, nắm rõ mục tiêu và tiếp tục hành trình học của bạn.</p></div><div class="stats"><div><b id="total">25</b><span>Bài học</span></div><div><b>5</b><span>Chủ đề</span></div><div><b id="done">0</b><span>Đã học</span></div></div></section>
-    <section class="shell controls">
-      <div class="search-row"><label class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input id="search" type="search" placeholder="Tìm tên bài, chủ đề hoặc nội dung..."><kbd>/</kbd></label><select id="sort" aria-label="Sắp xếp"><option value="default">Sắp xếp: Mặc định</option><option value="difficulty">Theo mức độ</option><option value="duration">Theo thời lượng</option><option value="progress">Theo tiến độ</option></select></div>
-      <div class="filter-row"><div id="topics" class="scroll" aria-label="Lọc chủ đề"></div><div class="views"><button data-view="table" class="active">☷ <span>Bảng</span></button><button data-view="grid">⊞ <span>Thẻ</span></button></div></div>
-      <div class="status-row"><div id="statuses" class="scroll"><button data-status="all" class="active">Tất cả</button><button data-status="not-started"><i class="gray"></i>Chưa học</button><button data-status="in-progress"><i class="blue"></i>Đang học</button><button data-status="completed"><i class="green"></i>Đã học</button></div><span id="results"></span></div>
+    <section class="hero">
+      <div class="hero-glow hero-glow-a"></div><div class="hero-glow hero-glow-b"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow"><span></span> Your English learning space</div>
+          <h1>Học tiếng Anh<br><em>rõ ràng hơn.</em></h1>
+          <p>Một không gian học tập tập trung, nơi mọi tài liệu từ ngữ pháp đến kỹ năng viết đều sẵn sàng để đọc và luyện tập ngay trên trình duyệt.</p>
+          <form class="hero-search" id="search-form" role="search">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m21 21-4.35-4.35m2.35-5.65a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"/></svg>
+            <label class="sr-only" for="search-input">Tìm tài liệu</label>
+            <input id="search-input" type="search" placeholder="Tìm ngữ pháp, từ vựng, IELTS..." autocomplete="off">
+            <button type="submit">Tìm kiếm</button>
+          </form>
+          <div class="hero-meta"><span><b id="doc-count">23</b> tài liệu</span><span><b>6</b> chủ đề</span><span><b>100%</b> miễn phí</span></div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="word-card card-one"><span>VOCABULARY</span><strong>serendipity</strong><small>/ˌser.ənˈdɪp.ə.ti/</small><p>a happy discovery made by chance</p></div>
+          <div class="word-card card-two"><span>DAILY PROGRESS</span><strong>Keep going!</strong><div class="progress"><i></i></div><small>12 day streak · 84% complete</small></div>
+          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="floating-letter">A</div>
+        </div>
+      </div>
     </section>
-    <section class="shell library" id="lessons"><div class="library-head"><div><h2>Tất cả bài học</h2><p>Nhấp vào trạng thái để cập nhật tiến độ của bạn.</p></div><span id="showing"></span></div><div id="list" class="lesson-table"></div><div id="empty" hidden><b>⌕</b><h3>Không tìm thấy bài học</h3><p>Hãy thử từ khóa hoặc bộ lọc khác.</p><button id="clear">Xóa bộ lọc</button></div></section>
+
+    <section class="topics section container" id="topics">
+      <div class="section-heading"><div><span class="kicker">Explore by topic</span><h2>Chọn lộ trình của bạn</h2></div><p>Mỗi chủ đề là một bộ công cụ giúp bạn tiến gần hơn đến khả năng sử dụng tiếng Anh tự tin.</p></div>
+      <div class="topic-grid" id="topic-grid"></div>
+    </section>
+
+    <section class="featured section" id="featured">
+      <div class="container">
+        <div class="section-heading"><div><span class="kicker">Editor’s picks</span><h2>Tài liệu nổi bật</h2></div><button class="text-button" data-show-all>Xem toàn bộ <span>→</span></button></div>
+        <div class="featured-grid" id="featured-grid"></div>
+      </div>
+    </section>
+
+    <section class="library section container" id="library">
+      <div class="section-heading library-head"><div><span class="kicker">The library</span><h2>Kho học liệu</h2></div><p id="result-count" aria-live="polite"></p></div>
+      <div class="filters" id="filters" role="group" aria-label="Lọc theo chủ đề"></div>
+      <div class="document-grid" id="document-grid"></div>
+      <div class="empty-state" id="empty-state" hidden><span>⌕</span><h3>Không tìm thấy tài liệu</h3><p>Thử một từ khóa khác hoặc chọn lại “Tất cả”.</p><button class="primary-button" id="clear-search">Xóa bộ lọc</button></div>
+    </section>
+
+    <section class="blog section" id="blog">
+      <div class="container">
+        <div class="section-heading"><div><span class="kicker">Learning notes</span><h2>Blog — Học thế nào cho hiệu quả?</h2></div><p>Những bài chia sẻ ngắn, thực tế về cách ghi nhớ, luyện tập và biến kiến thức thành khả năng sử dụng.</p></div>
+        <div class="blog-grid" id="blog-grid"></div>
+      </div>
+    </section>
+
+    <section class="about section" id="about">
+      <div class="container about-card"><div><span class="kicker light">Study smarter</span><h2>Một nơi. Mọi tài liệu.<br>Mở ra và học ngay.</h2></div><p>Không đăng nhập, không quảng cáo, không bước thừa. English 101 giúp bạn tập trung vào điều quan trọng nhất: tiến bộ mỗi ngày.</p><a href="#library" class="light-button">Bắt đầu học <span>→</span></a></div>
+    </section>
   </main>
-  <footer><div class="shell"><span>Lesson Library – Compact Study Index</span><span>English 101 · Học rõ ràng, tiến bộ bền vững.</span></div></footer>
-  <script src="data/documents.js"></script><script src="script.js"></script>
-</body></html>
+
+  <footer class="footer"><div class="container footer-inner"><a class="brand footer-brand" href="#top"><span class="brand-mark">E<span>101</span></span><span>English 101<small>Learn with clarity</small></span></a><p>Kho học liệu tiếng Anh mở, được thiết kế cho việc tự học.</p><div class="footer-links"><a href="#topics">Chủ đề</a><a href="#library">Tài liệu</a><a href="#blog">Blog</a><a href="README.md">Hướng dẫn</a></div><small class="copyright">© <span id="year"></span> English 101. Built for learners.</small></div></footer>
+
+  <button class="index-launcher" id="index-launcher" aria-expanded="false" aria-controls="quick-index">
+    <span class="index-launcher-icon">☷</span><span><b>Mục lục bài học</b><small>Chọn bài nhanh</small></span><i>→</i>
+  </button>
+  <div class="index-backdrop" id="index-backdrop" hidden></div>
+  <aside class="quick-index" id="quick-index" aria-hidden="true" aria-label="Mục lục bài học">
+    <div class="quick-index-head">
+      <div><span>LESSON LIBRARY</span><h2>Mục lục bài học</h2><p id="quick-count"></p></div>
+      <button id="index-close" aria-label="Thu gọn mục lục">×</button>
+    </div>
+    <label class="quick-search"><span>⌕</span><input id="quick-search" type="search" placeholder="Tìm bài học..."><kbd>/</kbd></label>
+    <div class="quick-filters" id="quick-filters" role="group" aria-label="Lọc nhanh theo chủ đề"></div>
+    <div class="quick-list" id="quick-list"></div>
+    <div class="quick-index-foot"><span><i></i> Tiến độ được lưu trên thiết bị</span><a href="#library" id="open-library">Xem kho đầy đủ →</a></div>
+  </aside>
+
+  <script src="data/documents.js"></script>
+  <script src="script.js?v=20260913-calm-topics-1"></script>
+</body>
+</html>
