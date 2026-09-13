@@ -17,3 +17,12 @@
 @media(max-width:480px){.topic-icon{height:104px}.document-icon,.featured-card .document-icon{height:158px}.document-grid .document-card{min-height:430px}}
 
 .card-top.badge-less{justify-content:flex-end}
+
+/* Blog and six-topic layout */
+.topic-grid{grid-template-columns:repeat(3,1fr)}
+.blog{background:#eef3fc}
+.blog-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.blog-grid .document-card{min-height:410px}
+@media(max-width:980px){.blog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:720px){.topic-grid{grid-template-columns:1fr 1fr}.blog-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.topic-grid,.blog-grid{grid-template-columns:1fr}.blog-grid .document-card{min-height:400px}}
