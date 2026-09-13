@@ -238,3 +238,149 @@
 @media(prefers-reduced-motion:reduce){
   .topic-card,.document-card,.view-button{transform:none!important}
 }
+
+
+/* ==========================================================================
+   Topic palette and interaction — semantic, extensible category colors
+   ========================================================================== */
+:root{
+  --guide-color:#3f74a3;
+  --guide-bg:#edf4f9;
+  --vocabulary-color:#7457a0;
+  --vocabulary-bg:#f2eff8;
+  --grammar-color:#3f7d61;
+  --grammar-bg:#edf6f0;
+  --listening-color:#5387a5;
+  --listening-bg:#eef6f9;
+  --speaking-color:#a85e7a;
+  --speaking-bg:#f9eff3;
+  --writing-color:#aa6938;
+  --writing-bg:#faf1e8;
+  --verbs-color:#8d6d28;
+  --verbs-bg:#faf5e6;
+  --ielts-color:#a34f50;
+  --ielts-bg:#faeeee;
+  --documents-color:#38596f;
+  --documents-bg:#edf2f5;
+}
+
+/* Current categories */
+.topic-guide{--accent:var(--guide-color);--card-bg:var(--guide-bg)}
+.topic-vocabulary{--accent:var(--vocabulary-color);--card-bg:var(--vocabulary-bg)}
+.topic-grammar{--accent:var(--grammar-color);--card-bg:var(--grammar-bg)}
+.topic-writing{--accent:var(--writing-color);--card-bg:var(--writing-bg)}
+.topic-verbs{--accent:var(--verbs-color);--card-bg:var(--verbs-bg)}
+
+/* Ready for future homepage categories */
+.topic-listening{--accent:var(--listening-color);--card-bg:var(--listening-bg)}
+.topic-speaking{--accent:var(--speaking-color);--card-bg:var(--speaking-bg)}
+.topic-ielts{--accent:var(--ielts-color);--card-bg:var(--ielts-bg)}
+.topic-documents{--accent:var(--documents-color);--card-bg:var(--documents-bg)}
+
+.topic-card{
+  grid-template-columns:58px minmax(0,1fr) auto;
+  grid-template-areas:"icon copy action";
+  transition:
+    transform 220ms cubic-bezier(.2,.7,.2,1),
+    background-color 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    opacity 220ms ease;
+}
+.topic-copy strong{
+  color:var(--accent);
+  transition:color 200ms ease,font-weight 200ms ease;
+}
+.topic-card:hover .topic-copy strong{
+  color:color-mix(in srgb,var(--accent) 84%,#17202b);
+}
+.topic-card.active .topic-copy strong,
+.topic-card[aria-pressed="true"] .topic-copy strong{
+  color:color-mix(in srgb,var(--accent) 76%,#111827);
+  font-weight:800;
+}
+.topic-action{
+  grid-area:action;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-height:44px;
+  padding:6px 7px 6px 13px;
+  border:1px solid color-mix(in srgb,var(--accent) 20%,transparent);
+  border-radius:13px;
+  background:rgba(255,255,255,.58);
+  color:var(--accent);
+  white-space:nowrap;
+  transition:
+    transform 200ms ease,
+    background-color 200ms ease,
+    border-color 200ms ease,
+    box-shadow 200ms ease;
+}
+.topic-count{
+  position:static;
+  min-width:0;
+  padding:0;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  color:var(--accent);
+  font-size:13px;
+}
+.topic-count small{color:color-mix(in srgb,var(--accent) 70%,#667085)}
+.topic-open{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  min-height:32px;
+  padding:6px 10px;
+  border-radius:9px;
+  background:rgba(255,255,255,.75);
+  color:var(--accent);
+  font-size:13px;
+  font-weight:750;
+}
+.topic-open b{
+  font-size:16px;
+  font-weight:600;
+  transition:transform 200ms ease;
+}
+.topic-card:hover .topic-action{
+  border-color:color-mix(in srgb,var(--accent) 38%,transparent);
+  background:rgba(255,255,255,.78);
+}
+.topic-card:hover .topic-open b{transform:translateX(2px)}
+.topic-card.active .topic-action,
+.topic-card[aria-pressed="true"] .topic-action{
+  border-color:color-mix(in srgb,var(--accent) 48%,transparent);
+  background:rgba(255,255,255,.88);
+  box-shadow:0 3px 10px rgba(30,41,59,.035);
+}
+
+/* Document titles inherit the same distinct category color. */
+.document-card h3{color:var(--accent)}
+.document-card:hover h3,
+.document-card:focus-within h3{
+  color:color-mix(in srgb,var(--accent) 78%,#111827);
+}
+
+/* Fallback for browsers without color-mix(). */
+@supports not (color:color-mix(in srgb,red,blue)){
+  .topic-card{border-color:var(--line)}
+  .topic-card:hover,.topic-card.active,.topic-card[aria-pressed="true"]{border-color:var(--accent);background:#fff}
+  .topic-icon,.document-icon{background:var(--accent)!important}
+  .topic-copy strong,.document-card h3,.topic-action,.topic-count,.topic-open{color:var(--accent)}
+}
+
+@media(max-width:600px){
+  .topic-card{
+    grid-template-columns:48px minmax(0,1fr);
+    grid-template-areas:"icon copy" "action action";
+  }
+  .topic-action{
+    width:100%;
+    justify-content:space-between;
+    padding-left:12px;
+  }
+  .topic-open{padding-inline:12px}
+}
