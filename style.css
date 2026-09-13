@@ -26,3 +26,188 @@
 @media(max-width:980px){.blog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:720px){.topic-grid{grid-template-columns:1fr 1fr}.blog-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:480px){.topic-grid,.blog-grid{grid-template-columns:1fr}.blog-grid .document-card{min-height:400px}}
+
+
+/* ==========================================================================
+   Calm topic list — live homepage
+   ========================================================================== */
+:root{
+  --guide-color:#3f74a3;--guide-bg:#edf4f9;
+  --vocabulary-color:#7457a0;--vocabulary-bg:#f2eff8;
+  --grammar-color:#3f7d61;--grammar-bg:#edf6f0;
+  --writing-color:#aa6938;--writing-bg:#faf1e8;
+  --verbs-color:#8d6d28;--verbs-bg:#faf5e6;
+  --blog-color:#38596f;--blog-bg:#edf2f5;
+}
+.topic-guide{--accent:var(--guide-color);--card-bg:var(--guide-bg)}
+.topic-vocabulary{--accent:var(--vocabulary-color);--card-bg:var(--vocabulary-bg)}
+.topic-grammar{--accent:var(--grammar-color);--card-bg:var(--grammar-bg)}
+.topic-writing{--accent:var(--writing-color);--card-bg:var(--writing-bg)}
+.topic-verbs{--accent:var(--verbs-color);--card-bg:var(--verbs-bg)}
+.topic-blog{--accent:var(--blog-color);--card-bg:var(--blog-bg)}
+
+.topics.section{padding-block:84px}
+.topic-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:14px;
+}
+.topic-card{
+  position:relative;
+  display:grid;
+  grid-template-columns:64px minmax(0,1fr) auto;
+  grid-template-areas:"icon copy action";
+  align-items:center;
+  gap:20px;
+  min-height:112px;
+  padding:20px 22px;
+  overflow:visible;
+  color:var(--ink);
+  text-align:left;
+  background:var(--card-bg);
+  border:1px solid color-mix(in srgb,var(--accent) 18%,var(--line));
+  border-radius:22px;
+  box-shadow:0 2px 8px rgba(30,41,59,.025);
+  cursor:pointer;
+  transition:
+    transform 220ms cubic-bezier(.2,.7,.2,1),
+    background-color 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    opacity 220ms ease;
+}
+.topic-card:hover{
+  transform:translateY(-3px);
+  background:color-mix(in srgb,var(--card-bg) 80%,#fff);
+  border-color:color-mix(in srgb,var(--accent) 36%,var(--line));
+  box-shadow:0 9px 24px rgba(30,41,59,.065);
+}
+.topic-card.active,.topic-card[aria-pressed="true"]{
+  transform:translateY(-1px) scale(1.005);
+  background:color-mix(in srgb,var(--card-bg) 70%,#fff);
+  border-color:var(--accent);
+  box-shadow:0 7px 20px rgba(30,41,59,.07);
+}
+.topic-card:focus-visible{
+  outline:3px solid color-mix(in srgb,var(--accent) 24%,transparent);
+  outline-offset:3px;
+}
+.topic-icon{
+  grid-area:icon;
+  display:grid;
+  place-items:center;
+  width:60px;
+  height:60px;
+  padding:5px;
+  overflow:hidden;
+  background:rgba(255,255,255,.58)!important;
+  border:1px solid color-mix(in srgb,var(--accent) 18%,transparent);
+  border-radius:17px;
+  box-shadow:none;
+}
+.topic-icon .lesson-icon-art{display:block;width:100%;height:100%}
+.topic-copy{grid-area:copy;min-width:0;margin:0}
+.topic-copy strong{
+  display:block;
+  color:var(--accent);
+  font:700 clamp(18px,2vw,21px)/1.3 Manrope,sans-serif;
+  letter-spacing:-.015em;
+  transition:color 200ms ease,font-weight 200ms ease;
+}
+.topic-copy small{
+  display:block;
+  margin-top:5px;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.5;
+}
+.topic-card:hover .topic-copy strong{
+  color:color-mix(in srgb,var(--accent) 84%,#17202b);
+}
+.topic-card.active .topic-copy strong,
+.topic-card[aria-pressed="true"] .topic-copy strong{
+  color:color-mix(in srgb,var(--accent) 76%,#111827);
+  font-weight:800;
+}
+.topic-action{
+  grid-area:action;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-height:44px;
+  padding:6px 7px 6px 13px;
+  color:var(--accent);
+  background:rgba(255,255,255,.58);
+  border:1px solid color-mix(in srgb,var(--accent) 20%,transparent);
+  border-radius:13px;
+  white-space:nowrap;
+  transition:background-color 200ms ease,border-color 200ms ease,box-shadow 200ms ease;
+}
+.topic-count{
+  position:static;
+  min-width:0;
+  padding:0;
+  color:var(--accent);
+  background:transparent;
+  border:0;
+  font-size:13px;
+  font-weight:700;
+}
+.topic-count small{margin-left:2px;color:color-mix(in srgb,var(--accent) 70%,#667085);font-weight:500}
+.topic-open{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  min-height:32px;
+  padding:6px 10px;
+  color:var(--accent);
+  background:rgba(255,255,255,.78);
+  border-radius:9px;
+  font-size:13px;
+  font-weight:750;
+}
+.topic-open b{font-size:16px;font-weight:600;transition:transform 200ms ease}
+.topic-card:hover .topic-action{
+  background:rgba(255,255,255,.82);
+  border-color:color-mix(in srgb,var(--accent) 38%,transparent);
+}
+.topic-card:hover .topic-open b{transform:translateX(2px)}
+.topic-card.active .topic-action,
+.topic-card[aria-pressed="true"] .topic-action{
+  background:rgba(255,255,255,.9);
+  border-color:color-mix(in srgb,var(--accent) 48%,transparent);
+  box-shadow:0 3px 10px rgba(30,41,59,.035);
+}
+
+/* Preserve category accents used by document badges after semantic renaming. */
+.file-badge.topic-guide{background:var(--guide-color)}
+.file-badge.topic-vocabulary{background:var(--vocabulary-color)}
+.file-badge.topic-grammar{background:var(--grammar-color)}
+.file-badge.topic-writing{background:var(--writing-color)}
+.file-badge.topic-verbs{background:var(--verbs-color)}
+.file-badge.topic-blog{background:var(--blog-color)}
+
+@supports not (color:color-mix(in srgb,red,blue)){
+  .topic-card{border-color:var(--line)}
+  .topic-card:hover,.topic-card.active,.topic-card[aria-pressed="true"]{border-color:var(--accent);background:#fff}
+  .topic-copy strong,.topic-action,.topic-count,.topic-open{color:var(--accent)}
+}
+@media(max-width:600px){
+  .topics.section{padding-block:64px}
+  .topic-grid{gap:12px}
+  .topic-card{
+    grid-template-columns:50px minmax(0,1fr);
+    grid-template-areas:"icon copy" "action action";
+    gap:13px 14px;
+    min-height:0;
+    padding:16px;
+    border-radius:19px;
+  }
+  .topic-icon{width:48px;height:48px;border-radius:14px}
+  .topic-copy strong{font-size:17px}
+  .topic-copy small{font-size:13px;line-height:1.45}
+  .topic-action{width:100%;justify-content:space-between}
+}
+@media(prefers-reduced-motion:reduce){
+  .topic-card,.topic-open b{transform:none!important}
+}
