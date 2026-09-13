@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20260913-no-html-badges">
+  <link rel="stylesheet" href="style.css?v=20260913-blog">
 </head>
 <body>
   <!-- Inline lesson icons: avoids external SVG source restrictions -->
@@ -24,7 +24,7 @@
       </a>
       <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Mở menu"><span></span><span></span><span></span></button>
       <nav class="main-nav" id="main-nav" aria-label="Điều hướng chính">
-        <a href="#topics">Chủ đề</a><a href="#featured">Nổi bật</a><a href="#library">Tài liệu</a><a href="#about">Giới thiệu</a>
+        <a href="#topics">Chủ đề</a><a href="#featured">Nổi bật</a><a href="#library">Tài liệu</a><a href="#blog">Blog</a><a href="#about">Giới thiệu</a>
       </nav>
     </div>
   </header>
@@ -43,7 +43,7 @@
             <input id="search-input" type="search" placeholder="Tìm ngữ pháp, từ vựng, IELTS..." autocomplete="off">
             <button type="submit">Tìm kiếm</button>
           </form>
-          <div class="hero-meta"><span><b id="doc-count">23</b> tài liệu</span><span><b>5</b> chủ đề</span><span><b>100%</b> miễn phí</span></div>
+          <div class="hero-meta"><span><b id="doc-count">23</b> tài liệu</span><span><b>6</b> chủ đề</span><span><b>100%</b> miễn phí</span></div>
         </div>
         <div class="hero-art" aria-hidden="true">
           <div class="word-card card-one"><span>VOCABULARY</span><strong>serendipity</strong><small>/ˌser.ənˈdɪp.ə.ti/</small><p>a happy discovery made by chance</p></div>
@@ -72,14 +72,21 @@
       <div class="empty-state" id="empty-state" hidden><span>⌕</span><h3>Không tìm thấy tài liệu</h3><p>Thử một từ khóa khác hoặc chọn lại “Tất cả”.</p><button class="primary-button" id="clear-search">Xóa bộ lọc</button></div>
     </section>
 
+    <section class="blog section" id="blog">
+      <div class="container">
+        <div class="section-heading"><div><span class="kicker">Learning notes</span><h2>Blog — Học thế nào cho hiệu quả?</h2></div><p>Những bài chia sẻ ngắn, thực tế về cách ghi nhớ, luyện tập và biến kiến thức thành khả năng sử dụng.</p></div>
+        <div class="blog-grid" id="blog-grid"></div>
+      </div>
+    </section>
+
     <section class="about section" id="about">
       <div class="container about-card"><div><span class="kicker light">Study smarter</span><h2>Một nơi. Mọi tài liệu.<br>Mở ra và học ngay.</h2></div><p>Không đăng nhập, không quảng cáo, không bước thừa. English 101 giúp bạn tập trung vào điều quan trọng nhất: tiến bộ mỗi ngày.</p><a href="#library" class="light-button">Bắt đầu học <span>→</span></a></div>
     </section>
   </main>
 
-  <footer class="footer"><div class="container footer-inner"><a class="brand footer-brand" href="#top"><span class="brand-mark">E<span>101</span></span><span>English 101<small>Learn with clarity</small></span></a><p>Kho học liệu tiếng Anh mở, được thiết kế cho việc tự học.</p><div class="footer-links"><a href="#topics">Chủ đề</a><a href="#library">Tài liệu</a><a href="README.md">Hướng dẫn</a></div><small class="copyright">© <span id="year"></span> English 101. Built for learners.</small></div></footer>
+  <footer class="footer"><div class="container footer-inner"><a class="brand footer-brand" href="#top"><span class="brand-mark">E<span>101</span></span><span>English 101<small>Learn with clarity</small></span></a><p>Kho học liệu tiếng Anh mở, được thiết kế cho việc tự học.</p><div class="footer-links"><a href="#topics">Chủ đề</a><a href="#library">Tài liệu</a><a href="#blog">Blog</a><a href="README.md">Hướng dẫn</a></div><small class="copyright">© <span id="year"></span> English 101. Built for learners.</small></div></footer>
 
   <script src="data/documents.js"></script>
-  <script src="script.js?v=20260913-no-html-badges"></script>
+  <script src="script.js?v=20260913-blog"></script>
 </body>
 </html>
