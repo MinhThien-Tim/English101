@@ -3,11 +3,11 @@
   const documents = window.ENGLISH_101_DOCUMENTS || [];
   const categories = ["Grammar", "Vocabulary", "Writing", "Verb", "Guide"];
   const categoryInfo = {
-    Grammar: { icon: "Aa", label: "Ngữ pháp", text: "Nắm vững cấu trúc và quy tắc nền tảng.", color: "coral" },
-    Vocabulary: { icon: "W", label: "Từ vựng", text: "Mở rộng vốn từ theo chủ đề và trình độ.", color: "blue" },
-    Writing: { icon: "✎", label: "Kỹ năng viết", text: "Biến ý tưởng thành câu chữ tự nhiên.", color: "violet" },
-    Verb: { icon: "V", label: "Động từ", text: "Làm chủ động từ, biến thể và cụm từ.", color: "green" },
-    Guide: { icon: "⌁", label: "Hướng dẫn", text: "Lộ trình và phương pháp học hiệu quả.", color: "amber" }
+    Grammar: { icon: "Aa", label: "Ngữ pháp", text: "Nắm vững cấu trúc và quy tắc nền tảng.", color: "topic-grammar" },
+    Vocabulary: { icon: "W", label: "Từ vựng", text: "Mở rộng vốn từ theo chủ đề và trình độ.", color: "topic-vocabulary" },
+    Writing: { icon: "✎", label: "Kỹ năng viết", text: "Biến ý tưởng thành câu chữ tự nhiên.", color: "topic-writing" },
+    Verb: { icon: "V", label: "Động từ & diễn đạt", text: "Làm chủ động từ, biến thể và cụm từ.", color: "topic-verbs" },
+    Guide: { icon: "⌁", label: "Hướng dẫn", text: "Lộ trình và phương pháp học hiệu quả.", color: "topic-guide" }
   };
   const state = { category: "All", query: "" };
   const $ = (selector) => document.querySelector(selector);
@@ -20,7 +20,7 @@
       const info = categoryInfo[category];
       const count = documents.filter((doc) => doc.category === category).length;
       const active = state.category === category;
-      return `<button class="topic-card ${info.color}${active ? " active" : ""}" data-category="${category}" aria-pressed="${active}"><span class="topic-icon">${info.icon}</span><span class="topic-copy"><strong>${info.label}</strong><small>${info.text}</small></span><span class="topic-count">${count}<small>tài liệu</small></span><span class="topic-arrow">↗</span></button>`;
+      return `<button class="topic-card ${info.color}${active ? " active" : ""}" data-category="${category}" aria-pressed="${active}"><span class="topic-icon">${info.icon}</span><span class="topic-copy"><strong>${info.label}</strong><small>${info.text}</small></span><span class="topic-action"><span class="topic-count">${count}<small> tài liệu</small></span><span class="topic-open">Mở <b aria-hidden="true">→</b></span></span></button>`;
     }).join("");
   }
 
