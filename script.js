@@ -41,7 +41,8 @@
   function cardTemplate(doc, featured) {
     const info = categoryInfo[doc.category];
     const download = doc.downloadable ? `<a class="icon-button" href="${doc.path}" download title="Tải xuống" aria-label="Tải ${escapeHTML(doc.title)}">↓</a>` : "";
-    return `<article class="document-card ${featured ? "featured-card" : ""}"><div class="card-top"><span class="file-badge ${info.color}">${doc.type}</span><span class="category-label">${info.label}</span></div><div class="document-icon ${info.color}">${iconMarkup(iconById[doc.id] || info.icon)}</div><h3>${escapeHTML(doc.title)}</h3><p>${escapeHTML(doc.description)}</p><div class="card-actions"><a class="view-button" href="${viewerUrl(doc)}">Đọc trực tiếp <span>→</span></a>${download}</div></article>`;
+    const typeBadge = doc.type === "HTML" ? "" : `<span class="file-badge ${info.color}">${escapeHTML(doc.type)}</span>`;
+    return `<article class="document-card ${featured ? "featured-card" : ""}"><div class="card-top${typeBadge ? "" : " badge-less"}">${typeBadge}<span class="category-label">${info.label}</span></div><div class="document-icon ${info.color}">${iconMarkup(iconById[doc.id] || info.icon)}</div><h3>${escapeHTML(doc.title)}</h3><p>${escapeHTML(doc.description)}</p><div class="card-actions"><a class="view-button" href="${viewerUrl(doc)}">Đọc trực tiếp <span>→</span></a>${download}</div></article>`;
   }
 
   function renderFeatured() {
