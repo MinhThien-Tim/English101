@@ -20,7 +20,10 @@
     "verb-forms":"verb-forms.svg","paraphrase":"paraphrasing.svg","phrasal-verbs":"phrasal-verbs.svg",
     "deep-reading":"deep-reading.svg","english-grammar-notes":"grammar.svg","english-learning-101":"english-learning.svg"
   };
-  const iconUrl = (name) => `assets/icons/${name}`;
+  const iconMarkup = (name) => {
+    const id = String(name).replace(/\.svg$/i, "");
+    return `<svg class="lesson-icon-art" viewBox="0 0 400 300" aria-hidden="true" focusable="false"><use href="#lesson-icon-${id}"></use></svg>`;
+  };
   const state = { category: "All", query: "" };
   const $ = (selector) => document.querySelector(selector);
   const escapeHTML = (value) => String(value).replace(/[&<>'"]/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[char]));
@@ -31,14 +34,14 @@
     $("#topic-grid").innerHTML = categories.map((category) => {
       const info = categoryInfo[category];
       const count = documents.filter((doc) => doc.category === category).length;
-      return `<button class="topic-card ${info.color}" data-category="${category}"><span class="topic-icon"><img src="${iconUrl(info.icon)}" alt="" width="400" height="300"></span><span class="topic-copy"><strong>${info.label}</strong><small>${info.text}</small></span><span class="topic-count">${count}<small>tài liệu</small></span><span class="topic-arrow">↗</span></button>`;
+      return `<button class="topic-card ${info.color}" data-category="${category}"><span class="topic-icon">${iconMarkup(info.icon)}</span><span class="topic-copy"><strong>${info.label}</strong><small>${info.text}</small></span><span class="topic-count">${count}<small>tài liệu</small></span><span class="topic-arrow">↗</span></button>`;
     }).join("");
   }
 
   function cardTemplate(doc, featured) {
     const info = categoryInfo[doc.category];
     const download = doc.downloadable ? `<a class="icon-button" href="${doc.path}" download title="Tải xuống" aria-label="Tải ${escapeHTML(doc.title)}">↓</a>` : "";
-    return `<article class="document-card ${featured ? "featured-card" : ""}"><div class="card-top"><span class="file-badge ${info.color}">${doc.type}</span><span class="category-label">${info.label}</span></div><div class="document-icon ${info.color}"><img src="${iconUrl(iconById[doc.id] || info.icon)}" alt="" width="400" height="300" loading="lazy"></div><h3>${escapeHTML(doc.title)}</h3><p>${escapeHTML(doc.description)}</p><div class="card-actions"><a class="view-button" href="${viewerUrl(doc)}">Đọc trực tiếp <span>→</span></a>${download}</div></article>`;
+    return `<article class="document-card ${featured ? "featured-card" : ""}"><div class="card-top"><span class="file-badge ${info.color}">${doc.type}</span><span class="category-label">${info.label}</span></div><div class="document-icon ${info.color}">${iconMarkup(iconById[doc.id] || info.icon)}</div><h3>${escapeHTML(doc.title)}</h3><p>${escapeHTML(doc.description)}</p><div class="card-actions"><a class="view-button" href="${viewerUrl(doc)}">Đọc trực tiếp <span>→</span></a>${download}</div></article>`;
   }
 
   function renderFeatured() {
