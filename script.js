@@ -1,24 +1,25 @@
 (function () {
   "use strict";
   const documents = window.ENGLISH_101_DOCUMENTS || [];
-  const categories = ["Grammar", "Vocabulary", "Writing", "Verb", "Guide"];
+  const categories = ["Grammar", "Vocabulary", "Writing", "Verb", "Guide", "Blog"];
   const categoryInfo = {
     Grammar: { icon: "grammar.svg", label: "Ngữ pháp", text: "Nắm vững cấu trúc và quy tắc nền tảng.", color: "coral" },
     Vocabulary: { icon: "vocabulary.svg", label: "Từ vựng", text: "Mở rộng vốn từ theo chủ đề và trình độ.", color: "blue" },
     Writing: { icon: "writing.svg", label: "Kỹ năng viết", text: "Biến ý tưởng thành câu chữ tự nhiên.", color: "violet" },
     Verb: { icon: "verb-forms.svg", label: "Động từ", text: "Làm chủ động từ, biến thể và cụm từ.", color: "green" },
-    Guide: { icon: "guide.svg", label: "Hướng dẫn", text: "Lộ trình và phương pháp học hiệu quả.", color: "amber" }
+    Guide: { icon: "guide.svg", label: "Hướng dẫn", text: "Lộ trình và phương pháp học hiệu quả.", color: "amber" },
+    Blog: { icon: "writing.svg", label: "Blog học tập", text: "Chia sẻ cách học, ghi nhớ và luyện tập hiệu quả.", color: "coral" }
   };
   const iconById = {
-    "grammar-handbook":"grammar.svg","conjunctions":"grammar.svg","suffix-lab":"roots-suffixes.svg",
+    "grammar-handbook":"interface.svg","conjunctions":"menu.svg","suffix-lab":"roots-suffixes.svg",
     "prepositions":"prepositions.svg","parts-of-speech":"confused-words.svg","tense-quiz":"tenses.svg",
-    "vocabulary-atlas":"vocabulary.svg","root-atlas":"roots-suffixes.svg","c1-vocabulary":"vocabulary.svg",
+    "vocabulary-atlas":"vocabulary.svg","root-atlas":"roots-suffixes.svg","c1-vocabulary":"interface.svg",
     "confusing-words":"confused-words.svg","ielts-collocations":"collocations.svg","hiking-collocations":"collocations.svg",
     "vocab-writing":"learning-pipeline.svg","reading-translation":"reading-translation.svg","reading-translation-alt":"reading-translation.svg",
-    "vocab-1-2":"vocabulary.svg","vocab-3-4":"vocabulary.svg","vocab-5-6":"vocabulary.svg",
-    "essay-guide":"essay-writing.svg","writing-pipeline":"learning-pipeline.svg","english-verbs":"verb-forms.svg",
+    "vocab-1-2":"vocabulary.svg","vocab-3-4":"menu.svg","vocab-5-6":"interface.svg",
+    "essay-guide":"writing.svg","writing-pipeline":"learning-pipeline.svg","english-verbs":"verb-forms.svg",
     "verb-forms":"verb-forms.svg","paraphrase":"paraphrasing.svg","phrasal-verbs":"phrasal-verbs.svg",
-    "deep-reading":"deep-reading.svg","english-grammar-notes":"grammar.svg","english-learning-101":"english-learning.svg"
+    "deep-reading":"deep-reading.svg","english-grammar-notes":"grammar.svg","english-learning-101":"english-learning.svg","blog-active-recall":"writing.svg"
   };
   const iconMarkup = (name) => {
     const id = String(name).replace(/\.svg$/i, "");
@@ -47,6 +48,12 @@
 
   function renderFeatured() {
     $("#featured-grid").innerHTML = documents.filter((doc) => doc.featured).slice(0, 3).map((doc) => cardTemplate(doc, true)).join("");
+  }
+
+  function renderBlog() {
+    const blogGrid = $("#blog-grid");
+    if (!blogGrid) return;
+    blogGrid.innerHTML = documents.filter((doc) => doc.category === "Blog").slice(0, 3).map((doc) => cardTemplate(doc, true)).join("");
   }
 
   function renderFilters() {
@@ -88,5 +95,5 @@
   $(".main-nav").addEventListener("click", () => { $(".site-header").classList.remove("nav-open"); $(".menu-toggle").setAttribute("aria-expanded", "false"); });
   $("#doc-count").textContent = documents.length;
   $("#year").textContent = new Date().getFullYear();
-  renderTopics(); renderFeatured(); renderLibrary();
+  renderTopics(); renderFeatured(); renderBlog(); renderLibrary();
 }());
