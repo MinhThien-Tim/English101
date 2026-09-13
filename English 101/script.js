@@ -76,3 +76,7 @@
   $("#year").textContent = new Date().getFullYear();
   renderTopics(); renderFeatured(); renderLibrary();
 }());
+<<<<<<< ours
+=======
+
+>>>>>>> theirs
