@@ -34,5 +34,7 @@ window.ENGLISH_101_DOCUMENTS = [
 
   { id: "deep-reading", category: "Guide", title: "Giao trình Deep Reading", description: "Bài đọc sâu giúp tăng khả năng hiểu và phân tích văn bản học thuật / nâng cao.", type: "PDF", path: "Guide/Giao-trinh-Deep-Reading.pdf", featured: true, downloadable: true },
   { id: "english-grammar-notes", category: "Guide", title: "English Grammar Notes", description: "Ghi chú ngữ pháp trọng tâm để ôn tập nhanh và tra cứu dễ dàng.", type: "PDF", path: "Guide/English-Grammar-Notes.pdf", downloadable: true },
-  { id: "english-learning-101", category: "Guide", title: "English Learning 101", description: "Tài liệu hướng dẫn tổng quan lộ trình học tiếng Anh hiệu quả.", type: "PDF", path: "Guide/English-Learning-101.pdf", featured: true, downloadable: true }
+  { id: "english-learning-101", category: "Guide", title: "English Learning 101", description: "Tài liệu hướng dẫn tổng quan lộ trình học tiếng Anh hiệu quả.", type: "PDF", path: "Guide/English-Learning-101.pdf", featured: true, downloadable: true },
+
+  { id: "blog-active-recall", category: "Blog", title: "Từ “biết” đến “dùng được”", description: "Vì sao nhận biết một từ chưa đủ, và cách luyện truy hồi để biến vốn từ thụ động thành khả năng viết và nói.", type: "Article", path: "Blog/tu-biet-den-dung-duoc.html", featured: true }
 ];
