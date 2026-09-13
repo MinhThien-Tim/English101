@@ -1,83 +1,26 @@
 <!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="English 101 — kho tài liệu Grammar, Vocabulary, Writing, Verb và Guide miễn phí.">
-  <meta name="theme-color" content="#0b1220">
-  <title>English 101 — Learn with clarity</title>
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Lesson Library — mục lục học tiếng Anh gọn, rõ và dễ tra cứu.">
+  <title>Lesson Library – Compact Study Index</title>
+  <link rel="icon" href="assets/favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <a class="skip-link" href="#library">Đi đến kho tài liệu</a>
-  <header class="site-header" id="top">
-    <div class="nav-wrap container">
-      <a class="brand" href="#top" aria-label="English 101 - Trang chủ">
-        <span class="brand-mark">E<span>101</span></span>
-        <span>English 101<small>Learn with clarity</small></span>
-      </a>
-      <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Mở menu"><span></span><span></span><span></span></button>
-      <nav class="main-nav" id="main-nav" aria-label="Điều hướng chính">
-        <a href="#topics">Chủ đề</a><a href="#featured">Nổi bật</a><a href="#library">Tài liệu</a><a href="#about">Giới thiệu</a>
-      </nav>
-    </div>
-  </header>
-
+  <a class="skip" href="#lessons">Đến danh sách bài học</a>
+  <header><div class="shell nav"><a class="brand" href="#"><b>E<span>101</span></b><strong>English 101<small>LEARN WITH CLARITY</small></strong></a><div class="update"><i></i> Thư viện đang cập nhật</div></div></header>
   <main>
-    <section class="hero">
-      <div class="hero-glow hero-glow-a"></div><div class="hero-glow hero-glow-b"></div>
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <div class="eyebrow"><span></span> Your English learning space</div>
-          <h1>Học tiếng Anh<br><em>rõ ràng hơn.</em></h1>
-          <p>Một không gian học tập tập trung, nơi mọi tài liệu từ ngữ pháp đến kỹ năng viết đều sẵn sàng để đọc và luyện tập ngay trên trình duyệt.</p>
-          <form class="hero-search" id="search-form" role="search">
-            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m21 21-4.35-4.35m2.35-5.65a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"/></svg>
-            <label class="sr-only" for="search-input">Tìm tài liệu</label>
-            <input id="search-input" type="search" placeholder="Tìm ngữ pháp, từ vựng, IELTS..." autocomplete="off">
-            <button type="submit">Tìm kiếm</button>
-          </form>
-          <div class="hero-meta"><span><b id="doc-count">23</b> tài liệu</span><span><b>5</b> chủ đề</span><span><b>100%</b> miễn phí</span></div>
-        </div>
-        <div class="hero-art" aria-hidden="true">
-          <div class="word-card card-one"><span>VOCABULARY</span><strong>serendipity</strong><small>/ˌser.ənˈdɪp.ə.ti/</small><p>a happy discovery made by chance</p></div>
-          <div class="word-card card-two"><span>DAILY PROGRESS</span><strong>Keep going!</strong><div class="progress"><i></i></div><small>12 day streak · 84% complete</small></div>
-          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="floating-letter">A</div>
-        </div>
-      </div>
+    <section class="shell hero"><div><em>LESSON LIBRARY</em><h1>Mục lục bài học</h1><p>Tìm đúng bài, nắm rõ mục tiêu và tiếp tục hành trình học của bạn.</p></div><div class="stats"><div><b id="total">25</b><span>Bài học</span></div><div><b>5</b><span>Chủ đề</span></div><div><b id="done">0</b><span>Đã học</span></div></div></section>
+    <section class="shell controls">
+      <div class="search-row"><label class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input id="search" type="search" placeholder="Tìm tên bài, chủ đề hoặc nội dung..."><kbd>/</kbd></label><select id="sort" aria-label="Sắp xếp"><option value="default">Sắp xếp: Mặc định</option><option value="difficulty">Theo mức độ</option><option value="duration">Theo thời lượng</option><option value="progress">Theo tiến độ</option></select></div>
+      <div class="filter-row"><div id="topics" class="scroll" aria-label="Lọc chủ đề"></div><div class="views"><button data-view="table" class="active">☷ <span>Bảng</span></button><button data-view="grid">⊞ <span>Thẻ</span></button></div></div>
+      <div class="status-row"><div id="statuses" class="scroll"><button data-status="all" class="active">Tất cả</button><button data-status="not-started"><i class="gray"></i>Chưa học</button><button data-status="in-progress"><i class="blue"></i>Đang học</button><button data-status="completed"><i class="green"></i>Đã học</button></div><span id="results"></span></div>
     </section>
-
-    <section class="topics section container" id="topics">
-      <div class="section-heading"><div><span class="kicker">Explore by topic</span><h2>Chọn lộ trình của bạn</h2></div><p>Mỗi chủ đề là một bộ công cụ giúp bạn tiến gần hơn đến khả năng sử dụng tiếng Anh tự tin.</p></div>
-      <div class="topic-grid" id="topic-grid"></div>
-    </section>
-
-    <section class="featured section" id="featured">
-      <div class="container">
-        <div class="section-heading"><div><span class="kicker">Editor’s picks</span><h2>Tài liệu nổi bật</h2></div><button class="text-button" data-show-all>Xem toàn bộ <span>→</span></button></div>
-        <div class="featured-grid" id="featured-grid"></div>
-      </div>
-    </section>
-
-    <section class="library section container" id="library">
-      <div class="section-heading library-head"><div><span class="kicker">The library</span><h2>Kho học liệu</h2></div><p id="result-count" aria-live="polite"></p></div>
-      <div class="filters" id="filters" role="group" aria-label="Lọc theo chủ đề"></div>
-      <div class="document-grid" id="document-grid"></div>
-      <div class="empty-state" id="empty-state" hidden><span>⌕</span><h3>Không tìm thấy tài liệu</h3><p>Thử một từ khóa khác hoặc chọn lại “Tất cả”.</p><button class="primary-button" id="clear-search">Xóa bộ lọc</button></div>
-    </section>
-
-    <section class="about section" id="about">
-      <div class="container about-card"><div><span class="kicker light">Study smarter</span><h2>Một nơi. Mọi tài liệu.<br>Mở ra và học ngay.</h2></div><p>Không đăng nhập, không quảng cáo, không bước thừa. English 101 giúp bạn tập trung vào điều quan trọng nhất: tiến bộ mỗi ngày.</p><a href="#library" class="light-button">Bắt đầu học <span>→</span></a></div>
-    </section>
+    <section class="shell library" id="lessons"><div class="library-head"><div><h2>Tất cả bài học</h2><p>Nhấp vào trạng thái để cập nhật tiến độ của bạn.</p></div><span id="showing"></span></div><div id="list" class="lesson-table"></div><div id="empty" hidden><b>⌕</b><h3>Không tìm thấy bài học</h3><p>Hãy thử từ khóa hoặc bộ lọc khác.</p><button id="clear">Xóa bộ lọc</button></div></section>
   </main>
-
-  <footer class="footer"><div class="container footer-inner"><a class="brand footer-brand" href="#top"><span class="brand-mark">E<span>101</span></span><span>English 101<small>Learn with clarity</small></span></a><p>Kho học liệu tiếng Anh mở, được thiết kế cho việc tự học.</p><div class="footer-links"><a href="#topics">Chủ đề</a><a href="#library">Tài liệu</a><a href="README.md">Hướng dẫn</a></div><small class="copyright">© <span id="year"></span> English 101. Built for learners.</small></div></footer>
-
-  <script src="data/documents.js"></script>
-  <script src="script.js"></script>
-</body>
-</html>
+  <footer><div class="shell"><span>Lesson Library – Compact Study Index</span><span>English 101 · Học rõ ràng, tiến bộ bền vững.</span></div></footer>
+  <script src="data/documents.js"></script><script src="script.js"></script>
+</body></html>

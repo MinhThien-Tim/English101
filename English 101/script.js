@@ -1,78 +1,8 @@
-(function () {
-  "use strict";
-  const documents = window.ENGLISH_101_DOCUMENTS || [];
-  const categories = ["Grammar", "Vocabulary", "Writing", "Verb", "Guide"];
-  const categoryInfo = {
-    Grammar: { icon: "Aa", label: "Ngữ pháp", text: "Nắm vững cấu trúc và quy tắc nền tảng.", color: "topic-grammar" },
-    Vocabulary: { icon: "W", label: "Từ vựng", text: "Mở rộng vốn từ theo chủ đề và trình độ.", color: "topic-vocabulary" },
-    Writing: { icon: "✎", label: "Kỹ năng viết", text: "Biến ý tưởng thành câu chữ tự nhiên.", color: "topic-writing" },
-    Verb: { icon: "V", label: "Động từ & diễn đạt", text: "Làm chủ động từ, biến thể và cụm từ.", color: "topic-verbs" },
-    Guide: { icon: "⌁", label: "Hướng dẫn", text: "Lộ trình và phương pháp học hiệu quả.", color: "topic-guide" }
-  };
-  const state = { category: "All", query: "" };
-  const $ = (selector) => document.querySelector(selector);
-  const escapeHTML = (value) => String(value).replace(/[&<>'"]/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[char]));
-  const normalize = (value) => String(value).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
-  const viewerUrl = (doc) => `viewer.html?id=${encodeURIComponent(doc.id)}`;
-
-  function renderTopics() {
-    $("#topic-grid").innerHTML = categories.map((category) => {
-      const info = categoryInfo[category];
-      const count = documents.filter((doc) => doc.category === category).length;
-      const active = state.category === category;
-      return `<button class="topic-card ${info.color}${active ? " active" : ""}" data-category="${category}" aria-pressed="${active}"><span class="topic-icon">${info.icon}</span><span class="topic-copy"><strong>${info.label}</strong><small>${info.text}</small></span><span class="topic-action"><span class="topic-count">${count}<small> tài liệu</small></span><span class="topic-open">Mở <b aria-hidden="true">→</b></span></span></button>`;
-    }).join("");
-  }
-
-  function cardTemplate(doc, featured) {
-    const info = categoryInfo[doc.category];
-    const download = doc.downloadable ? `<a class="icon-button" href="${doc.path}" download title="Tải xuống" aria-label="Tải ${escapeHTML(doc.title)}">↓</a>` : "";
-    return `<article class="document-card ${info.color} ${featured ? "featured-card" : ""}"><div class="card-top"><span class="file-badge ${info.color}">${doc.type}</span><span class="category-label">${info.label}</span></div><div class="document-icon ${info.color}"><span>${doc.type === "PDF" ? "PDF" : "<>"}</span></div><h3>${escapeHTML(doc.title)}</h3><p>${escapeHTML(doc.description)}</p><div class="card-actions"><a class="view-button" href="${viewerUrl(doc)}">Đọc trực tiếp <span>→</span></a>${download}</div></article>`;
-  }
-
-  function renderFeatured() {
-    $("#featured-grid").innerHTML = documents.filter((doc) => doc.featured).slice(0, 3).map((doc) => cardTemplate(doc, true)).join("");
-  }
-
-  function renderFilters() {
-    const items = ["All", ...categories];
-    $("#filters").innerHTML = items.map((item) => `<button class="filter-button${state.category === item ? " active" : ""}" data-filter="${item}">${item === "All" ? "Tất cả" : categoryInfo[item].label}<span>${item === "All" ? documents.length : documents.filter((doc) => doc.category === item).length}</span></button>`).join("");
-  }
-
-  function filteredDocuments() {
-    const query = normalize(state.query);
-    return documents.filter((doc) => (state.category === "All" || doc.category === state.category) && (!query || normalize(`${doc.title} ${doc.description} ${doc.category} ${doc.type}`).includes(query)));
-  }
-
-  function renderLibrary() {
-    const results = filteredDocuments();
-    $("#document-grid").innerHTML = results.map((doc) => cardTemplate(doc, false)).join("");
-    $("#result-count").textContent = `${results.length} tài liệu${state.query ? ` cho “${state.query}”` : ""}`;
-    $("#empty-state").hidden = results.length !== 0;
-    renderFilters();
-  }
-
-  function selectCategory(category) {
-    state.category = category;
-    renderTopics();
-    renderLibrary();
-    $("#library").scrollIntoView({ behavior: "smooth" });
-  }
-
-  document.addEventListener("click", (event) => {
-    const category = event.target.closest("[data-category]");
-    const filter = event.target.closest("[data-filter]");
-    if (category) selectCategory(category.dataset.category);
-    if (filter) selectCategory(filter.dataset.filter);
-    if (event.target.closest("[data-show-all]")) selectCategory("All");
-    if (event.target.closest("#clear-search")) { state.category = "All"; state.query = ""; $("#search-input").value = ""; renderLibrary(); }
-  });
-
-  $("#search-form").addEventListener("submit", (event) => { event.preventDefault(); state.query = $("#search-input").value.trim(); state.category = "All"; renderLibrary(); $("#library").scrollIntoView({ behavior: "smooth" }); });
-  $("#search-input").addEventListener("input", (event) => { state.query = event.target.value.trim(); if (!state.query) renderLibrary(); });
-  $(".menu-toggle").addEventListener("click", () => { const open = $(".site-header").classList.toggle("nav-open"); $(".menu-toggle").setAttribute("aria-expanded", String(open)); });
-  $(".main-nav").addEventListener("click", () => { $(".site-header").classList.remove("nav-open"); $(".menu-toggle").setAttribute("aria-expanded", "false"); });
-  $("#doc-count").textContent = documents.length;
-  $("#year").textContent = new Date().getFullYear();
-  renderTopics(); renderFeatured(); renderLibrary();
-}());
+(function(){"use strict";
+const docs=window.ENGLISH_101_DOCUMENTS||[],cats=["Grammar","Vocabulary","Writing","Verb","Guide"],state={cat:"All",status:"all",q:"",sort:"default",view:localStorage.getItem("lesson-view")||"table"},saved=JSON.parse(localStorage.getItem("lesson-progress")||"{}"),$=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>'"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c])),norm=s=>String(s).normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase(),meta=(d,i)=>({level:d.category==="Guide"?1:d.category==="Writing"?3:i%3+1,duration:12+i%5*6,content:d.type==="PDF"?"1 tài liệu":3+i%6+" mục",progress:saved[d.id]??[0,0,35,0,70,100][i%6]}),status=n=>n>=100?"completed":n>0?"in-progress":"not-started",statusName={"not-started":"Chưa học","in-progress":"Đang học",completed:"Đã học"},levels=["","Cơ bản","Trung bình","Nâng cao"];
+function all(){return docs.map((d,i)=>({...d,...meta(d,i),index:i}))}function filtered(){let q=norm(state.q),a=all().filter(d=>(state.cat==="All"||d.category===state.cat)&&(state.status==="all"||status(d.progress)===state.status)&&(!q||norm(d.title+" "+d.description+" "+d.category).includes(q)));return a.sort((a,b)=>state.sort==="difficulty"?a.level-b.level:state.sort==="duration"?a.duration-b.duration:state.sort==="progress"?b.progress-a.progress:a.index-b.index)}
+function row(d){let st=status(d.progress);return `<article class="lesson"><div class="lesson-main"><div><h3>${esc(d.title)}</h3><span class="tag ${d.category}">${d.category}</span></div><p>${esc(d.description)}</p></div><div class="cell difficulty" data-label="Mức độ"><span class="bars l${d.level}"><i></i><i></i><i></i></span>${levels[d.level]}</div><div class="cell content" data-label="Nội dung">${d.content}</div><div class="cell" data-label="Thời lượng">${d.duration} phút</div><div class="cell progress ${st}" data-label="Tiến độ"><span class="track"><i style="width:${d.progress}%"></i></span><span>${d.progress}%</span></div><div class="cell" data-label="Trạng thái"><button class="cycle ${st}" data-id="${d.id}">${statusName[st]}</button></div><a class="open" href="viewer.html?id=${encodeURIComponent(d.id)}">Mở →</a></article>`}
+function render(){let a=filtered();$("#topics").innerHTML=["All",...cats].map(c=>`<button data-cat="${c}" class="${state.cat===c?"active":""}">${c==="All"?"Tất cả":c} <span>${c==="All"?docs.length:docs.filter(d=>d.category===c).length}</span></button>`).join("");$("#list").className="lesson-table"+(state.view==="grid"?" grid":"");$("#list").innerHTML='<div class="head"><span>Bài học</span><span>Mức độ</span><span>Nội dung</span><span>Thời lượng</span><span>Tiến độ</span><span></span></div>'+a.map(row).join("");$("#list").hidden=!a.length;$("#empty").hidden=!!a.length;$("#results").textContent=a.length+" kết quả";$("#showing").textContent="Hiển thị "+a.length+" / "+docs.length;$("#total").textContent=docs.length;$("#done").textContent=all().filter(d=>d.progress===100).length;document.querySelectorAll("[data-view]").forEach(b=>b.classList.toggle("active",b.dataset.view===state.view));document.querySelectorAll("[data-status]").forEach(b=>b.classList.toggle("active",b.dataset.status===state.status))}
+document.addEventListener("click",e=>{let c=e.target.closest("[data-cat]"),s=e.target.closest("[data-status]"),v=e.target.closest("[data-view]"),p=e.target.closest("[data-id]");if(c){state.cat=c.dataset.cat;render()}if(s){state.status=s.dataset.status;render()}if(v){state.view=v.dataset.view;localStorage.setItem("lesson-view",state.view);render()}if(p){let d=all().find(x=>x.id===p.dataset.id);saved[d.id]=d.progress===0?50:d.progress<100?100:0;localStorage.setItem("lesson-progress",JSON.stringify(saved));render()}if(e.target.closest("#clear")){state.cat="All";state.status="all";state.q="";state.sort="default";$("#search").value="";$("#sort").value="default";render()}});
+$("#search").addEventListener("input",e=>{state.q=e.target.value.trim();render()});$("#sort").addEventListener("change",e=>{state.sort=e.target.value;render()});document.addEventListener("keydown",e=>{if(e.key==="/"&&document.activeElement!==$("#search")){e.preventDefault();$("#search").focus()}});render()})();
