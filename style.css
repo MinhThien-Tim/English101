@@ -15,3 +15,5 @@
 .document-grid .document-card{min-height:424px}
 @media(max-width:720px){.topic-icon{height:86px}.document-icon,.featured-card .document-icon{height:132px}.document-grid .document-card{min-height:410px}}
 @media(max-width:480px){.topic-icon{height:104px}.document-icon,.featured-card .document-icon{height:158px}.document-grid .document-card{min-height:430px}}
+
+.card-top.badge-less{justify-content:flex-end}
