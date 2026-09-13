@@ -6,10 +6,10 @@
 
 /* English101 lesson illustration system */
 .topic-icon{display:flex;align-items:center;justify-content:center;width:100%;height:92px;padding:4px;overflow:hidden;border:1px solid var(--line);border-radius:16px;background:var(--paper)!important}
-.topic-icon img{display:block;width:100%;height:100%;object-fit:contain}
+.lesson-icon-sprite{position:absolute;width:0;height:0;overflow:hidden}.topic-icon .lesson-icon-art{display:block;width:100%;height:100%}
 .topic-copy{margin-top:18px}
 .document-icon,.document-icon.coral,.document-icon.blue,.document-icon.violet,.document-icon.green,.document-icon.amber{display:flex;align-items:center;justify-content:center;width:100%;height:124px;margin-top:22px;padding:5px;overflow:hidden;border:1px solid var(--line);border-radius:16px;background:var(--paper)!important;box-shadow:none}
-.document-icon img{display:block;width:100%;height:100%;object-fit:contain}
+.document-icon .lesson-icon-art{display:block;width:100%;height:100%}
 .featured-card .document-icon{height:150px}
 .document-card h3{margin-top:18px}
 .document-grid .document-card{min-height:424px}
