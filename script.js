@@ -3,12 +3,12 @@
   const documents = window.ENGLISH_101_DOCUMENTS || [];
   const categories = ["Grammar", "Vocabulary", "Writing", "Verb", "Guide", "Blog"];
   const categoryInfo = {
-    Grammar: { icon: "grammar.svg", label: "Ngữ pháp", text: "Nắm vững cấu trúc và quy tắc nền tảng.", color: "coral" },
-    Vocabulary: { icon: "vocabulary.svg", label: "Từ vựng", text: "Mở rộng vốn từ theo chủ đề và trình độ.", color: "blue" },
-    Writing: { icon: "writing.svg", label: "Kỹ năng viết", text: "Biến ý tưởng thành câu chữ tự nhiên.", color: "violet" },
-    Verb: { icon: "verb-forms.svg", label: "Động từ", text: "Làm chủ động từ, biến thể và cụm từ.", color: "green" },
-    Guide: { icon: "guide.svg", label: "Hướng dẫn", text: "Lộ trình và phương pháp học hiệu quả.", color: "amber" },
-    Blog: { icon: "writing.svg", label: "Blog học tập", text: "Chia sẻ cách học, ghi nhớ và luyện tập hiệu quả.", color: "coral" }
+    Grammar: { icon: "grammar.svg", label: "Ngữ pháp", text: "Nắm vững cấu trúc và quy tắc nền tảng.", color: "topic-grammar" },
+    Vocabulary: { icon: "vocabulary.svg", label: "Từ vựng", text: "Mở rộng vốn từ theo chủ đề và trình độ.", color: "topic-vocabulary" },
+    Writing: { icon: "writing.svg", label: "Kỹ năng viết", text: "Biến ý tưởng thành câu chữ tự nhiên.", color: "topic-writing" },
+    Verb: { icon: "verb-forms.svg", label: "Động từ & diễn đạt", text: "Làm chủ động từ, biến thể và cụm từ.", color: "topic-verbs" },
+    Guide: { icon: "guide.svg", label: "Hướng dẫn", text: "Lộ trình và phương pháp học hiệu quả.", color: "topic-guide" },
+    Blog: { icon: "writing.svg", label: "Blog học tập", text: "Chia sẻ cách học, ghi nhớ và luyện tập hiệu quả.", color: "topic-blog" }
   };
   const iconById = {
     "grammar-handbook":"interface.svg","conjunctions":"menu.svg","suffix-lab":"roots-suffixes.svg",
@@ -35,7 +35,8 @@
     $("#topic-grid").innerHTML = categories.map((category) => {
       const info = categoryInfo[category];
       const count = documents.filter((doc) => doc.category === category).length;
-      return `<button class="topic-card ${info.color}" data-category="${category}"><span class="topic-icon">${iconMarkup(info.icon)}</span><span class="topic-copy"><strong>${info.label}</strong><small>${info.text}</small></span><span class="topic-count">${count}<small>tài liệu</small></span><span class="topic-arrow">↗</span></button>`;
+      const active = state.category === category;
+      return `<button class="topic-card ${info.color}${active ? " active" : ""}" data-category="${category}" aria-pressed="${active}"><span class="topic-icon">${iconMarkup(info.icon)}</span><span class="topic-copy"><strong>${info.label}</strong><small>${info.text}</small></span><span class="topic-action"><span class="topic-count">${count}<small> tài liệu</small></span><span class="topic-open">Mở <b aria-hidden="true">→</b></span></span></button>`;
     }).join("");
   }
 
@@ -76,6 +77,7 @@
 
   function selectCategory(category) {
     state.category = category;
+    renderTopics();
     renderLibrary();
     $("#library").scrollIntoView({ behavior: "smooth" });
   }
