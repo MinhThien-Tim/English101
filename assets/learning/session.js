@@ -117,6 +117,14 @@
           advance();
           break;
         }
+        case 'RECLASSIFY_ASSISTED': {
+          const latest = state.attempts[state.attempts.length - 1];
+          if (latest && latest.entryId === currentEntry().id) {
+            latest.assisted = true;
+            state.answerState.assisted = true;
+          }
+          break;
+        }
         case 'NEXT':
           if (state.kind === 'flashcard' ? state.answerState.revealed : state.answerState.submitted) advance();
           break;

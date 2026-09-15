@@ -55,3 +55,13 @@ for (const script of ['ielts-hiking-modern.js', 'ielts-c1-c2-modern.js']) {
     assert.doesNotMatch(source, /Answer'\)\.addEventListener\('keydown'/);
   });
 }
+
+for (const page of ['vocabulary-atlas.html', 'root-atlas.html']) {
+  test(`${page} uses the shared learning interfaces without a local page-level keydown listener`, () => {
+    const source = fs.readFileSync(path.join(root, 'Vocabulary', page), 'utf8');
+    assert.match(source, /createLearningSession/);
+    assert.match(source, /createPersistence/);
+    assert.match(source, /createKeyboardDispatcher/);
+    assert.doesNotMatch(source, /document\.addEventListener\('keydown'/);
+  });
+}
