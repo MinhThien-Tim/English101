@@ -1,5 +1,26 @@
 (() => {
   'use strict';
+  const installPronunciationShortcut = () => {
+    const register = () => window.EnglishPronunciation?.register({
+      getCurrentText: () => {
+        try {
+          const inSession = document.body.classList.contains('quiz-focus') || Boolean(document.querySelector('.study .word'));
+          const item = inSession && typeof window.current === 'function' ? window.current() : null;
+          return item?.w || item?.word || item?.term || (inSession ? document.querySelector('.study .word')?.textContent?.trim() : '') || '';
+        } catch (_) {
+          return document.querySelector('.study .word')?.textContent?.trim() || '';
+        }
+      },
+      lang: document.querySelector('#accent')?.value || 'en-GB',
+      rate: Number(document.querySelector('#rate')?.value) || .86
+    });
+    if (window.EnglishPronunciation) return register();
+    const script = document.createElement('script');
+    script.src = '../assets/keyboard-pronunciation.js?v=20260915-l3';
+    script.addEventListener('load', register, {once:true});
+    document.head.appendChild(script);
+  };
+  installPronunciationShortcut();
   const button = document.createElement('button');
   button.type = 'button';
   button.className = 'focus-toggle';

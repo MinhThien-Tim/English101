@@ -436,10 +436,29 @@
   header.top h1{font-family:'IBM Plex Sans',sans-serif;font-size:clamp(30px,5vw,42px);line-height:1.08;color:#142b43;font-style:normal;letter-spacing:-.025em}
   header.top p,header.top .catno{color:var(--muted);font-size:14px}
   nav.tabs{position:sticky;top:0;z-index:20;gap:6px;margin-bottom:14px;padding:5px;background:rgba(16,28,45,.95);border:1px solid #31455d;border-radius:9px;box-shadow:0 8px 22px rgba(3,12,23,.2);backdrop-filter:blur(9px)}
-  nav.tabs button{border:0;border-radius:6px;color:#c2ceda;background:transparent;text-transform:none;font-size:13px;letter-spacing:0}
+  nav.tabs button{border:0;border-radius:6px;color:#c2ceda;background:transparent;text-transform:none;font-size:13px;letter-spacing:0;text-align:left;display:flex;align-items:center;gap:10px;padding:10px 13px}
   nav.tabs button.active{background:#f8fafc;color:#183f60;box-shadow:0 2px 9px rgba(3,12,23,.18);font-weight:700}
   nav.tabs button:hover:not(.active){background:#263a51;color:#fff}
+  .tab-icon{width:30px;height:30px;display:grid;place-items:center;flex:0 0 auto;border:1px solid currentColor;border-radius:6px;font-size:15px;line-height:1}
+  .tab-copy{display:flex;flex-direction:column;line-height:1.25}
+  .tab-copy small{margin-top:2px;font-size:11px;font-weight:400;opacity:.72}
   .lib-intro{color:#34465a;background:#f8fafc;border-left:4px solid #356384;border-radius:0 7px 7px 0;padding:12px 14px;font-size:15px;box-shadow:0 5px 15px rgba(3,12,23,.12)}
+  .library-tools{margin-bottom:14px;padding:15px;background:#f8fafc;border:1px solid #cbd5e1;border-radius:8px;box-shadow:0 5px 15px rgba(3,12,23,.12)}
+  .filter-group+.filter-group{margin-top:13px}
+  .filter-label{display:flex;justify-content:space-between;gap:12px;margin-bottom:7px;color:#465a6e;font:700 11px 'IBM Plex Mono',monospace;letter-spacing:.055em;text-transform:uppercase}
+  .filter-label span{color:#77889a;font-weight:500;text-transform:none;letter-spacing:0}
+  .focus-row{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
+  .focus-choice{min-width:0;padding:9px 8px;border:1px solid #cbd5e1;border-radius:7px;background:#fff;color:#40566b;font:600 12.5px 'IBM Plex Sans',sans-serif;cursor:pointer;text-align:center}
+  .focus-choice:hover{background:#e8eff5;border-color:#7893aa}
+  .focus-choice.sel{background:#27577a;border-color:#27577a;color:#fff;box-shadow:0 4px 12px rgba(24,63,96,.2)}
+  .library-search{position:relative;display:block;margin-top:13px}
+  .library-search input{width:100%;padding:11px 40px 11px 13px;border:1px solid #b9c8d4;border-radius:7px;background:#fff;color:#172033;font:14px 'IBM Plex Sans',sans-serif}
+  .library-search input:focus{outline:none;border-color:#27577a;box-shadow:0 0 0 3px rgba(39,87,122,.14)}
+  .library-search span{position:absolute;right:13px;top:50%;transform:translateY(-50%);color:#6c7f91;pointer-events:none}
+  .library-status{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:12px 2px 9px;color:#b9c7d3;font-size:12.5px}
+  .library-status strong{color:#fff;font-weight:700}
+  .clear-filters{border:0;background:none;color:#b9c7d3;text-decoration:underline;text-underline-offset:3px;cursor:pointer;font:inherit}
+  .library-tools .tier-row{margin-bottom:0}
   .tier-row{gap:7px;margin-bottom:14px}
   .tier-choice,.choice{background:#f8fafc;border-color:#cbd5e1;border-radius:7px;color:#4b5d70;font-size:14px}
   .tier-choice:hover,.choice:hover{background:#e8eff5;border-color:#7893aa}
@@ -462,7 +481,7 @@
   .entry{padding:14px 17px 14px 56px;border-color:#dbe3ea}
   .entry:hover{background:#f1f5f8}
   .entry .row1{gap:9px;align-items:center}
-  .entry .word{display:inline-block;padding:3px 9px;border:1px solid #e8c38f;border-radius:5px;background:#fff4df;color:#8b1e2d;font-size:18.5px;font-weight:800;letter-spacing:.012em;box-shadow:0 1px 0 rgba(139,30,45,.08)}
+  .entry .word{display:inline-block;padding:3px 9px;border:1px solid #d9a0a7;border-radius:5px;background:#fff;color:#711b2c;font-size:19.5px;line-height:1.35;font-weight:800;letter-spacing:.018em;box-shadow:inset 3px 0 0 #a63d4d}
   .entry .pos{display:inline-block;padding:2px 7px;border:1px solid #d1dbe4;border-radius:4px;background:#f2f5f8;color:#647184;font-size:11.5px;font-style:normal;font-weight:600}
   .entry .vi{margin-top:7px;color:#111827;font-size:15.5px;font-weight:650}
   .entry .ex{margin-top:7px;color:#405268;font-size:14px}
@@ -470,6 +489,8 @@
   .entry .ex .vi-line{color:#718096}
   .tip{padding:12px 18px 14px 56px;background:#edf3f7;color:#405f76;font-size:13.5px;border-top:1px solid #d6e1e9}
   .tip b{color:#183f60}
+  .card-meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+  .focus-badge{padding:4px 8px;border:1px solid #c7d3dd;border-radius:4px;background:#f8fafc;color:#526a7f;font:600 10.5px 'IBM Plex Sans',sans-serif;white-space:nowrap}
   .setup{padding:20px}
   .setup h2,.prompt-main,.end-card .score{font-family:'IBM Plex Sans',sans-serif;font-style:normal;letter-spacing:-.015em}
   .setup h2{font-size:23px}
@@ -494,14 +515,21 @@
   .feedback.bad{background:#f8e7e8;color:#8c3038;border-color:#b2454d}
   .feedback .correct-ans{display:inline-block;padding:1px 6px;border-radius:4px;background:#fff;color:#173f67;font-size:1.12em;font-weight:800}
   footer.foot{color:#9fb0c0}
-  button:focus-visible,input:focus-visible,summary:focus-visible,.choice:focus-visible,.tier-choice:focus-visible{outline:3px solid rgba(119,164,197,.5);outline-offset:2px}
+  button:focus-visible,input:focus-visible,summary:focus-visible,.choice:focus-visible,.tier-choice:focus-visible,.focus-choice:focus-visible{outline:3px solid rgba(119,164,197,.5);outline-offset:2px}
   @media (max-width:480px){
     .wrap{padding:12px 10px 48px}
     header.top{align-items:flex-start;padding:17px 15px}
     header.top .catno{font-size:11px}
     nav.tabs{border-radius:8px}
+    nav.tabs button{padding:9px 8px;gap:7px}
+    .tab-icon{width:27px;height:27px}
+    .tab-copy small{display:none}
+    .focus-row{grid-template-columns:repeat(2,1fr)}
+    .filter-label span{display:none}
     .choice{min-width:90px;font-size:13px}
     .card-head h3{font-size:16px}
+    .card-meta{justify-content:flex-start;width:100%}
+    .card>.card-head{flex-wrap:wrap}
     .entry{padding:11px 13px 11px 16px}
     .tip{padding:11px 14px}
   }
@@ -519,20 +547,45 @@
     <div class="catno" id="catCounter">58 thẻ mục<br>~150 mục từ</div>
   </header>
 
-  <nav class="tabs">
-    <button class="tab-btn active" data-tab="lib">Thư viện</button>
-    <button class="tab-btn" data-tab="quiz">Chính tả</button>
+  <nav class="tabs" aria-label="Chọn chế độ học">
+    <button class="tab-btn active" data-tab="lib" aria-selected="true">
+      <span class="tab-icon" aria-hidden="true">▤</span>
+      <span class="tab-copy">Thư viện<small>Khám phá &amp; phân biệt từ</small></span>
+    </button>
+    <button class="tab-btn" data-tab="quiz" aria-selected="false">
+      <span class="tab-icon" aria-hidden="true">✎</span>
+      <span class="tab-copy">Chính tả<small>Luyện nhớ bằng câu hỏi</small></span>
+    </button>
   </nav>
 
   <!-- ===================== LIBRARY ===================== -->
   <section class="panel active" id="panel-lib">
-    <p class="lib-intro">Đọc qua các thẻ mục lục dưới đây trước khi làm bài chính tả. Mỗi thẻ là một nhóm từ dễ nhầm, kèm nghĩa, ví dụ song ngữ và mẹo phân biệt.</p>
-    <div class="tier-row" id="libTierRow">
-      <div class="tier-choice sel" data-tier="all">Tất cả</div>
-      <div class="tier-choice" data-tier="1">Tầng 1<br><small>A2–B1</small></div>
-      <div class="tier-choice" data-tier="2">Tầng 2<br><small>B2–C1</small></div>
-      <div class="tier-choice" data-tier="3">Tầng 3<br><small>C1–C2</small></div>
+    <p class="lib-intro">Chọn <strong>trình độ</strong> và <strong>kiểu dễ nhầm</strong> bạn muốn học. Mỗi nhóm có nghĩa, ví dụ song ngữ và một mẹo nhận biết ngắn.</p>
+    <div class="library-tools">
+      <div class="filter-group">
+        <div class="filter-label">Trình độ <span>Học từ quen thuộc đến học thuật</span></div>
+        <div class="tier-row" id="libTierRow">
+          <button class="tier-choice sel" type="button" data-tier="all">Tất cả</button>
+          <button class="tier-choice" type="button" data-tier="1">Nền tảng<br><small>A2–B1</small></button>
+          <button class="tier-choice" type="button" data-tier="2">Nâng cao<br><small>B2–C1</small></button>
+          <button class="tier-choice" type="button" data-tier="3">Học thuật<br><small>C1–C2</small></button>
+        </div>
+      </div>
+      <div class="filter-group">
+        <div class="filter-label">Kiểu dễ nhầm <span>Chọn đúng kỹ năng cần ôn</span></div>
+        <div class="focus-row" id="libFocusRow">
+          <button class="focus-choice sel" type="button" data-focus="all">Tất cả</button>
+          <button class="focus-choice" type="button" data-focus="family">Gia đình từ</button>
+          <button class="focus-choice" type="button" data-focus="usage">Nghĩa &amp; cách dùng</button>
+          <button class="focus-choice" type="button" data-focus="spelling">Chính tả &amp; dạng viết</button>
+        </div>
+      </div>
+      <label class="library-search">
+        <span aria-hidden="true">⌕</span>
+        <input id="libSearch" type="search" placeholder="Tìm từ hoặc nhóm từ…" autocomplete="off">
+      </label>
     </div>
+    <div class="library-status"><span id="libStatus" aria-live="polite"></span><button class="clear-filters" id="clearLibFilters" type="button">Xóa bộ lọc</button></div>
     <div id="libList"></div>
   </section>
 
@@ -618,6 +671,7 @@
   <footer class="foot">MỤC LỤC TỪ VỰNG — biên soạn cho việc tự học IELTS</footer>
 </div>
 
+<script src="../assets/keyboard-pronunciation.js?v=20260915-l2"></script>
 <script>
 /* ========================================================================
    DATA
@@ -1336,19 +1390,47 @@ GROUPS.forEach(g => totalWords += g.words.length);
 document.getElementById('catCounter').innerHTML = `${GROUPS.length} thẻ mục<br>${totalWords} mục từ`;
 
 const TIER_LABEL = {1:'Tầng 1 · A2–B1', 2:'Tầng 2 · B2–C1', 3:'Tầng 3 · C1–C2'};
+const FOCUS_LABEL = {
+  family:'Gia đình từ',
+  usage:'Nghĩa & cách dùng',
+  spelling:'Chính tả & dạng viết'
+};
+const SPELLING_GROUPS = new Set([
+  'advice / advise','practice / practise','accept / except','lose / loose','breath / breathe','quiet / quite',
+  'then / than',"your / you're","its / it's","they're / their / there",'beside / besides','everyday / every day',
+  'maybe / may be','altogether / all together','sometime / sometimes / some time / someday','apart / a part',
+  'cite / site / sight','stationary / stationery','desert / dessert','canvas / canvass','device / devise',
+  'formally / formerly','prophecy / prophesy','waive / wave','weather / whether','later / latter','already / all ready',
+  'awhile / a while',"whose / who's",'coarse / course'
+]);
+function groupFocus(group){
+  if(SPELLING_GROUPS.has(group.t)) return 'spelling';
+  if(group.t.includes('→')) return 'family';
+  return 'usage';
+}
 
-function renderLibrary(tierFilter){
+let libraryTier = 'all';
+let libraryFocus = 'all';
+let libraryQuery = '';
+
+function renderLibrary(){
   libList.innerHTML = '';
   let n = 0;
+  let wordCount = 0;
   GROUPS.forEach((g) => {
-    if(tierFilter !== 'all' && String(g.tier) !== String(tierFilter)) return;
+    const focus = groupFocus(g);
+    const searchable = [g.t, g.tip, ...g.words.flatMap(w => [w.w, w.vi])].join(' ').toLocaleLowerCase('vi');
+    if(libraryTier !== 'all' && String(g.tier) !== String(libraryTier)) return;
+    if(libraryFocus !== 'all' && focus !== libraryFocus) return;
+    if(libraryQuery && !searchable.includes(libraryQuery)) return;
     n++;
+    wordCount += g.words.length;
     const card = document.createElement('details');
     card.className = 'card';
     if(n === 1) card.open = true;
     const head = document.createElement('summary');
     head.className = 'card-head';
-    head.innerHTML = `<h3>${g.t}</h3><span class="tier-badge t${g.tier}">${TIER_LABEL[g.tier]}</span>`;
+    head.innerHTML = `<h3>${g.t}</h3><span class="card-meta"><span class="focus-badge">${FOCUS_LABEL[focus]}</span><span class="tier-badge t${g.tier}">${TIER_LABEL[g.tier]}</span></span>`;
     card.appendChild(head);
     g.words.forEach(w => {
       const e = document.createElement('div');
@@ -1368,18 +1450,45 @@ function renderLibrary(tierFilter){
     }
     libList.appendChild(card);
   });
+  document.getElementById('libStatus').innerHTML = `<strong>${n}</strong> nhóm · <strong>${wordCount}</strong> từ phù hợp`;
   if(n === 0){
-    libList.innerHTML = '<p style="color:#aab1a9;font-size:13px;text-align:center;">Không có thẻ nào ở tầng này.</p>';
+    libList.innerHTML = '<p style="color:#d2dce5;font-size:13px;text-align:center;padding:22px 0;">Không tìm thấy nhóm phù hợp. Hãy thử từ khóa hoặc bộ lọc khác.</p>';
   }
 }
-renderLibrary('all');
+renderLibrary();
 
 document.querySelectorAll('#libTierRow .tier-choice').forEach(c => {
   c.addEventListener('click', () => {
     document.querySelectorAll('#libTierRow .tier-choice').forEach(x => x.classList.remove('sel'));
     c.classList.add('sel');
-    renderLibrary(c.dataset.tier);
+    libraryTier = c.dataset.tier;
+    renderLibrary();
   });
+});
+
+document.querySelectorAll('#libFocusRow .focus-choice').forEach(c => {
+  c.addEventListener('click', () => {
+    document.querySelectorAll('#libFocusRow .focus-choice').forEach(x => x.classList.remove('sel'));
+    c.classList.add('sel');
+    libraryFocus = c.dataset.focus;
+    renderLibrary();
+  });
+});
+
+document.getElementById('libSearch').addEventListener('input', (event) => {
+  libraryQuery = event.target.value.trim().toLocaleLowerCase('vi');
+  renderLibrary();
+});
+
+document.getElementById('clearLibFilters').addEventListener('click', () => {
+  libraryTier = 'all';
+  libraryFocus = 'all';
+  libraryQuery = '';
+  document.getElementById('libSearch').value = '';
+  document.querySelectorAll('#libTierRow .tier-choice, #libFocusRow .focus-choice').forEach(c => {
+    c.classList.toggle('sel', c.dataset.tier === 'all' || c.dataset.focus === 'all');
+  });
+  renderLibrary();
 });
 
 /* ========================================================================
@@ -1398,8 +1507,12 @@ GROUPS.forEach(g => {
 document.querySelectorAll('.tab-btn').forEach(btn => {
 
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
+    });
     btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
     document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
     document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
   });
@@ -1639,11 +1752,13 @@ document.getElementById('retryMissedBtn').addEventListener('click', () => {
 document.getElementById('listenBtn').addEventListener('click', () => {
   const item = sessionItems[currentIndex];
   if(!item || !('speechSynthesis' in window)) return;
-  const utter = new SpeechSynthesisUtterance(item.w + '. ' + item.en);
-  utter.lang = 'en-US';
-  utter.rate = 0.92;
-  window.speechSynthesis.cancel();
-  window.speechSynthesis.speak(utter);
+  window.EnglishPronunciation.speak(item.w + '. ' + item.en, {lang: 'en-US', rate: 0.92});
+});
+
+window.EnglishPronunciation.register({
+  getCurrentText: () => document.getElementById('quizBox').style.display !== 'none' ? sessionItems[currentIndex]?.w || '' : '',
+  lang: 'en-US',
+  rate: 0.92
 });
 </script>
 </body>

@@ -137,7 +137,7 @@
 
   <!-- ===================== LIBRARY ===================== -->
   <section class="panel active" id="panel-lib">
-    <p class="lib-intro">Duyệt động từ theo từng phần: dùng để nói, dùng chung, thiên về viết, và phrasal verbs — sắp xếp từ thường gặp đến ít gặp.</p>
+    <p class="lib-intro">Duyệt động từ theo từng phần: dùng để nói, dùng chung, thiên về viết, và phrasal verbs — sắp xếp từ thường gặp đến ít gặp. Chọn một từ rồi nhấn <kbd>L</kbd> để nghe.</p>
     <div class="part-row" id="libPartRow">
       <div class="part-choice sel" data-part="p1">Phần 1<br><small>Dùng để nói</small></div>
       <div class="part-choice" data-part="p2">Phần 2<br><small>Dùng chung</small></div>
@@ -164,7 +164,7 @@
   <section class="panel" id="panel-quiz">
     <div id="setupBox" class="setup">
       <h2>Bắt đầu Flashcard</h2>
-      <div class="sub">Chọn phần, chiều dịch và số lượng câu hỏi.</div>
+      <div class="sub">Chọn phần, chiều dịch và số lượng câu hỏi. Nhấn <kbd>L</kbd> để đọc từ đang học.</div>
 
       <div class="field-group" id="partFieldGroup">
         <label class="flabel">Phạm vi</label>
@@ -235,6 +235,7 @@
   <footer class="foot">KHO ĐỘNG TỪ — biên soạn cho việc tự học IELTS</footer>
 </div>
 
+<script src="../assets/keyboard-pronunciation.js?v=20260915-l2"></script>
 <script>
 /* ========================================================================
    DATA
@@ -682,6 +683,7 @@ document.getElementById('catCounter').innerHTML = `${TOTAL_WORDS} mục từ<br>
    LIBRARY RENDER
    ======================================================================== */
 let libPart = 'p1';
+let selectedLibraryWord = '';
 const libList = document.getElementById('libList');
 function renderLib(){
   const q = document.getElementById('searchBox').value.trim().toLowerCase();
@@ -701,6 +703,9 @@ function renderLib(){
     filtered.forEach(it => {
       const row = document.createElement('div');
       row.className = 'ledger-row';
+      row.dataset.speak = it.w;
+      row.tabIndex = 0;
+      row.setAttribute('aria-label', `Chọn từ ${it.w} để phát âm`);
       row.innerHTML = `<span class="lw">${it.w}</span><span class="lv">${it.vi}</span>`;
       ledger.appendChild(row);
     });
@@ -712,6 +717,20 @@ function renderLib(){
   }
 }
 renderLib();
+libList.addEventListener('click', event => {
+  const row = event.target.closest('[data-speak]');
+  if(!row) return;
+  selectedLibraryWord = row.dataset.speak;
+  window.EnglishPronunciation.setSelectedText(selectedLibraryWord);
+});
+libList.addEventListener('keydown', event => {
+  if(event.key !== 'Enter' && event.key !== ' ') return;
+  const row = event.target.closest('[data-speak]');
+  if(!row) return;
+  event.preventDefault();
+  selectedLibraryWord = row.dataset.speak;
+  window.EnglishPronunciation.setSelectedText(selectedLibraryWord);
+});
 document.querySelectorAll('#libPartRow .part-choice').forEach(c => {
   c.addEventListener('click', () => {
     document.querySelectorAll('#libPartRow .part-choice').forEach(x => x.classList.remove('sel'));
@@ -737,6 +756,7 @@ PURPOSE.forEach(p => {
   p.words.forEach(w => {
     const chip = document.createElement('span');
     chip.className = 'chip';
+    chip.dataset.speak = w;
     chip.title = MEANING_MAP[w] || '';
     chip.textContent = w;
     row.appendChild(chip);
@@ -759,6 +779,7 @@ CONFUSABLE_GROUPS.forEach(g => {
   g.words.forEach(w => {
     const e = document.createElement('div');
     e.className = 'cf-entry';
+    e.dataset.speak = w.w;
     e.innerHTML = `
       <div class="cfw">${w.w}</div>
       <div class="cfv">${w.vi}</div>
@@ -992,10 +1013,25 @@ document.getElementById('listenBtn').addEventListener('click', () => {
   const item = sessionItems[currentIndex];
   if(!item || !('speechSynthesis' in window)) return;
   const speakWord = direction === 'cloze' ? item.answer.split('/')[0].trim() : item.w;
-  const utter = new SpeechSynthesisUtterance(speakWord);
-  utter.lang = 'en-US'; utter.rate = 0.92;
-  window.speechSynthesis.cancel();
-  window.speechSynthesis.speak(utter);
+  window.EnglishPronunciation.speak(speakWord, {lang: 'en-US', rate: 0.92});
+});
+
+document.addEventListener('click', event => {
+  const target = event.target.closest('[data-speak]');
+  if(!target || !target.closest('#purposeList, #confusableList')) return;
+  selectedLibraryWord = target.dataset.speak;
+  window.EnglishPronunciation.setSelectedText(selectedLibraryWord);
+});
+
+window.EnglishPronunciation.register({
+  getCurrentText: () => {
+    const item = sessionItems[currentIndex];
+    const learning = document.getElementById('quizBox').style.display !== 'none';
+    if(learning && item) return direction === 'cloze' ? item.answer.split('/')[0].trim() : item.w;
+    return selectedLibraryWord;
+  },
+  lang: 'en-US',
+  rate: 0.92
 });
 </script>
 </body>

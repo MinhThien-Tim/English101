@@ -18,6 +18,7 @@
   let timerHandle = null;
   let questionMode = 'reverse';
   let wrongIndices = [];
+  let selectedLibraryIndex = null;
 
   function loadState() {
     try {
@@ -432,7 +433,11 @@
     const toggle = event.target.closest('[data-examples]');
     if (save) toggleIndex('saved', Number(save.dataset.save));
     if (learn) toggleIndex('learned', Number(learn.dataset.learn));
-    if (audio) speak(Number(audio.dataset.speak));
+    if (audio) {
+      selectedLibraryIndex = Number(audio.dataset.speak);
+      window.EnglishPronunciation.setSelectedText(baseWord(DATA[selectedLibraryIndex]));
+      speak(selectedLibraryIndex);
+    }
     if (toggle) {
       const examples = toggle.nextElementSibling;
       const open = examples.classList.toggle('open');
@@ -484,4 +489,13 @@
   updateResumeBox();
   renderLibrary();
   renderSaved();
+
+  window.EnglishPronunciation.register({
+    getCurrentText: () => {
+      if ($('#qplay').style.display === 'block' && quiz[quizIndex] !== undefined) return baseWord(DATA[quiz[quizIndex]]);
+      return selectedLibraryIndex === null ? '' : baseWord(DATA[selectedLibraryIndex]);
+    },
+    lang: 'en-GB',
+    rate: 0.84
+  });
 })();

@@ -347,6 +347,7 @@
 
 </div>
 
+<script src="../assets/keyboard-pronunciation.js?v=20260915-l2"></script>
 <script>
 const DATA = [
 {stt:1,term:"Back up",meaning:"Hỗ trợ",ex:["I'll back you up if the meeting gets tense.","Always back up your files before updating the software.","The union backed up the workers' demands for better pay."]},
@@ -654,6 +655,15 @@ document.getElementById('dictAnswer').addEventListener('keydown',e=>{
 
 buildRangeBar();
 render();
+
+window.EnglishPronunciation.register({
+  getCurrentText: () => {
+    if(dDeck[dIdx] && document.getElementById('dictPlay').style.display !== 'none') return dDeck[dIdx].term;
+    return DATA[deck[idx]]?.term || '';
+  },
+  lang: 'en-US',
+  rate: 0.8
+});
 </script>
 </body>
 </html>

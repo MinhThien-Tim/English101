@@ -91,12 +91,14 @@
   }
 
 </style>
+<link rel="stylesheet" href="ielts-collocations-modern.css?v=20260915-english-color-v3">
 </head>
 <body>
 
 <header>
-  <h1>IELTS HIKING · COLLOCATIONS BANK</h1>
-  <div class="sub">Flashcards đầy đủ · Unit 1–19 · Vocabulary for IELTS – Collocations</div>
+  <div class="eyebrow">IELTS VOCABULARY · UNITS 1–19</div><h1>Hiking Collocations</h1>
+  <div class="sub">Flashcards nhiều mặt · Luyện cụm từ · Điền câu · Dịch song ngữ</div>
+  <div class="header-stats"><span><b>19</b> units</span><span><b id="hikingTotal">—</b> collocations</span><a href="ielts-collocations-topic-table-with-dictation.html">C1–C2 Topic Bank →</a></div>
 </header>
 <div class="study-tabs">
   <button class="study-tab active" data-study="cards">FLASHCARDS</button>
@@ -144,9 +146,9 @@
 <div id="dictationPanel" class="study-panel">
   <div class="dict-wrap">
     <div id="dictSetup">
-      <h2>Chính tả Collocations</h2>
+      <span class="quiz-kicker">ACTIVE RECALL</span><h2>Kiểm tra Hiking Collocations</h2>
       <div class="dict-sub">
-        Luyện trực tiếp giữa <b>Collocation tiếng Anh</b> và <b>Nghĩa tiếng Việt</b>.
+        Luyện collocation, điền từ vào câu và dịch câu hoàn chỉnh theo hai chiều.
       </div>
 
       <div class="dict-grid">
@@ -157,10 +159,15 @@
           </select>
         </div>
         <div class="dict-field">
-          <label>Hướng luyện</label>
+          <label>Dạng kiểm tra</label>
           <select id="dictDirection">
-            <option value="en-vi">English Collocation → Vietnamese</option>
-            <option value="vi-en">Vietnamese → English Collocation</option>
+            <option value="vi-en">Nghĩa Việt → English collocation</option>
+            <option value="en-vi">English collocation → nghĩa Việt</option>
+            <option value="cloze">Điền collocation vào câu</option>
+            <option value="sent-en-vi">Dịch câu Anh → Việt</option>
+            <option value="sent-vi-en">Dịch câu Việt → Anh</option>
+            <option value="listen">Nghe từ → viết collocation</option>
+            <option value="mixed">Trộn các dạng</option>
           </select>
         </div>
         <div class="dict-field">
@@ -173,25 +180,31 @@
             <option value="9999">Tất cả</option>
           </select>
         </div>
+        <div class="dict-field"><label>Giới hạn mỗi câu</label><select id="dictSeconds"><option value="0">Không giới hạn</option><option value="30">30 giây</option><option value="60">60 giây</option><option value="120">120 giây</option></select></div>
       </div>
 
-      <button class="dict-btn" id="dictStart">BẮT ĐẦU</button>
+      <div class="resume-box" id="dictResumeBox" hidden><b>Phiên đang dở</b><span id="dictResumeText"></span><div class="dict-actions"><button class="dict-btn" id="dictResume">Tiếp tục</button><button class="dict-btn secondary" id="dictDiscard">Bỏ phiên</button></div></div>
+      <button class="dict-btn" id="dictStart">Bắt đầu phiên mới →</button>
     </div>
 
     <div id="dictPlay" style="display:none">
-      <div class="dict-meta">
+      <div class="quiz-session-bar"><div class="dict-meta">
         <span id="dictCounter">Câu 1</span>
         <span id="dictScore">Đúng: 0</span>
-      </div>
+        <span id="dictTimer">0 giây</span></div><div><button class="dict-btn secondary" id="dictPause">Tạm dừng</button><button class="dict-btn secondary" id="dictFinish">Kết thúc</button></div></div>
       <div class="dict-progress"><div id="dictProgress"></div></div>
 
       <div class="dict-prompt" id="dictPrompt">—</div>
       <div class="dict-hint" id="dictHint"></div>
+      <div id="dictHintArea"></div>
 
       <input id="dictAnswer" class="dict-answer" autocomplete="off" spellcheck="false" placeholder="Nhập đáp án...">
 
       <div class="dict-actions">
         <button class="dict-btn" id="dictCheck">KIỂM TRA</button>
+        <button class="dict-btn secondary" id="dictShowHint">GỢI Ý</button>
+        <button class="dict-btn secondary" id="dictUnknown">CHƯA BIẾT</button>
+        <button class="dict-btn secondary" id="dictListen" hidden>🔊 NGHE</button>
         <button class="dict-btn secondary" id="dictNext" style="display:none">TIẾP →</button>
       </div>
       <div id="dictFeedback" class="dict-feedback"></div>
@@ -900,6 +913,7 @@ const UNIT_TITLES = {
 };
 const ALL_UNITS = Object.keys(UNIT_TITLES).map(Number);
 
+if(false){
 let flipState = new Array(DATA.length).fill(0);
 let activeUnit = "all";
 let searchQ = "";
@@ -1147,6 +1161,9 @@ document.getElementById('dictAnswer').addEventListener('keydown',e=>{
 
 buildNav();
 render();
+}
 </script>
+<script src="../assets/keyboard-pronunciation.js?v=20260915-l2"></script>
+<script src="ielts-hiking-modern.js?v=20260915-english-color-v3"></script>
 </body>
 </html>
