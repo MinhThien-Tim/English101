@@ -45,3 +45,13 @@ test('the shared Lesson shell loads one runtime and the platform modules', () =>
   assert.match(runtime, /createKeyboardDispatcher/);
   assert.match(runtime, /createPersistence/);
 });
+
+for (const script of ['ielts-hiking-modern.js', 'ielts-c1-c2-modern.js']) {
+  test(`${script} uses the shared session, persistence and keyboard interfaces`, () => {
+    const source = fs.readFileSync(path.join(root, 'Vocabulary', script), 'utf8');
+    assert.match(source, /createLearningSession/);
+    assert.match(source, /createPersistence/);
+    assert.match(source, /createKeyboardDispatcher/);
+    assert.doesNotMatch(source, /Answer'\)\.addEventListener\('keydown'/);
+  });
+}
