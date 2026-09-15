@@ -1,0 +1,10 @@
+:where(button, a, input, select, textarea, summary):focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+:where(button, a, input, select, textarea) {
+  transition: background-color var(--duration-interaction), border-color var(--duration-interaction), color var(--duration-interaction), transform var(--duration-interaction), box-shadow var(--duration-interaction);
+}
+
+[aria-busy="true"] { cursor: progress; }
