@@ -1,5 +1,6 @@
 'use strict';
 const DATASET=window.ENGLISH101_VOCABULARY_DATASET,CONFIG=DATASET.config,{DATA,GROUPS,SYNONYMS,SYNEX}=DATASET;
+CONFIG.sourceUrl=`https://github.com/MinhThien-Tim/English101/blob/main/data/vocabulary/${CONFIG.set}.js`;
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const en=s=>String(s??'').normalize('NFKC').toLowerCase().replace(/[’‘]/g,"'").replace(/[‐‑–—]/g,'-').replace(/\s+/g,' ').trim().replace(/[.!?]+$/,'');
 const vn=s=>en(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d');
