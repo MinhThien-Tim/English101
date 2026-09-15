@@ -39,11 +39,13 @@ test('the shared Lesson shell loads one runtime and the platform modules', () =>
   assert.match(html, /learning\/session\.js/);
   assert.match(html, /learning\/keyboard\.js/);
   assert.match(html, /learning\/persistence\.js/);
+  assert.match(html, /ui\/dialog\.js/);
 
   const runtime = fs.readFileSync(path.join(root, 'assets/learning/vocabulary-rounds-app.js'), 'utf8');
   assert.doesNotMatch(runtime, /v12-atlas-v3|v34-atlas-v3|v56-atlas-v3/);
   assert.match(runtime, /createKeyboardDispatcher/);
   assert.match(runtime, /createPersistence/);
+  assert.match(runtime, /createDialogController/);
 });
 
 for (const script of ['ielts-hiking-modern.js', 'ielts-c1-c2-modern.js']) {
@@ -62,6 +64,8 @@ for (const page of ['vocabulary-atlas.html', 'root-atlas.html']) {
     assert.match(source, /createLearningSession/);
     assert.match(source, /createPersistence/);
     assert.match(source, /createKeyboardDispatcher/);
+    assert.match(source, /ui\/router\.js/);
+    assert.match(source, /popstate/);
     assert.doesNotMatch(source, /document\.addEventListener\('keydown'/);
   });
 }
@@ -75,3 +79,20 @@ for (const page of ['phrasal-verbs.html', 'paraphrase-80-flashcards.html']) {
     assert.doesNotMatch(source, /document\.addEventListener\('keydown'/);
   });
 }
+
+test('migrated Lessons load shared design tokens and primitives', () => {
+  const pages = [
+    'Vocabulary/vocabulary-practice.html',
+    'Vocabulary/vocabulary-atlas.html',
+    'Vocabulary/root-atlas.html',
+    'Vocabulary/ielts-collocations-topic-table-with-dictation.html',
+    'Vocabulary/ielts_hiking_collocations_full_with_dictation.html',
+    'Verb/phrasal-verbs.html',
+    'Verb/paraphrase-80-flashcards.html',
+  ];
+  for (const page of pages) {
+    const source = fs.readFileSync(path.join(root, page), 'utf8');
+    assert.match(source, /assets\/styles\/tokens\.css/);
+    assert.match(source, /assets\/styles\/primitives\.css/);
+  }
+});

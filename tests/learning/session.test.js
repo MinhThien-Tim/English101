@@ -92,3 +92,14 @@ test('the latest wrong attempt can be reclassified as assisted', () => {
     completed: 1, total: 2, correct: 0, incorrect: 0, assisted: 1, due: 1,
   });
 });
+
+test('a completed snapshot remains completed when restored', () => {
+  const session = createLearningSession({ entries: [entries[0]], strategy });
+  session.start();
+  session.dispatch({ type: 'SUBMIT', answer: 'alpha' });
+  session.dispatch({ type: 'NEXT' });
+
+  const restored = createLearningSession({ entries: [entries[0]], strategy, initialState: session.snapshot() });
+  assert.equal(restored.snapshot().status, 'completed');
+  assert.equal(restored.snapshot().currentEntry, null);
+});

@@ -32,7 +32,7 @@ window.ENGLISH_101_DOCUMENTS = [
 
   { id: "english-verbs", category: "Verb", title: "Động Từ Tiếng Anh", description: "Hệ thống động từ cho giao tiếp, kiến thức chung và viết.", type: "HTML", path: "Verb/english-verbs.html", featured: true },
   { id: "verb-forms", category: "Verb", title: "Five Forms of Verbs", description: "Bộ năm dạng động từ đầy đủ, gồm cả ngôi thứ ba số ít.", type: "HTML", path: "Verb/five-forms-of-verbs-with-3rd-person.html" },
-  { id: "paraphrase", category: "Verb", title: "80+ Cụm Chữa Yếu Paraphrase", description: "Flashcards giúp tăng vốn diễn đạt và cải thiện kỹ năng paraphrase.", type: "HTML", path: "Verb/paraphrase.html" },
+  { id: "paraphrase", category: "Verb", title: "80+ Cụm Chữa Yếu Paraphrase", description: "Flashcards giúp tăng vốn diễn đạt và cải thiện kỹ năng paraphrase.", type: "HTML", path: "Verb/paraphrase-80-flashcards.html" },
   { id: "phrasal-verbs", category: "Verb", title: "66 Phrasal Verbs Cực Mạnh", description: "Học cụm động từ thiết yếu qua flashcards tương tác.", type: "HTML", path: "Verb/phrasal-verbs.html", featured: true },
 
   { id: "deep-reading", category: "Guide", title: "Giao trình Deep Reading", description: "Bài đọc sâu giúp tăng khả năng hiểu và phân tích văn bản học thuật / nâng cao.", type: "PDF", path: "Guide/Giao-trinh-Deep-Reading.pdf", featured: true, downloadable: true },

@@ -41,7 +41,9 @@
         kind: snapshot.kind || kind,
         mode: snapshot.mode || mode,
         entryIds: entryIds.length ? entryIds : entries.map(entry => entry.id),
-        index: Math.min(Math.max(0, Number(snapshot.index) || 0), Math.max(0, entryIds.length - 1)),
+        index: snapshot.status === 'completed'
+          ? entryIds.length
+          : Math.min(Math.max(0, Number(snapshot.index) || 0), Math.max(0, entryIds.length - 1)),
         prompt: clone(snapshot.prompt),
         answerState: { ...freshAnswerState(), ...(snapshot.answerState || {}) },
         attempts: Array.isArray(snapshot.attempts) ? clone(snapshot.attempts) : [],
