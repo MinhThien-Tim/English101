@@ -10,6 +10,39 @@
 .topic-copy{margin-top:18px}
 .document-icon,.document-icon.coral,.document-icon.blue,.document-icon.violet,.document-icon.green,.document-icon.amber{display:flex;align-items:center;justify-content:center;width:100%;height:124px;margin-top:22px;padding:5px;overflow:hidden;border:1px solid var(--line);border-radius:16px;background:var(--paper)!important;box-shadow:none}
 .document-icon .lesson-icon-art{display:block;width:100%;height:100%}
+.document-icon{color:var(--accent)}
+.simple-lesson-icon .icon-canvas{
+  fill:color-mix(in srgb,var(--accent) 7%,#fff);
+  stroke:color-mix(in srgb,var(--accent) 16%,var(--line));
+  stroke-width:1;
+}
+.simple-lesson-icon .icon-drawing{
+  fill:none;
+  stroke:currentColor;
+  stroke-width:2.6;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.simple-lesson-icon .icon-soft{
+  fill:color-mix(in srgb,var(--accent) 12%,#fff);
+}
+.simple-lesson-icon .icon-dot{
+  fill:var(--accent);
+  stroke:#fff;
+  stroke-width:2;
+}
+.simple-lesson-icon .icon-accent{
+  stroke:var(--coral);
+  stroke-width:3.2;
+}
+.simple-lesson-icon text{
+  fill:currentColor;
+  stroke:none;
+  font:700 7px Manrope,sans-serif;
+  text-anchor:middle;
+  dominant-baseline:middle;
+}
+.simple-lesson-icon text.icon-title{font-size:12px}
 .featured-card .document-icon{height:150px}
 .document-card h3{margin-top:18px}
 .document-grid .document-card{min-height:424px}
@@ -17,6 +50,15 @@
 @media(max-width:480px){.topic-icon{height:104px}.document-icon,.featured-card .document-icon{height:158px}.document-grid .document-card{min-height:430px}}
 
 .card-top.badge-less{justify-content:flex-end}
+
+.filters{display:flex;gap:9px;overflow:auto;margin-bottom:30px;padding-bottom:3px}.filter-button{--filter-accent:var(--blue);--filter-soft:#eef4ff;display:flex;align-items:center;gap:8px;white-space:nowrap;padding:9px 14px;border:1px solid color-mix(in srgb,var(--filter-accent) 18%,var(--line));border-radius:999px;background:var(--filter-soft);color:var(--filter-accent);font-weight:700;cursor:pointer;transition:all .2s ease}.filter-button.filter-vocabulary{--filter-accent:var(--vocabulary-color);--filter-soft:var(--vocabulary-bg)}.filter-button.filter-grammar{--filter-accent:var(--grammar-color);--filter-soft:var(--grammar-bg)}.filter-button.filter-writing{--filter-accent:var(--writing-color);--filter-soft:var(--writing-bg)}.filter-button.filter-verb{--filter-accent:var(--verbs-color);--filter-soft:var(--verbs-bg)}.filter-button.filter-guide{--filter-accent:var(--guide-color);--filter-soft:var(--guide-bg)}.filter-button.filter-blog{--filter-accent:var(--blog-color);--filter-soft:var(--blog-bg)}.filter-button.filter-all{--filter-accent:var(--blue);--filter-soft:#eef4ff}.filter-button span{display:inline-grid;place-items:center;min-width:24px;height:24px;padding:0 7px;border-radius:999px;background:rgba(255,255,255,.72);color:inherit;font-size:12px;font-weight:800}.filter-button:hover{transform:translateY(-1px);border-color:color-mix(in srgb,var(--filter-accent) 34%,var(--line));background:color-mix(in srgb,var(--filter-soft) 78%,#fff)}.filter-button.active{background:var(--filter-accent);border-color:var(--filter-accent);color:#fff;box-shadow:0 8px 18px rgba(11,18,32,.14)}.filter-button.active span{background:rgba(255,255,255,.14);color:#fff}
+
+.vocab-group{grid-column:1/-1;display:block;margin:0 0 18px}
+.vocab-group-header{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;margin:0 0 16px;padding:10px 14px;border:1px solid color-mix(in srgb,var(--vocabulary-color) 18%,var(--line));border-left:4px solid var(--vocabulary-color);border-radius:12px;background:var(--vocabulary-bg);color:var(--vocabulary-color);font:800 15px/1.4 Manrope,sans-serif;letter-spacing:.02em;cursor:pointer;transition:all .2s ease}
+.vocab-group-header:hover{transform:translateY(-1px);border-color:color-mix(in srgb,var(--vocabulary-color) 34%,var(--line))}
+.vocab-group-toggle{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:999px;background:rgba(255,255,255,.6);font-size:16px;line-height:1}
+.vocab-group-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.vocab-group-cards[hidden]{display:none}
 
 /* Blog and six-topic layout */
 .topic-grid{grid-template-columns:repeat(3,1fr)}

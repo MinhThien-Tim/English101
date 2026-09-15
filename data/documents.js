@@ -4,25 +4,28 @@
  * Dùng đường dẫn tương đối, không bắt đầu bằng dấu / để tương thích GitHub Pages.
  */
 window.ENGLISH_101_DOCUMENTS = [
+  { id: "vocabulary-atlas", category: "Vocabulary", title: "Vocabulary Atlas", description: "Bốn bộ từ vựng được hợp nhất thành một bản đồ học tập trực quan.", type: "HTML", path: "Vocabulary/vocabulary-atlas.html", featured: true },
+
+  { id: "vocab-1-2", category: "Vocabulary", title: "Vocabulary Vòng 1–2", description: "Từ vựng và ví dụ hoàn chỉnh cho hai vòng đầu.", type: "HTML", path: "Vocabulary/vong-1-2-vocabulary-complete-examples.html" },
+  { id: "vocab-3-4", category: "Vocabulary", title: "Vocabulary Vòng 3–4", description: "Từ vựng và ví dụ hoàn chỉnh cho vòng ba và bốn.", type: "HTML", path: "Vocabulary/vong-3-4-vocabulary-complete-examples.html" },
+  { id: "vocab-5-6", category: "Vocabulary", title: "Vocabulary Vòng 5–6", description: "Từ vựng và ví dụ hoàn chỉnh cho vòng năm và sáu.", type: "HTML", path: "Vocabulary/vong-5-6-vocabulary-complete-examples.html" },
+  { id: "vocab-writing", category: "Vocabulary", title: "Từ vựng Vòng 1–6 rút gọn", description: "Bộ từ vựng cô đọng kết hợp bài luyện viết chủ động.", type: "HTML", path: "Vocabulary/tu-vung-vong-1-6-rut-gon-luyen-viet.html" },
+  { id: "reading-translation", category: "Vocabulary", title: "Đọc & Dịch — Vòng 1–6", description: "Luyện đọc hiểu và dịch với bộ từ vựng theo sáu vòng.", type: "HTML", path: "Vocabulary/vocabulary-reading-translation-v1-6.html" },
+  { id: "reading-translation-alt", category: "Vocabulary", title: "Đọc & Dịch — Bản luyện tập", description: "Phiên bản bổ sung của bài đọc và dịch từ vựng Vòng 1–6.", type: "HTML", path: "Vocabulary/vocabulary-reading-translation-v1-6%20(1).html" },
+
+  { id: "confusing-words", category: "Vocabulary", title: "Từ Dễ Nhầm", description: "Phân biệt những từ dễ nhầm lẫn và luyện chính tả.", type: "HTML", path: "Vocabulary/confusing-words.html" },
+  { id: "root-atlas", category: "Vocabulary", title: "Root Atlas", description: "Học gốc từ để mở rộng vốn từ có hệ thống và ghi nhớ lâu hơn.", type: "HTML", path: "Vocabulary/root-atlas.html", featured: true },
+
+  { id: "c1-vocabulary", category: "Vocabulary", title: "C1 Vocabulary — Nhóm I–VI", description: "Kho từ vựng trình độ C1 được phân chia thành sáu nhóm.", type: "HTML", path: "Vocabulary/c1-vocabulary.html" },
+  { id: "ielts-collocations", category: "Vocabulary", title: "IELTS C1–C2 Collocations", description: "Collocations theo chủ đề dành cho người học IELTS nâng cao.", type: "HTML", path: "Vocabulary/ielts-collocations-topic-table-with-dictation.html", featured: true },
+  { id: "hiking-collocations", category: "Vocabulary", title: "IELTS Hiking Collocations", description: "Flashcards collocations và dictation đầy đủ từ Unit 1 đến 19.", type: "HTML", path: "Vocabulary/ielts_hiking_collocations_full_with_dictation.html" },
+
   { id: "grammar-handbook", category: "Grammar", title: "Bí Kíp Ngữ Pháp Tiếng Anh", description: "Hệ thống kiến thức ngữ pháp trọng tâm, được hiệu đính và trình bày dễ tra cứu.", type: "HTML", path: "Grammar/bi-kip-ngu-phap-tieng-anh-hoan-chinh.html", featured: true },
   { id: "conjunctions", category: "Grammar", title: "English Conjunctions", description: "Lý thuyết và bài tập thực hành về liên từ tiếng Anh.", type: "HTML", path: "Grammar/conjunctions-theory-practice.html" },
   { id: "suffix-lab", category: "Grammar", title: "English Suffix Lab", description: "Thư viện và bài luyện tập nhận biết các đuôi từ phổ biến.", type: "HTML", path: "Grammar/english-suffix-lab.html", featured: true },
   { id: "prepositions", category: "Grammar", title: "English Prepositions", description: "Học lý thuyết giới từ và luyện tập ngay trên trình duyệt.", type: "HTML", path: "Grammar/prepositions-theory-practice.html" },
   { id: "parts-of-speech", category: "Grammar", title: "Same Word, Different Parts of Speech", description: "Khám phá cách một từ được dùng ở nhiều loại từ khác nhau.", type: "HTML", path: "Grammar/same-word-different-parts-of-speech.html" },
   { id: "tense-quiz", category: "Grammar", title: "English Tense Exercises Quiz", description: "Bài tập các thì tiếng Anh kèm đáp án để tự kiểm tra.", type: "HTML", path: "Grammar/tense-exercises-answer-key-quiz.html", featured: true },
-
-  { id: "vocabulary-atlas", category: "Vocabulary", title: "Vocabulary Atlas", description: "Bốn bộ từ vựng được hợp nhất thành một bản đồ học tập trực quan.", type: "HTML", path: "Vocabulary/vocabulary-atlas.html", featured: true },
-  { id: "root-atlas", category: "Vocabulary", title: "Root Atlas", description: "Học gốc từ để mở rộng vốn từ có hệ thống và ghi nhớ lâu hơn.", type: "HTML", path: "Vocabulary/root-atlas.html", featured: true },
-  { id: "c1-vocabulary", category: "Vocabulary", title: "C1 Vocabulary — Nhóm I–VI", description: "Kho từ vựng trình độ C1 được phân chia thành sáu nhóm.", type: "HTML", path: "Vocabulary/c1-vocabulary.html" },
-  { id: "confusing-words", category: "Vocabulary", title: "Từ Dễ Nhầm", description: "Phân biệt những từ dễ nhầm lẫn và luyện chính tả.", type: "HTML", path: "Vocabulary/confusing-words.html" },
-  { id: "ielts-collocations", category: "Vocabulary", title: "IELTS C1–C2 Collocations", description: "Collocations theo chủ đề dành cho người học IELTS nâng cao.", type: "HTML", path: "Vocabulary/ielts-collocations-topic-table-with-dictation.html", featured: true },
-  { id: "hiking-collocations", category: "Vocabulary", title: "IELTS Hiking Collocations", description: "Flashcards collocations và dictation đầy đủ từ Unit 1 đến 19.", type: "HTML", path: "Vocabulary/ielts_hiking_collocations_full_with_dictation.html" },
-  { id: "vocab-writing", category: "Vocabulary", title: "Từ vựng Vòng 1–6 rút gọn", description: "Bộ từ vựng cô đọng kết hợp bài luyện viết chủ động.", type: "HTML", path: "Vocabulary/tu-vung-vong-1-6-rut-gon-luyen-viet.html" },
-  { id: "reading-translation", category: "Vocabulary", title: "Đọc & Dịch — Vòng 1–6", description: "Luyện đọc hiểu và dịch với bộ từ vựng theo sáu vòng.", type: "HTML", path: "Vocabulary/vocabulary-reading-translation-v1-6.html" },
-  { id: "reading-translation-alt", category: "Vocabulary", title: "Đọc & Dịch — Bản luyện tập", description: "Phiên bản bổ sung của bài đọc và dịch từ vựng Vòng 1–6.", type: "HTML", path: "Vocabulary/vocabulary-reading-translation-v1-6%20(1).html" },
-  { id: "vocab-1-2", category: "Vocabulary", title: "Vocabulary Vòng 1–2", description: "Từ vựng và ví dụ hoàn chỉnh cho hai vòng đầu.", type: "HTML", path: "Vocabulary/vong-1-2-vocabulary-complete-examples.html" },
-  { id: "vocab-3-4", category: "Vocabulary", title: "Vocabulary Vòng 3–4", description: "Từ vựng và ví dụ hoàn chỉnh cho vòng ba và bốn.", type: "HTML", path: "Vocabulary/vong-3-4-vocabulary-complete-examples.html" },
-  { id: "vocab-5-6", category: "Vocabulary", title: "Vocabulary Vòng 5–6", description: "Từ vựng và ví dụ hoàn chỉnh cho vòng năm và sáu.", type: "HTML", path: "Vocabulary/vong-5-6-vocabulary-complete-examples.html" },
 
   { id: "essay-guide", category: "Writing", title: "Essay Guide", description: "Hướng dẫn học và luyện viết essay theo từng bước rõ ràng.", type: "HTML", path: "Writing/guide.html", featured: true },
   { id: "writing-pipeline", category: "Writing", title: "Meaning → English Pipeline", description: "Quy trình chuyển ý tưởng thành câu tiếng Anh qua sáu vòng luyện tập.", type: "HTML", path: "Writing/meaning-to-english-pipeline-v1-6.html", featured: true },
