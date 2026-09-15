@@ -348,6 +348,10 @@
 </div>
 
 <script src="../assets/keyboard-pronunciation.js?v=20260915-l2"></script>
+<script src="../assets/learning/progress.js"></script>
+<script src="../assets/learning/persistence.js"></script>
+<script src="../assets/learning/session.js"></script>
+<script src="../assets/learning/keyboard.js"></script>
 <script>
 const DATA = [
 {stt:1,term:"Back up",meaning:"Hỗ trợ",ex:["I'll back you up if the meeting gets tense.","Always back up your files before updating the software.","The union backed up the workers' demands for better pay."]},
@@ -429,7 +433,10 @@ let activeRange = RANGES[0];
 let deck = [...DATA.keys()];
 let idx = 0;
 let flipped = false;
-let known = new Set();
+const KEY = 'phrasal-verbs-v1';
+const persistence = English101Learning.createPersistence({storage:localStorage,key:KEY,schema:KEY+'-session-v1',migrateLegacy:value=>value});
+let known = new Set((persistence.load({known:[]}).known || []).filter(id=>Number.isInteger(id)&&id>=0&&id<DATA.length));
+let flashSession = null;
 
 const rangeBar = document.getElementById('rangeBar');
 const card = document.getElementById('card');
@@ -458,8 +465,19 @@ function rebuildDeck(){
   idx = 0;
   flipped = false;
   card.classList.remove('flipped');
+  createFlashSession();
   buildRangeBar();
   render();
+}
+
+function createFlashSession(){
+  const entries=deck.map(id=>({id:String(id)}));
+  flashSession=English101Learning.createLearningSession({entries,strategy:{createPrompt:entry=>({entryId:entry.id}),grade:()=>({correct:false})},kind:'flashcard'});
+  flashSession.start();
+}
+
+function saveKnown(){
+  try{persistence.commit({known:[...known]})}catch(_){ }
 }
 
 function highlight(text, term){
@@ -490,19 +508,23 @@ function render(){
 
 function flip(){
   flipped = !flipped;
+  if(flipped) flashSession.dispatch({type:'REVEAL'});
   card.classList.toggle('flipped', flipped);
 }
 
 function next(){
+  if(flipped) flashSession.dispatch({type:'NEXT'});
   flipped = false;
   card.classList.remove('flipped');
   idx = (idx+1) % deck.length;
+  createFlashSession();
   render();
 }
 function prev(){
   flipped = false;
   card.classList.remove('flipped');
   idx = (idx-1+deck.length) % deck.length;
+  createFlashSession();
   render();
 }
 function shuffle(){
@@ -513,6 +535,7 @@ function shuffle(){
   idx = 0;
   flipped = false;
   card.classList.remove('flipped');
+  createFlashSession();
   render();
 }
 
@@ -522,22 +545,20 @@ document.getElementById('btnPrev').addEventListener('click', prev);
 document.getElementById('btnShuffle').addEventListener('click', shuffle);
 document.getElementById('btnYes').addEventListener('click', ()=>{
   known.add(deck[idx]);
+  saveKnown();
+  if(!flipped)flashSession.dispatch({type:'REVEAL'});
+  flashSession.dispatch({type:'RATE',value:'good'});
   render();
   next();
 });
 document.getElementById('btnNo').addEventListener('click', ()=>{
   known.delete(deck[idx]);
+  saveKnown();
+  if(!flipped)flashSession.dispatch({type:'REVEAL'});
+  flashSession.dispatch({type:'RATE',value:'hard'});
   render();
   next();
 });
-
-document.addEventListener('keydown', (e)=>{
-  if(['INPUT','SELECT','TEXTAREA'].includes(document.activeElement?.tagName)) return;
-  if(e.code === 'Space' || e.code === 'Enter'){ e.preventDefault(); flip(); }
-  if(e.code === 'ArrowRight'){ next(); }
-  if(e.code === 'ArrowLeft'){ prev(); }
-});
-
 
 // ===== MODE TABS + CHÍNH TẢ =====
 const modeTabs = [...document.querySelectorAll('.mode-tab')];
@@ -556,7 +577,7 @@ RANGES.forEach((r,i)=>{
   o.value=i; o.textContent=r.label; dictRange.appendChild(o);
 });
 
-let dDeck=[], dIdx=0, dCorrect=0, dWrong=[], dAnswered=false;
+let dDeck=[], dIdx=0, dCorrect=0, dWrong=[], dAnswered=false, dictSession=null;
 
 function dShuffle(a){
   for(let i=a.length-1;i>0;i--){
@@ -577,6 +598,8 @@ function dictStart(custom=null){
   const n=Math.min(parseInt(document.getElementById('dictCount').value,10),pool.length);
   dDeck=dShuffle([...pool]).slice(0,n);
   dIdx=0; dCorrect=0; dWrong=[]; dAnswered=false;
+  dictSession=English101Learning.createLearningSession({entries:dDeck.map(item=>({id:String(item.stt)})),strategy:{createPrompt:entry=>({entryId:entry.id}),grade:value=>({correct:Boolean(value)})},kind:'quiz'});
+  dictSession.start();
   document.getElementById('dictSetup').style.display='none';
   document.getElementById('dictEnd').style.display='none';
   document.getElementById('dictPlay').style.display='block';
@@ -599,18 +622,19 @@ function dictRender(){
 }
 function dictCheck(){
   if(dAnswered)return;
-  dAnswered=true;
   const x=dDeck[dIdx], dir=document.getElementById('dictDirection').value;
   const ans=dNorm(document.getElementById('dictAnswer').value);
   const target=dNorm(dir==='meaning-term'?x.term:x.meaning);
   let ok;
   if(dir==='meaning-term') ok=ans===target;
   else ok=ans.length>0 && (target.includes(ans)||ans.includes(target));
+  const sessionSnapshot=dictSession.dispatch({type:'SUBMIT',answer:ok});
+  dAnswered=sessionSnapshot.answerState.submitted;
   // Không disable: ô cần giữ focus để Enter lần hai chuyển câu.
   document.getElementById('dictAnswer').readOnly=true;
   const fb=document.getElementById('dictFeedback');
   if(ok){
-    dCorrect++;
+    dCorrect=sessionSnapshot.progress.correct;
     fb.className='dict-feedback good';
     fb.innerHTML=`✓ Đúng — <b>${x.term}</b>: ${x.meaning}`;
   }else{
@@ -623,8 +647,9 @@ function dictCheck(){
   document.getElementById('dictNext').style.display='';
 }
 function dictNext(){
-  dIdx++;
-  if(dIdx>=dDeck.length){
+  const sessionSnapshot=dictSession.dispatch({type:'NEXT'});
+  dIdx=sessionSnapshot.index;
+  if(sessionSnapshot.status==='completed'){
     document.getElementById('dictPlay').style.display='none';
     document.getElementById('dictEnd').style.display='block';
     document.getElementById('dictFinalScore').textContent=`${dCorrect} / ${dDeck.length}`;
@@ -649,10 +674,9 @@ document.getElementById('dictAgain').onclick=()=>{
   document.getElementById('dictSetup').style.display='block';
 };
 document.getElementById('dictRetryWrong').onclick=()=>dictStart([...dWrong]);
-document.getElementById('dictAnswer').addEventListener('keydown',e=>{
-  if(e.key==='Enter'){e.preventDefault(); dAnswered?dictNext():dictCheck();}
-});
+English101Learning.createKeyboardDispatcher({getContext:()=>{const dictActive=Boolean(dictSession&&dDeck[dIdx]&&document.getElementById('dictPlay').style.display!=='none');return{active:dictActive||document.getElementById('flashcardsPanel').classList.contains('active'),kind:dictActive?'quiz':'flashcard',answered:dictActive?dAnswered:false,revealed:dictActive?false:flipped,emptyInput:dictActive&&!document.getElementById('dictAnswer').value.trim()}},dispatch:action=>{const dictActive=Boolean(dictSession&&dDeck[dIdx]&&document.getElementById('dictPlay').style.display!=='none');if(dictActive){if(action==='SUBMIT')dictCheck();else if(action==='NEXT')dictNext()}else if(action==='REVEAL')flip();else if(action==='NEXT')next();else if(action==='PREVIOUS')prev()}}).attach();
 
+createFlashSession();
 buildRangeBar();
 render();
 

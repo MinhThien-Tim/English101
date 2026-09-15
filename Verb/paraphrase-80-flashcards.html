@@ -217,6 +217,10 @@
   <footer>The Real IELTS · 80+ Cụm chữa yếu Paraphrase</footer>
 </div>
 
+<script src="../assets/learning/progress.js"></script>
+<script src="../assets/learning/persistence.js"></script>
+<script src="../assets/learning/session.js"></script>
+<script src="../assets/learning/keyboard.js"></script>
 <script>
 const DATA = [
   {stt:1, term:"I think", meaning:"Tôi cho rằng; Theo quan điểm của tôi; Tôi hoàn toàn tin rằng", rep:["From my perspective","I firmly believe that"]},
@@ -312,7 +316,10 @@ let activeRange = RANGES[0];
 let deck = [...DATA.keys()];
 let idx = 0;
 let flipped = false;
-let known = new Set();
+const KEY = 'paraphrase-80-flashcards-v1';
+const persistence = English101Learning.createPersistence({storage:localStorage,key:KEY,schema:KEY+'-session-v1',migrateLegacy:value=>value});
+let known = new Set((persistence.load({known:[]}).known || []).filter(id=>Number.isInteger(id)&&id>=0&&id<DATA.length));
+let flashSession = null;
 
 const rangeBar = document.getElementById('rangeBar');
 const card = document.getElementById('card');
@@ -341,8 +348,19 @@ function rebuildDeck(){
   idx = 0;
   flipped = false;
   card.classList.remove('flipped');
+  createFlashSession();
   buildRangeBar();
   render();
+}
+
+function createFlashSession(){
+  const entries=deck.map(id=>({id:String(id)}));
+  flashSession=English101Learning.createLearningSession({entries,strategy:{createPrompt:entry=>({entryId:entry.id}),grade:()=>({correct:false})},kind:'flashcard'});
+  flashSession.start();
+}
+
+function saveKnown(){
+  try{persistence.commit({known:[...known]})}catch(_){ }
 }
 
 function render(){
@@ -366,19 +384,23 @@ function render(){
 
 function flip(){
   flipped = !flipped;
+  if(flipped) flashSession.dispatch({type:'REVEAL'});
   card.classList.toggle('flipped', flipped);
 }
 
 function next(){
+  if(flipped) flashSession.dispatch({type:'NEXT'});
   flipped = false;
   card.classList.remove('flipped');
   idx = (idx+1) % deck.length;
+  createFlashSession();
   render();
 }
 function prev(){
   flipped = false;
   card.classList.remove('flipped');
   idx = (idx-1+deck.length) % deck.length;
+  createFlashSession();
   render();
 }
 function shuffle(){
@@ -389,6 +411,7 @@ function shuffle(){
   idx = 0;
   flipped = false;
   card.classList.remove('flipped');
+  createFlashSession();
   render();
 }
 
@@ -398,21 +421,24 @@ document.getElementById('btnPrev').addEventListener('click', prev);
 document.getElementById('btnShuffle').addEventListener('click', shuffle);
 document.getElementById('btnYes').addEventListener('click', ()=>{
   known.add(deck[idx]);
+  saveKnown();
+  if(!flipped)flashSession.dispatch({type:'REVEAL'});
+  flashSession.dispatch({type:'RATE',value:'good'});
   render();
   next();
 });
 document.getElementById('btnNo').addEventListener('click', ()=>{
   known.delete(deck[idx]);
+  saveKnown();
+  if(!flipped)flashSession.dispatch({type:'REVEAL'});
+  flashSession.dispatch({type:'RATE',value:'hard'});
   render();
   next();
 });
 
-document.addEventListener('keydown', (e)=>{
-  if(e.code === 'Space' || e.code === 'Enter'){ e.preventDefault(); flip(); }
-  if(e.code === 'ArrowRight'){ next(); }
-  if(e.code === 'ArrowLeft'){ prev(); }
-});
+English101Learning.createKeyboardDispatcher({getContext:()=>({active:Boolean(deck.length),kind:'flashcard',revealed:flipped}),dispatch:action=>{if(action==='REVEAL')flip();else if(action==='NEXT')next();else if(action==='PREVIOUS')prev()}}).attach();
 
+createFlashSession();
 buildRangeBar();
 render();
 </script>

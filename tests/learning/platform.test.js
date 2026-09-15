@@ -70,6 +70,7 @@ test('keyboard maps Enter to the current primary action and respects guards', ()
   assert.equal(resolveKeyboardAction({ key: 'Enter', active: true, composing: true }), null);
   assert.equal(resolveKeyboardAction({ key: 'Enter', active: true, interactive: true }), null);
   assert.equal(resolveKeyboardAction({ key: '3', active: true, kind: 'quiz', answered: false }), 'CHOICE_3');
+  assert.equal(resolveKeyboardAction({ key: ' ', active: true, kind: 'flashcard', revealed: false }), 'REVEAL');
 });
 
 test('learning route preserves dataset and mode in the URL', () => {

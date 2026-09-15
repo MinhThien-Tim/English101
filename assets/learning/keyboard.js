@@ -18,6 +18,7 @@
       if (context.kind === 'flashcard') return context.revealed ? 'NEXT' : 'REVEAL';
       return context.answered ? 'NEXT' : 'SUBMIT';
     }
+    if (context.key === ' ' && context.kind === 'flashcard') return context.revealed ? 'NEXT' : 'REVEAL';
     if (context.kind === 'flashcard' && context.revealed && context.key === '1') return 'RATE_HARD';
     if (context.kind === 'flashcard' && context.revealed && context.key === '2') return 'RATE_GOOD';
     if (context.kind !== 'flashcard' && !context.answered && /^[1-4]$/.test(context.key)) return `CHOICE_${context.key}`;

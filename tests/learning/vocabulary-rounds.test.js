@@ -65,3 +65,13 @@ for (const page of ['vocabulary-atlas.html', 'root-atlas.html']) {
     assert.doesNotMatch(source, /document\.addEventListener\('keydown'/);
   });
 }
+
+for (const page of ['phrasal-verbs.html', 'paraphrase-80-flashcards.html']) {
+  test(`${page} uses the shared flashcard session, persistence and keyboard interfaces`, () => {
+    const source = fs.readFileSync(path.join(root, 'Verb', page), 'utf8');
+    assert.match(source, /createLearningSession/);
+    assert.match(source, /createPersistence/);
+    assert.match(source, /createKeyboardDispatcher/);
+    assert.doesNotMatch(source, /document\.addEventListener\('keydown'/);
+  });
+}
