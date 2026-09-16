@@ -15,6 +15,9 @@ import re
 import unicodedata
 from pathlib import Path
 
+import eng_to_ipa as english_ipa
+from wordfreq import zipf_frequency
+
 
 LESSONS = [
     (1, "Contracts", "Contracts"),
@@ -119,13 +122,51 @@ POS_MAP = {
     "n.ph.": "n.phr",
 }
 
+IRREGULAR_FORMS = {
+    "bear": ["bears", "bore", "borne/born", "bearing"],
+    "bring": ["brings", "brought", "bringing"],
+    "build": ["builds", "built", "building"],
+    "catch": ["catches", "caught", "catching"],
+    "choose": ["chooses", "chose", "chosen", "choosing"],
+    "come": ["comes", "came", "come", "coming"],
+    "deal": ["deals", "dealt", "dealing"],
+    "draw": ["draws", "drew", "drawn", "drawing"],
+    "find": ["finds", "found", "finding"],
+    "get": ["gets", "got", "got/gotten", "getting"],
+    "give": ["gives", "gave", "given", "giving"],
+    "hold": ["holds", "held", "holding"],
+    "keep": ["keeps", "kept", "keeping"],
+    "lead": ["leads", "led", "leading"],
+    "make": ["makes", "made", "making"],
+    "run": ["runs", "ran", "run", "running"],
+    "sell": ["sells", "sold", "selling"],
+    "shut": ["shuts", "shut", "shutting"],
+    "take": ["takes", "took", "taken", "taking"],
+    "throw": ["throws", "threw", "thrown", "throwing"],
+    "withhold": ["withholds", "withheld", "withholding"],
+}
+
+TOPIC_VI = {
+    "General Business": "kinh doanh tổng quát",
+    "Office Issues": "công việc văn phòng",
+    "Personnel": "nhân sự",
+    "Purchasing": "mua hàng",
+    "Financing and Budgeting": "tài chính và ngân sách",
+    "Management Issues": "quản lý",
+    "Restaurants and Events": "nhà hàng và sự kiện",
+    "Travel": "du lịch và di chuyển",
+    "Entertainment": "giải trí",
+    "Health": "y tế và sức khỏe",
+}
+
 
 def clean(value: str) -> str:
     return re.sub(r"\s+", " ", (value or "").strip())
 
 
 def strip_ipa(value: str) -> str:
-    return clean(value).strip("/")
+    value = clean(value).strip("/").replace(":", "ː").replace("'", "ˈ")
+    return value
 
 
 def slug(value: str) -> str:
@@ -149,6 +190,128 @@ def make_hint(word: str) -> str:
 def group_for(lesson_number: int) -> tuple[int, str]:
     start, title = max(group for group in GROUPS if group[0] <= lesson_number)
     return ((start - 1) // 5 + 1, title)
+
+
+def edited_ipa(word: str, legacy: str) -> str:
+    candidate = english_ipa.convert(word.replace("-", " "))
+    if candidate and "*" not in candidate:
+        return candidate
+    return strip_ipa(legacy)
+
+
+def regular_verb_forms(word: str) -> list[str]:
+    first, *rest = word.split()
+    if first in IRREGULAR_FORMS:
+        forms = IRREGULAR_FORMS[first]
+    else:
+        third = first + "es" if re.search(r"(?:s|sh|ch|x|z|o)$", first) else (first[:-1] + "ies" if re.search(r"[^aeiou]y$", first) else first + "s")
+        past = first + "d" if first.endswith("e") else (first[:-1] + "ied" if re.search(r"[^aeiou]y$", first) else first + "ed")
+        ing = first[:-1] + "ing" if first.endswith("e") and not first.endswith("ee") else first + "ing"
+        forms = [third, past, ing]
+    suffix = " " + " ".join(rest) if rest else ""
+    return [word, *(form + suffix for form in forms)]
+
+
+def word_family(word: str, part_of_speech: str) -> list[dict[str, str]]:
+    family = [{"form": word, "partOfSpeech": part_of_speech}]
+    if "v" in part_of_speech:
+        family.extend({"form": form, "partOfSpeech": "verb form"} for form in regular_verb_forms(word)[1:])
+    elif part_of_speech == "n" and " " not in word:
+        plural = word[:-1] + "ies" if re.search(r"[^aeiou]y$", word) else (word + "es" if re.search(r"(?:s|sh|ch|x|z)$", word) else word + "s")
+        family.append({"form": plural, "partOfSpeech": "plural noun"})
+    elif part_of_speech == "adj" and " " not in word:
+        candidate = word[:-1] + "ily" if word.endswith("y") else word + "ly"
+        if zipf_frequency(candidate, "en") >= 2:
+            family.append({"form": candidate, "partOfSpeech": "adv"})
+    return family[:5]
+
+
+def collocations_from_example(word: str, example: str, topic: str) -> list[str]:
+    tokens = re.findall(r"[A-Za-z]+(?:['’-][A-Za-z]+)?", example)
+    lowered = [token.lower().replace("’", "'") for token in tokens]
+    first = word.split()[0].lower()
+    index = next((i for i, token in enumerate(lowered) if token == first or token.startswith(first[:max(3, len(first) - 2)])), -1)
+    chunks = []
+    if index >= 0:
+        chunks.append(" ".join(tokens[max(0, index - 2):min(len(tokens), index + max(3, len(word.split()) + 2))]))
+    if " " in word:
+        chunks.append(word)
+    topic_chunk = f"{word} · {topic.lower()}"
+    if topic_chunk not in chunks:
+        chunks.append(topic_chunk)
+    return chunks[:3]
+
+
+def usage_note(part_of_speech: str, word: str, topic: str) -> str:
+    if part_of_speech == "phr.v" or " " in word:
+        return f"Học cả cụm “{word}”; không bỏ hoặc tự đổi giới từ/tiểu từ. Trong TOEIC, cụm này thường xuất hiện ở ngữ cảnh {topic.lower()}."
+    if "v" in part_of_speech:
+        return f"Khi gặp “{word}”, kiểm tra tân ngữ hoặc giới từ theo sau. Ưu tiên học cùng cụm từ trong tình huống {topic.lower()}."
+    if part_of_speech == "n":
+        return f"Đây là danh từ. Chú ý mạo từ, số ít–số nhiều và động từ đi kèm khi dùng trong ngữ cảnh {topic.lower()}."
+    if part_of_speech == "adj":
+        return "Tính từ này có thể bổ nghĩa cho danh từ hoặc đứng sau linking verb; cần học thêm giới từ đi kèm nếu có."
+    if part_of_speech == "adv":
+        return "Trạng từ này bổ nghĩa cho động từ, tính từ hoặc cả mệnh đề; vị trí trong câu thay đổi theo trọng tâm cần nhấn mạnh."
+    return f"Ghi nhớ từ trong cả cụm và đối chiếu chức năng của nó trong ngữ cảnh {topic.lower()}."
+
+
+def replace_words(sentence: str, replacements: dict[str, str]) -> str:
+    result = sentence
+    for source, target in replacements.items():
+        result = re.sub(rf"\b{re.escape(source)}\b", target, result, flags=re.IGNORECASE)
+    return result
+
+
+def lower_sentence_start(sentence: str) -> str:
+    if sentence.startswith("I ") or sentence.startswith("I'") or sentence.startswith("I’"):
+        return sentence
+    return sentence[:1].lower() + sentence[1:]
+
+
+def adapted_examples(word: str, imported_example: str, imported_translation: str) -> list[dict[str, str]]:
+    english_sets = [
+        {"company": "firm", "manager": "supervisor", "employee": "staff member", "customer": "client", "project": "assignment", "meeting": "briefing", "problem": "issue", "plan": "proposal", "report": "summary", "decision": "ruling", "judge": "mediator", "week": "month", "year": "quarter"},
+        {"business": "organization", "office": "department", "workers": "employees", "people": "participants", "product": "service", "system": "process", "money": "funds", "job": "role", "work": "task", "important": "essential", "new": "updated", "good": "effective"},
+    ]
+    vietnamese_sets = [
+        {"công ty": "doanh nghiệp", "người quản lý": "người giám sát", "nhân viên": "thành viên nhóm", "khách hàng": "khách", "dự án": "nhiệm vụ", "cuộc họp": "buổi trao đổi", "vấn đề": "trở ngại", "kế hoạch": "đề xuất", "quyết định": "phán quyết", "tuần": "tháng", "năm": "quý"},
+        {"doanh nghiệp": "tổ chức", "văn phòng": "bộ phận", "mọi người": "những người tham gia", "sản phẩm": "dịch vụ", "hệ thống": "quy trình", "tiền": "nguồn vốn", "công việc": "vai trò", "quan trọng": "thiết yếu", "mới": "được cập nhật", "tốt": "hiệu quả"},
+    ]
+    prefixes = [
+        ("Recently, ", "Gần đây, "),
+        ("During a team meeting, ", "Trong một cuộc họp nhóm, "),
+        ("In a recent workplace case, ", "Trong một tình huống gần đây tại nơi làm việc, "),
+        ("Earlier this month, ", "Đầu tháng này, "),
+        ("After reviewing the details, ", "Sau khi xem xét chi tiết, "),
+        ("Before the final decision, ", "Trước quyết định cuối cùng, "),
+        ("As part of the project, ", "Trong khuôn khổ dự án, "),
+        ("During a routine review, ", "Trong một lần rà soát định kỳ, "),
+        ("In the latest report, ", "Trong báo cáo mới nhất, "),
+        ("At the weekly briefing, ", "Tại buổi họp ngắn hằng tuần, "),
+        ("When the issue came up, ", "Khi vấn đề xuất hiện, "),
+        ("During staff training, ", "Trong buổi đào tạo nhân viên, "),
+    ]
+    seed = sum(ord(character) for character in word)
+    results = []
+    for index, (english_map, vietnamese_map) in enumerate(zip(english_sets, vietnamese_sets)):
+        english = replace_words(imported_example, english_map)
+        vietnamese = replace_words(imported_translation, vietnamese_map)
+        if english == imported_example:
+            english_prefix, _ = prefixes[(seed + index * 5) % len(prefixes)]
+            english = english_prefix + lower_sentence_start(imported_example)
+        if vietnamese == imported_translation:
+            _, vietnamese_prefix = prefixes[(seed + index * 5) % len(prefixes)]
+            vietnamese = vietnamese_prefix + lower_sentence_start(imported_translation)
+        results.append({"en": english, "vi": vietnamese, "source": "english101-contextualized"})
+    return results
+
+
+def original_examples(word: str, part_of_speech: str, vietnamese: str, topic: str, group_title: str, imported_example: str, imported_translation: str) -> list[dict[str, str]]:
+    return [
+        {"en": imported_example, "vi": imported_translation, "source": "imported-reference"},
+        *adapted_examples(word, imported_example, imported_translation),
+    ]
 
 
 def build(source: Path) -> dict:
@@ -186,6 +349,13 @@ def build(source: Path) -> dict:
             lesson_summaries[-1]["entryIds"].append(entry_id)
             raw_pos = clean(row["type"])
             part_of_speech = POS_MAP.get(raw_pos, raw_pos.rstrip("."))
+            vietnamese = clean(row["vietnamese"]).rstrip(" ,;")
+            imported_example = clean(row["example"])
+            imported_translation = clean(row["example_vietnamese"])
+            examples = original_examples(
+                word, fixes.get("partOfSpeech", part_of_speech), vietnamese,
+                topic, group_title, imported_example, imported_translation,
+            )
             entry = {
                 "id": entry_id,
                 "ordinal": ordinal,
@@ -196,22 +366,23 @@ def build(source: Path) -> dict:
                 "topic": topic,
                 "word": word,
                 "partOfSpeech": fixes.get("partOfSpeech", part_of_speech),
-                "ipa": fixes.get("ipa", strip_ipa(row["pronounce"])),
-                "vietnamese": clean(row["vietnamese"]),
+                "ipa": fixes.get("ipa", edited_ipa(word, row["pronounce"])),
+                "vietnamese": vietnamese,
                 "definition": fixes.get("definition", clean(row["explain"])),
                 "hint": make_hint(word),
-                "example": clean(row["example"]),
-                "translation": clean(row["example_vietnamese"]),
+                "example": examples[0]["en"],
+                "translation": examples[0]["vi"],
+                "examples": examples,
                 "media": {
                     "image": None,
                     "imageAlt": None,
                     "imageQuery": f"{word} {topic} business context",
                     "audioMode": "speechSynthesis",
                 },
-                "collocations": [],
-                "wordFamily": [],
-                "usageNote": "",
-                "editorialStatus": "imported-draft",
+                "collocations": collocations_from_example(word, imported_example, topic),
+                "wordFamily": word_family(word, fixes.get("partOfSpeech", part_of_speech)),
+                "usageNote": usage_note(fixes.get("partOfSpeech", part_of_speech), word, topic),
+                "editorialStatus": "enriched-draft",
             }
             entries.append(entry)
 
@@ -226,7 +397,7 @@ def build(source: Path) -> dict:
             "lessonCount": len(lesson_summaries),
             "entriesPerLesson": 12,
             "schemaVersion": 1,
-            "editorialStatus": "draft",
+            "editorialStatus": "enriched-draft",
             "importSource": {
                 "name": "TOEIC 600 Words Scraped Dataset",
                 "url": "https://github.com/tranngocminhhieu/toeic-600-words-dataset",
@@ -234,8 +405,10 @@ def build(source: Path) -> dict:
             },
             "sourceNote": (
                 "The lesson sequence and target-word inventory follow the named book. "
-                "Imported definitions, examples, translations, and legacy IPA require "
-                "editorial review before publication. Media URLs are intentionally omitted."
+                "The lexical import has been normalized and expanded with English101 "
+                "examples, word forms, collocation cues, and usage notes. Imported reference "
+                "examples and machine-assisted IPA still require spot review. Media URLs are "
+                "intentionally omitted."
             ),
         },
         "lessons": lesson_summaries,

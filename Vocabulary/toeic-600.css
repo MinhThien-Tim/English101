@@ -1,0 +1,14 @@
+.toeic-toolbar{grid-template-columns:minmax(240px,1fr) 230px 230px 48px}
+.entry-detail{display:grid;gap:14px;margin-top:12px;border-top:1px solid var(--ink);padding-top:14px}
+.definition{color:#343434}.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.detail-box{padding:13px 14px;background:#f4f6f8;border-left:4px solid var(--navy-surface)}
+.detail-box h3{margin:0 0 7px;font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:var(--red)}
+.detail-box ul{margin:0;padding-left:19px}.detail-box li+li{margin-top:5px}.usage-note{margin:0;padding:12px 14px;background:#fff8d6;border-left:4px solid #b48c22;color:#4d411e}
+.lesson-mark{font-size:11px;font-weight:800;color:var(--red);letter-spacing:.04em}.flash-card{text-align:center}.flash-card .prompt{margin-inline:auto}
+.flash-answer{display:grid;gap:12px;text-align:left;margin-top:18px;padding:18px;background:#fff;border-top:4px solid var(--yellow-surface)}
+.flash-answer h3{margin:0;color:var(--navy);font-size:26px}.flash-answer p{margin:0}.flash-answer .examples{display:block;border-top:0;margin-top:0;padding-top:0}
+.choice.correct{background:#dcefe3;border-color:var(--green)}.choice.wrong{background:#f7e2e2;border-color:var(--red)}
+.feedback{display:block}.feedback p{margin:6px 0}.feedback small{display:block;color:var(--muted)}
+.empty-session{padding:16px;background:#fff8d6;border-left:5px solid #b48c22;color:#4d411e}
+@media(max-width:900px){.toeic-toolbar{grid-template-columns:1fr 1fr 48px}.toeic-toolbar .searchbox{grid-column:1/-1}.toeic-toolbar #lessonFilter{grid-column:2}.detail-grid{grid-template-columns:1fr}}
+@media(max-width:620px){.toeic-toolbar{grid-template-columns:1fr 48px}.toeic-toolbar #groupFilter,.toeic-toolbar #lessonFilter{grid-column:1}.toeic-toolbar .view-toggle{grid-column:2;grid-row:2}.tabs{overflow-x:auto}.tab{min-width:112px}.flash-answer{padding:14px}}

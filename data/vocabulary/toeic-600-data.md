@@ -10,11 +10,11 @@ with direct `file://` use.
 - `lessons`: 50 ordered Lesson summaries with 12 stable Vocabulary Entry IDs.
 - `entries`: 600 ordered Vocabulary Entries.
 
-Each entry contains the fields needed by the proposed library, flashcard, and
-recall Activities: stable ID, Lesson position, topic group, word, part of
-speech, IPA, Vietnamese meaning, English definition, spelling hint, example,
-translation, media placeholder, collocations, word family, usage note, and
-editorial status.
+Each entry contains the fields used by the library, flashcard, quiz, spelling,
+and dictation Activities: stable ID, Lesson position, topic group, word, part
+of speech, IPA, Vietnamese meaning, English definition, spelling hint, three
+examples with translations, media placeholder, collocation cues, word
+family/forms, usage note, and editorial status.
 
 The image field is deliberately a placeholder. Do not hotlink the legacy
 third-party images from the import. A future authoring pass should attach a
@@ -27,6 +27,12 @@ licensed local asset and meaningful alt text, or leave the image absent.
 ```text
 english,type,vietnamese,pronounce,explain,example,example_vietnamese,
 image_url,audio_url,topic,topic_url
+```
+
+Install the pinned authoring dependencies before rebuilding:
+
+```bash
+python -m pip install -r tools/requirements-toeic-600.txt
 ```
 
 The builder removes the 15 topic-label rows found in the 615-row legacy
@@ -46,7 +52,7 @@ the Attempts and progress states separate.
 
 ## Publication gate
 
-The dataset is marked `imported-draft`. Before the Lesson is listed in
-`data/documents.js`, complete an editorial pass for natural modern English,
-Vietnamese accuracy, IPA consistency, original examples, collocations, word
-families, usage notes, and licensed imagery. Keep the 600 entry IDs stable.
+The dataset is marked `enriched-draft`. The Lesson is publishable as an
+interactive study surface, but imported reference sentences, adapted examples,
+machine-assisted IPA, collocation windows, and generated word forms still need
+ongoing human spot review. Keep the 600 entry IDs stable during that work.

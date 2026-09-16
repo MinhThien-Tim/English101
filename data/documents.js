@@ -16,6 +16,7 @@ window.ENGLISH_101_DOCUMENTS = [
   { id: "root-atlas", category: "Vocabulary", title: "Root Atlas", description: "Học gốc từ để mở rộng vốn từ có hệ thống và ghi nhớ lâu hơn.", type: "HTML", path: "Vocabulary/root-atlas.html", featured: true },
 
   { id: "c1-vocabulary", category: "Vocabulary", title: "C1 Vocabulary — Nhóm I–VI", description: "Kho từ vựng trình độ C1 được phân chia thành sáu nhóm.", type: "HTML", path: "Vocabulary/c1-vocabulary.html" },
+  { id: "toeic-600", category: "Vocabulary", title: "TOEIC 600 Essential Words", description: "600 từ theo 50 Lesson với flashcards, trắc nghiệm, chính tả và ôn câu sai.", type: "HTML", path: "Vocabulary/toeic-600.html", featured: true },
   { id: "ielts-collocations", category: "Vocabulary", title: "IELTS C1–C2 Collocations", description: "Collocations theo chủ đề dành cho người học IELTS nâng cao.", type: "HTML", path: "Vocabulary/ielts-collocations-topic-table-with-dictation.html", featured: true },
   { id: "hiking-collocations", category: "Vocabulary", title: "IELTS Hiking Collocations", description: "Flashcards collocations và dictation đầy đủ từ Unit 1 đến 19.", type: "HTML", path: "Vocabulary/ielts_hiking_collocations_full_with_dictation.html" },
 

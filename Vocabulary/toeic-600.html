@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="600 Essential Words for the TOEIC: thư viện, flashcards, trắc nghiệm, chính tả và ôn câu sai.">
+<title>TOEIC 600 Vocabulary · English101</title>
+<link rel="stylesheet" href="c1-vocabulary.css?v=20260916">
+<link rel="stylesheet" href="toeic-600.css?v=20260916">
+</head>
+<body>
+<a class="skip-link" href="#main">Đi đến nội dung</a>
+<header class="site-head">
+  <div class="topline"><a href="../index.html">← English 101</a><span>TOEIC vocabulary desk</span></div>
+  <div class="masthead"><div><span class="section-label">TOEIC · WORKPLACE ENGLISH</span><h1>TOEIC 600</h1><p>Từ nhận biết đến dùng được trong ngữ cảnh công việc.</p></div><div class="edition"><b>50 LESSONS</b><span>600 mục · 10 nhóm chủ đề</span></div></div>
+</header>
+<main id="main" class="wrap">
+<section class="lead-grid" aria-label="Giới thiệu bộ từ vựng">
+  <div class="lead-copy"><span class="kicker">600 ESSENTIAL WORDS</span><h2>Một bàn học cho<br><em>tiếng Anh TOEIC.</em></h2><p>Tra cứu theo Lesson, nghe phát âm, đọc ba ví dụ, học collocation và luyện truy hồi bằng flashcard, trắc nghiệm hoặc chính tả.</p><button class="btn hero-action" data-go="library">Mở thư viện <span>→</span></button></div>
+  <nav class="collection-list" aria-label="Chọn bộ từ vựng">
+    <a class="collection" href="c1-vocabulary.html"><span>01</span><div><b>C1 · Nhóm I–VI</b><small>100 từ học thuật</small></div><i>Mở →</i></a>
+    <a class="collection active" href="toeic-600.html"><span>02</span><div><b>TOEIC 600</b><small>50 Lesson · 10 chủ đề</small></div><i>Đang mở</i></a>
+    <a class="collection" href="vocabulary-atlas.html"><span>03</span><div><b>Vocabulary Atlas</b><small>Thư viện tổng hợp</small></div><i>Mở →</i></a>
+  </nav>
+</section>
+
+<div class="dashboard" aria-label="Tiến độ học"><div><strong id="totalStat">600</strong><span>Từ trong bộ</span></div><div><strong id="knownStat">0</strong><span>Đã nhớ</span></div><div><strong id="savedStat">0</strong><span>Đã lưu</span></div><div><strong id="wrongStat">0</strong><span>Cần ôn lại</span></div></div>
+
+<div class="tabs" role="tablist" aria-label="Chế độ học">
+  <button class="tab active" role="tab" aria-selected="true" data-tab="library"><span>01</span> THƯ VIỆN</button>
+  <button class="tab" role="tab" aria-selected="false" data-tab="flashcards"><span>02</span> FLASHCARDS</button>
+  <button class="tab" role="tab" aria-selected="false" data-tab="practice"><span>03</span> LUYỆN TẬP</button>
+  <button class="tab" role="tab" aria-selected="false" data-tab="saved"><span>04</span> ĐÃ LƯU</button>
+</div>
+
+<section id="library" class="panel active" role="tabpanel"><div class="paper">
+  <div class="toolbar toeic-toolbar">
+    <label class="searchbox"><span aria-hidden="true">⌕</span><span class="sr-only">Tìm từ</span><input id="search" type="search" placeholder="Tìm từ, nghĩa, định nghĩa…" autocomplete="off"></label>
+    <select id="groupFilter" aria-label="Nhóm chủ đề"><option value="ALL">Tất cả 10 nhóm</option></select>
+    <select id="lessonFilter" aria-label="Lesson"><option value="ALL">Tất cả 50 Lesson</option></select>
+    <button class="view-toggle" id="viewToggle" aria-pressed="false" title="Đổi kiểu hiển thị">▦</button>
+  </div>
+  <div class="count" id="count"></div><div class="cards" id="cards"></div>
+</div></section>
+
+<section id="flashcards" class="panel" role="tabpanel"><div class="paper quiz-paper">
+  <div class="quiz" id="flashSetup"><span class="kicker">ACTIVE RECALL</span><h2>Flashcards theo Lesson</h2><p class="intro">Nhìn mặt trước, tự nhớ nghĩa và cách dùng rồi mới lật. Đánh dấu <b>Khó</b> hoặc <b>Đã nhớ</b> để cập nhật tiến độ.</p><div class="grid quiz-grid">
+    <div><label>Phạm vi</label><select id="flashScope"></select></div><div><label>Số mục</label><select id="flashCount"><option>10</option><option>20</option><option>30</option><option value="999">Tất cả</option></select></div>
+  </div><div class="actions"><button class="btn" id="startFlash">Bắt đầu flashcards →</button></div></div>
+  <div class="qplay" id="flashPlay"><div class="quiz-session-head"><b id="flashMeta"></b><button class="plain-btn" data-stop>Thoát phiên</button></div><div class="progress"><div class="bar" id="flashBar"></div></div><article class="question-card flash-card" id="flashCard"><div class="prompt" id="flashPrompt"></div><div class="hint" id="flashHint"></div><div id="flashBack" hidden></div><div class="actions" id="flashActions"></div></article></div>
+  <div class="qend" id="flashEnd"><span class="kicker">SESSION COMPLETE</span><div class="finish-symbol">✓</div><h2>Đã hoàn thành phiên flashcard</h2><p id="flashSummary"></p><div class="actions"><button class="btn" data-restart-flash>Học phiên mới</button></div></div>
+</div></section>
+
+<section id="practice" class="panel" role="tabpanel"><div class="paper quiz-paper">
+  <div class="quiz" id="practiceSetup"><span class="kicker">QUIZ · SPELLING · DICTATION</span><h2>Chọn phiên luyện tập</h2><p class="intro">Mỗi Attempt nhận Feedback ngay. Enter dùng để chấm, rồi chuyển câu khi kết quả đã hiện.</p><div class="grid quiz-grid">
+    <div><label>Phạm vi</label><select id="practiceScope"></select></div>
+    <div><label>Dạng bài</label><select id="practiceMode"><option value="choice">Anh → Việt · trắc nghiệm</option><option value="spelling">Việt → Anh · chính tả</option><option value="dictation">Nghe → viết từ</option></select></div>
+    <div><label>Số mục</label><select id="practiceCount"><option>10</option><option>20</option><option>30</option><option value="999">Tất cả</option></select></div>
+    <div><label>Nguồn câu</label><select id="practiceSource"><option value="scope">Theo phạm vi</option><option value="wrong">Chỉ câu cần ôn</option></select></div>
+  </div><div class="actions"><button class="btn" id="startPractice">Bắt đầu luyện tập →</button><button class="btn secondary" id="reviewWrong">Ôn ngay câu sai</button></div><p class="setup-note" id="practiceNote"></p></div>
+  <div class="qplay" id="practicePlay"><div class="quiz-session-head"><b id="practiceMeta"></b><button class="plain-btn" data-stop>Thoát phiên</button></div><div class="progress"><div class="bar" id="practiceBar"></div></div><article class="question-card"><div class="prompt" id="practicePrompt"></div><div class="hint" id="practiceHint"></div><div id="practiceExercise"></div><div id="practiceFeedback" aria-live="polite"></div></article></div>
+  <div class="qend" id="practiceEnd"><span class="kicker">SESSION COMPLETE</span><div class="finish-symbol">✓</div><h2 id="practiceScore"></h2><p id="practiceSummary"></p><div class="actions"><button class="btn" data-restart-practice>Phiên mới</button><button class="btn secondary" id="endReviewWrong">Ôn lại câu sai</button></div></div>
+</div></section>
+
+<section id="saved" class="panel" role="tabpanel"><div class="paper saved-paper"><div class="section-head"><div><span class="kicker">YOUR WORD LIST</span><h2>Từ đã lưu</h2></div><p id="savedCount"></p></div><div class="cards" id="savedCards"></div><div class="empty" id="savedEmpty"><b>Chưa có từ nào được lưu.</b><p>Nhấn dấu trang trên thẻ từ để tạo danh sách ôn riêng.</p></div></div></section>
+</main>
+<footer><div><b>TOEIC 600</b><span>English 101 · Workplace vocabulary desk</span></div><a href="#main">Lên đầu trang ↑</a></footer>
+
+<script src="../assets/learning/progress.js"></script>
+<script src="../assets/learning/session.js"></script>
+<script src="../assets/learning/persistence.js"></script>
+<script src="../assets/learning/keyboard.js"></script>
+<script src="../assets/ui/router.js"></script>
+<script src="../data/vocabulary/toeic-600.js"></script>
+<script src="toeic-600.js"></script>
+</body>
+</html>

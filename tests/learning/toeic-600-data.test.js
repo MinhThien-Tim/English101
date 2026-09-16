@@ -52,3 +52,29 @@ test('does not ship legacy third-party media URLs', () => {
     assert.equal(entry.media.audioMode, 'speechSynthesis');
   }
 });
+
+test('provides the enriched fields used by the interactive Lesson', () => {
+  for (const entry of dataset.entries) {
+    assert.equal(entry.examples.length, 3, `${entry.id} needs three examples`);
+    assert.equal(new Set(entry.examples.map(example => example.en)).size, 3, `${entry.id} repeats an English example`);
+    for (const example of entry.examples) {
+      assert.ok(example.en);
+      assert.ok(example.vi);
+    }
+    assert.ok(entry.collocations.length >= 2, `${entry.id} needs collocation cues`);
+    assert.ok(entry.wordFamily.length >= 1, `${entry.id} needs a word family/form entry`);
+    assert.ok(entry.usageNote, `${entry.id} needs a usage note`);
+  }
+});
+
+test('the TOEIC Lesson uses the shared learning platform', () => {
+  const lesson = fs.readFileSync(path.join(root, 'Vocabulary/toeic-600.html'), 'utf8');
+  const runtime = fs.readFileSync(path.join(root, 'Vocabulary/toeic-600.js'), 'utf8');
+  assert.match(lesson, /assets\/learning\/session\.js/);
+  assert.match(lesson, /assets\/learning\/persistence\.js/);
+  assert.match(lesson, /assets\/learning\/keyboard\.js/);
+  assert.match(runtime, /createLearningSession/);
+  assert.match(runtime, /createPersistence/);
+  assert.match(runtime, /createKeyboardDispatcher/);
+  assert.match(runtime, /createLearningRouter/);
+});

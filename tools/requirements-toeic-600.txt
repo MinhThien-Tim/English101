@@ -1,0 +1,2 @@
+eng-to-ipa==0.0.2
+wordfreq==3.1.1
