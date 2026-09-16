@@ -161,6 +161,29 @@ The current site contains both portal-level shared code and standalone lesson im
 
 Preserve external behavior while extracting shared code. A new shared module should replace real duplication in the same change or an explicitly staged migration.
 
+### Architecture invariants
+
+1. Keep lesson data separate from duplicated UI logic when a shared dataset already exists.
+2. Put shared learning behavior in `assets/learning/` and shared UI behavior in `assets/ui/`.
+3. Keep behavior local until there is a second real consumer.
+4. Do not introduce a framework or abstraction only because it could be reusable later.
+5. Do not migrate an existing working Lesson unless the current request benefits from the migration.
+6. Prefer backward-compatible changes to shared interfaces.
+7. Preserve `localStorage` keys and saved learner progress, or provide an explicit migration.
+8. Require explicit scope for repository-wide refactors, data-schema migrations, and directory restructuring.
+9. Treat deployment, publishing, pushing, and bundling as explicit actions, never implied follow-up work.
+
+### Change boundaries
+
+Use the narrowest safe change boundary:
+
+- Content-only changes stay within the target Resource and its directly derived data.
+- Page-local behavior stays in the Lesson until reuse is demonstrated.
+- Shared behavior changes include consumer discovery and representative regression checks.
+- Architecture changes include an impact analysis and compatibility or migration plan.
+
+An adjacent problem should be fixed immediately only when it blocks the requested outcome or is a regression introduced by the current change. Existing unrelated problems and possible architectural improvements should be reported separately.
+
 ## Shared vocabulary
 
 Use the canonical terms `Resource`, `Lesson`, `Activity`, `Prompt`, `Attempt`, `Feedback`, `Vocabulary Entry`, `Vocabulary Round`, `Recall Pipeline`, `Confusing Set`, and `Known / Learning`. Avoid introducing near-synonyms such as `study item`, `lesson unit`, or `vocab card` when one of these terms already fits.
