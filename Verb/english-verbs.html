@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Động Từ Tiếng Anh — Nói · Chung · Viết · Phrasal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --ink:#1C2321; --paper:#E9E5D6; --paper-2:#F4F1E6; --line:#C9C2AA;
@@ -13,20 +13,23 @@
     --ok:#3E6259; --ok-bg:#DCE7DE; --bad:#A63D40; --bad-bg:#F1DDD8; --muted:#6b675a;
   }
   *{box-sizing:border-box;}
+  button,input{font:inherit;}
   html,body{margin:0;padding:0;}
-  body{background:var(--ink);color:var(--ink);font-family:'IBM Plex Sans',sans-serif;min-height:100vh;-webkit-font-smoothing:antialiased;}
+  body{background:var(--ink);color:var(--ink);font-family:'Be Vietnam Pro',sans-serif;min-height:100vh;-webkit-font-smoothing:antialiased;}
   body::before{content:"";position:fixed;inset:0;background-image:radial-gradient(circle at 1px 1px, rgba(255,255,255,.035) 1px, transparent 1px);background-size:22px 22px;pointer-events:none;}
   .wrap{max-width:760px;margin:0 auto;padding:28px 16px 80px;position:relative;}
   header.top{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:18px;border-bottom:2px solid #3a4440;padding-bottom:14px;}
-  header.top .mark{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--ochre);text-transform:uppercase;}
-  header.top h1{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(26px,6vw,38px);color:var(--paper-2);margin:2px 0 4px;letter-spacing:-.01em;}
+  header.top .mark{font-size:11px;letter-spacing:.08em;color:var(--ochre);}
+  header.top h1{font-weight:800;font-size:clamp(26px,6vw,38px);color:var(--paper-2);margin:2px 0 4px;}
   header.top p{margin:0;color:#9aa39b;font-size:13.5px;}
-  header.top .catno{font-family:'IBM Plex Mono',monospace;font-size:12px;color:#7c8580;text-align:right;line-height:1.5;white-space:nowrap;}
+  header.top .catno{font-size:12px;color:#7c8580;text-align:right;line-height:1.5;white-space:nowrap;}
 
   nav.tabs{display:flex;gap:8px;margin-bottom:18px;}
-  nav.tabs button{flex:1;font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;padding:11px 10px;background:transparent;color:#9aa39b;border:1px solid #3a4440;border-radius:3px;cursor:pointer;transition:all .15s ease;}
+  nav.tabs button{flex:1;font-size:12.5px;font-weight:600;padding:11px 10px;background:transparent;color:#9aa39b;border:1px solid #3a4440;border-radius:3px;cursor:pointer;transition:all .15s ease;}
   nav.tabs button.active{background:var(--paper-2);color:var(--ink);border-color:var(--paper-2);font-weight:600;}
   nav.tabs button:hover:not(.active){border-color:#5a6560;color:#c8cec8;}
+  .lab-link{display:flex;justify-content:space-between;align-items:center;gap:14px;background:#eaf4f6;border:1px solid #94b8c2;border-left:4px solid #327f9b;border-radius:4px;padding:13px 16px;margin:0 0 18px;color:#193f55;text-decoration:none;line-height:1.5;}
+  .lab-link strong{display:block;font-size:14px;}.lab-link span{font-size:12px;}.lab-link:focus-visible{outline:3px solid var(--ochre);outline-offset:2px;}
 
   .panel{display:none;} .panel.active{display:block;animation:fadein .25s ease;}
   @keyframes fadein{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
@@ -38,34 +41,63 @@
   .part-choice.sel{border-color:var(--ochre);background:var(--ochre);color:#241a08;font-weight:600;}
 
   .lib-intro{color:#aab1a9;font-size:13px;margin:0 0 16px;line-height:1.6;}
-  .searchbox{width:100%;padding:11px 14px;font-family:'IBM Plex Sans',sans-serif;font-size:14px;border:1.5px solid var(--line);border-radius:3px;background:var(--paper-2);color:var(--ink);margin-bottom:16px;}
+  .searchbox{width:100%;padding:11px 14px;font-family:inherit;font-size:14px;border:1.5px solid var(--line);border-radius:3px;background:var(--paper-2);color:var(--ink);margin-bottom:16px;}
   .searchbox:focus{outline:none;border-color:var(--red);}
 
   .card{background:var(--paper-2);border-radius:4px;position:relative;margin-bottom:14px;box-shadow:0 1px 0 rgba(0,0,0,.25),0 8px 18px -10px rgba(0,0,0,.5);overflow:hidden;}
   .card::before{content:"";position:absolute;top:14px;left:14px;width:10px;height:10px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 3px var(--paper-2),0 0 0 4px #cfc9b4;}
   .card-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:14px 18px 12px 40px;border-bottom:1.5px dashed var(--line);}
-  .card-head h3{font-family:'Fraunces',serif;font-weight:600;font-style:italic;font-size:16px;color:var(--ink);margin:0;}
-  .card-head .cnt{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);font-weight:600;white-space:nowrap;}
+  .card-head h3{font-weight:700;font-style:italic;font-size:16px;color:var(--ink);margin:0;}
+  .card-head .cnt{font-size:11px;color:var(--red);font-weight:600;white-space:nowrap;}
   .ledger{padding:6px 18px 12px 40px;}
   .ledger-row{display:flex;justify-content:space-between;gap:14px;padding:7px 0;border-bottom:1px dashed var(--line);font-size:13.5px;}
   .ledger-row:last-child{border-bottom:none;}
-  .ledger-row .lw{font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--red-dim);white-space:nowrap;}
+  .ledger-row .lw{font-weight:600;color:var(--red-dim);white-space:nowrap;}
   .ledger-row .lv{color:#4a4a3e;text-align:right;}
   .ledger-row [data-media]{flex:none;align-self:center;padding:6px 9px;border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--red-dim);cursor:pointer;}
   .ledger-row [data-media]:focus-visible{outline:3px solid #b8883f;outline-offset:2px;}
+  /* Library cards reveal meaning on demand while keeping the existing groups. */
+  .ledger{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:11px;padding:15px 18px 18px 40px;}
+  .ledger-row{display:block;position:relative;min-height:148px;padding:0;border:1px solid #b9cbd0;border-radius:10px;background:#eaf4f6;cursor:pointer;perspective:800px;transition:transform .2s,box-shadow .2s;}
+  .ledger-row:hover{transform:translateY(-2px);box-shadow:0 8px 18px #10282321;}
+  .ledger-row:focus-visible{outline:3px solid var(--ochre);outline-offset:2px;}
+  .flip-inner{display:block;position:relative;min-height:148px;transform-style:preserve-3d;transition:transform .35s;}
+  .ledger-row.flipped .flip-inner{transform:rotateY(180deg);}
+  .flip-face{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;text-align:center;backface-visibility:hidden;}
+  .flip-front small,.flip-back small{color:#456974;font-size:10px;letter-spacing:.04em;font-weight:700;}
+  .flip-front .lw{font-weight:600;color:#193f55;white-space:normal;overflow-wrap:anywhere;}
+  .flip-back{transform:rotateY(180deg);background:#f7fbfa;border-radius:10px;}
+  .flip-back .lv{color:#253d40;text-align:left;font-size:15px;line-height:1.45;overflow-wrap:anywhere;}
+  .flip-back [data-media]{position:relative;z-index:2;}
+  .ledger{grid-template-columns:repeat(auto-fill,minmax(220px,1fr));}
+  .ledger-row{min-height:248px;border:2px solid #376b98;background:#17395f;box-shadow:0 6px 14px rgba(20,57,95,.13);}
+  .flip-inner{min-height:248px;}
+  .flip-face{min-height:248px;padding:20px;}
+  .flip-front{background:linear-gradient(145deg,#17395f,#245b83);border-radius:8px;}
+  .flip-front small{color:#c5e6f1;font-size:12px;line-height:1.35;}
+  .flip-front .lw{color:#fff;font-size:clamp(30px,4.5vw,44px);line-height:1.15;}
+  .flip-back{background:#fff0d2;border-radius:8px;}
+  .flip-back small{color:#86521d;font-size:12px;}
+  .flip-back .lv{color:#19344c;font-size:clamp(18px,2vw,21px);font-weight:700;line-height:1.35;}
+  .flip-back [data-media]{background:#fff8eb;border-color:#b9823e;color:#754315;font-size:12px;font-weight:700;}
+  .card-head .collapse-btn{flex:none;padding:4px 8px;border:1px solid var(--line);border-radius:3px;background:transparent;color:var(--muted);font:500 11px 'Be Vietnam Pro',sans-serif;cursor:pointer;}
+  .card-head .collapse-btn:hover{border-color:var(--red);color:var(--red);}
+  .card-head .collapse-btn:focus-visible{outline:3px solid var(--ochre);outline-offset:2px;}
+  .card.is-collapsed .ledger{display:none;}
+  @media(prefers-reduced-motion:reduce){.ledger-row,.flip-inner{transition:none;}.ledger-row:hover{transform:none;}}
 
   .purpose-card{background:var(--paper-2);border-radius:4px;padding:16px 18px;margin-bottom:14px;box-shadow:0 1px 0 rgba(0,0,0,.25),0 8px 18px -10px rgba(0,0,0,.5);}
-  .purpose-card h4{font-family:'Fraunces',serif;font-style:italic;font-size:15.5px;margin:0 0 10px;color:var(--ink);}
+  .purpose-card h4{font-style:italic;font-size:15.5px;margin:0 0 10px;color:var(--ink);}
   .chip-row{display:flex;flex-wrap:wrap;gap:6px;}
-  .chip{font-family:'IBM Plex Mono',monospace;font-size:11.5px;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:4px 10px;color:var(--ink);}
+  .chip{font-size:11.5px;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:4px 10px;color:var(--ink);}
 
   .cf-card{background:var(--paper-2);border-radius:4px;position:relative;margin-bottom:14px;box-shadow:0 1px 0 rgba(0,0,0,.25),0 8px 18px -10px rgba(0,0,0,.5);overflow:hidden;}
   .cf-card::before{content:"";position:absolute;top:14px;left:14px;width:10px;height:10px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 3px var(--paper-2),0 0 0 4px #cfc9b4;}
   .cf-head{padding:14px 18px 12px 40px;border-bottom:1.5px dashed var(--line);}
-  .cf-head h3{font-family:'Fraunces',serif;font-weight:600;font-style:italic;font-size:16px;color:var(--ink);margin:0;}
+  .cf-head h3{font-weight:700;font-style:italic;font-size:16px;color:var(--ink);margin:0;}
   .cf-entry{padding:12px 18px 12px 40px;border-bottom:1px dashed var(--line);}
   .cf-entry:last-of-type{border-bottom:none;}
-  .cf-entry .cfw{font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--red-dim);font-size:14px;}
+  .cf-entry .cfw{font-weight:600;color:var(--red-dim);font-size:14px;}
   .cf-entry .cfv{color:var(--ink);font-size:13.5px;margin-top:2px;}
   .cf-entry .cfex{margin-top:5px;font-size:12.5px;color:#4a4a3e;line-height:1.55;}
   .cf-entry .cfex .en{font-style:italic;}
@@ -74,28 +106,28 @@
   .cf-tip b{color:var(--red);}
 
   .setup{background:var(--paper-2);border-radius:4px;padding:20px;box-shadow:0 8px 18px -10px rgba(0,0,0,.5);}
-  .setup h2{font-family:'Fraunces',serif;font-size:20px;margin:0 0 4px;}
+  .setup h2{font-size:20px;margin:0 0 4px;}
   .setup .sub{font-size:12.5px;color:var(--muted);margin-bottom:18px;}
   .field-group{margin-bottom:16px;}
-  .field-group label.flabel{display:block;font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:8px;}
+  .field-group label.flabel{display:block;font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--muted);margin-bottom:8px;}
   .choice-row{display:flex;gap:8px;flex-wrap:wrap;}
   .choice{flex:1;min-width:110px;padding:10px 12px;border:1.5px solid var(--line);border-radius:3px;background:var(--paper);text-align:center;font-size:13px;font-weight:500;cursor:pointer;transition:all .12s ease;}
   .choice.sel{border-color:var(--red);background:var(--red);color:var(--paper-2);}
-  .btn{font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:14px;padding:12px 20px;border-radius:3px;border:none;cursor:pointer;transition:transform .08s ease,background .15s ease;}
+  .btn{font-family:inherit;font-weight:600;font-size:14px;padding:12px 20px;border-radius:3px;border:none;cursor:pointer;transition:transform .08s ease,background .15s ease;}
   .btn:active{transform:scale(.98);}
   .btn-primary{background:var(--red);color:#fff;} .btn-primary:hover{background:var(--red-dim);}
   .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line);}
   .btn-full{width:100%;}
 
   .quiz-card{background:var(--paper-2);border-radius:4px;padding:22px;box-shadow:0 8px 18px -10px rgba(0,0,0,.5);}
-  .progress-row{display:flex;justify-content:space-between;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:8px;}
+  .progress-row{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--muted);margin-bottom:8px;}
   .progress-bar{height:4px;background:var(--line);border-radius:2px;overflow:hidden;margin-bottom:20px;}
   .progress-fill{height:100%;background:var(--red);transition:width .25s ease;}
-  .prompt-label{font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--ochre);margin-bottom:8px;}
-  .prompt-main{font-family:'Fraunces',serif;font-size:clamp(20px,5vw,26px);font-weight:600;color:var(--ink);margin-bottom:14px;line-height:1.3;}
+  .prompt-label{font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--ochre);margin-bottom:8px;}
+  .prompt-main{font-size:clamp(20px,5vw,26px);font-weight:700;color:var(--ink);margin-bottom:14px;line-height:1.3;}
   .listen-btn{display:inline-flex;align-items:center;gap:6px;background:none;border:1.5px solid var(--line);border-radius:20px;padding:6px 14px 6px 12px;font-size:12px;color:var(--ink);cursor:pointer;margin-bottom:16px;}
   .listen-btn:hover{border-color:var(--red);color:var(--red);}
-  input.answer{width:100%;font-family:'IBM Plex Sans',sans-serif;font-size:16px;padding:13px 14px;border:1.5px solid var(--line);border-radius:3px;background:var(--paper);color:var(--ink);margin-bottom:14px;}
+  input.answer{width:100%;font-family:inherit;font-size:16px;padding:13px 14px;border:1.5px solid var(--line);border-radius:3px;background:var(--paper);color:var(--ink);margin-bottom:14px;}
   input.answer:focus{outline:none;border-color:var(--red);}
   input.answer[readonly]{background:#f2efe7;color:var(--ink);cursor:default;}
   .actions-row{display:flex;gap:10px;}
@@ -106,16 +138,25 @@
   .feedback .correct-ans{font-weight:600;}
 
   .end-card{text-align:center;padding:10px 0;}
-  .end-card .score{font-family:'Fraunces',serif;font-size:48px;font-weight:700;color:var(--ink);margin:6px 0;}
+  .end-card .score{font-size:48px;font-weight:800;color:var(--ink);margin:6px 0;}
   .end-card .score-sub{color:var(--muted);font-size:13px;margin-bottom:20px;}
   .missed-list{text-align:left;margin:18px 0;max-height:340px;overflow-y:auto;}
   .missed-list .mi{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:13px;}
-  .missed-list .mi .mw{font-family:'IBM Plex Mono',monospace;color:var(--red-dim);font-weight:600;white-space:nowrap;}
+  .missed-list .mi .mw{color:var(--red-dim);font-weight:600;white-space:nowrap;}
   .missed-list .mi .mv{color:var(--muted);text-align:right;}
   .end-actions{display:flex;gap:10px;margin-top:10px;}
 
-  footer.foot{text-align:center;color:#5a655f;font-size:11px;margin-top:34px;font-family:'IBM Plex Mono',monospace;}
+  footer.foot{text-align:center;color:#5a655f;font-size:11px;margin-top:34px;}
+  body{background:#f3f7f8;}
+  body::before{background-image:radial-gradient(circle at 1px 1px,rgba(39,93,119,.055) 1px,transparent 1px);}
+  header.top{border-color:#c6d7de;}
+  header.top .mark{color:#28768d;}header.top h1{color:#193b57;}header.top p,header.top .catno,.lib-intro{color:#536a74;}
+  nav.tabs button{border-color:#c6d7de;color:#395a6b;background:#fff;}
+  nav.tabs button.active{background:#244b86;color:#fff;border-color:#244b86;}
+  nav.tabs button:hover:not(.active){border-color:#327f9b;color:#244b86;}
+  footer.foot{color:#697f87;}
   @media (max-width:480px){.choice,.part-choice{min-width:90px;font-size:12px;}}
+  @media (max-width:420px){.ledger{grid-template-columns:1fr;padding-left:18px;}}
 </style>
 <link rel="stylesheet" href="../assets/styles/media-helper.css?v=20260916-p2">
 </head>
@@ -131,6 +172,8 @@
     <div class="catno" id="catCounter"></div>
   </header>
 
+  <a class="lab-link" href="five-forms-of-verbs-with-3rd-person.html"><span><strong>Verb Transformation Lab →</strong>Khám phá cách một động từ chuyển qua 5 dạng và công việc của từng dạng trong câu.</span><span aria-hidden="true">↗</span></a>
+
   <nav class="tabs">
     <button class="tab-btn active" data-tab="lib">Thư viện</button>
     <button class="tab-btn" data-tab="purpose">Theo mục đích</button>
@@ -140,7 +183,7 @@
 
   <!-- ===================== LIBRARY ===================== -->
   <section class="panel active" id="panel-lib">
-    <p class="lib-intro">Duyệt động từ theo từng phần: dùng để nói, dùng chung, thiên về viết, và phrasal verbs — sắp xếp từ thường gặp đến ít gặp. Chọn một từ rồi nhấn <kbd>L</kbd> để nghe.</p>
+    <p class="lib-intro">Duyệt động từ theo từng phần: dùng để nói, dùng chung, thiên về viết, và phrasal verbs. Chọn thẻ để lật xem nghĩa; nhấn <kbd>L</kbd> để nghe từ đang chọn.</p>
     <div class="part-row" id="libPartRow">
       <div class="part-choice sel" data-part="p1">Phần 1<br><small>Dùng để nói</small></div>
       <div class="part-choice" data-part="p2">Phần 2<br><small>Dùng chung</small></div>
@@ -240,196 +283,11 @@
 
 <script src="../assets/keyboard-pronunciation.js?v=20260915-l2"></script>
 <script src="../assets/learning/media-helper.js?v=20260916-p2"></script>
+<script src="../assets/learning/verb-groups.js"></script>
 <script>
 /* ========================================================================
    DATA
    ======================================================================== */
-function mk(pairs){ return pairs.map(p => ({ w:p[0], vi:p[1] })); }
-
-const PARTS = [
-{ key:'p1', title:'Phần 1 — Dùng để nói', sub:[
-  { title:'Rất thường gặp', items: mk([
-    ["get","nhận, lấy, có được; trở nên"],["go","đi"],["come","đến"],["give","cho"],["take","lấy, mang"],
-    ["make","làm, tạo ra"],["put","đặt, để"],["keep","giữ"],["bring","mang đến"],["leave","rời đi, để lại"],
-    ["let","cho phép, để cho"],["mean","có nghĩa là"],["seem","có vẻ"],["feel","cảm thấy"],["look","nhìn; trông có vẻ"],
-    ["sound","nghe có vẻ"],["happen","xảy ra"],["try","cố gắng, thử"],["want","muốn"],["need","cần"],
-    ["like","thích"],["love","yêu, rất thích"],["hate","ghét"],["know","biết"],["think","nghĩ"],
-    ["believe","tin"],["remember","nhớ"],["forget","quên"],["understand","hiểu"],["guess","đoán"],
-    ["suppose","cho rằng"],["hope","hy vọng"],["wish","ước"],["wonder","tự hỏi"],["decide","quyết định"],
-    ["choose","chọn"],["find","tìm thấy"],["lose","mất"],["help","giúp"],["use","sử dụng"],
-    ["work","làm việc"],["live","sống"],["stay","ở lại"],["wait","chờ"],["start","bắt đầu"],
-    ["stop","dừng"],["finish","kết thúc"],["turn","quay, rẽ, chuyển"],["move","di chuyển"],["hold","cầm, giữ"],
-    ["sit","ngồi"],["stand","đứng"],["lie","nằm"],["walk","đi bộ"],["run","chạy"],
-    ["drive","lái xe"],["ride","đi xe"],["sleep","ngủ"],["wake","thức dậy"],["eat","ăn"],
-    ["drink","uống"],["buy","mua"],["pay","trả tiền"],["sell","bán"],["spend","tiêu, dành"],
-    ["cost","có giá"],["afford","có khả năng chi trả"],["wear","mặc, đeo"],["carry","mang"],["send","gửi"],
-    ["receive","nhận"],["call","gọi"],["text","nhắn tin"],["answer","trả lời"],["ask","hỏi"],
-    ["tell","nói, kể, bảo"],["say","nói"],["talk","nói chuyện"],["speak","nói"],["hear","nghe thấy"],
-    ["listen","lắng nghe"],["watch","xem"],["see","nhìn thấy"],["show","cho xem, chỉ"],["meet","gặp"],
-    ["visit","thăm"],["follow","theo"],["lead","dẫn"],["check","kiểm tra"],["fix","sửa"],
-    ["change","thay đổi"],["matter","quan trọng"],["care","quan tâm"],["mind","để ý, phiền"],["worry","lo lắng"],
-    ["trust","tin tưởng"],["agree","đồng ý"],
-  ])},
-  { title:'Khá thường gặp trong hội thoại', items: mk([
-    ["disagree","không đồng ý"],["admit","thừa nhận"],["deny","phủ nhận"],["explain","giải thích"],["mention","đề cập"],
-    ["suggest","đề nghị, gợi ý"],["recommend","khuyên, đề xuất"],["promise","hứa"],["offer","đề nghị"],["refuse","từ chối"],
-    ["accept","chấp nhận"],["allow","cho phép"],["expect","mong đợi"],["realize","nhận ra"],["notice","nhận thấy"],
-    ["recognize","nhận ra"],["imagine","tưởng tượng"],["consider","cân nhắc"],["prefer","thích hơn"],["avoid","tránh"],
-    ["manage","xoay xở, quản lý"],["fail","thất bại, không làm được"],["succeed","thành công"],["plan","lên kế hoạch"],["prepare","chuẩn bị"],
-    ["arrange","sắp xếp"],["join","tham gia"],["invite","mời"],["cancel","hủy"],["miss","bỏ lỡ, nhớ"],
-    ["mind","ngại, phiền"],["depend","phụ thuộc"],["matter","có vấn đề, quan trọng"],["fit","vừa"],["suit","phù hợp"],
-    ["belong","thuộc về"],["own","sở hữu"],["borrow","mượn"],["lend","cho mượn"],["share","chia sẻ"],
-    ["save","tiết kiệm, cứu"],["waste","lãng phí"],["break","làm vỡ; phá"],["repair","sửa chữa"],["damage","làm hỏng"],
-    ["hurt","làm đau"],["touch","chạm"],["pick","chọn; nhặt"],["drop","làm rơi"],["throw","ném"],
-  ])},
-]},
-{ key:'p2', title:'Phần 2 — Dùng chung (nói + viết)', sub:[
-  { title:'Nhóm cốt lõi', items: mk([
-    ["be","là, ở"],["have","có"],["do","làm"],["say","nói"],["make","làm, tạo ra"],
-    ["know","biết"],["think","nghĩ"],["take","lấy, nhận"],["see","thấy"],["come","đến"],
-    ["want","muốn"],["look","nhìn"],["use","sử dụng"],["find","tìm thấy"],["give","cho"],
-    ["tell","nói, kể"],["work","làm việc"],["call","gọi"],["try","cố gắng"],["ask","hỏi"],
-    ["need","cần"],["feel","cảm thấy"],["become","trở nên"],["leave","rời khỏi"],["put","đặt"],
-    ["mean","có nghĩa"],["keep","giữ"],["let","cho phép"],["begin","bắt đầu"],["seem","có vẻ"],
-    ["help","giúp"],["talk","nói chuyện"],["turn","quay, chuyển"],["start","bắt đầu"],["show","cho thấy"],
-    ["hear","nghe"],["play","chơi"],["run","chạy; vận hành"],["move","di chuyển"],["like","thích"],
-    ["live","sống"],["believe","tin"],["hold","giữ"],["bring","mang"],["happen","xảy ra"],
-    ["write","viết"],["provide","cung cấp"],["sit","ngồi"],["stand","đứng"],["lose","mất"],
-  ])},
-  { title:'Nhóm trung tâm — hữu ích khi đọc và viết', items: mk([
-    ["include","bao gồm"],["continue","tiếp tục"],["set","đặt, thiết lập"],["learn","học"],["change","thay đổi"],
-    ["lead","dẫn dắt"],["understand","hiểu"],["watch","xem"],["follow","theo"],["stop","dừng"],
-    ["create","tạo ra"],["speak","nói"],["read","đọc"],["allow","cho phép"],["add","thêm"],
-    ["spend","dành, tiêu"],["grow","phát triển, lớn lên"],["open","mở"],["walk","đi bộ"],["win","thắng"],
-    ["offer","cung cấp, đề nghị"],["remember","nhớ"],["consider","cân nhắc"],["appear","xuất hiện, có vẻ"],["buy","mua"],
-    ["serve","phục vụ"],["die","chết"],["send","gửi"],["expect","mong đợi"],["build","xây dựng"],
-    ["stay","ở lại"],["fall","rơi"],["cut","cắt"],["reach","đạt tới"],["kill","giết"],
-    ["remain","vẫn còn"],["suggest","gợi ý"],["raise","nâng, tăng"],["pass","vượt qua, truyền"],["sell","bán"],
-    ["require","yêu cầu"],["report","báo cáo"],["decide","quyết định"],["pull","kéo"],["return","trở lại"],
-    ["explain","giải thích"],["hope","hy vọng"],["develop","phát triển"],["carry","mang"],["break","phá vỡ"],
-  ])},
-  { title:'Nhóm B2–C1 rất quan trọng', items: mk([
-    ["achieve","đạt được"],["establish","thành lập, thiết lập"],["maintain","duy trì"],["involve","liên quan, bao gồm"],["affect","ảnh hưởng"],
-    ["determine","xác định, quyết định"],["reduce","giảm"],["increase","tăng"],["improve","cải thiện"],["identify","xác định, nhận diện"],
-    ["indicate","chỉ ra"],["describe","mô tả"],["contain","chứa"],["account","giải thích; chiếm"],["obtain","đạt được"],
-    ["apply","áp dụng"],["develop","phát triển"],["produce","sản xuất, tạo ra"],["support","hỗ trợ"],["require","yêu cầu"],
-    ["suggest","cho thấy, đề xuất"],["contribute","đóng góp"],["respond","phản hồi"],["approach","tiếp cận"],["compare","so sánh"],
-    ["relate","liên hệ"],["demonstrate","chứng minh, thể hiện"],["reflect","phản ánh"],["represent","đại diện"],["occur","xảy ra"],
-    ["emerge","xuất hiện"],["arise","phát sinh"],["exist","tồn tại"],["constitute","cấu thành"],["derive","bắt nguồn"],
-    ["imply","ngụ ý"],["reveal","tiết lộ"],["define","định nghĩa"],["distinguish","phân biệt"],["perceive","nhận thức"],
-    ["assume","giả định"],
-  ])},
-]},
-{ key:'p3', title:'Phần 3 — Thiên về viết', sub:[
-  { title:'Viết phổ thông / báo chí / nghị luận', items: mk([
-    ["obtain","đạt được, thu được"],["acquire","đạt được, thu nhận"],["demonstrate","chứng minh, thể hiện"],["indicate","chỉ ra"],["illustrate","minh họa"],
-    ["emphasize","nhấn mạnh"],["facilitate","tạo điều kiện"],["establish","thiết lập"],["constitute","cấu thành"],["implement","thực hiện, triển khai"],
-    ["undertake","đảm nhận, tiến hành"],["encounter","gặp phải"],["undergo","trải qua"],["pursue","theo đuổi"],["attain","đạt được"],
-    ["retain","duy trì, giữ lại"],["ensure","đảm bảo"],["enhance","nâng cao"],["promote","thúc đẩy"],["generate","tạo ra"],
-    ["foster","thúc đẩy, nuôi dưỡng"],["expand","mở rộng"],["diminish","giảm bớt"],["exacerbate","làm trầm trọng hơn"],["mitigate","giảm nhẹ"],
-    ["eliminate","loại bỏ"],["regulate","điều chỉnh"],["restrict","hạn chế"],["prohibit","cấm"],["permit","cho phép"],
-    ["compel","buộc"],["prevent","ngăn chặn"],["discourage","làm nản lòng, ngăn cản"],["encourage","khuyến khích"],["advocate","ủng hộ, chủ trương"],
-    ["oppose","phản đối"],["challenge","thách thức"],["address","giải quyết, đề cập"],["tackle","xử lý"],
-  ])},
-  { title:'Thiên về học thuật', items: mk([
-    ["assess","đánh giá"],["evaluate","đánh giá"],["examine","xem xét, kiểm tra"],["investigate","điều tra, nghiên cứu"],["analyze","phân tích"],
-    ["interpret","diễn giải"],["infer","suy ra"],["hypothesize","đưa ra giả thuyết"],["formulate","xây dựng, hình thành"],["conceptualize","khái niệm hóa"],
-    ["quantify","định lượng"],["classify","phân loại"],["categorize","phân loại"],["differentiate","phân biệt"],["correlate","tương quan"],
-    ["derive","suy ra, bắt nguồn"],["verify","xác minh"],["validate","xác nhận tính đúng đắn"],["substantiate","chứng minh bằng bằng chứng"],["corroborate","củng cố bằng chứng"],
-    ["refute","bác bỏ"],["contradict","mâu thuẫn, bác bỏ"],["posit","đưa ra giả định/luận đề"],["presume","giả định"],["deduce","suy luận"],
-    ["imply","hàm ý"],["denote","biểu thị"],["signify","biểu thị"],["entail","kéo theo, đòi hỏi"],
-  ])},
-  { title:'Học thuật / chính trị / kinh tế / xã hội', items: mk([
-    ["regulate","điều tiết"],["legislate","lập pháp"],["enact","ban hành"],["impose","áp đặt"],["enforce","thực thi"],
-    ["comply","tuân thủ"],["violate","vi phạm"],["amend","sửa đổi"],["abolish","bãi bỏ"],["allocate","phân bổ"],
-    ["distribute","phân phối"],["administer","quản lý, điều hành"],["govern","cai trị, quản trị"],["intervene","can thiệp"],["manipulate","thao túng"],
-    ["exploit","khai thác, bóc lột"],["sustain","duy trì"],["undermine","làm suy yếu"],["reinforce","củng cố"],["constrain","hạn chế"],
-    ["inhibit","kìm hãm"],["distort","bóp méo"],["perpetuate","duy trì kéo dài"],["marginalize","đẩy ra bên lề"],["discriminate","phân biệt đối xử"],
-    ["integrate","tích hợp, hội nhập"],["reconcile","dung hòa, hòa giải"],["mediate","làm trung gian"],["arbitrate","phân xử"],
-  ])},
-  { title:'Ít gặp hơn nhưng đáng biết khi đọc sách', items: mk([
-    ["elucidate","làm sáng tỏ, làm rõ"],["delineate","vạch rõ, mô tả ranh giới"],["explicate","giải thích chi tiết"],["ascertain","xác định chắc chắn"],["appraise","đánh giá"],
-    ["scrutinize","xem xét kỹ"],["discern","nhận ra, phân biệt"],["perceive","nhận thức"],["conceive","hình dung, hình thành ý tưởng"],["postulate","đề xuất như một giả định"],
-    ["presuppose","giả định trước"],["posit","đặt ra, giả định"],["invoke","viện dẫn, kêu gọi"],["underscore","nhấn mạnh"],["exemplify","minh họa bằng ví dụ"],
-    ["epitomize","tiêu biểu cho"],["encompass","bao quát, bao gồm rộng"],
-  ])},
-]},
-{ key:'p4', title:'Phần 4 — Phrasal Verbs', sub:[
-  { title:'A. Cốt lõi — dùng rất nhiều trong nói + viết', items: mk([
-    ["get up","thức dậy"],["go on","tiếp tục; xảy ra"],["come back","quay lại"],["go back","quay lại"],["come in","đi vào"],
-    ["go out","đi ra ngoài"],["get out","đi ra; thoát ra"],["look at","nhìn vào"],["look for","tìm kiếm"],["find out","phát hiện, tìm ra"],
-    ["look like","trông giống"],["look after","chăm sóc"],["look back","nhìn lại"],["look up","tra cứu"],["look into","điều tra, xem xét"],
-    ["take off","cởi; cất cánh"],["put on","mặc, đeo; bật"],["turn on","bật"],["turn off","tắt"],["turn up","tăng âm lượng; xuất hiện"],
-    ["turn down","giảm; từ chối"],["pick up","nhặt; đón; học được"],["put down","đặt xuống; ghi lại"],["put away","cất đi"],["put off","trì hoãn"],
-    ["take out","lấy ra; đưa đi"],["take away","mang đi; lấy đi"],["take back","lấy lại; rút lại lời"],["give back","trả lại"],["give up","từ bỏ"],
-    ["give away","cho đi; tiết lộ"],["give in","nhượng bộ"],["get back","trở lại; lấy lại"],["get in","vào; đến nơi"],["get on","lên xe; tiến triển; hòa thuận"],
-    ["get off","xuống xe; thoát khỏi"],["get over","vượt qua"],["get through","vượt qua; hoàn thành; liên lạc được"],
-  ])},
-  { title:'B. Rất quan trọng trong hội thoại', items: mk([
-    ["hang out","đi chơi, dành thời gian cùng nhau"],["wake up","thức dậy"],["calm down","bình tĩnh lại"],["hurry up","nhanh lên"],["slow down","chậm lại"],
-    ["sit down","ngồi xuống"],["stand up","đứng lên"],["come over","ghé qua"],["go away","đi khỏi"],["move on","tiếp tục, bước tiếp"],
-    ["grow up","lớn lên"],["end up","cuối cùng lại"],["show up","xuất hiện"],["turn out","hóa ra"],["work out","tập luyện; giải quyết; diễn ra tốt"],
-    ["figure out","hiểu ra, tìm ra cách"],["find out","phát hiện"],["point out","chỉ ra"],["bring up","đề cập; nuôi dưỡng"],["bring back","mang trở lại; gợi nhớ"],
-    ["carry on","tiếp tục"],["carry out","thực hiện"],["come up","xuất hiện; được đề cập"],["come up with","nghĩ ra"],["deal with","xử lý, đối phó"],
-    ["depend on","phụ thuộc vào"],["rely on","dựa vào"],["talk about","nói về"],["talk over","thảo luận kỹ"],["think about","nghĩ về"],
-    ["think over","cân nhắc kỹ"],["worry about","lo lắng về"],["care about","quan tâm"],["hear from","nhận tin từ"],["ask for","yêu cầu"],
-    ["wait for","chờ"],["pay for","trả tiền cho"],["belong to","thuộc về"],["agree with","đồng ý với"],["listen to","lắng nghe"],
-  ])},
-  { title:'C. Về công việc / học tập', items: mk([
-    ["carry out","tiến hành, thực hiện"],["set up","thiết lập"],["set out","bắt đầu; trình bày"],["work on","làm việc về"],["work out","giải quyết; tính toán"],
-    ["deal with","xử lý"],["look into","điều tra"],["go over","xem xét, ôn lại"],["go through","xem xét; trải qua"],["fill in","điền vào"],
-    ["fill out","điền vào biểu mẫu"],["hand in","nộp"],["hand out","phát"],["write down","viết xuống"],["note down","ghi lại"],
-    ["read over","đọc lại"],["look up","tra cứu"],["find out","tìm hiểu"],["figure out","tìm ra câu trả lời"],["point out","chỉ ra"],
-    ["bring up","đưa ra một vấn đề"],["come up with","nghĩ ra"],["focus on","tập trung vào"],["catch up","bắt kịp"],["fall behind","tụt lại phía sau"],
-    ["keep up","theo kịp"],["keep up with","theo kịp"],
-  ])},
-  { title:'D. Cực quan trọng khi đọc báo chí / essay', items: mk([
-    ["point out","chỉ ra"],["carry out","thực hiện"],["bring about","gây ra"],["lead to","dẫn đến"],["result in","dẫn đến"],
-    ["stem from","bắt nguồn từ"],["arise from","phát sinh từ"],["account for","giải thích; chiếm"],["consist of","bao gồm"],["refer to","đề cập đến"],
-    ["deal with","xử lý; đề cập đến"],["focus on","tập trung vào"],["depend on","phụ thuộc vào"],["rely on","dựa vào"],["contribute to","góp phần vào"],
-    ["result from","bắt nguồn từ"],["base on","dựa trên"],["derive from","bắt nguồn từ"],["lead up to","dẫn tới"],["give rise to","gây ra"],
-  ])},
-  { title:'E. Về thay đổi / phát triển', items: mk([
-    ["grow up","lớn lên"],["grow into","phát triển thành"],["develop into","phát triển thành"],["build up","tích lũy, xây dựng dần"],["build on","phát triển dựa trên"],
-    ["break down","phân tích; hỏng; suy sụp"],["break up","chia tay; tan vỡ"],["break out","bùng phát"],["break through","đột phá"],["bring about","gây ra"],
-    ["bring on","gây ra"],["bring back","đưa trở lại"],["phase out","loại bỏ dần"],["phase in","đưa vào dần"],["scale up","mở rộng quy mô"],
-    ["step up","tăng cường"],["slow down","chậm lại"],["speed up","tăng tốc"],["cut back","cắt giảm"],["cut down","giảm; cắt"],
-  ])},
-  { title:'F. Về quan hệ / xã hội', items: mk([
-    ["get along","hòa thuận"],["get on with","hòa thuận với"],["fall out","cãi nhau, bất hòa"],["make up","làm hòa; bịa ra"],["break up","chia tay"],
-    ["hang out","đi chơi"],["come over","ghé thăm"],["get together","tụ họp"],["go out","đi chơi/hẹn hò"],["ask out","mời đi hẹn hò"],
-    ["turn down","từ chối"],["let down","làm thất vọng"],["cheer up","làm vui lên"],["calm down","bình tĩnh lại"],["open up","cởi mở"],
-    ["back up","ủng hộ"],["stand up for","bảo vệ"],["stick with","gắn bó với"],["count on","tin cậy, trông cậy"],["look up to","kính trọng"],
-  ])},
-  { title:'G. Về tranh luận / suy nghĩ', items: mk([
-    ["think through","suy nghĩ thấu đáo"],["think over","cân nhắc"],["figure out","hiểu ra"],["work out","tìm ra giải pháp"],["point out","chỉ ra"],
-    ["bring up","đưa ra vấn đề"],["back up","đưa bằng chứng hỗ trợ"],["argue against","lập luận phản đối"],["argue for","lập luận ủng hộ"],["rule out","loại trừ"],
-    ["leave out","bỏ qua"],["bring in","đưa vào, giới thiệu"],["sum up","tóm tắt"],["add up","cộng lại; hợp lý"],["break down","phân tích"],
-    ["boil down to","quy về, rút lại thành"],["come down to","rốt cuộc là"],["point to","chỉ ra, cho thấy"],["hinge on","phụ thuộc vào"],["rest on","dựa trên"],
-  ])},
-  { title:'H. Về vấn đề / giải quyết', items: mk([
-    ["deal with","giải quyết"],["cope with","đối phó"],["face up to","đối mặt với"],["get around","xoay xở; tránh"],["get around to","cuối cùng cũng làm"],
-    ["get through","vượt qua"],["work through","giải quyết từng bước"],["sort out","giải quyết, sắp xếp"],["straighten out","giải quyết cho rõ ràng"],["iron out","giải quyết những bất đồng/khó khăn nhỏ"],
-    ["work out","giải quyết"],["figure out","tìm ra cách"],["rule out","loại trừ"],["cut down on","cắt giảm"],["cut back on","giảm bớt"],
-    ["do away with","loại bỏ"],["get rid of","loại bỏ"],["put up with","chịu đựng"],["run into","gặp phải"],["come across","tình cờ gặp; tạo ấn tượng"],
-  ])},
-  { title:'I. Về thời gian / diễn biến', items: mk([
-    ["go on","tiếp tục"],["carry on","tiếp tục"],["keep on","tiếp tục"],["go ahead","tiến hành"],["move on","chuyển sang"],
-    ["hold on","chờ; giữ"],["hang on","chờ"],["wait around","chờ đợi mà không làm gì"],["put off","trì hoãn"],["put aside","gác sang một bên"],
-    ["put back","trì hoãn; đặt lại"],["catch up","bắt kịp"],["fall behind","tụt lại"],["keep up","duy trì tốc độ"],["speed up","tăng tốc"],
-    ["slow down","chậm lại"],["run out","hết"],["run out of","hết cái gì"],["use up","dùng hết"],["last","kéo dài"],
-  ])},
-  { title:'J. Ít gặp hơn nhưng rất hữu ích', items: mk([
-    ["back down","rút lui, nhượng bộ"],["back out","rút khỏi"],["break down","thất bại; suy sụp"],["break into","đột nhập"],["break through","đột phá"],
-    ["brush aside","gạt sang một bên"],["brush up on","ôn lại, củng cố"],["call off","hủy bỏ"],["crack down on","mạnh tay trấn áp"],["draw on","tận dụng; tiến gần"],
-    ["draw up","soạn thảo"],["do without","xoay xở mà không có"],["fall apart","tan vỡ"],["fall through","thất bại, không thành"],["give rise to","gây ra"],
-    ["hold back","kìm lại"],["hold up","trì hoãn; chống đỡ"],["lay out","trình bày; bố trí"],["leave behind","bỏ lại"],["narrow down","thu hẹp"],
-    ["rule out","loại trừ"],["set aside","gác sang một bên"],["set out","trình bày; bắt đầu"],["set forth","trình bày chính thức"],["take on","đảm nhận; mang đặc điểm"],
-    ["take over","tiếp quản"],["take up","bắt đầu; chiếm"],["turn into","biến thành"],["turn out","hóa ra"],["wind up","kết thúc; cuối cùng"],
-  ])},
-]},
-];
-
 const EXTRA_MEANINGS = { "characterize":"mô tả đặc điểm, đặc trưng hóa" };
 
 const PURPOSE = [
@@ -700,7 +558,24 @@ function renderLib(){
     card.className = 'card';
     const head = document.createElement('div');
     head.className = 'card-head';
-    head.innerHTML = `<h3>${sub.title}</h3><span class="cnt">${filtered.length} từ</span>`;
+    const title = document.createElement('h3');
+    title.textContent = sub.title;
+    const count = document.createElement('span');
+    count.className = 'cnt';
+    count.textContent = `${filtered.length} từ`;
+    const collapseButton = document.createElement('button');
+    collapseButton.type = 'button';
+    collapseButton.className = 'collapse-btn';
+    collapseButton.textContent = 'Thu gọn';
+    collapseButton.setAttribute('aria-expanded', 'true');
+    collapseButton.setAttribute('aria-label', `Thu gọn bộ ${sub.title}`);
+    collapseButton.addEventListener('click', () => {
+      const collapsed = card.classList.toggle('is-collapsed');
+      collapseButton.textContent = collapsed ? 'Mở rộng' : 'Thu gọn';
+      collapseButton.setAttribute('aria-expanded', String(!collapsed));
+      collapseButton.setAttribute('aria-label', `${collapsed ? 'Mở rộng' : 'Thu gọn'} bộ ${sub.title}`);
+    });
+    head.append(title, count, collapseButton);
     card.appendChild(head);
     const ledger = document.createElement('div');
     ledger.className = 'ledger';
@@ -708,9 +583,22 @@ function renderLib(){
       const row = document.createElement('div');
       row.className = 'ledger-row';
       row.dataset.speak = it.w;
+      row.dataset.meaning = it.vi;
       row.tabIndex = 0;
-      row.setAttribute('aria-label', `Chọn từ ${it.w} để phát âm`);
-      row.innerHTML = `<span class="lw">${it.w}</span><span class="lv">${it.vi}</span>`;
+      row.setAttribute('role', 'button');
+      row.setAttribute('aria-pressed', 'false');
+      row.setAttribute('aria-label', `Lật thẻ ${it.w} để xem nghĩa`);
+      const inner = document.createElement('span');
+      inner.className = 'flip-inner';
+      const front = document.createElement('span');
+      front.className = 'flip-face flip-front';
+      const frontLabel = document.createElement('small'); frontLabel.textContent = 'Verb / chạm để lật';
+      const word = document.createElement('span'); word.className = 'lw'; word.textContent = it.w;
+      front.append(frontLabel, word);
+      const back = document.createElement('span'); back.className = 'flip-face flip-back';
+      const backLabel = document.createElement('small'); backLabel.textContent = 'Nghĩa tiếng Việt';
+      const meaning = document.createElement('span'); meaning.className = 'lv'; meaning.textContent = it.vi;
+      back.append(backLabel, meaning);
       if(window.English101Media?.canShow({word:it.w})){
         const media = document.createElement('button');
         media.type = 'button';
@@ -718,8 +606,10 @@ function renderLib(){
         media.textContent = 'Hình · Video';
         media.setAttribute('aria-label', `Visual resources for ${it.w}`);
         media.setAttribute('aria-expanded', 'false');
-        row.appendChild(media);
+        media.tabIndex = -1;
+        back.appendChild(media);
       }
+      inner.append(front, back); row.appendChild(inner);
       ledger.appendChild(row);
     });
     card.appendChild(ledger);
@@ -738,8 +628,12 @@ libList.addEventListener('click', event => {
   if(event.target.closest('[data-media]')) return;
   const row = event.target.closest('[data-speak]');
   if(!row) return;
-  selectedLibraryWord = row.dataset.speak;
-  window.EnglishPronunciation.setSelectedText(selectedLibraryWord);
+   selectedLibraryWord = row.dataset.speak;
+   window.EnglishPronunciation.setSelectedText(selectedLibraryWord);
+   row.classList.toggle('flipped');
+   row.setAttribute('aria-pressed', String(row.classList.contains('flipped')));
+   row.setAttribute('aria-label', row.classList.contains('flipped') ? `${selectedLibraryWord}: ${row.dataset.meaning}. Lật lại thẻ` : `Lật thẻ ${selectedLibraryWord} để xem nghĩa`);
+   const media = row.querySelector('[data-media]'); if(media) media.tabIndex = row.classList.contains('flipped') ? 0 : -1;
 });
 libList.addEventListener('keydown', event => {
   if(event.target.closest('button')) return;
@@ -747,8 +641,12 @@ libList.addEventListener('keydown', event => {
   const row = event.target.closest('[data-speak]');
   if(!row) return;
   event.preventDefault();
-  selectedLibraryWord = row.dataset.speak;
-  window.EnglishPronunciation.setSelectedText(selectedLibraryWord);
+   selectedLibraryWord = row.dataset.speak;
+   window.EnglishPronunciation.setSelectedText(selectedLibraryWord);
+   row.classList.toggle('flipped');
+   row.setAttribute('aria-pressed', String(row.classList.contains('flipped')));
+   row.setAttribute('aria-label', row.classList.contains('flipped') ? `${selectedLibraryWord}: ${row.dataset.meaning}. Lật lại thẻ` : `Lật thẻ ${selectedLibraryWord} để xem nghĩa`);
+   const media = row.querySelector('[data-media]'); if(media) media.tabIndex = row.classList.contains('flipped') ? 0 : -1;
 });
 document.querySelectorAll('#libPartRow .part-choice').forEach(c => {
   c.addEventListener('click', () => {
@@ -917,15 +815,15 @@ function renderQuestion(){
   input.value = ''; input.disabled = false; input.readOnly = false; input.focus();
   document.getElementById('submitBtn').textContent = 'Kiểm tra';
   if(direction === 'en-vi'){
-    document.getElementById('promptLabel').textContent = 'ANH → VIỆT — nghĩa là gì?';
+    document.getElementById('promptLabel').textContent = 'Anh → Việt — nghĩa là gì?';
     document.getElementById('promptMain').textContent = item.w;
     input.placeholder = 'Nhập nghĩa tiếng Việt…';
   } else if(direction === 'vi-en'){
-    document.getElementById('promptLabel').textContent = 'VIỆT → ANH — từ tiếng Anh là gì?';
+    document.getElementById('promptLabel').textContent = 'Việt → Anh — từ tiếng Anh là gì?';
     document.getElementById('promptMain').textContent = item.vi.split(',')[0].split(';')[0];
     input.placeholder = 'Nhập từ/cụm từ tiếng Anh…';
   } else {
-    document.getElementById('promptLabel').textContent = `ĐIỀN TỪ — ${item.group}`;
+    document.getElementById('promptLabel').textContent = `Điền từ — ${item.group}`;
     document.getElementById('promptMain').textContent = item.sentence;
     input.placeholder = 'Nhập từ/cụm từ còn thiếu…';
   }
