@@ -17,14 +17,26 @@
     return typeof value === 'string' ? value.trim() : '';
   }
 
-  function resolveMediaEntry(entry) {
-    if (!entry || typeof entry !== 'object') return null;
-    if (entry.media === false || (entry.media && typeof entry.media === 'object' && entry.media.type === 'none')) return null;
+  function shortQuery(value, limit = 8) {
+    return cleanText(value).replace(/[\u0000-\u001f<>]/g, ' ').replace(/\s+/g, ' ').split(' ').slice(0, limit).join(' ').slice(0, 90).trim();
+  }
+
+  function canShow(entry) {
+    if (!entry || typeof entry !== 'object' || entry.media === false || entry.media?.type === 'none') return false;
     const word = cleanText(entry.word);
-    const mediaQuery = entry.media && typeof entry.media === 'object' ? cleanText(entry.media.query) : '';
-    const query = cleanText(entry.query) || mediaQuery || word;
-    if (!query) return null;
-    return {word: word || query, query};
+    return Boolean(word && word.length <= 90 && word.split(/\s+/).length <= 8 && /[\p{L}]/u.test(word));
+  }
+
+  function resolveMediaEntry(entry) {
+    if (!canShow(entry)) return null;
+    const word = cleanText(entry.word);
+    const media = entry.media && typeof entry.media === 'object' ? entry.media : {};
+    const explicit = shortQuery(entry.query) || shortQuery(media.query);
+    const collocation = Array.isArray(entry.collocations) ? entry.collocations.find(item => typeof item === 'string' && item.toLowerCase().includes(word.toLowerCase()) && item.trim().split(/\s+/).length <= 5) : '';
+    const derived = shortQuery(collocation || (entry.topic ? `${word} ${entry.topic}` : entry.lesson ? `${word} ${entry.lesson}` : word));
+    const query = explicit || derived || word;
+    const type = ['concrete', 'action', 'concept'].includes(media.type) ? media.type : null;
+    return {word, query, imageQuery: shortQuery(media.imageQuery) || query, videoQuery: shortQuery(media.videoQuery) || word, contextQuery: word, type};
   }
 
   function buildImageSearchUrl(query) {
@@ -41,6 +53,14 @@
     if (!value) return null;
     const url = new URL('https://youglish.com/');
     url.pathname = `/pronounce/${encodeURIComponent(value)}/english`;
+    return url;
+  }
+
+  function buildContextSearchUrl(query) {
+    const value = cleanText(query);
+    if (!value) return null;
+    const url = new URL('https://dictionary.cambridge.org/search/english/direct/');
+    url.searchParams.set('q', value);
     return url;
   }
 
@@ -83,7 +103,7 @@
 
     const queryLabel = document.createElement('p');
     queryLabel.className = 'media-helper-query-label';
-    queryLabel.textContent = 'Search';
+    queryLabel.textContent = 'Images search';
     const queryPreview = document.createElement('p');
     queryPreview.className = 'media-helper-query';
 
@@ -92,19 +112,20 @@
     actions.setAttribute('aria-label', 'Media search options');
     const imageLink = createAction(document, 'media-helper-action', 'Images');
     const videoLink = createAction(document, 'media-helper-action', 'Videos');
-    actions.append(imageLink, videoLink);
+    const contextLink = createAction(document, 'media-helper-action', 'Context');
+    actions.append(imageLink, videoLink, contextLink);
     panel.append(header, queryLabel, queryPreview, actions);
     layer.append(backdrop, panel);
     document.body.append(layer);
 
     closeButton.addEventListener('click', () => close());
     backdrop.addEventListener('click', () => close());
-    for (const link of [imageLink, videoLink]) link.addEventListener('click', () => close());
+    for (const link of [imageLink, videoLink, contextLink]) link.addEventListener('click', () => close());
     panel.addEventListener('keydown', event => {
       if (event.key === 'Enter' || event.key === ' ') event.stopPropagation();
     });
 
-    elements = {layer, backdrop, panel, title, closeButton, queryPreview, imageLink, videoLink};
+    elements = {layer, backdrop, panel, title, closeButton, queryPreview, imageLink, videoLink, contextLink};
     document.addEventListener('pointerdown', handleOutsidePointer, true);
     document.addEventListener('keydown', handleDocumentKeydown, true);
     root.addEventListener('resize', handleResize);
@@ -164,9 +185,10 @@
     if (elements && !elements.layer.hidden) close({restoreFocus: false});
     const view = ensureElements();
     if (!view) return false;
-    const imageUrl = buildImageSearchUrl(resolved.query);
-    const videoUrl = buildVideoSearchUrl(resolved.query);
-    if (!imageUrl || !videoUrl) return false;
+    const imageUrl = buildImageSearchUrl(resolved.imageQuery);
+    const videoUrl = buildVideoSearchUrl(resolved.videoQuery);
+    const contextUrl = buildContextSearchUrl(resolved.contextQuery);
+    if (!imageUrl || !videoUrl || !contextUrl) return false;
 
     activeTrigger = trigger;
     activeMode = isMobile() ? 'mobile' : 'desktop';
@@ -174,6 +196,7 @@
     view.queryPreview.textContent = resolved.query;
     view.imageLink.href = imageUrl.href;
     view.videoLink.href = videoUrl.href;
+    view.contextLink.href = contextUrl.href;
     view.layer.hidden = false;
     view.layer.classList.toggle('is-sheet', activeMode === 'mobile');
     view.layer.classList.toggle('is-popover', activeMode === 'desktop');
@@ -248,5 +271,5 @@
     else if (activeMode === 'desktop') positionPopover();
   }
 
-  return {open, close, buildImageSearchUrl, buildVideoSearchUrl, resolveMediaEntry};
+  return {open, close, canShow, buildImageSearchUrl, buildVideoSearchUrl, buildContextSearchUrl, resolveMediaEntry};
 });

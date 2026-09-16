@@ -163,8 +163,10 @@
   .btn.primary:hover{background:var(--navy);}
 
   .know-row{
-    display:flex;gap:10px;justify-content:center;margin-top:16px;
+    display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:16px;
   }
+  #mediaVerb{padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--navy-deep);font-weight:700;cursor:pointer;}
+  #mediaVerb:focus-visible{outline:3px solid #b8883f;outline-offset:2px;}
   .know-btn{
     flex:1;max-width:220px;padding:13px;border-radius:10px;border:none;
     font-family:'Helvetica Neue',Arial,sans-serif;font-weight:700;font-size:14px;cursor:pointer;
@@ -239,6 +241,7 @@
   .dict-answer[readonly]{background:#f2f4f6;color:var(--ink);cursor:default;}
 
 </style>
+<link rel="stylesheet" href="../assets/styles/media-helper.css?v=20260916-p2">
 </head>
 <body>
 <div class="wrap">
@@ -280,6 +283,7 @@
   <div class="know-row">
     <button class="know-btn no" id="btnNo">Chưa thuộc</button>
     <button class="know-btn yes" id="btnYes">Đã thuộc ✓</button>
+    <button type="button" id="mediaVerb" aria-label="Visual resources" aria-expanded="false">Hình · Video</button>
   </div>
 
   <div class="controls" style="margin-top:18px;">
@@ -352,6 +356,7 @@
 <script src="../assets/learning/persistence.js"></script>
 <script src="../assets/learning/session.js"></script>
 <script src="../assets/learning/keyboard.js"></script>
+<script src="../assets/learning/media-helper.js?v=20260916-p2"></script>
 <script>
 const DATA = [
 {stt:1,term:"Back up",meaning:"Hỗ trợ",ex:["I'll back you up if the meeting gets tense.","Always back up your files before updating the software.","The union backed up the workers' demands for better pay."]},
@@ -489,6 +494,7 @@ function highlight(text, term){
 
 function render(){
   if(deck.length === 0){
+    document.getElementById('mediaVerb').hidden = true;
     termFront.textContent = "Hết thẻ";
     meaningBack.textContent = "";
     exBack.innerHTML = "";
@@ -496,6 +502,9 @@ function render(){
     return;
   }
   const item = DATA[deck[idx]];
+  const mediaButton = document.getElementById('mediaVerb');
+  mediaButton.hidden = !window.English101Media?.canShow({word:item.term});
+  mediaButton.setAttribute('aria-label', `Visual resources for ${item.term}`);
   sttFront.textContent = '#' + item.stt;
   termFront.textContent = item.term;
   sttBack.textContent = '#' + item.stt;
@@ -540,6 +549,10 @@ function shuffle(){
 }
 
 card.addEventListener('click', flip);
+document.getElementById('mediaVerb').addEventListener('click', event => {
+  const item = DATA[deck[idx]];
+  if(item) window.English101Media?.open({word:item.term,media:true},{trigger:event.currentTarget});
+});
 document.getElementById('btnNext').addEventListener('click', next);
 document.getElementById('btnPrev').addEventListener('click', prev);
 document.getElementById('btnShuffle').addEventListener('click', shuffle);
