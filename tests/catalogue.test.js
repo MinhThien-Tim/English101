@@ -6,6 +6,16 @@ const vm = require('node:vm');
 
 const root = path.resolve(__dirname, '..');
 
+test('homepage catalogue does not include the practice-version reading translation card', () => {
+  const context = { window: {} };
+  vm.createContext(context);
+  vm.runInContext(fs.readFileSync(path.join(root, 'data/documents.js'), 'utf8'), context);
+  const resources = context.window.ENGLISH_101_DOCUMENTS;
+  const ids = resources.map(resource => resource.id);
+
+  assert.equal(ids.includes('reading-translation-alt'), false);
+});
+
 test('every Resource ID is unique and every local catalogue path exists', () => {
   const context = { window: {} };
   vm.createContext(context);

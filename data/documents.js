@@ -11,7 +11,6 @@ window.ENGLISH_101_DOCUMENTS = [
   { id: "vocab-5-6", category: "Vocabulary", title: "Vocabulary Vòng 5–6", description: "Từ vựng và ví dụ hoàn chỉnh cho vòng năm và sáu.", type: "HTML", path: "Vocabulary/vong-5-6-vocabulary-complete-examples.html" },
   { id: "vocab-writing", category: "Vocabulary", title: "Từ vựng Vòng 1–6 rút gọn", description: "Bộ từ vựng cô đọng kết hợp bài luyện viết chủ động.", type: "HTML", path: "Vocabulary/tu-vung-vong-1-6-rut-gon-luyen-viet.html" },
   { id: "reading-translation", category: "Vocabulary", title: "Đọc & Dịch — Vòng 1–6", description: "Luyện đọc hiểu và dịch với bộ từ vựng theo sáu vòng.", type: "HTML", path: "Vocabulary/vocabulary-reading-translation-v1-6.html" },
-  { id: "reading-translation-alt", category: "Vocabulary", title: "Đọc & Dịch — Bản luyện tập", description: "Phiên bản bổ sung của bài đọc và dịch từ vựng Vòng 1–6.", type: "HTML", path: "Vocabulary/vocabulary-reading-translation-v1-6%20(1).html" },
 
   { id: "confusing-words", category: "Vocabulary", title: "Từ Dễ Nhầm", description: "Phân biệt những từ dễ nhầm lẫn và luyện chính tả.", type: "HTML", path: "Vocabulary/confusing-words.html" },
   { id: "root-atlas", category: "Vocabulary", title: "Root Atlas", description: "Học gốc từ để mở rộng vốn từ có hệ thống và ghi nhớ lâu hơn.", type: "HTML", path: "Vocabulary/root-atlas.html", featured: true },
