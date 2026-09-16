@@ -19,6 +19,7 @@
   let questionMode = 'reverse';
   let wrongIndices = [];
   let selectedLibraryIndex = null;
+  const mediaIcon = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="8.5" cy="9" r="1.6" fill="currentColor"/><path d="m5.5 17 4.2-4.3 3.1 3 2.2-2.2 3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
   function loadState() {
     try {
@@ -68,11 +69,13 @@
   function itemHTML(item, index) {
     const isSaved = state.saved.includes(index);
     const isLearned = state.learned.includes(index);
+    const mediaEnabled = item[7] !== false && item[7]?.type !== 'none';
+    const mediaButton = mediaEnabled ? `<button type="button" class="icon-btn media-trigger" data-media-index="${index}" aria-label="Visual resources for ${escapeHTML(item[0])}" aria-expanded="false" title="Images &amp; video">${mediaIcon}</button>` : '';
     const examples = item[6].map((example, number) => `
       <div class="ex"><b>${number + 1}.</b> ${escapeHTML(example[0])}<small>${escapeHTML(example[1])}</small></div>`).join('');
     return `<article class="card${isLearned ? ' learned' : ''}" data-index="${index}">
       <div class="head"><div><div class="word">${escapeHTML(item[0])}</div><div class="meta">${escapeHTML(item[3])} · ${escapeHTML(item[1])}</div></div>
-      <div class="card-actions"><button class="icon-btn${isSaved ? ' saved' : ''}" data-save="${index}" aria-pressed="${isSaved}" aria-label="${isSaved ? 'Bỏ lưu' : 'Lưu'} ${escapeHTML(item[0])}" title="${isSaved ? 'Bỏ lưu' : 'Lưu từ'}">${isSaved ? '▮' : '▯'}</button><button class="speak" data-speak="${index}" aria-label="Nghe ${escapeHTML(item[0])}" title="Nghe phát âm">▶</button></div></div>
+      <div class="card-actions"><button class="icon-btn${isSaved ? ' saved' : ''}" data-save="${index}" aria-pressed="${isSaved}" aria-label="${isSaved ? 'Bỏ lưu' : 'Lưu'} ${escapeHTML(item[0])}" title="${isSaved ? 'Bỏ lưu' : 'Lưu từ'}">${isSaved ? '▮' : '▯'}</button><button class="speak" data-speak="${index}" aria-label="Nghe ${escapeHTML(item[0])}" title="Nghe phát âm">▶</button>${mediaButton}</div></div>
       <div class="meaning">${escapeHTML(item[4])}</div>
       <div class="badges"><span class="badge">${escapeHTML(item[2])}</span><span class="badge">${escapeHTML(item[5])}</span><span class="badge status">${isLearned ? 'Đã nhớ' : 'Đang học'}</span><button class="learn-btn" data-learn="${index}">${isLearned ? '✓ Đã nhớ' : '+ Đánh dấu nhớ'}</button></div>
       <button class="toggle" data-examples aria-expanded="false">+ 3 ví dụ</button><div class="examples">${examples}</div>
@@ -430,6 +433,7 @@
     const save = event.target.closest('[data-save]');
     const learn = event.target.closest('[data-learn]');
     const audio = event.target.closest('[data-speak]');
+    const media = event.target.closest('[data-media-index]');
     const toggle = event.target.closest('[data-examples]');
     if (save) toggleIndex('saved', Number(save.dataset.save));
     if (learn) toggleIndex('learned', Number(learn.dataset.learn));
@@ -437,6 +441,10 @@
       selectedLibraryIndex = Number(audio.dataset.speak);
       window.EnglishPronunciation.setSelectedText(baseWord(DATA[selectedLibraryIndex]));
       speak(selectedLibraryIndex);
+    }
+    if (media) {
+      const item = DATA[Number(media.dataset.mediaIndex)];
+      if (item) window.English101Media?.open({word: baseWord(item), media: item[7] ?? true}, {trigger: media});
     }
     if (toggle) {
       const examples = toggle.nextElementSibling;

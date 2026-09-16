@@ -16,6 +16,7 @@
   let activeKind = null;
   let practiceMode = 'choice';
   let selectedChoice = '';
+  const mediaIcon = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="8.5" cy="9" r="1.6" fill="currentColor"/><path d="m5.5 17 4.2-4.3 3.1 3 2.2-2.2 3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
   function sanitize(value) {
     const valid = list => Array.isArray(list) ? [...new Set(list.filter(id => byId.has(id)))] : [];
@@ -92,8 +93,10 @@
   function cardMarkup(entry) {
     const saved = state.saved.includes(entry.id);
     const known = state.known.includes(entry.id);
+    const mediaEnabled = entry.media !== false && entry.media?.type !== 'none';
+    const mediaButton = mediaEnabled ? `<button type="button" class="icon-btn media-trigger" data-media-id="${escapeHTML(entry.id)}" aria-label="Visual resources for ${escapeHTML(entry.word)}" aria-expanded="false" title="Images &amp; video">${mediaIcon}</button>` : '';
     return `<article class="card${known ? ' learned' : ''}" data-entry="${entry.id}">
-      <div class="head"><div><span class="lesson-mark">LESSON ${entry.lesson} · ${escapeHTML(entry.topic)}</span><div class="word">${escapeHTML(entry.word)}</div><div class="meta">/${escapeHTML(entry.ipa)}/ · ${escapeHTML(entry.partOfSpeech)}</div></div><div class="card-actions"><button class="icon-btn${saved ? ' saved' : ''}" data-save="${entry.id}" aria-pressed="${saved}" aria-label="${saved ? 'Bỏ lưu' : 'Lưu'} ${escapeHTML(entry.word)}">${saved ? '▮' : '▯'}</button><button class="speak" data-speak="${entry.id}" aria-label="Nghe ${escapeHTML(entry.word)}">▶</button></div></div>
+      <div class="head"><div><span class="lesson-mark">LESSON ${entry.lesson} · ${escapeHTML(entry.topic)}</span><div class="word">${escapeHTML(entry.word)}</div><div class="meta">/${escapeHTML(entry.ipa)}/ · ${escapeHTML(entry.partOfSpeech)}</div></div><div class="card-actions"><button class="icon-btn${saved ? ' saved' : ''}" data-save="${entry.id}" aria-pressed="${saved}" aria-label="${saved ? 'Bỏ lưu' : 'Lưu'} ${escapeHTML(entry.word)}">${saved ? '▮' : '▯'}</button><button class="speak" data-speak="${entry.id}" aria-label="Nghe ${escapeHTML(entry.word)}">▶</button>${mediaButton}</div></div>
       <div class="meaning">${escapeHTML(entry.vietnamese)}</div><div class="definition">${escapeHTML(entry.definition)}</div>
       <div class="badges"><span class="badge">Nhóm ${entry.group}</span><span class="badge">${escapeHTML(entry.partOfSpeech)}</span><span class="badge status">${known ? 'Đã nhớ' : 'Đang học'}</span><button class="learn-btn" data-known="${entry.id}">${known ? '✓ Đã nhớ' : '+ Đánh dấu nhớ'}</button></div>
       <button class="toggle" data-detail="${entry.id}" aria-expanded="false">+ Ví dụ · collocation · word family</button>
@@ -261,6 +264,11 @@
     if (target.dataset.save) return toggleList('saved', target.dataset.save);
     if (target.dataset.known) return toggleList('known', target.dataset.known);
     if (target.dataset.speak) return speak(byId.get(target.dataset.speak));
+    if (target.dataset.mediaId) {
+      const entry = byId.get(target.dataset.mediaId);
+      if (entry) window.English101Media?.open({word: entry.word, media: true}, {trigger: target});
+      return;
+    }
     if (target.dataset.detail) { const detail = target.closest('.card').querySelector('.entry-detail'); detail.hidden = !detail.hidden; target.setAttribute('aria-expanded', String(!detail.hidden)); target.textContent = detail.hidden ? '+ Ví dụ · collocation · word family' : '− Thu gọn'; }
     if (target.id === 'startFlash') return startFlash();
     if ('reveal' in target.dataset) return revealFlash();
