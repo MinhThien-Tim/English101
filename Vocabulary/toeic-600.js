@@ -40,6 +40,8 @@
   }
 
   function speak(entry) {
+    if (!entry) return;
+    if (window.EnglishPronunciation?.speak(entry.word, {lang: 'en-US', rate: .82})) return;
     if (!('speechSynthesis' in window)) return;
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(entry.word);
@@ -245,6 +247,12 @@
   function nextPractice() { if (!learningSession) return; learningSession.dispatch({type: 'NEXT'}); selectedChoice = ''; renderPractice(); }
 
   const router = learning.createLearningRouter({onChange: route => { if (route.tab && ['library','flashcards','practice','saved'].includes(route.tab)) setTab(route.tab, false); }});
+
+  window.EnglishPronunciation?.register({
+    getCurrentText: () => learningSession?.snapshot()?.currentEntry?.word || '',
+    lang: 'en-US',
+    rate: .82,
+  });
 
   document.addEventListener('click', event => {
     const target = event.target.closest('button,[data-tab]'); if (!target) return;

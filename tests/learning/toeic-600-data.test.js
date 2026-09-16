@@ -70,9 +70,13 @@ test('provides the enriched fields used by the interactive Lesson', () => {
 test('the TOEIC Lesson uses the shared learning platform', () => {
   const lesson = fs.readFileSync(path.join(root, 'Vocabulary/toeic-600.html'), 'utf8');
   const runtime = fs.readFileSync(path.join(root, 'Vocabulary/toeic-600.js'), 'utf8');
+  assert.match(lesson, /assets\/keyboard-pronunciation\.js/);
   assert.match(lesson, /assets\/learning\/session\.js/);
   assert.match(lesson, /assets\/learning\/persistence\.js/);
   assert.match(lesson, /assets\/learning\/keyboard\.js/);
+  assert.doesNotMatch(runtime, /document\.addEventListener\(['"]keydown['"]/);
+  assert.match(runtime, /EnglishPronunciation\?\.register/);
+  assert.match(runtime, /EnglishPronunciation\?\.speak/);
   assert.match(runtime, /createLearningSession/);
   assert.match(runtime, /createPersistence/);
   assert.match(runtime, /createKeyboardDispatcher/);
