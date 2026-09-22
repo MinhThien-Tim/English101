@@ -4,7 +4,7 @@
  * Dùng đường dẫn tương đối, không bắt đầu bằng dấu / để tương thích GitHub Pages.
  */
 window.ENGLISH_101_DOCUMENTS = [
-  { id: "personal-flashcards", category: "Vocabulary", title: "Personal Flashcards", description: "Review vocabulary saved in context with Context Lens.", type: "HTML", path: "Vocabulary/personal-flashcards.html" },
+  { id: "personal-flashcards", category: "Vocabulary", title: "Personal Flashcards", description: "Study words and phrases you saved while reading with Context Lens.", type: "HTML", path: "Vocabulary/personal-flashcards.html", originLabel: "From Context Lens" },
   { id: "vocabulary-atlas", category: "Vocabulary", title: "Vocabulary Atlas", description: "Bốn bộ từ vựng được hợp nhất thành một bản đồ học tập trực quan.", type: "HTML", path: "Vocabulary/vocabulary-atlas.html", featured: true },
 
   { id: "vocab-1-2", category: "Vocabulary", title: "Vocabulary Vòng 1–2", description: "Từ vựng và ví dụ hoàn chỉnh cho hai vòng đầu.", type: "HTML", path: "Vocabulary/vong-1-2-vocabulary-complete-examples.html" },

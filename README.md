@@ -120,6 +120,10 @@ HTML5, CSS3 và JavaScript thuần. Google Fonts có font hệ thống dự phò
 
 ## Personal Flashcards
 
+### Context Lens + English101
+
+Context Lens is for understanding and capturing vocabulary while reading. English101 is for practicing and reviewing it. The apps are separate: export **English101 Vocabulary** from Context Lens, then import the JSON file in **Personal Flashcards**.
+
 Open Vocabulary / Personal Flashcards and import the English101 JSON downloaded
 from Context Lens. The importer accepts `english101.context-vocabulary` V1 and V2,
 validates the entire file before writing, and exports V2. Reimporting an existing

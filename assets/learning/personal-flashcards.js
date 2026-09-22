@@ -12,6 +12,7 @@
   async function refresh() { data = await store.read(); render(); }
   function render() {
     $('counts').textContent = `${data.entries.length} cards · ${data.collections.length} collections`;
+    $('empty-guide').hidden = Boolean(data.entries.length); $('library-controls').hidden = !data.entries.length;
     $('export').disabled = !data.entries.length; $('study').disabled = !filtered().length;
     $('collections').replaceChildren(); $('cards').replaceChildren();
     $('collections').hidden = Boolean(selected); $('collection').hidden = !selected;
@@ -26,7 +27,6 @@
       node.append(button('Rename', async () => { const title = prompt('Collection title',collection.title); if (title?.trim()) { await store.rename(collection.id,title.trim()); await refresh(); } }), button('Delete collection', async () => { if (confirm(`Delete “${collection.title}” and its cards?`)) { await store.deleteCollection(collection.id); await refresh(); } }));
       $('collections').append(node);
     }
-    if (!data.entries.length) $('collections').append(element('p','Import an English101 JSON export from Context Lens to get started.'));
     if (selected) {
       $('collection-title').textContent = `${data.collections.find(c => c.id === selected)?.title || ''} · ${filtered().length} cards`;
       for (const entry of filtered()) {
@@ -57,12 +57,17 @@
   $('study').onclick = () => { queue = filtered(); start(); };
   $('back').onclick = () => { selected = null; render(); };
   $('search').oninput = render;
-  $('import').onchange = () => run(async () => {
-    const file = $('import').files[0]; if (!file) return;
-    try { const normalized = api.normalizeVocabulary(JSON.parse(await file.text())); await store.import(normalized); await refresh(); message('Import complete. Existing cards and review states are preserved.'); }
+  async function importFile(input) {
+    const file = input.files[0]; if (!file) return;
+    try { const normalized = api.normalizeVocabulary(JSON.parse(await file.text())); const existing = new Set(data.entries.map(entry => entry.id)); const added = normalized.entries.filter(entry => !existing.has(entry.id)).length; const duplicates = normalized.entries.length - added; await store.import(normalized); await refresh(); const collections = new Set(normalized.entries.map(entry => entry.collectionId)).size; message(`${added} added${duplicates ? ` · ${duplicates} already existed` : ''}${collections > 1 ? ` · ${collections} collections` : ''}`); }
     catch (error) { message(error instanceof SyntaxError ? 'This file is not valid JSON.' : error.message); }
-    finally { $('import').value = ''; }
-  });
+    finally { input.value = ''; }
+  }
+  $('import').onchange = event => run(() => importFile(event.currentTarget));
+  $('empty-import').onchange = event => run(() => importFile(event.currentTarget));
+  const help = $('how-dialog'), showHelp = () => help.showModal(), closeHelp = () => help.close();
+  $('show-help').onclick = showHelp; $('close-help').onclick = closeHelp;
+  help.onclick = event => { if (event.target === help) closeHelp(); };
   $('export').onclick = () => run(async () => { const content = api.exportVocabulary(await store.read()); const url = URL.createObjectURL(new Blob([JSON.stringify(content,null,2)],{type:'application/json'})); const a = document.createElement('a'); a.href = url; a.download = 'english101-personal-vocabulary.json'; a.click(); setTimeout(() => URL.revokeObjectURL(url),1000); });
   api.createKeyboardDispatcher({getContext:() => ({ active:Boolean(session) && !['INPUT','TEXTAREA'].includes(document.activeElement?.tagName),kind:'flashcard',revealed:session?.snapshot().answerState.revealed }),dispatch:action => { if (action === 'REVEAL' || action === 'NEXT') act(action); }}).attach();
   $('overview').inert = true;
