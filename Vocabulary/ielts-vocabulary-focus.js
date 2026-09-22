@@ -16,7 +16,7 @@
     });
     if (window.EnglishPronunciation) return register();
     const script = document.createElement('script');
-    script.src = '../assets/keyboard-pronunciation.js?v=20260915-l3';
+    script.src = '../assets/keyboard-pronunciation.js?v=20260922-voices';
     script.addEventListener('load', register, {once:true});
     document.head.appendChild(script);
   };

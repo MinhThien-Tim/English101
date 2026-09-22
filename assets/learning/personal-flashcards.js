@@ -11,6 +11,15 @@
   const viMeaning = entry => entry.meaningsVi.filter(Boolean).join(' · ');
   const normalize = value => String(value || '').trim().toLocaleLowerCase().replace(/[.!?]+$/,'');
   const shuffle = list => list.map(value => ({value,sort:Math.random()})).sort((a,b) => a.sort-b.sort).map(item => item.value);
+  function speakEnglish(text) {
+    if (window.EnglishPronunciation?.speak(text, {lang:'en-US',rate:.82})) return;
+    if (!('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    utterance.rate = .82;
+    window.speechSynthesis.speak(utterance);
+  }
   function pool(scope) { return data.entries.filter(entry => scope === 'ALL' || entry.collectionId === scope); }
   function filteredEntries() { const query = $('search').value.trim().toLocaleLowerCase(), scope = $('collection-filter').value, state = $('state-filter').value; return data.entries.filter(entry => (scope === 'ALL' || entry.collectionId === scope) && (state === 'ALL' || stateOf(entry.id) === state) && [entry.lemma,entry.surface,entry.ipa,entry.partOfSpeech,entry.meaningEn,...entry.meaningsVi,entry.context?.sentence,sourceText(entry)].join(' ').toLocaleLowerCase().includes(query)); }
 
@@ -34,7 +43,7 @@
     const head = element('div',undefined,'head'), title = element('div'); title.append(element('div',entry.lemma,'word'));
     const meta = [entry.ipa,entry.partOfSpeech].filter(Boolean).join(' · '); if (meta) title.append(element('div',meta,'meta'));
     const actions = element('div',undefined,'card-actions');
-    if ('speechSynthesis' in window) { const speak = element('button','🔊','icon-btn'); speak.type='button'; speak.title='Pronounce'; speak.setAttribute('aria-label',`Pronounce ${entry.lemma}`); speak.onclick=()=>{ speechSynthesis.cancel(); speechSynthesis.speak(new SpeechSynthesisUtterance(entry.lemma)); }; actions.append(speak); }
+    if ('speechSynthesis' in window) { const speak = element('button','🔊','icon-btn'); speak.type='button'; speak.title='Pronounce'; speak.setAttribute('aria-label',`Pronounce ${entry.lemma}`); speak.dataset.speak=entry.lemma; speak.onclick=()=>speakEnglish(entry.lemma); actions.append(speak); }
     const stateButton = element('button',stateOf(entry.id)==='known'?'✓ Known':'Learning','state-button'); stateButton.type='button'; stateButton.onclick=()=>run(async()=>{ await store.rate(entry.id,stateOf(entry.id)==='known'?'learning':'known'); await refresh(); }); actions.append(stateButton); head.append(title,actions); card.append(head);
     if (viMeaning(entry)) card.append(element('div',viMeaning(entry),'meaning')); if (entry.meaningEn) card.append(element('p',entry.meaningEn,'meaning-en'));
     if (entry.context?.sentence || sourceText(entry)) { const details=element('details',undefined,'card-detail'), summary=element('summary','Context & source'); details.append(summary); if(entry.context?.sentence) details.append(element('blockquote',entry.context.sentence)); if(sourceText(entry)) details.append(element('p',sourceText(entry),'source-line')); card.append(details); }
@@ -66,6 +75,7 @@
   for(const id of ['search','collection-filter','state-filter','flash-scope','practice-scope'])$(id).addEventListener(id==='search'?'input':'change',render);for(const id of ['import','empty-import','imports-import'])$(id).onchange=event=>run(()=>importFile(event.currentTarget));
   $('start-flash').onclick=startFlash;$('reveal-flash').onclick=revealFlash;$('rate-learning').onclick=()=>run(()=>rateFlash('hard'));$('rate-known').onclick=()=>run(()=>rateFlash('good'));$('start-practice').onclick=startPractice;$('show-help').onclick=()=>$('how-dialog').showModal();
   $('export').onclick=()=>run(async()=>{const content=api.exportVocabulary(await store.read()),url=URL.createObjectURL(new Blob([JSON.stringify(content,null,2)],{type:'application/json'})),link=document.createElement('a');link.href=url;link.download='english101-personal-vocabulary.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
+  window.EnglishPronunciation?.register({getCurrentText:()=>learningSession?.snapshot()?.currentEntry?.lemma||'',lang:'en-US',rate:.82});
   api.createKeyboardDispatcher({getContext:()=>{const snapshot=learningSession?.snapshot();return{active:Boolean(snapshot&&snapshot.status==='active'),kind:activeKind,answered:Boolean(snapshot?.answerState.submitted),revealed:Boolean(snapshot?.answerState.revealed),emptyInput:activeKind==='quiz'&&!snapshot?.prompt?.choices?.length&&!($('practice-answer')?.value||'').trim()};},dispatch:action=>{if(action==='REVEAL')revealFlash();else if(action==='NEXT')(activeKind==='flashcard'?advanceFlash():nextPractice());else if(action==='RATE_HARD')run(()=>rateFlash('hard'));else if(action==='RATE_GOOD')run(()=>rateFlash('good'));else if(action==='SUBMIT')submitPractice($('practice-answer')?.value||'');else if(action.startsWith('CHOICE_'))document.querySelectorAll('.choice')[Number(action.at(-1))-1]?.click();}}).attach();
   await run(async()=>{store=await api.openPersonalVocabulary();await refresh();});
 })();
