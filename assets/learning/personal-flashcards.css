@@ -5,3 +5,4 @@ html,body{max-width:100%;overflow-x:hidden}.masthead>div,.empty-guide,.empty-gui
 @media(max-width:620px){.topline span{display:none}.masthead h1{font-size:clamp(37px,12vw,52px)}.empty-guide h2{font-size:clamp(34px,10vw,46px)}.empty-guide .actions{display:grid;grid-template-columns:1fr}.empty-guide .actions>*{width:100%;white-space:normal}}
 @media(max-width:390px){.dashboard>div{padding:10px}.dashboard strong{font-size:21px}.tab{min-width:105px}.question-card .prompt{font-size:29px}.empty-guide{padding:26px 18px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+.page-language{display:inline-flex;padding:2px;border:1px solid rgba(255,255,255,.32);border-radius:8px}.page-language button{min-width:38px;min-height:30px;padding:0 8px;border:0;border-radius:6px;background:transparent;color:inherit;font-size:11px;font-weight:800;cursor:pointer}.page-language button[aria-pressed="true"]{background:#fff;color:#172033}
