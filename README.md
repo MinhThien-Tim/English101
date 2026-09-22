@@ -116,3 +116,28 @@ Mỗi lần thêm tài liệu hoặc sửa `data/documents.js`, commit và push 
 ## Công nghệ
 
 HTML5, CSS3 và JavaScript thuần. Google Fonts có font hệ thống dự phòng, nên nội dung vẫn hiển thị tốt nếu ngoại tuyến.
+
+
+## Personal Flashcards
+
+Open Vocabulary / Personal Flashcards and import the English101 JSON downloaded
+from Context Lens. The importer accepts `english101.context-vocabulary` V1 and V2,
+validates the entire file before writing, and exports V2. Reimporting an existing
+ID preserves local edits and review state. Invalid files leave existing data intact.
+
+The `english101-learning` IndexedDB database owns collections, entries, progress,
+and settings on this origin. It never reads Context Lens databases. Existing lesson
+localStorage keys are unchanged. Serve the page over HTTP(S), including a repository
+subpath; all scripts and links use relative paths.
+
+Study supports EN / VI, VI / EN, and conservative context cloze (fallback to EN / VI
+when the surface form cannot be isolated reliably). Enter reveals then advances;
+IME composition and unrelated controls are ignored. Known / Learning are local
+learner judgments, not mastery or an SRS schedule. Collections can be renamed or
+deleted; cards can be deleted. JSON export contains vocabulary and collections,
+not review states. Keep an export before clearing browser data.
+
+No account, cloud sync, server API, AI flashcards, or cross-origin database access
+is implemented. Moving cards, multi-context merging, and SRS are deferred.
+
+Validation: `node --test tests/learning/*.test.js tests/catalogue.test.js`.

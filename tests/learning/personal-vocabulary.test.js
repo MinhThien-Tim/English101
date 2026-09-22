@@ -1,0 +1,11 @@
+﻿const test = require('node:test');
+const assert = require('node:assert/strict');
+const {normalizeVocabulary,exportVocabulary,personalPrompt} = require('../../assets/learning/context-vocabulary-contract.js');
+const {resolveKeyboardAction} = require('../../assets/learning/keyboard.js');
+const {createLearningSession} = require('../../assets/learning/session.js');
+const entry = {id:'word',lemma:'indicate',surface:'indicated',partOfSpeech:'verb',ipa:null,meaningEn:'show',meaningsVi:['chỉ ra'],lexicalUnit:null,sentence:'The evidence indicated that.',source:{document:'Book',location:'page 83'},createdAt:new Date(0).toISOString()};
+const v1 = {schema:'english101.context-vocabulary',version:1,exportedAt:new Date().toISOString(),entries:[entry]};
+test('V1 and V2 normalize and round-trip', () => {const normalized=normalizeVocabulary(v1);assert.equal(normalized.collections[0].title,'Book');assert.deepEqual(normalizeVocabulary(exportVocabulary(normalized)),normalized);});
+test('reject invalid schema, version, and malformed entries', () => {for(const value of [{...v1,schema:'bad'},{...v1,version:3},{...v1,entries:[{}]},{...v1,entries:[{...entry,meaningsVi:[42]}]}]) assert.throws(()=>normalizeVocabulary(value));});
+test('three modes and conservative fallback', () => {const e=normalizeVocabulary(v1).entries[0];assert.equal(personalPrompt(e,{mode:'en-vi'}).front,'indicate');assert.equal(personalPrompt(e,{mode:'vi-en'}).back,'indicate');assert.equal(personalPrompt(e,{mode:'cloze'}).front,'The evidence ______ that.');assert.equal(personalPrompt({...e,surface:'missing'},{mode:'cloze'}).front,'indicate');assert.equal(personalPrompt({...e,surface:'e'},{mode:'cloze'}).front,'indicate');});
+test('Enter reveals then advances and IME is ignored', () => {const session=createLearningSession({entries:normalizeVocabulary(v1).entries,kind:'flashcard',strategy:{createPrompt:personalPrompt,grade:()=>({})}});session.start();for(const revealed of [false,true]) {const action=resolveKeyboardAction({active:true,kind:'flashcard',key:'Enter',revealed});assert.equal(action,revealed?'NEXT':'REVEAL');session.dispatch({type:action});}assert.equal(session.snapshot().status,'completed');assert.equal(resolveKeyboardAction({active:true,kind:'flashcard',key:'Enter',composing:true}),null);});
