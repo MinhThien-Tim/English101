@@ -43,6 +43,11 @@
             for (const entry of data.entries) { const result = entryStore.get(entry.id); result.onsuccess = () => { if (!result.result) entryStore.put(entry); }; }
             if (record) tx.objectStore('imports').put(record);
           }); },
+          addCollection(collection, entries) { return transaction(['collections','entries'], tx => {
+            tx.objectStore('collections').add(collection);
+            for (const entry of entries) tx.objectStore('entries').add(entry);
+          }); },
+          updateEntry(entry) { return transaction(['entries'], tx => tx.objectStore('entries').put(entry)); },
           rename(id, title) { return transaction(['collections'], tx => { const store = tx.objectStore('collections'); const result = store.get(id); result.onsuccess = () => { if (result.result) store.put({ ...result.result, title, updatedAt: Date.now(), locallyRenamed: true }); }; }); },
           rate(id, state) { if (!['new','learning','known'].includes(state)) return Promise.reject(new Error('Invalid state')); return transaction(['progress'], tx => tx.objectStore('progress').put({ id, state, updatedAt: Date.now() })); },
           deleteCard(id) { return transaction(['entries','progress'], tx => { tx.objectStore('entries').delete(id); tx.objectStore('progress').delete(id); }); },
