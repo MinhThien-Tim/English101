@@ -21,3 +21,19 @@ dist/
 __pycache__/
 *.py[cod]
 .venv/
+
+# Local secrets (templates may be committed)
+.env
+.env.*
+!.env.example
+!.env.*.example
+.dev.vars
+.dev.vars.*
+.wrangler/
+secrets/
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+*-credentials.json
