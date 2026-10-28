@@ -27,7 +27,6 @@
     "hiking-collocations": '<path d="m16 68 28-39 15 20 11-15 34 34H16Z"/><path class="icon-accent" d="M44 29v-9h19l-5 6 5 6H47M35 68c8-13 18-18 31-19"/>',
     "vocab-writing": '<rect x="19" y="22" width="55" height="41" rx="9"/><path d="M30 35h30M30 45h21"/><path class="icon-accent" d="m78 31 18 14-25 31-18 5 4-18 21-32Z"/>',
     "reading-translation": '<path d="M16 24h42v28H35l-10 9v-9h-9V24Z"/><path class="icon-soft" d="M62 35h42v28h-9v9l-10-9H62V35Z"/><text x="37" y="43">EN</text><text x="83" y="54">VI</text>',
-    "reading-translation-alt": '<path d="M16 24h42v28H35l-10 9v-9h-9V24Z"/><path class="icon-soft" d="M62 35h42v28h-9v9l-10-9H62V35Z"/><text x="37" y="43">EN</text><text x="83" y="54">VI</text><path class="icon-accent" d="m49 69 11 7 11-7"/>',
     "vocab-1-2": '<rect x="23" y="20" width="31" height="45" rx="9"/><rect class="icon-soft" x="66" y="20" width="31" height="45" rx="9"/><text class="icon-title" x="38.5" y="49">1</text><text class="icon-title" x="81.5" y="49">2</text><path d="M32 72h56"/>',
     "vocab-3-4": '<rect x="23" y="20" width="31" height="45" rx="9"/><rect class="icon-soft" x="66" y="20" width="31" height="45" rx="9"/><text class="icon-title" x="38.5" y="49">3</text><text class="icon-title" x="81.5" y="49">4</text><path d="M32 72h56"/>',
     "vocab-5-6": '<rect x="23" y="20" width="31" height="45" rx="9"/><rect class="icon-soft" x="66" y="20" width="31" height="45" rx="9"/><text class="icon-title" x="38.5" y="49">5</text><text class="icon-title" x="81.5" y="49">6</text><path d="M32 72h56"/>',
@@ -69,7 +68,7 @@
   const viewerUrl = (doc) => `viewer.html?id=${encodeURIComponent(doc.id)}`;
 
   function getVocabularyGroupKey(doc) {
-    if (["vocab-1-2", "vocab-3-4", "vocab-5-6", "vocab-writing", "reading-translation", "reading-translation-alt", "vocabulary-atlas"].includes(doc.id)) return "overview";
+    if (["vocab-1-2", "vocab-3-4", "vocab-5-6", "vocab-writing", "reading-translation", "vocabulary-atlas"].includes(doc.id)) return "overview";
     if (["confusing-words", "root-atlas"].includes(doc.id)) return "distinction";
     if (["c1-vocabulary", "ielts-collocations", "hiking-collocations"].includes(doc.id)) return "c1";
     return null;
@@ -227,7 +226,7 @@
     setLibraryState({ query: $("#search-input").value.trim(), category: "All" });
     $("#library").scrollIntoView({ behavior: "smooth" });
   });
-  $("#search-input").addEventListener("input", (event) => { state.query = event.target.value.trim(); if (!state.query) setLibraryState({ query: "" }); });
+  $("#search-input").addEventListener("input", (event) => { setLibraryState({ query: event.target.value.trim() }); });
   $("#quick-search").addEventListener("input", (event) => { quickState.query = event.target.value.trim(); renderQuickIndex(); });
   document.addEventListener("keydown", (event) => {
     const panel = $("#quick-index");

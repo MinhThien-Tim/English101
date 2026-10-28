@@ -1,6 +1,6 @@
 # English 101
 
-Portal học tiếng Anh tĩnh, responsive, không cần backend và sẵn sàng triển khai miễn phí bằng GitHub Pages. Website hiện có 23 tài liệu thuộc 5 chủ đề: Grammar, Vocabulary, Writing, Verb và Guide.
+Portal học tiếng Anh tĩnh, responsive, không cần backend và sẵn sàng triển khai miễn phí bằng GitHub Pages. Website hiện có 29 tài liệu thuộc 6 chủ đề: Grammar, Vocabulary, Writing, Verb, Guide và Blog.
 
 ## Cấu trúc
 
@@ -12,13 +12,17 @@ Portal học tiếng Anh tĩnh, responsive, không cần backend và sẵn sàng
 ├── script.js               # Tìm kiếm, lọc và render thẻ tài liệu
 ├── viewer.js               # Logic trình đọc
 ├── data/
-│   └── documents.js        # Danh mục tài liệu duy nhất cần cập nhật
-├── assets/                 # Logo, ảnh và tài nguyên giao diện
+│   ├── documents.js        # Danh mục tài liệu duy nhất cần cập nhật
+│   └── vocabulary/         # Dữ liệu bài học từ vựng dùng chung (~10 MB)
+├── assets/                 # Logo, ảnh, style và JS học tập dùng chung
 ├── Grammar/
 ├── Vocabulary/
 ├── Writing/
 ├── Verb/
-└── Guide/
+├── Guide/
+├── Blog/
+├── tests/                  # Kiểm thử: node --test tests/learning/*.test.js tests/catalogue.test.js
+└── tools/                  # Script bảo trì dữ liệu
 ```
 
 Đường dẫn trong dữ liệu luôn là đường dẫn tương đối (ví dụ `Grammar/my-file.pdf`), vì vậy website hoạt động cả trong subpath của GitHub Pages.

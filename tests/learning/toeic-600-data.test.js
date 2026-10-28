@@ -1,14 +1,12 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const vm = require('node:vm');
 const test = require('node:test');
 
 const root = path.resolve(__dirname, '..', '..');
-const source = fs.readFileSync(path.join(root, 'data/vocabulary/toeic-600.js'), 'utf8');
-const context = {window: {}};
-vm.runInNewContext(source, context);
-const dataset = context.window.ENGLISH101_TOEIC_600_DATA;
+global.window = {};
+require('../../data/vocabulary/toeic-600.js');
+const dataset = global.window.ENGLISH101_TOEIC_600_DATA;
 
 test('contains 50 lessons and 600 ordered entries', () => {
   assert.equal(dataset.meta.lessonCount, 50);

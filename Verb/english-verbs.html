@@ -913,6 +913,7 @@ document.getElementById('skipBtn').addEventListener('click', () => {
   } else nextQuestion();
 });
 document.getElementById('answerInput').addEventListener('keydown', (e) => {
+  if(e.isComposing) return;
   if(e.key === 'Enter'){ e.preventDefault(); if(!answered) checkAnswer(); else nextQuestion(); }
 });
 document.getElementById('restartBtn').addEventListener('click', () => {

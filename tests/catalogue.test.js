@@ -2,32 +2,31 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const vm = require('node:vm');
+const { execSync } = require('node:child_process');
 
 const root = path.resolve(__dirname, '..');
 
+global.window = {};
+require('../data/documents.js');
+const catalogue = global.window.ENGLISH_101_DOCUMENTS;
+
 test('homepage catalogue does not include the practice-version reading translation card', () => {
-  const context = { window: {} };
-  vm.createContext(context);
-  vm.runInContext(fs.readFileSync(path.join(root, 'data/documents.js'), 'utf8'), context);
-  const resources = context.window.ENGLISH_101_DOCUMENTS;
-  const ids = resources.map(resource => resource.id);
+  const ids = catalogue.map(resource => resource.id);
 
   assert.equal(ids.includes('reading-translation-alt'), false);
 });
 
 test('every Resource ID is unique and every local catalogue path exists', () => {
-  const context = { window: {} };
-  vm.createContext(context);
-  vm.runInContext(fs.readFileSync(path.join(root, 'data/documents.js'), 'utf8'), context);
-  const resources = context.window.ENGLISH_101_DOCUMENTS;
-  const ids = resources.map(resource => resource.id);
+  const ids = catalogue.map(resource => resource.id);
 
   assert.equal(new Set(ids).size, ids.length);
-  for (const resource of resources) {
+  const gitFiles = new Map(execSync('git ls-files', { cwd: root }).toString().split('\n').map(p => p.trim()).filter(Boolean).map(p => [p.toLowerCase(), p]));
+  for (const resource of catalogue) {
     if (/^https?:/.test(resource.path)) continue;
     const target = path.join(root, decodeURIComponent(resource.path));
     assert.equal(fs.existsSync(target), true, `${resource.id} points to missing ${resource.path}`);
+    const tracked = gitFiles.get(resource.path.toLowerCase());
+    if (tracked) assert.equal(tracked, resource.path, `${resource.id} path casing does not match tracked file "${tracked}"`);
   }
 });
 

@@ -2,7 +2,6 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const vm = require('node:vm');
 
 const root = path.resolve(__dirname, '../..');
 const expectations = {
@@ -11,11 +10,16 @@ const expectations = {
   'vong-5-6': { entries: 1280, groups: 44, key: 'v56-atlas-v3' },
 };
 
+const loaders = {
+  'vong-1-2': () => require('../../data/vocabulary/vong-1-2.js'),
+  'vong-3-4': () => require('../../data/vocabulary/vong-3-4.js'),
+  'vong-5-6': () => require('../../data/vocabulary/vong-5-6.js'),
+};
+
 function loadDataset(set) {
-  const context = { window: {} };
-  vm.createContext(context);
-  vm.runInContext(fs.readFileSync(path.join(root, `data/vocabulary/${set}.js`), 'utf8'), context);
-  return context.window.ENGLISH101_VOCABULARY_DATASET;
+  global.window = {};
+  loaders[set]();
+  return global.window.ENGLISH101_VOCABULARY_DATASET;
 }
 
 for (const [set, expected] of Object.entries(expectations)) {
