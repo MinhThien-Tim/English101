@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20260915-lesson-icons-1">
+  <link rel="stylesheet" href="style.css?v=20261026-distill-1">
 </head>
 <body>
   <!-- Inline lesson icons: avoids external SVG source restrictions -->
@@ -31,10 +31,8 @@
 
   <main>
     <section class="hero">
-      <div class="hero-glow hero-glow-a"></div><div class="hero-glow hero-glow-b"></div>
       <div class="container hero-grid">
         <div class="hero-copy">
-          <div class="eyebrow"><span></span> Your English learning space</div>
           <h1>Học tiếng Anh<br><em>rõ ràng hơn.</em></h1>
           <p>Một không gian học tập tập trung, nơi mọi tài liệu từ ngữ pháp đến kỹ năng viết đều sẵn sàng để đọc và luyện tập ngay trên trình duyệt.</p>
           <form class="hero-search" id="search-form" role="search">
@@ -43,30 +41,28 @@
             <input id="search-input" type="search" placeholder="Tìm ngữ pháp, từ vựng, IELTS..." autocomplete="off">
             <button type="submit">Tìm kiếm</button>
           </form>
-          <div class="hero-meta"><span><b id="doc-count">23</b> tài liệu</span><span><b>6</b> chủ đề</span><span><b>100%</b> miễn phí</span></div>
+          <div class="hero-meta"><span><b id="doc-count">29</b> tài liệu</span><span><b>6</b> chủ đề</span><span><b>100%</b> miễn phí</span></div>
         </div>
         <div class="hero-art" aria-hidden="true">
           <div class="word-card card-one"><span>VOCABULARY</span><strong>serendipity</strong><small>/ˌser.ənˈdɪp.ə.ti/</small><p>a happy discovery made by chance</p></div>
-          <div class="word-card card-two"><span>DAILY PROGRESS</span><strong>Keep going!</strong><div class="progress"><i></i></div><small>12 day streak · 84% complete</small></div>
-          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="floating-letter">A</div>
         </div>
       </div>
     </section>
 
     <section class="topics section container" id="topics">
-      <div class="section-heading"><div><span class="kicker">Explore by topic</span><h2>Chọn lộ trình của bạn</h2></div><p>Mỗi chủ đề là một bộ công cụ giúp bạn tiến gần hơn đến khả năng sử dụng tiếng Anh tự tin.</p></div>
+      <div class="section-heading"><h2>Chọn lộ trình của bạn</h2></div>
       <div class="topic-grid" id="topic-grid"></div>
     </section>
 
     <section class="featured section" id="featured">
       <div class="container">
-        <div class="section-heading"><div><span class="kicker">Editor’s picks</span><h2>Tài liệu nổi bật</h2></div><button class="text-button" data-show-all>Xem toàn bộ <span>→</span></button></div>
+        <div class="section-heading"><h2>Tài liệu nổi bật</h2><button class="text-button" data-show-all>Xem toàn bộ <span>→</span></button></div>
         <div class="featured-grid" id="featured-grid"></div>
       </div>
     </section>
 
     <section class="library section container" id="library">
-      <div class="section-heading library-head"><div><span class="kicker">The library</span><h2>Kho học liệu</h2></div><p id="result-count" aria-live="polite"></p></div>
+      <div class="section-heading library-head"><h2>Kho học liệu</h2><p id="result-count" aria-live="polite"></p></div>
       <div class="filters" id="filters" role="group" aria-label="Lọc theo chủ đề"></div>
       <div class="document-grid" id="document-grid"></div>
       <div class="empty-state" id="empty-state" hidden><span>⌕</span><h3>Không tìm thấy tài liệu</h3><p>Thử một từ khóa khác hoặc chọn lại “Tất cả”.</p><button class="primary-button" id="clear-search">Xóa bộ lọc</button></div>
@@ -74,34 +70,34 @@
 
     <section class="blog section" id="blog">
       <div class="container">
-        <div class="section-heading"><div><span class="kicker">Learning notes</span><h2>Blog — Học thế nào cho hiệu quả?</h2></div><p>Những bài chia sẻ ngắn, thực tế về cách ghi nhớ, luyện tập và biến kiến thức thành khả năng sử dụng.</p></div>
+        <div class="section-heading"><h2>Blog — Học thế nào cho hiệu quả?</h2></div>
         <div class="blog-grid" id="blog-grid"></div>
       </div>
     </section>
 
     <section class="about section" id="about">
-      <div class="container about-card"><div><span class="kicker light">Study smarter</span><h2>Một nơi. Mọi tài liệu.<br>Mở ra và học ngay.</h2></div><p>Không đăng nhập, không quảng cáo, không bước thừa. English 101 giúp bạn tập trung vào điều quan trọng nhất: tiến bộ mỗi ngày.</p><a href="#library" class="light-button">Bắt đầu học <span>→</span></a></div>
+      <div class="container about-card"><h2>Một nơi. Mọi tài liệu.<br>Mở ra và học ngay.</h2><p>Không đăng nhập, không quảng cáo, không bước thừa. English 101 giúp bạn tập trung vào điều quan trọng nhất: tiến bộ mỗi ngày.</p><a href="#library" class="light-button">Bắt đầu học <span>→</span></a></div>
     </section>
   </main>
 
   <footer class="footer"><div class="container footer-inner"><a class="brand footer-brand" href="#top"><span class="brand-mark">E<span>101</span></span><span>English 101<small>Learn with clarity</small></span></a><p>Kho học liệu tiếng Anh mở, được thiết kế cho việc tự học.</p><div class="footer-links"><a href="#topics">Chủ đề</a><a href="#library">Tài liệu</a><a href="#blog">Blog</a><a href="README.md">Hướng dẫn</a></div><small class="copyright">© <span id="year"></span> English 101. Built for learners.</small></div></footer>
 
-  <button class="index-launcher" id="index-launcher" aria-expanded="false" aria-controls="quick-index">
+  <button class="index-launcher" id="index-launcher" aria-expanded="false" aria-controls="quick-index" aria-label="Mục lục bài học">
     <span class="index-launcher-icon">☷</span><span><b>Mục lục bài học</b><small>Chọn bài nhanh</small></span><i>→</i>
   </button>
   <div class="index-backdrop" id="index-backdrop" hidden></div>
-  <aside class="quick-index" id="quick-index" aria-hidden="true" aria-label="Mục lục bài học">
+  <aside class="quick-index" id="quick-index" role="dialog" aria-modal="true" aria-labelledby="quick-index-title" aria-hidden="true">
     <div class="quick-index-head">
-      <div><span>LESSON LIBRARY</span><h2>Mục lục bài học</h2><p id="quick-count"></p></div>
+      <div><span>LESSON LIBRARY</span><h2 id="quick-index-title">Mục lục bài học</h2><p id="quick-count"></p></div>
       <button id="index-close" aria-label="Thu gọn mục lục">×</button>
     </div>
-    <label class="quick-search"><span>⌕</span><input id="quick-search" type="search" placeholder="Tìm bài học..."><kbd>/</kbd></label>
+    <label class="quick-search"><span aria-hidden="true">⌕</span><input id="quick-search" type="search" placeholder="Tìm bài học..." aria-label="Tìm bài học"><kbd aria-hidden="true">/</kbd></label>
     <div class="quick-filters" id="quick-filters" role="group" aria-label="Lọc nhanh theo chủ đề"></div>
     <div class="quick-list" id="quick-list"></div>
     <div class="quick-index-foot"><span><i></i> Tiến độ được lưu trên thiết bị</span><a href="#library" id="open-library">Xem kho đầy đủ →</a></div>
   </aside>
 
   <script src="data/documents.js"></script>
-  <script src="script.js?v=20260915-lesson-icons-1"></script>
+  <script src="script.js?v=20261026-distill-1"></script>
 </body>
 </html>

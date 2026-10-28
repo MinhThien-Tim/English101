@@ -51,8 +51,8 @@
     if (!drawing) return iconMarkup(categoryInfo[doc.category].icon);
     return `<svg class="lesson-icon-art simple-lesson-icon" viewBox="0 0 120 88" aria-hidden="true" focusable="false"><rect class="icon-canvas" x="2" y="2" width="116" height="84" rx="18"></rect><g class="icon-drawing">${drawing}</g></svg>`;
   };
-  const state = { category: "Vocabulary", query: "" };
-  const quickState = { category: "Vocabulary", query: "" };
+  const state = { category: "All", query: "" };
+  const quickState = { category: "All", query: "" };
   const vocabularyGroups = {
     overview: "1. Tổng quát",
     distinction: "2. Phân biệt",
@@ -84,7 +84,7 @@
       const info = categoryInfo[category];
       const count = documents.filter((doc) => doc.category === category).length;
       const active = state.category === category;
-      return `<button class="topic-card ${info.color}${active ? " active" : ""}" data-category="${category}" aria-pressed="${active}"><span class="topic-icon">${iconMarkup(info.icon)}</span><span class="topic-copy"><strong>${info.label}</strong><small>${info.text}</small></span><span class="topic-action"><span class="topic-count">${count}<small> tài liệu</small></span><span class="topic-open">Mở <b aria-hidden="true">→</b></span></span></button>`;
+      return `<button class="topic-card ${info.color}${active ? " active" : ""}" data-category="${category}" aria-pressed="${active}"><span class="topic-icon">${iconMarkup(info.icon)}</span><span class="topic-copy"><strong>${info.label}</strong><small>${info.text}</small></span><span class="topic-action"><span class="topic-count">${count}<small> tài liệu</small></span><span class="topic-open" aria-hidden="true">→</span></span></button>`;
     }).join("");
   }
 
@@ -108,10 +108,10 @@
 
   function renderFilters() {
     const orderedCategories = ["Vocabulary", "Grammar", "Writing", "Verb", "Guide", "Blog"];
-    const items = [...orderedCategories, "All"];
+    const items = ["All", ...orderedCategories];
     $("#filters").innerHTML = items.map((item) => {
       const filterClass = item === "All" ? "filter-all" : `filter-${item.toLowerCase()}`;
-      return `<button class="filter-button ${filterClass}${state.category === item ? " active" : ""}" data-filter="${item}">${item === "All" ? "Tất cả" : categoryInfo[item].label}<span>${item === "All" ? documents.length : documents.filter((doc) => doc.category === item).length}</span></button>`;
+      return `<button class="filter-button ${filterClass}${state.category === item ? " active" : ""}" data-filter="${item}" aria-pressed="${state.category === item}">${item === "All" ? "Tất cả" : categoryInfo[item].label}<span>${item === "All" ? documents.length : documents.filter((doc) => doc.category === item).length}</span></button>`;
     }).join("");
   }
 
@@ -140,10 +140,14 @@
     renderFilters();
   }
 
-  function selectCategory(category) {
-    state.category = category;
+  function setLibraryState(patch) {
+    Object.assign(state, patch);
     renderTopics();
     renderLibrary();
+  }
+
+  function selectCategory(category) {
+    setLibraryState({ category });
     $("#library").scrollIntoView({ behavior: "smooth" });
   }
 
@@ -154,26 +158,49 @@
       (!query || normalize(`${doc.title} ${doc.description} ${doc.category}`).includes(query))
     );
     const orderedCategories = ["Vocabulary", "Grammar", "Writing", "Verb", "Guide", "Blog"];
-    $("#quick-filters").innerHTML = [...orderedCategories, "All"].map((category) => {
+    $("#quick-filters").innerHTML = ["All", ...orderedCategories].map((category) => {
       const count = category === "All" ? documents.length : documents.filter((doc) => doc.category === category).length;
       const filterClass = category === "All" ? "filter-all" : `filter-${category.toLowerCase()}`;
-      return `<button class="${filterClass}${quickState.category === category ? " active" : ""}" data-quick-category="${category}">${category === "All" ? "Tất cả" : categoryInfo[category].label} · ${count}</button>`;
+      return `<button class="${filterClass}${quickState.category === category ? " active" : ""}" data-quick-category="${category}" aria-pressed="${quickState.category === category}">${category === "All" ? "Tất cả" : categoryInfo[category].label} · ${count}</button>`;
     }).join("");
     $("#quick-count").textContent = `${results.length} bài học · Chọn để mở ngay`;
-    $("#quick-list").innerHTML = results.length ? results.map((doc, index) => {
-      const minutes = 12 + (index % 5) * 6;
-      const level = doc.category === "Guide" ? "Cơ bản" : doc.category === "Writing" ? "Nâng cao" : ["Cơ bản", "Trung bình", "Nâng cao"][index % 3];
-      return `<a class="quick-item" href="${viewerUrl(doc)}"><span class="quick-item-title">${escapeHTML(doc.title)}</span><span class="quick-item-meta"><b>${categoryInfo[doc.category].label}</b><span>${level}</span><span>${minutes} phút</span></span><span class="quick-item-arrow">→</span></a>`;
+    $("#quick-list").innerHTML = results.length ? results.map((doc) => {
+      return `<a class="quick-item" href="${viewerUrl(doc)}"><span class="quick-item-title">${escapeHTML(doc.title)}</span><span class="quick-item-meta"><b>${categoryInfo[doc.category].label}</b></span><span class="quick-item-arrow" aria-hidden="true">→</span></a>`;
     }).join("") : '<div class="quick-empty">Không tìm thấy bài học phù hợp.</div>';
   }
 
+  let quickIndexReturnFocus = null;
+
+  function setBackgroundInert(inert) {
+    ["header.site-header", "main", "footer.footer"].forEach((selector) => {
+      const element = document.querySelector(selector);
+      if (element) element.inert = inert;
+    });
+  }
+
   function setQuickIndex(open) {
-    $("#quick-index").classList.toggle("open", open);
-    $("#quick-index").setAttribute("aria-hidden", String(!open));
-    $("#index-launcher").setAttribute("aria-expanded", String(open));
-    $("#index-backdrop").hidden = !open;
-    document.body.classList.toggle("index-open", open);
-    if (open) setTimeout(() => $("#quick-search").focus(), 150);
+    const panel = $("#quick-index");
+    const launcher = $("#index-launcher");
+    if (open) {
+      quickIndexReturnFocus = launcher;
+      panel.classList.add("open");
+      panel.setAttribute("aria-hidden", "false");
+      launcher.setAttribute("aria-expanded", "true");
+      $("#index-backdrop").hidden = false;
+      document.body.classList.add("index-open");
+      setBackgroundInert(true);
+      setTimeout(() => $("#quick-search").focus(), 150);
+      return;
+    }
+    const target = quickIndexReturnFocus || launcher;
+    panel.classList.remove("open");
+    launcher.setAttribute("aria-expanded", "false");
+    $("#index-backdrop").hidden = true;
+    document.body.classList.remove("index-open");
+    setBackgroundInert(false);
+    if (target && typeof target.focus === "function") target.focus();
+    panel.setAttribute("aria-hidden", "true");
+    quickIndexReturnFocus = null;
   }
 
   document.addEventListener("click", (event) => {
@@ -192,14 +219,28 @@
     if (event.target.closest("#index-launcher")) setQuickIndex(true);
     if (event.target.closest("#index-close") || event.target.closest("#index-backdrop") || event.target.closest("#open-library")) setQuickIndex(false);
     if (event.target.closest("[data-show-all]")) selectCategory("All");
-    if (event.target.closest("#clear-search")) { state.category = "All"; state.query = ""; $("#search-input").value = ""; renderLibrary(); }
+    if (event.target.closest("#clear-search")) { $("#search-input").value = ""; setLibraryState({ category: "All", query: "" }); }
   });
 
-  $("#search-form").addEventListener("submit", (event) => { event.preventDefault(); state.query = $("#search-input").value.trim(); state.category = "All"; renderLibrary(); $("#library").scrollIntoView({ behavior: "smooth" }); });
-  $("#search-input").addEventListener("input", (event) => { state.query = event.target.value.trim(); if (!state.query) renderLibrary(); });
+  $("#search-form").addEventListener("submit", (event) => {
+    event.preventDefault();
+    setLibraryState({ query: $("#search-input").value.trim(), category: "All" });
+    $("#library").scrollIntoView({ behavior: "smooth" });
+  });
+  $("#search-input").addEventListener("input", (event) => { state.query = event.target.value.trim(); if (!state.query) setLibraryState({ query: "" }); });
   $("#quick-search").addEventListener("input", (event) => { quickState.query = event.target.value.trim(); renderQuickIndex(); });
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") setQuickIndex(false);
+    const panel = $("#quick-index");
+    if (panel.classList.contains("open") && event.key === "Tab") {
+      const focusable = [...panel.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])')].filter((element) => element.offsetParent !== null);
+      if (focusable.length) {
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+      }
+    }
+    if (event.key === "Escape" && panel.classList.contains("open")) setQuickIndex(false);
     if (event.key === "/" && !$("#quick-index").classList.contains("open") && !/input|textarea|select/i.test(document.activeElement.tagName)) {
       event.preventDefault(); setQuickIndex(true);
     }

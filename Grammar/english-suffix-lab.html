@@ -61,6 +61,7 @@ button{cursor:pointer}
 .flip-scene{min-height:430px;perspective:1200px}
 .study-card{position:relative;width:100%;min-height:430px;transform-style:preserve-3d;transition:transform .48s cubic-bezier(.2,.7,.2,1);cursor:pointer;outline:none}
 .study-card.is-flipped{transform:rotateY(180deg)}
+.study-card:focus-visible{outline:3px solid #9c6f26;outline-offset:3px}
 .study-face{position:absolute;inset:0;display:flex;flex-direction:column;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:1px solid #cbdadd;border-radius:18px;background:#fff;box-shadow:0 16px 36px rgba(17,43,48,.12);overflow:auto}
 .study-front{align-items:center;justify-content:center;padding:38px;text-align:center;background:linear-gradient(145deg,#fff,#eef6f5)}
 .study-back{padding:26px;transform:rotateY(180deg)}
