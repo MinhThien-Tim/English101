@@ -4,12 +4,13 @@ description: A calm, practice-first English study library — "Learn with clarit
 colors:
   primary: "#ff6b4a"
   coral-strong: "#c9431f"
-  navy: "#0b1220"
+  navy: "#131416"
+  lamp-lime: "#d1fe17"
   paper: "#fbfaf7"
   ink: "#111827"
   muted: "#647084"
   line: "#e7e4de"
-  footer-ink: "#080e18"
+  footer-ink: "#0a0b0c"
   featured-surface: "#f0eee8"
   blog-surface: "#eef3fc"
   lesson-paper: "#fffefa"
@@ -162,7 +163,7 @@ components:
 
 **Creative North Star: "The Quiet Reading Room"**
 
-English 101 is a private study lit by one warm lamp. The portal opens on a deep navy field — the room before dawn — then hands the visitor a warm off-white page, near-black ink, and a single ember-coral mark. Nothing competes for attention: hairlines instead of boxes, generous section pauses, and one vertical shelf of six topic rows that read like labelled drawers in a cabinet.
+English 101 is a private study lit by one warm lamp. The portal opens on a deep charcoal field — the room before dawn — then hands the visitor a warm off-white page, near-black ink, and a single ember-coral mark. Nothing competes for attention: hairlines instead of boxes, generous section pauses, and one vertical shelf of six topic rows that read like labelled drawers in a cabinet.
 
 The system is calm and editorial rather than chatty. Type does the persuading: Manrope at large sizes, tracked tight enough to feel deliberate, over DM Sans at a patient 1.6 line-height so Vietnamese diacritics never collide with the line above. Density is generous on the portal and slightly tighter inside lessons, where the learner is reading and answering rather than choosing.
 
@@ -183,8 +184,9 @@ A warm neutral room with one lit accent and six shelved tints. The palette is de
 - **Ember Coral** (`{colors.primary}`): the only cross-topic signal colour. It lives in the 43px brand tile, the `em` inside the hero headline, the arrow on "Đọc trực tiếp →" and "Xem toàn bộ →", and one call to action per section. It is a marker, not a surface: it never fills a content card, and the topic row's count and arrow stay in their own topic colour.
 
 ### Secondary
-- **Deep Navy** (`{colors.navy}`): the hero field, the "Một nơi. Mọi tài liệu." panel, and the viewer bar. It is the room's dark wall — used as a full-bleed block, never as a text colour on paper.
-- **Footer Ink** (`{colors.footer-ink}`): one step darker than navy, reserved for the footer so it closes the page below the hero's register.
+- **Cinema Charcoal** (`{colors.navy}`): the hero field, the "Một nơi. Mọi tài liệu." panel, and the viewer bar. It is the room's dark wall — a near-black charcoal (`#131416`) with faint lime lamp-glows in the hero, used as a full-bleed block, never as a text colour on paper.
+- **Lamp Lime** (`{colors.lamp-lime}`): the dark room's accent, borrowed from cinematic AI-art references (Higgsfield). It lights only charcoal surfaces — the brand tile (with charcoal label text), the `em` inside the hero headline, the hero search submit, and arrows on dark panels (`{colors.footer-ink}`/charcoal rooms). It never appears on the warm paper pages, where ember coral remains the only accent.
+- **Footer Ink** (`{colors.footer-ink}`): one step darker than charcoal, reserved for the footer so it closes the page below the hero's register.
 
 ### Tertiary
 - **Guide Blue** (`{colors.topic-guide}` / `{colors.topic-guide-soft}`), **Vocabulary Violet** (`{colors.topic-vocabulary}` / `{colors.topic-vocabulary-soft}`), **Grammar Green** (`{colors.topic-grammar}` / `{colors.topic-grammar-soft}`), **Writing Amber** (`{colors.topic-writing}` / `{colors.topic-writing-soft}`), **Verb Olive** (`{colors.topic-verbs}` / `{colors.topic-verbs-soft}`), **Blog Slate** (`{colors.topic-blog}` / `{colors.topic-blog-soft}`): each of the six categories is a hue paired with a paper tint. The saturated value drives the label, icon outline, border mix, and count; the tint fills the row.
@@ -201,7 +203,7 @@ Lesson surfaces carry their own neutrals — **Lesson Paper** (`{colors.lesson-p
 
 ### Named Rules
 
-**The One Lamp Rule.** Ember coral occupies less than a tenth of any view. If a screen has two coral buttons, one of them is wrong. Its scarcity is what makes the action legible.
+**The One Lamp Rule.** Ember coral occupies less than a tenth of any view. If a screen has two coral buttons, one of them is wrong. Its scarcity is what makes the action legible. Each room burns one lamp: charcoal rooms are lit by Lamp Lime, paper rooms by ember coral — the two accents never share a view.
 
 **The Shelved Colour Rule.** A topic hue appears only as that topic's tint, border mix, label, and icon outline. It never becomes a button fill, a page background, or another topic's colour.
 
@@ -255,7 +257,8 @@ Flat at rest. Depth is carried by hairline borders and tonal section grounds —
 - **Floating field** (`box-shadow: 0 18px 50px rgba(0,0,0,.22)`): the hero search, which must separate from the navy field.
 - **Drawer** (`box-shadow: 0 25px 70px rgba(6,21,16,.24)`): the lesson index panel.
 - **Launcher** (`box-shadow: 0 14px 38px rgba(12,28,24,.16)`, hover `0 18px 46px rgba(12,28,24,.2)`): the fixed "Mục lục bài học" button.
-- **Hero card** (`box-shadow: 0 30px 70px rgba(0,0,0,.3)`): the rotated glass word card over the navy field.
+- **Hero card** (`box-shadow: 0 30px 70px rgba(0,0,0,.3)`): the rotated glass word card over the charcoal field.
+- **Glass mirror** (inset top highlight `rgba(255,255,255,.16–.18)` plus a faint diagonal sheen over backdrop blur): the hero word card and the dark flashcards carry a whisper of reflected light; light flashcards use the same sheen at 3–5% ink. Static at rest, at most a 3% sheen drift on hover, disabled under reduced motion.
 - **Selected chip** (`box-shadow: 0 8px 18px rgba(11,18,32,.14)`): the active filter — the only shadowed control inside the page flow.
 - **Lesson card** (`box-shadow: 0 8px 26px rgba(32,59,58,.03)`): a whisper of paper lift inside lessons.
 - **Popover** (`box-shadow: 0 16px 45px rgba(15,31,38,.2)`): the shared pronunciation/media panel.
@@ -280,7 +283,7 @@ State transitions cluster around 220ms (document cards take 250ms) and collapse 
 
 ### Buttons
 - **Shape:** softly squared (10px radius) on the portal; the same 10px inside lessons.
-- **Primary:** deep ember fill (`{colors.coral-strong}`, 4.88:1 with white), white label, `padding: 12px 21px`, 700 weight, no border. It appears once per section - the hero's search submit. The about panel's "Bắt đầu học" uses the light variant instead.
+- **Primary:** deep ember fill (`{colors.coral-strong}`, 4.88:1 with white), white label, `padding: 12px 21px`, 700 weight, no border. It is the paper room's fill action (for example the library empty-state reset). The hero's search submit is the dark room's fill action instead: Lamp Lime with charcoal text.
 - **Light:** white fill, navy label, `padding: 12px 18px`, used only on the navy about panel.
 - **Text button:** no fill, ink label at 700, with a coral arrow ("Xem toàn bộ →"). The 3px arrow travel belongs to the topic row's bare arrow, not here.
 - **Lesson:** paper fill, hairline border, `padding: 10px 15px`, 600-ish label; hover swaps the fill to study soft and the border to study teal. The primary lesson action uses the teal fill with white text.
@@ -304,7 +307,7 @@ State transitions cluster around 220ms (document cards take 250ms) and collapse 
 - **Error / Disabled:** disabled controls drop to 60% opacity and keep their shape; wrong answers use the feedback block rather than recolouring the field.
 
 ### Navigation
-- **Portal:** white links at 14px / 600 over the navy hero, 34px apart, brightening to pure white on hover. The brand is a 43px coral tile (12px radius) reading "E" with a smaller "101", beside a Manrope 800 wordmark and a 9px tracked tagline.
+- **Portal:** white links at 14px / 600 over the charcoal hero, 34px apart, brightening to pure white on hover. The brand is a 43px Lamp Lime tile (12px radius) reading "E" with a smaller "101" in charcoal, beside a Manrope 800 wordmark and a 9px tracked tagline.
 - **Mobile:** below 720px the links collapse into a bordered navy panel (`#111b2b`, 15px radius) that drops from 70px with the drawer shadow; the hamburger is three 24px white rules.
 - **Lesson:** a full-bleed dark band (`#203b3a` in the shared shell) carrying the page title at the lesson display scale and a row of soft pill facts.
 - **Viewer:** a 70px navy bar with a back link, a truncating title, and bordered action chips.
