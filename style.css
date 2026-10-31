@@ -290,7 +290,7 @@
 .quick-index-foot a:hover{text-decoration-color:var(--qi-ink-strong)}
 body.index-open{overflow:hidden}
 @media(max-width:720px){.footer{padding-bottom:104px}}
-@media(max-width:600px){.index-launcher{right:14px;bottom:calc(14px + env(safe-area-inset-bottom));width:52px;height:52px;min-width:0;justify-content:center;padding:0;border-radius:50%}.index-launcher span:nth-child(2),.index-launcher>i{display:none}.quick-index{top:8px;right:8px;bottom:8px;width:calc(100% - 16px);padding:17px;border-radius:17px}.quick-index-foot>span{display:none}.quick-index-foot{justify-content:flex-end}}
+@media(max-width:600px){.index-launcher{right:14px;bottom:calc(14px + env(safe-area-inset-bottom));width:52px;height:52px;min-width:0;justify-content:center;padding:0;border-color:transparent;border-radius:50%;background:var(--qi-accent);color:var(--qi-ink-strong);box-shadow:0 10px 26px rgba(10,11,12,.3)}.index-launcher-icon{width:100%;height:100%;border-radius:50%;background:transparent;font-size:21px}.index-launcher span:nth-child(2),.index-launcher>i{display:none}.quick-index{top:8px;right:8px;bottom:8px;width:calc(100% - 16px);padding:17px;border-radius:17px}.quick-index-foot>span{display:none}.quick-index-foot{justify-content:flex-end}}
 @media(prefers-reduced-motion:reduce){.index-launcher,.quick-index{transition:none!important}}
 
 /* Portal focus rings — accessibility floor pass */
