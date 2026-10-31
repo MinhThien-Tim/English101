@@ -66,6 +66,28 @@
   const escapeHTML = (value) => String(value).replace(/[&<>'"]/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[char]));
   const normalize = (value) => String(value).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
   const viewerUrl = (doc) => `viewer.html?id=${encodeURIComponent(doc.id)}`;
+  const controlSelectors = {
+    filter: "[data-filter]",
+    category: "[data-category]",
+    toggleGroup: "[data-toggle-group]",
+    quickCategory: "[data-quick-category]"
+  };
+
+  function focusToken(element) {
+    if (!element || !element.dataset) return null;
+    const type = Object.keys(controlSelectors).find((key) => element.dataset[key] !== undefined);
+    return type ? { type, value: element.dataset[type] } : null;
+  }
+
+  // Re-rendering replaces the clicked control, so move focus to its replacement
+  // instead of dropping it on <body>.
+  function restoreControlFocus(token) {
+    if (!token) return;
+    const selector = controlSelectors[token.type];
+    if (!selector) return;
+    const target = [...document.querySelectorAll(selector)].find((element) => element.dataset[token.type] === token.value);
+    if (target) target.focus({ preventScroll: true });
+  }
 
   function getVocabularyGroupKey(doc) {
     if (["vocab-1-2", "vocab-3-4", "vocab-5-6", "vocab-writing", "reading-translation", "vocabulary-atlas"].includes(doc.id)) return "overview";
@@ -139,14 +161,15 @@
     renderFilters();
   }
 
-  function setLibraryState(patch) {
+  function setLibraryState(patch, token) {
     Object.assign(state, patch);
     renderTopics();
     renderLibrary();
+    restoreControlFocus(token);
   }
 
-  function selectCategory(category) {
-    setLibraryState({ category });
+  function selectCategory(category, token) {
+    setLibraryState({ category }, token);
     $("#library").scrollIntoView({ behavior: "smooth" });
   }
 
@@ -188,7 +211,11 @@
       $("#index-backdrop").hidden = false;
       document.body.classList.add("index-open");
       setBackgroundInert(true);
-      setTimeout(() => $("#quick-search").focus(), 150);
+      setTimeout(() => {
+        const active = document.activeElement;
+        if (active && panel.contains(active) && active !== panel) return;
+        $("#quick-search").focus();
+      }, 150);
       return;
     }
     const target = quickIndexReturnFocus || launcher;
@@ -207,13 +234,15 @@
     const filter = event.target.closest("[data-filter]");
     const quickCategory = event.target.closest("[data-quick-category]");
     const toggleGroup = event.target.closest("[data-toggle-group]");
-    if (category) selectCategory(category.dataset.category);
-    if (filter) selectCategory(filter.dataset.filter);
-    if (quickCategory) { quickState.category = quickCategory.dataset.quickCategory; renderQuickIndex(); }
+    const token = focusToken(category || filter || quickCategory || toggleGroup);
+    if (category) selectCategory(category.dataset.category, token);
+    if (filter) selectCategory(filter.dataset.filter, token);
+    if (quickCategory) { quickState.category = quickCategory.dataset.quickCategory; renderQuickIndex(); restoreControlFocus(token); }
     if (toggleGroup) {
       const groupKey = toggleGroup.dataset.toggleGroup;
       vocabularyGroupState[groupKey] = !vocabularyGroupState[groupKey];
       renderLibrary();
+      restoreControlFocus(token);
     }
     if (event.target.closest("#index-launcher")) setQuickIndex(true);
     if (event.target.closest("#index-close") || event.target.closest("#index-backdrop") || event.target.closest("#open-library")) setQuickIndex(false);
