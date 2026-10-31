@@ -289,7 +289,8 @@
 .quick-index-foot a{display:inline-flex;align-items:center;min-height:44px;color:var(--qi-ink-strong);font-weight:700;text-decoration:underline;text-decoration-color:var(--qi-line-strong);text-underline-offset:4px}
 .quick-index-foot a:hover{text-decoration-color:var(--qi-ink-strong)}
 body.index-open{overflow:hidden}
-@media(max-width:600px){.index-launcher{right:14px;bottom:14px;min-width:0;padding:10px}.index-launcher span:nth-child(2),.index-launcher>i{display:none}.quick-index{top:8px;right:8px;bottom:8px;width:calc(100% - 16px);padding:17px;border-radius:17px}.quick-index-foot>span{display:none}.quick-index-foot{justify-content:flex-end}}
+@media(max-width:720px){.footer{padding-bottom:104px}}
+@media(max-width:600px){.index-launcher{right:14px;bottom:calc(14px + env(safe-area-inset-bottom));width:52px;height:52px;min-width:0;justify-content:center;padding:0;border-radius:50%}.index-launcher span:nth-child(2),.index-launcher>i{display:none}.quick-index{top:8px;right:8px;bottom:8px;width:calc(100% - 16px);padding:17px;border-radius:17px}.quick-index-foot>span{display:none}.quick-index-foot{justify-content:flex-end}}
 @media(prefers-reduced-motion:reduce){.index-launcher,.quick-index{transition:none!important}}
 
 /* Portal focus rings — accessibility floor pass */

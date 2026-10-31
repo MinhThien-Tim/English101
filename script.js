@@ -89,6 +89,34 @@
     if (target) target.focus({ preventScroll: true });
   }
 
+  // On small screens the launcher is fixed over the reading column, so it steps
+  // aside while the learner scrolls down and returns on the way back up.
+  const indexLauncher = $("#index-launcher");
+  const compactLayout = window.matchMedia("(max-width: 720px)");
+  let launcherHidden = false;
+  let lastScrollTop = window.scrollY;
+
+  function setLauncherHidden(hidden) {
+    if (hidden === launcherHidden) return;
+    launcherHidden = hidden;
+    indexLauncher.classList.toggle("is-hidden", hidden);
+  }
+
+  function updateLauncherOnScroll() {
+    const top = window.scrollY;
+    const delta = top - lastScrollTop;
+    if (!compactLayout.matches || document.body.classList.contains("index-open")) {
+      setLauncherHidden(false);
+      lastScrollTop = top;
+      return;
+    }
+    if (Math.abs(delta) < 8) return;
+    setLauncherHidden(delta > 0 && top > 240);
+    lastScrollTop = top;
+  }
+  window.addEventListener("scroll", updateLauncherOnScroll, { passive: true });
+  compactLayout.addEventListener("change", updateLauncherOnScroll);
+
   function getVocabularyGroupKey(doc) {
     if (["vocab-1-2", "vocab-3-4", "vocab-5-6", "vocab-writing", "reading-translation", "vocabulary-atlas"].includes(doc.id)) return "overview";
     if (["confusing-words", "root-atlas"].includes(doc.id)) return "distinction";
@@ -217,6 +245,7 @@
   function setQuickIndex(open) {
     const panel = $("#quick-index");
     const launcher = $("#index-launcher");
+    setLauncherHidden(false);
     if (open) {
       quickIndexReturnFocus = launcher;
       panel.classList.add("open");
