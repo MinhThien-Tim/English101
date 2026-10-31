@@ -297,3 +297,14 @@ body.index-open{overflow:hidden}
 .hero-search:focus-within{outline:3px solid #b8883f;outline-offset:3px}
 .hero-search button:focus-visible,.primary-button:focus-visible,.filter-button:focus-visible,.text-button:focus-visible,.light-button:focus-visible{outline:3px solid #b8883f;outline-offset:2px}
 .index-launcher:focus-visible,.quick-index button:focus-visible,.quick-index a:focus-visible{outline:3px solid #131416;outline-offset:2px}
+
+/* Mobile section jump bar — sticky table of contents once the hero scrolls away */
+.section-nav{display:none}
+@media(max-width:720px){
+  .section-nav{position:sticky;top:0;z-index:30;display:flex;gap:6px;overflow-x:auto;padding:8px 14px;border-bottom:1px solid var(--line);background:rgba(251,250,247,.94);backdrop-filter:blur(10px);scrollbar-width:none}
+  .section-nav::-webkit-scrollbar{display:none}
+  .section-nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 13px;border:1px solid var(--line);border-radius:999px;background:#fff;color:#4d5450;font-size:13px;font-weight:700;white-space:nowrap}
+  .section-nav a:hover{border-color:#cfc9bd;color:var(--ink)}
+  .section-nav a:focus-visible{outline:3px solid #131416;outline-offset:2px}
+  section[id]{scroll-margin-top:64px}
+}
