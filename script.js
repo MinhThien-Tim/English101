@@ -173,6 +173,19 @@
     $("#library").scrollIntoView({ behavior: "smooth" });
   }
 
+  let quickAnnounceTimer = 0;
+
+  // The visible count changes on every keystroke; the spoken version waits so a
+  // screen reader is not interrupted before the learner stops typing.
+  function announceQuickCount(count) {
+    const status = $("#quick-status");
+    if (!status) return;
+    clearTimeout(quickAnnounceTimer);
+    quickAnnounceTimer = setTimeout(() => {
+      status.textContent = `${count} bài học phù hợp`;
+    }, 600);
+  }
+
   function renderQuickIndex() {
     const query = normalize(quickState.query);
     const results = documents.filter((doc) =>
@@ -186,6 +199,7 @@
       return `<button class="${filterClass}${quickState.category === category ? " active" : ""}" data-quick-category="${category}" aria-pressed="${quickState.category === category}">${category === "All" ? "Tất cả" : categoryInfo[category].label} · ${count}</button>`;
     }).join("");
     $("#quick-count").textContent = `${results.length} bài học · Chọn để mở ngay`;
+    announceQuickCount(results.length);
     $("#quick-list").innerHTML = results.length ? results.map((doc) => {
       return `<a class="quick-item" href="${viewerUrl(doc)}"><span class="quick-item-title">${escapeHTML(doc.title)}</span><span class="quick-item-meta"><b>${categoryInfo[doc.category].label}</b></span><span class="quick-item-arrow" aria-hidden="true">→</span></a>`;
     }).join("") : '<div class="quick-empty">Không tìm thấy bài học phù hợp.</div>';
