@@ -1,324 +1,573 @@
 (function () {
   "use strict";
+
   const documents = window.ENGLISH_101_DOCUMENTS || [];
-  const categories = ["Vocabulary", "Grammar", "Writing", "Verb", "Guide", "Blog"];
+  const ICONS = window.ENGLISH101_HOME_ICONS || { categories: {}, resources: {}, ui: {} };
+  const shared = window.English101Learning || {};
+
+  const CATEGORY_ORDER = ["Vocabulary", "Grammar", "Writing", "Verb", "Guide", "Blog"];
   const categoryInfo = {
-    Grammar: { icon: "grammar.svg", label: "Ngữ pháp", text: "Nắm vững cấu trúc và quy tắc nền tảng.", color: "topic-grammar" },
-    Vocabulary: { icon: "vocabulary.svg", label: "Từ vựng", text: "Mở rộng vốn từ theo chủ đề và trình độ.", color: "topic-vocabulary" },
-    Writing: { icon: "writing.svg", label: "Kỹ năng viết", text: "Biến ý tưởng thành câu chữ tự nhiên.", color: "topic-writing" },
-    Verb: { icon: "verb-forms.svg", label: "Động từ & diễn đạt", text: "Làm chủ động từ, biến thể và cụm từ.", color: "topic-verbs" },
-    Guide: { icon: "guide.svg", label: "Hướng dẫn", text: "Lộ trình và phương pháp học hiệu quả.", color: "topic-guide" },
-    Blog: { icon: "writing.svg", label: "Blog học tập", text: "Chia sẻ cách học, ghi nhớ và luyện tập hiệu quả.", color: "topic-blog" }
+    Vocabulary: { label: "Từ vựng", slug: "vocabulary" },
+    Grammar: { label: "Ngữ pháp", slug: "grammar" },
+    Writing: { label: "Kỹ năng viết", slug: "writing" },
+    Verb: { label: "Động từ & diễn đạt", slug: "verb" },
+    Guide: { label: "Hướng dẫn", slug: "guide" },
+    Blog: { label: "Blog học tập", slug: "blog" }
   };
-  // Simple, title-specific pictograms for lesson cards. They deliberately use
-  // familiar study objects instead of generic interface illustrations.
-  const lessonIconById = {
-    "grammar-handbook": '<path d="M27 25c12-2 23 1 33 8 10-7 21-10 33-8v39c-12-2-23 1-33 8-10-7-21-10-33-8V25Z"/><path d="M60 33v39M36 38h14M70 38h13M70 47h10"/><path class="icon-accent" d="m82 17 5 5 9-10"/>',
-    "conjunctions": '<rect x="20" y="25" width="45" height="30" rx="15"/><rect x="55" y="33" width="45" height="30" rx="15"/><path d="M46 40h28"/><circle class="icon-dot" cx="60" cy="44" r="5"/>',
-    "suffix-lab": '<rect x="17" y="29" width="48" height="31" rx="9"/><rect class="icon-soft" x="70" y="29" width="33" height="31" rx="9"/><path d="M65 44h5"/><text x="41" y="49">ROOT</text><text x="86.5" y="49">-LY</text>',
-    "prepositions": '<path d="M27 54h66v20H27z"/><circle class="icon-dot" cx="60" cy="25" r="10"/><path d="M60 35v17m-6-6 6 6 6-6"/>',
-    "parts-of-speech": '<rect class="icon-soft" x="42" y="31" width="36" height="25" rx="8"/><path d="M42 43H25m53 0h17M60 31V17M60 56v15"/><text x="60" y="47">WORD</text><text x="25" y="39">N</text><text x="95" y="39">V</text><text x="60" y="14">ADJ</text>',
-    "tense-quiz": '<path d="M18 61h84m-8-7 8 7-8 7"/><circle class="icon-dot" cx="31" cy="61" r="5"/><circle class="icon-dot" cx="60" cy="61" r="5"/><circle class="icon-dot" cx="89" cy="61" r="5"/><circle cx="60" cy="29" r="17"/><path d="M60 19v11l8 5"/>',
-    "vocabulary-atlas": '<path d="m20 24 26-8 28 8 26-8v49l-26 8-28-8-26 8V24Z"/><path d="M46 16v49m28-41v49"/><path class="icon-accent" d="m51 48 8 8 15-19"/>',
-    "root-atlas": '<path d="M60 20v33m0-22L45 40m15 1 16-10M60 53 43 70m17-17 17 17m-17-8v13"/><circle class="icon-dot" cx="60" cy="18" r="9"/><circle class="icon-soft" cx="42" cy="42" r="8"/><circle class="icon-soft" cx="78" cy="32" r="8"/>',
-    "c1-vocabulary": '<rect x="27" y="22" width="58" height="43" rx="10"/><path class="icon-soft" d="M36 16h57a8 8 0 0 1 8 8v38"/><text class="icon-title" x="56" y="50">C1</text><path d="M35 72h50"/>',
-    "confusing-words": '<rect x="18" y="25" width="37" height="38" rx="10"/><rect class="icon-soft" x="65" y="25" width="37" height="38" rx="10"/><text class="icon-title" x="36.5" y="50">A?</text><text class="icon-title" x="83.5" y="50">B?</text><path d="m52 18 8-6 8 6M68 70l-8 6-8-6"/>',
-    "ielts-collocations": '<rect x="16" y="29" width="39" height="30" rx="10"/><rect class="icon-soft" x="65" y="29" width="39" height="30" rx="10"/><path d="M55 44h10"/><text x="35.5" y="49">WORD</text><text x="84.5" y="49">WORD</text><path class="icon-accent" d="m52 70 8 5 8-5"/>',
-    "hiking-collocations": '<path d="m16 68 28-39 15 20 11-15 34 34H16Z"/><path class="icon-accent" d="M44 29v-9h19l-5 6 5 6H47M35 68c8-13 18-18 31-19"/>',
-    "vocab-writing": '<rect x="19" y="22" width="55" height="41" rx="9"/><path d="M30 35h30M30 45h21"/><path class="icon-accent" d="m78 31 18 14-25 31-18 5 4-18 21-32Z"/>',
-    "reading-translation": '<path d="M16 24h42v28H35l-10 9v-9h-9V24Z"/><path class="icon-soft" d="M62 35h42v28h-9v9l-10-9H62V35Z"/><text x="37" y="43">EN</text><text x="83" y="54">VI</text>',
-    "vocab-1-2": '<rect x="23" y="20" width="31" height="45" rx="9"/><rect class="icon-soft" x="66" y="20" width="31" height="45" rx="9"/><text class="icon-title" x="38.5" y="49">1</text><text class="icon-title" x="81.5" y="49">2</text><path d="M32 72h56"/>',
-    "vocab-3-4": '<rect x="23" y="20" width="31" height="45" rx="9"/><rect class="icon-soft" x="66" y="20" width="31" height="45" rx="9"/><text class="icon-title" x="38.5" y="49">3</text><text class="icon-title" x="81.5" y="49">4</text><path d="M32 72h56"/>',
-    "vocab-5-6": '<rect x="23" y="20" width="31" height="45" rx="9"/><rect class="icon-soft" x="66" y="20" width="31" height="45" rx="9"/><text class="icon-title" x="38.5" y="49">5</text><text class="icon-title" x="81.5" y="49">6</text><path d="M32 72h56"/>',
-    "essay-guide": '<path d="M25 15h52l14 14v44H25V15Z"/><path d="M77 15v14h14M36 36h30M36 47h24M36 58h18"/><path class="icon-accent" d="m83 42 13 10-20 25-13 5 3-13 17-27Z"/>',
-    "writing-pipeline": '<circle class="icon-soft" cx="27" cy="44" r="13"/><path d="M40 44h28m-7-7 7 7-7 7"/><rect x="76" y="27" width="28" height="34" rx="8"/><path class="icon-accent" d="M22 44h10M27 39v10"/><text class="icon-title" x="90" y="51">A</text>',
-    "english-verbs": '<path d="M18 22h84v43H67L56 76v-11H18V22Z"/><text class="icon-title" x="47" y="51">DO</text><path class="icon-accent" d="m74 31-8 14h9l-7 14"/>',
-    "verb-forms": '<rect x="13" y="29" width="17" height="29" rx="6"/><rect x="33" y="29" width="17" height="29" rx="6"/><rect class="icon-soft" x="53" y="29" width="17" height="29" rx="6"/><rect x="73" y="29" width="17" height="29" rx="6"/><rect x="93" y="29" width="17" height="29" rx="6"/><text x="21.5" y="47">1</text><text x="41.5" y="47">2</text><text x="61.5" y="47">3</text><text x="81.5" y="47">4</text><text x="101.5" y="47">5</text>',
-    "paraphrase": '<path d="M15 22h40v27H32l-9 8v-8h-8V22Z"/><path class="icon-soft" d="M65 39h40v27h-8v8l-9-8H65V39Z"/><path d="M51 63c10 8 20 8 29 2m-3 7 3-7-7-2M69 25c-10-8-20-8-29-2m3-7-3 7 7 2"/>',
-    "phrasal-verbs": '<rect x="17" y="28" width="38" height="32" rx="10"/><rect class="icon-soft" x="65" y="28" width="38" height="32" rx="10"/><path d="M55 44h10"/><text class="icon-title" x="36" y="50">GO</text><text class="icon-title" x="84" y="50">ON</text>',
-    "deep-reading": '<path d="M17 24c17-3 30 1 43 10 13-9 26-13 43-10v39c-17-3-30 1-43 10-13-9-26-13-43-10V24Z"/><path d="M60 34v39M27 38h20M27 47h16"/><circle class="icon-soft" cx="83" cy="45" r="12"/><path d="m92 54 10 10"/>',
-    "english-grammar-notes": '<rect x="27" y="15" width="66" height="58" rx="9"/><path d="M40 29h39M40 40h31M40 51h24M35 15v58"/><path class="icon-accent" d="m70 60 5 5 10-12"/>',
-    "english-learning-101": '<circle cx="60" cy="44" r="28"/><path d="m69 34-6 16-16 6 6-16 16-6Z"/><circle class="icon-dot" cx="60" cy="44" r="4"/><path d="M60 10v6m0 56v6M26 44h6m56 0h6"/>',
-    "blog-active-recall": '<path d="M45 65c-14-3-23-14-23-27 0-15 12-27 27-27 12 0 22 7 26 17"/><path d="M72 19l3 9-10 2M75 23c14 3 23 14 23 27 0 15-12 27-27 27-12 0-22-7-26-17"/><path d="m48 69-3-9 10-2"/><path class="icon-accent" d="M60 29v30m-9-21c0-5 4-9 9-9s9 4 9 9c0 4-2 6-5 8-3 2-4 4-4 7"/>'
-  };
-  const iconMarkup = (name) => {
-    const id = String(name).replace(/\.svg$/i, "");
-    return `<svg class="lesson-icon-art" viewBox="0 0 400 300" aria-hidden="true" focusable="false"><use href="#lesson-icon-${id}"></use></svg>`;
-  };
-  const lessonIconMarkup = (doc) => {
-    const drawing = lessonIconById[doc.id];
-    if (!drawing) return iconMarkup(categoryInfo[doc.category].icon);
-    return `<svg class="lesson-icon-art simple-lesson-icon" viewBox="0 0 120 88" aria-hidden="true" focusable="false"><rect class="icon-canvas" x="2" y="2" width="116" height="84" rx="18"></rect><g class="icon-drawing">${drawing}</g></svg>`;
-  };
-  const state = { category: "All", query: "" };
-  const quickState = { category: "All", query: "" };
-  const vocabularyGroups = {
-    overview: "1. Tổng quát",
-    distinction: "2. Phân biệt",
-    c1: "3. C1 – IELTS"
-  };
-  const vocabularyGroupState = {
-    overview: true,
-    distinction: true,
-    c1: true
-  };
+
+  const STARTER_IDS = ["english-learning-101", "grammar-handbook", "toeic-600"];
+  const RECENT_KEY = "english101.recentResources";
+  const RECENT_LIMIT = 8;
+  const DESK_SLOTS = 4;
+
+  const vocabularyGroups = [
+    { key: "overview", label: "Tổng quát", ids: ["vocabulary-atlas", "vocab-1-2", "vocab-3-4", "vocab-5-6", "vocab-writing", "reading-translation"] },
+    { key: "distinction", label: "Phân biệt", ids: ["confusing-words", "root-atlas"] },
+    { key: "advanced", label: "Nâng cao · C1 / IELTS / TOEIC", ids: ["c1-vocabulary", "toeic-600", "ielts-collocations", "hiking-collocations"] }
+  ];
+
   const $ = (selector) => document.querySelector(selector);
+  const $$ = (selector) => [...document.querySelectorAll(selector)];
   const escapeHTML = (value) => String(value).replace(/[&<>'"]/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[char]));
-  const normalize = (value) => String(value).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  const normalize = (value) => String(value).normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").replace(/Đ/g, "D").toLowerCase();
   const viewerUrl = (doc) => `viewer.html?id=${encodeURIComponent(doc.id)}`;
-  const controlSelectors = {
-    filter: "[data-filter]",
-    category: "[data-category]",
-    toggleGroup: "[data-toggle-group]",
-    quickCategory: "[data-quick-category]"
+  const byId = (id) => documents.find((doc) => doc.id === id);
+  const countIn = (category) => documents.filter((doc) => doc.category === category).length;
+
+  const glyph = (name) => `<svg class="glyph" viewBox="0 0 24 24" aria-hidden="true">${ICONS.ui[name] || ""}</svg>`;
+  const sketch = (doc, className) => {
+    const drawing = ICONS.resources[doc.id] || ICONS.categories[doc.category] || "";
+    return `<svg class="sketch ${className}" viewBox="0 0 120 96" aria-hidden="true" focusable="false">${drawing}</svg>`;
   };
 
-  function focusToken(element) {
-    if (!element || !element.dataset) return null;
-    const type = Object.keys(controlSelectors).find((key) => element.dataset[key] !== undefined);
-    return type ? { type, value: element.dataset[type] } : null;
-  }
+  const state = { category: "All", query: "", sort: "featured", pdfOnly: false };
+  const quickState = { category: "All", query: "" };
 
-  // Re-rendering replaces the clicked control, so move focus to its replacement
-  // instead of dropping it on <body>.
-  function restoreControlFocus(token) {
-    if (!token) return;
-    const selector = controlSelectors[token.type];
-    if (!selector) return;
-    const target = [...document.querySelectorAll(selector)].find((element) => element.dataset[token.type] === token.value);
-    if (target) target.focus({ preventScroll: true });
-  }
+  /* ------------------------------------------------------- Lịch sử học tập */
 
-  // On small screens the launcher is fixed over the reading column, so it steps
-  // aside while the learner scrolls down and returns on the way back up.
-  const indexLauncher = $("#index-launcher");
-  const compactLayout = window.matchMedia("(max-width: 720px)");
-  let launcherHidden = false;
-  let lastScrollTop = window.scrollY;
-
-  function setLauncherHidden(hidden) {
-    if (hidden === launcherHidden) return;
-    launcherHidden = hidden;
-    indexLauncher.classList.toggle("is-hidden", hidden);
-  }
-
-  function updateLauncherOnScroll() {
-    const top = window.scrollY;
-    const delta = top - lastScrollTop;
-    if (!compactLayout.matches || document.body.classList.contains("index-open")) {
-      setLauncherHidden(false);
-      lastScrollTop = top;
-      return;
+  let historyIsPersistent = true;
+  const recentStorage = {
+    getItem(key) {
+      try {
+        return window.localStorage.getItem(key);
+      } catch {
+        historyIsPersistent = false;
+        return null;
+      }
+    },
+    setItem(key, value) {
+      try {
+        window.localStorage.setItem(key, value);
+      } catch {
+        historyIsPersistent = false;
+      }
+    },
+    removeItem(key) {
+      try {
+        window.localStorage.removeItem(key);
+      } catch {
+        historyIsPersistent = false;
+      }
     }
-    if (Math.abs(delta) < 8) return;
-    setLauncherHidden(delta > 0 && top > 240);
-    lastScrollTop = top;
-  }
-  window.addEventListener("scroll", updateLauncherOnScroll, { passive: true });
-  compactLayout.addEventListener("change", updateLauncherOnScroll);
+  };
 
-  function getVocabularyGroupKey(doc) {
-    if (["vocab-1-2", "vocab-3-4", "vocab-5-6", "vocab-writing", "reading-translation", "vocabulary-atlas"].includes(doc.id)) return "overview";
-    if (["confusing-words", "root-atlas"].includes(doc.id)) return "distinction";
-    if (["c1-vocabulary", "ielts-collocations", "hiking-collocations"].includes(doc.id)) return "c1";
-    return null;
+  const recentStore = shared.createPersistence({ storage: recentStorage, key: RECENT_KEY, schema: 1 });
+
+  function sanitizeRecent(value) {
+    if (!Array.isArray(value)) return [];
+    const seen = new Set();
+    const clean = [];
+    for (const entry of value) {
+      if (!entry || typeof entry.id !== "string" || seen.has(entry.id) || !byId(entry.id)) continue;
+      seen.add(entry.id);
+      clean.push({ id: entry.id, at: Number(entry.at) || 0 });
+      if (clean.length === RECENT_LIMIT) break;
+    }
+    return clean;
   }
 
-  function getVocabularyGroupLabel(key) {
-    return vocabularyGroups[key] || "Khác";
+  let recent = sanitizeRecent(recentStore.load([]));
+
+  function rememberResource(id) {
+    if (!byId(id)) return;
+    recent = sanitizeRecent([{ id, at: Date.now() }, ...recent.filter((entry) => entry.id !== id)]);
+    recentStore.commit(recent);
+    renderDesk();
+  }
+
+  function forgetResources() {
+    recent = [];
+    recentStore.clear();
+    renderDesk();
+    $("#desk-note").textContent = historyIsPersistent
+      ? "Đã xóa lịch sử trên thiết bị này."
+      : "Đã xóa lịch sử trong phiên này. Trình duyệt không cho phép cập nhật bộ nhớ.";
+  }
+
+  function relativeDay(timestamp) {
+    if (!timestamp) return "Đã mở";
+    const days = Math.floor((Date.now() - timestamp) / 86400000);
+    if (days <= 0) return "Hôm nay";
+    if (days === 1) return "Hôm qua";
+    if (days < 30) return `${days} ngày trước`;
+    return "Đã mở";
+  }
+
+  function renderDesk() {
+    const hasHistory = recent.length > 0;
+    const entries = hasHistory
+      ? recent.slice(0, DESK_SLOTS).map((entry) => ({ doc: byId(entry.id), meta: `${categoryInfo[byId(entry.id).category].label} · ${relativeDay(entry.at)}` }))
+      : STARTER_IDS.map(byId).filter(Boolean).map((doc) => ({ doc, meta: categoryInfo[doc.category].label }));
+
+    // Bàn học luôn có ba dòng: lịch sử chưa đủ thì bù bằng gợi ý, khung không nhảy.
+    const used = new Set(entries.map((entry) => entry.doc.id));
+    const pool = [...STARTER_IDS, ...documents.filter((doc) => doc.featured).map((doc) => doc.id)];
+    for (const id of pool) {
+      if (entries.length >= 3) break;
+      if (used.has(id)) continue;
+      used.add(id);
+      const doc = byId(id);
+      if (doc) entries.push({ doc, meta: `${categoryInfo[doc.category].label} · Gợi ý` });
+    }
+
+    $("#desk-title").textContent = hasHistory ? "Tiếp tục học" : "Bắt đầu từ đây";
+    $("#desk-clear").hidden = !hasHistory;
+    $("#desk-list").innerHTML = entries.map(({ doc, meta }) =>
+      `<li><a class="desk-item" data-topic="${categoryInfo[doc.category].slug}" href="${viewerUrl(doc)}">${sketch(doc, "")}<span class="desk-item-copy"><span class="desk-item-title">${escapeHTML(doc.title)}</span><span class="desk-item-meta">${escapeHTML(meta)}</span></span>${glyph("arrow")}</a></li>`
+    ).join("");
+    $("#desk-note").innerHTML = !historyIsPersistent
+      ? '<i class="lamp-dot"></i> Trình duyệt không cho phép lưu; lịch sử chỉ giữ trong phiên này.'
+      : hasHistory
+        ? '<i class="lamp-dot"></i> Lưu trên thiết bị này, không gửi đi đâu cả.'
+        : '<i class="lamp-dot"></i> Mở một tài liệu, lần sau trang chủ sẽ nhớ để bạn học tiếp.';
+  }
+
+  /* --------------------------------------------------------- Thẻ tài liệu */
+
+  function cardHTML(doc, options) {
+    const settings = options || {};
+    const heading = settings.heading || "h3";
+    const info = categoryInfo[doc.category];
+    const badge = doc.type === "HTML" ? "" : `<span class="file-badge">${escapeHTML(doc.type)}</span>`;
+    const lamp = doc.featured ? '<span class="lamp-tag">Nổi bật</span>' : "";
+    const origin = doc.originLabel ? `<span class="origin-label">${escapeHTML(doc.originLabel)}</span>` : "";
+    const download = doc.downloadable
+      ? `<a class="doc-download" href="${encodeURI(doc.path)}" download aria-label="Tải ${escapeHTML(doc.title)}">${glyph("download")}<span>Tải xuống</span></a>`
+      : "";
+    const action = settings.action || "Đọc trực tiếp";
+    return `<article class="${settings.className || "doc-card reveal"}" data-topic="${info.slug}">${sketch(doc, "doc-art")}<p class="doc-meta"><span class="topic-tag">${info.label}</span>${badge}${lamp}${origin}</p><${heading}><a class="doc-link" href="${viewerUrl(doc)}">${escapeHTML(doc.title)}</a></${heading}><p class="doc-desc">${escapeHTML(doc.description)}</p><p class="doc-foot"><span class="doc-open">${action} ${glyph("arrow")}</span>${download}</p></article>`;
   }
 
   function renderTopics() {
-    $("#topic-grid").innerHTML = categories.map((category) => {
+    $("#topic-grid").innerHTML = CATEGORY_ORDER.map((category) => {
       const info = categoryInfo[category];
-      const count = documents.filter((doc) => doc.category === category).length;
-      const active = state.category === category;
-      return `<button class="topic-card ${info.color}${active ? " active" : ""}" data-category="${category}" aria-pressed="${active}"><span class="topic-icon">${iconMarkup(info.icon)}</span><span class="topic-copy"><strong>${info.label}</strong><small>${info.text}</small></span><span class="topic-action"><span class="topic-count">${count}<small> tài liệu</small></span><span class="topic-open" aria-hidden="true">→</span></span></button>`;
+      const doc = { id: `category-${info.slug}`, category };
+      return `<button class="topic-card reveal" type="button" data-topic="${info.slug}" data-category="${category}" aria-pressed="false">${sketch(doc, "")}<span class="topic-name">${info.label}</span><span class="topic-count">${countIn(category)} tài liệu</span></button>`;
     }).join("");
-  }
-
-  function cardTemplate(doc, featured) {
-    const info = categoryInfo[doc.category];
-    const download = doc.downloadable ? `<a class="icon-button" href="${doc.path}" download title="Tải xuống" aria-label="Tải ${escapeHTML(doc.title)}">↓</a>` : "";
-    const typeBadge = doc.type === "HTML" ? "" : `<span class="file-badge ${info.color}">${escapeHTML(doc.type)}</span>`;
-    const origin = doc.originLabel ? `<span class="origin-label">${escapeHTML(doc.originLabel)}</span>` : "";
-    return `<article class="document-card ${featured ? "featured-card" : ""}"><div class="card-top${typeBadge ? "" : " badge-less"}">${typeBadge}<span class="category-label">${info.label}</span></div><div class="document-icon ${info.color}">${lessonIconMarkup(doc)}</div>${origin}<h3>${escapeHTML(doc.title)}</h3><p>${escapeHTML(doc.description)}</p><div class="card-actions"><a class="view-button" href="${viewerUrl(doc)}">Đọc trực tiếp <span>→</span></a>${download}</div></article>`;
-  }
-
-  function renderFeatured() {
-    $("#featured-grid").innerHTML = documents.filter((doc) => doc.featured).slice(0, 3).map((doc) => cardTemplate(doc, true)).join("");
-  }
-
-  function renderBlog() {
-    const blogGrid = $("#blog-grid");
-    if (!blogGrid) return;
-    blogGrid.innerHTML = documents.filter((doc) => doc.category === "Blog").slice(0, 3).map((doc) => cardTemplate(doc, true)).join("");
   }
 
   function renderFilters() {
-    const orderedCategories = ["Vocabulary", "Grammar", "Writing", "Verb", "Guide", "Blog"];
-    const items = ["All", ...orderedCategories];
+    const items = ["All", ...CATEGORY_ORDER];
     $("#filters").innerHTML = items.map((item) => {
-      const filterClass = item === "All" ? "filter-all" : `filter-${item.toLowerCase()}`;
-      return `<button class="filter-button ${filterClass}${state.category === item ? " active" : ""}" data-filter="${item}" aria-pressed="${state.category === item}">${item === "All" ? "Tất cả" : categoryInfo[item].label}<span>${item === "All" ? documents.length : documents.filter((doc) => doc.category === item).length}</span></button>`;
+      const slug = item === "All" ? "all" : categoryInfo[item].slug;
+      const label = item === "All" ? "Tất cả" : categoryInfo[item].label;
+      const count = item === "All" ? documents.length : countIn(item);
+      return `<button class="chip" type="button" data-topic="${slug}" data-filter="${item}" aria-pressed="false">${label}<span>${count}</span></button>`;
     }).join("");
   }
 
-  function filteredDocuments() {
+  function syncFilterState() {
+    $$("[data-filter]").forEach((chip) => chip.setAttribute("aria-pressed", String(chip.dataset.filter === state.category)));
+    $$("[data-category]").forEach((card) => card.setAttribute("aria-pressed", String(card.dataset.category === state.category)));
+    const filtered = state.category !== "All" || state.query !== "" || state.pdfOnly || state.sort !== "featured";
+    $("#reset-filters").hidden = !filtered;
+  }
+
+  function matches(doc, query, category) {
+    if (category !== "All" && doc.category !== category) return false;
+    if (!query) return true;
+    return normalize(`${doc.title} ${doc.description} ${categoryInfo[doc.category].label} ${doc.category} ${doc.type}`).includes(query);
+  }
+
+  function sortDocuments(list) {
+    const featuredFirst = (a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured));
+    if (state.sort === "az") return [...list].sort((a, b) => a.title.localeCompare(b.title, "vi", { sensitivity: "base" }));
+    if (state.sort === "category") {
+      return [...list].sort((a, b) => (CATEGORY_ORDER.indexOf(a.category) - CATEGORY_ORDER.indexOf(b.category)) || featuredFirst(a, b));
+    }
+    return [...list].sort(featuredFirst);
+  }
+
+  function visibleDocuments() {
     const query = normalize(state.query);
-    return documents.filter((doc) => (state.category === "All" || doc.category === state.category) && (!query || normalize(`${doc.title} ${doc.description} ${doc.category} ${doc.type}`).includes(query)));
+    const list = documents.filter((doc) => matches(doc, query, state.category) && (!state.pdfOnly || doc.type === "PDF"));
+    return sortDocuments(list);
+  }
+
+  function vocabularyGroupOf(doc) {
+    const group = vocabularyGroups.find((entry) => entry.ids.includes(doc.id));
+    return group ? group.key : "other";
+  }
+
+  function groupedHTML(list) {
+    return CATEGORY_ORDER.map((category) => {
+      const docs = list.filter((doc) => doc.category === category);
+      if (!docs.length) return "";
+      const info = categoryInfo[category];
+      let body;
+      if (category === "Vocabulary") {
+        const groups = [...vocabularyGroups.map((group) => ({ label: group.label, docs: docs.filter((doc) => vocabularyGroupOf(doc) === group.key) })),
+          { label: "Khác", docs: docs.filter((doc) => vocabularyGroupOf(doc) === "other") }];
+        body = groups.filter((group) => group.docs.length).map((group) =>
+          `<div class="doc-group"><p class="subgroup-title">${group.label}</p><div class="document-grid">${group.docs.map((doc) => cardHTML(doc, { heading: "h4" })).join("")}</div></div>`
+        ).join("");
+      } else {
+        body = `<div class="document-grid">${docs.map((doc) => cardHTML(doc, { heading: "h4" })).join("")}</div>`;
+      }
+      return `<section class="doc-group" data-topic="${info.slug}"><h3 class="group-title">${info.label}<span>${docs.length}</span></h3>${body}</section>`;
+    }).join("");
   }
 
   function renderLibrary() {
-    const results = filteredDocuments();
-    const groupedResults = state.category === "Vocabulary" ? Object.entries(results.reduce((groups, doc) => {
-      const groupKey = getVocabularyGroupKey(doc) || "other";
-      if (!groups[groupKey]) groups[groupKey] = [];
-      groups[groupKey].push(doc);
-      return groups;
-    }, {})).map(([groupKey, docs]) => ({ groupKey, docs })) : [{ groupKey: "", docs: results }];
+    const list = visibleDocuments();
+    const lessons = list.filter((doc) => doc.category !== "Blog");
+    const grid = $("#document-grid");
+    const grouped = state.sort === "category" && lessons.length > 0;
+    grid.classList.toggle("is-grouped", grouped);
+    grid.innerHTML = grouped ? groupedHTML(lessons) : lessons.map((doc) => cardHTML(doc)).join("");
+    renderBlog(list);
 
-    $("#document-grid").innerHTML = groupedResults.map(({ groupKey, docs }) => {
-      const cards = docs.map((doc) => cardTemplate(doc, false)).join("");
-      if (!groupKey || groupKey === "other") return cards;
-      const expanded = vocabularyGroupState[groupKey] !== false;
-      return `<div class="vocab-group" data-group-key="${groupKey}"><button class="vocab-group-header" type="button" data-toggle-group="${groupKey}" aria-expanded="${expanded}"><span>${getVocabularyGroupLabel(groupKey)}</span><span class="vocab-group-toggle">${expanded ? "▾" : "▸"}</span></button><div class="vocab-group-cards" ${expanded ? "" : "hidden"}>${cards}</div></div>`;
-    }).join("");
-    $("#result-count").textContent = `${results.length} tài liệu${state.query ? ` cho “${state.query}”` : ""}`;
-    $("#empty-state").hidden = results.length !== 0;
-    renderFilters();
+    const parts = [`${list.length} tài liệu`];
+    if (state.category !== "All") parts.push(categoryInfo[state.category].label);
+    if (state.pdfOnly) parts.push("PDF");
+    if (state.query) parts.push(`cho “${state.query}”`);
+    $("#result-count").textContent = parts.join(" · ");
+
+    $("#empty-state").hidden = list.length !== 0;
+    $("#empty-detail").textContent = state.query
+      ? `Không có tài liệu nào khớp với “${state.query}”. Thử từ khóa ngắn hơn, hoặc bỏ bớt bộ lọc.`
+      : "Không có tài liệu nào trong bộ lọc này. Thử chọn chủ đề khác.";
+    syncFilterState();
   }
 
-  function setLibraryState(patch, token) {
+  function renderBlog(list) {
+    const posts = list.filter((doc) => doc.category === "Blog");
+    $("#blog").hidden = posts.length === 0;
+    $$('a[href="#blog"]').forEach((link) => { link.hidden = posts.length === 0; });
+    $("#blog-slot").innerHTML = posts.map((doc) => cardHTML(doc, { className: "blog-card reveal", action: "Đọc bài viết" })).join("");
+  }
+
+  function setLibraryState(patch) {
     Object.assign(state, patch);
-    renderTopics();
     renderLibrary();
-    restoreControlFocus(token);
+    updateScrollState();
   }
 
-  function selectCategory(category, token) {
-    setLibraryState({ category }, token);
-    $("#library").scrollIntoView({ behavior: "smooth" });
+  function scrollToLibrary() {
+    $("#library").scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  let quickAnnounceTimer = 0;
+  /* -------------------------------------------------------- Gợi ý tìm kiếm */
 
-  // The visible count changes on every keystroke; the spoken version waits so a
-  // screen reader is not interrupted before the learner stops typing.
-  function announceQuickCount(count) {
-    const status = $("#quick-status");
-    if (!status) return;
-    clearTimeout(quickAnnounceTimer);
-    quickAnnounceTimer = setTimeout(() => {
-      status.textContent = `${count} bài học phù hợp`;
-    }, 600);
+  const searchInput = $("#search-input");
+  const suggestionList = $("#search-suggestions");
+  let suggestionIndex = -1;
+
+  function closeSuggestions() {
+    suggestionList.hidden = true;
+    searchInput.setAttribute("aria-expanded", "false");
+    searchInput.removeAttribute("aria-activedescendant");
+    suggestionIndex = -1;
+  }
+
+  function markSuggestion(index) {
+    const options = [...suggestionList.querySelectorAll('[role="option"]')];
+    if (!options.length) return;
+    suggestionIndex = (index + options.length) % options.length;
+    options.forEach((option, position) => option.setAttribute("aria-selected", String(position === suggestionIndex)));
+    const active = options[suggestionIndex];
+    searchInput.setAttribute("aria-activedescendant", active.id);
+    active.scrollIntoView({ block: "nearest" });
+  }
+
+  function renderSuggestions() {
+    const query = normalize(state.query);
+    $("#search-clear").hidden = state.query === "";
+    if (!query || document.activeElement !== searchInput) {
+      closeSuggestions();
+      return;
+    }
+    const hits = documents.filter((doc) => matches(doc, query, "All"));
+    const preview = hits.slice(0, 6);
+    if (!hits.length) {
+      suggestionList.innerHTML = '<li class="suggest-empty" role="presentation">Không có tài liệu nào khớp. Thử từ khóa khác.</li>';
+    } else {
+      const rows = preview.map((doc, index) =>
+        `<li role="option" id="suggestion-${index}" aria-selected="false" data-id="${escapeHTML(doc.id)}" data-topic="${categoryInfo[doc.category].slug}">${sketch(doc, "")}<span><span class="suggest-title">${escapeHTML(doc.title)}</span><span class="suggest-meta">${categoryInfo[doc.category].label}</span></span>${glyph("arrow")}</li>`
+      ).join("");
+      const all = `<li role="option" id="suggestion-all" aria-selected="false" data-action="all" data-topic="all"><span></span><span class="suggest-all">Xem tất cả ${hits.length} kết quả trong kho</span>${glyph("arrow")}</li>`;
+      suggestionList.innerHTML = rows + all;
+    }
+    suggestionList.hidden = false;
+    searchInput.setAttribute("aria-expanded", "true");
+    suggestionIndex = -1;
+    searchInput.removeAttribute("aria-activedescendant");
+  }
+
+  function openSuggestion(option) {
+    if (!option) return false;
+    if (option.dataset.action === "all") {
+      $("#pdf-only").checked = false;
+      setLibraryState({ category: "All", pdfOnly: false });
+      closeSuggestions();
+      scrollToLibrary();
+      return true;
+    }
+    const doc = byId(option.dataset.id);
+    if (!doc) return false;
+    rememberResource(doc.id);
+    window.location.assign(viewerUrl(doc));
+    return true;
+  }
+
+  /* ---------------------------------------------------------- Mục lục nhanh */
+
+  const indexDialog = $("#quick-index");
+  const indexButton = $("#index-open");
+  const indexController = shared.createDialogController(indexDialog, {
+    onClose: () => indexButton.setAttribute("aria-expanded", "false")
+  });
+
+  function openIndex() {
+    indexController.open(indexButton);
+    indexButton.setAttribute("aria-expanded", "true");
+    renderQuickIndex();
+  }
+
+  function renderQuickFilters() {
+    const items = ["All", ...CATEGORY_ORDER];
+    $("#quick-filters").innerHTML = items.map((item) => {
+      const slug = item === "All" ? "all" : categoryInfo[item].slug;
+      const label = item === "All" ? "Tất cả" : categoryInfo[item].label;
+      const count = item === "All" ? documents.length : countIn(item);
+      return `<button class="chip" type="button" data-topic="${slug}" data-quick-category="${item}" aria-pressed="false">${label}<span>${count}</span></button>`;
+    }).join("");
   }
 
   function renderQuickIndex() {
     const query = normalize(quickState.query);
-    const results = documents.filter((doc) =>
-      (quickState.category === "All" || doc.category === quickState.category) &&
-      (!query || normalize(`${doc.title} ${doc.description} ${doc.category}`).includes(query))
-    );
-    const orderedCategories = ["Vocabulary", "Grammar", "Writing", "Verb", "Guide", "Blog"];
-    $("#quick-filters").innerHTML = ["All", ...orderedCategories].map((category) => {
-      const count = category === "All" ? documents.length : documents.filter((doc) => doc.category === category).length;
-      const filterClass = category === "All" ? "filter-all" : `filter-${category.toLowerCase()}`;
-      return `<button class="${filterClass}${quickState.category === category ? " active" : ""}" data-quick-category="${category}" aria-pressed="${quickState.category === category}">${category === "All" ? "Tất cả" : categoryInfo[category].label} · ${count}</button>`;
-    }).join("");
-    $("#quick-count").textContent = `${results.length} bài học · Chọn để mở ngay`;
-    announceQuickCount(results.length);
-    $("#quick-list").innerHTML = results.length ? results.map((doc) => {
-      return `<a class="quick-item" href="${viewerUrl(doc)}"><span class="quick-item-title">${escapeHTML(doc.title)}</span><span class="quick-item-meta"><b>${categoryInfo[doc.category].label}</b></span><span class="quick-item-arrow" aria-hidden="true">→</span></a>`;
-    }).join("") : '<div class="quick-empty">Không tìm thấy bài học phù hợp.</div>';
+    const hits = documents.filter((doc) => matches(doc, query, quickState.category));
+    $$("[data-quick-category]").forEach((chip) => chip.setAttribute("aria-pressed", String(chip.dataset.quickCategory === quickState.category)));
+    $("#quick-count").textContent = `${hits.length} tài liệu · chọn để mở ngay`;
+    $("#quick-list").innerHTML = hits.length
+      ? hits.map((doc) => `<a class="qi-item" data-topic="${categoryInfo[doc.category].slug}" href="${viewerUrl(doc)}">${sketch(doc, "")}<span><span class="qi-item-title">${escapeHTML(doc.title)}</span><span class="qi-item-meta">${categoryInfo[doc.category].label}</span></span>${glyph("arrow")}</a>`).join("")
+      : '<p class="qi-empty">Không tìm thấy bài học phù hợp.</p>';
   }
 
-  let quickIndexReturnFocus = null;
-
-  function setBackgroundInert(inert) {
-    ["header.site-header", "main", "footer.footer"].forEach((selector) => {
-      const element = document.querySelector(selector);
-      if (element) element.inert = inert;
-    });
-  }
-
-  function setQuickIndex(open) {
-    const panel = $("#quick-index");
-    const launcher = $("#index-launcher");
-    setLauncherHidden(false);
-    if (open) {
-      quickIndexReturnFocus = launcher;
-      panel.classList.add("open");
-      panel.setAttribute("aria-hidden", "false");
-      launcher.setAttribute("aria-expanded", "true");
-      $("#index-backdrop").hidden = false;
-      document.body.classList.add("index-open");
-      setBackgroundInert(true);
-      setTimeout(() => {
-        const active = document.activeElement;
-        if (active && panel.contains(active) && active !== panel) return;
-        $("#quick-search").focus();
-      }, 150);
-      return;
-    }
-    const target = quickIndexReturnFocus || launcher;
-    panel.classList.remove("open");
-    launcher.setAttribute("aria-expanded", "false");
-    $("#index-backdrop").hidden = true;
-    document.body.classList.remove("index-open");
-    setBackgroundInert(false);
-    if (target && typeof target.focus === "function") target.focus();
-    panel.setAttribute("aria-hidden", "true");
-    quickIndexReturnFocus = null;
-  }
+  /* ---------------------------------------------------------------- Sự kiện */
 
   document.addEventListener("click", (event) => {
-    const category = event.target.closest("[data-category]");
-    const filter = event.target.closest("[data-filter]");
-    const quickCategory = event.target.closest("[data-quick-category]");
-    const toggleGroup = event.target.closest("[data-toggle-group]");
-    const token = focusToken(category || filter || quickCategory || toggleGroup);
-    if (category) selectCategory(category.dataset.category, token);
-    if (filter) selectCategory(filter.dataset.filter, token);
-    if (quickCategory) { quickState.category = quickCategory.dataset.quickCategory; renderQuickIndex(); restoreControlFocus(token); }
-    if (toggleGroup) {
-      const groupKey = toggleGroup.dataset.toggleGroup;
-      vocabularyGroupState[groupKey] = !vocabularyGroupState[groupKey];
-      renderLibrary();
-      restoreControlFocus(token);
+    const resourceLink = event.target.closest('a[href^="viewer.html?id="]');
+    if (resourceLink) {
+      const id = new URL(resourceLink.href, window.location.href).searchParams.get("id");
+      rememberResource(id);
     }
-    if (event.target.closest("#index-launcher")) setQuickIndex(true);
-    if (event.target.closest("#index-close") || event.target.closest("#index-backdrop") || event.target.closest("#open-library")) setQuickIndex(false);
-    if (event.target.closest("[data-show-all]")) selectCategory("All");
-    if (event.target.closest("#clear-search")) { $("#search-input").value = ""; setLibraryState({ category: "All", query: "" }); }
+
+    const topic = event.target.closest("[data-category]");
+    if (topic) {
+      const next = state.category === topic.dataset.category ? "All" : topic.dataset.category;
+      setLibraryState({ category: next });
+      scrollToLibrary();
+      return;
+    }
+
+    const filter = event.target.closest("[data-filter]");
+    if (filter) {
+      setLibraryState({ category: filter.dataset.filter });
+      return;
+    }
+
+    const quickCategory = event.target.closest("[data-quick-category]");
+    if (quickCategory) {
+      quickState.category = quickCategory.dataset.quickCategory;
+      renderQuickIndex();
+      return;
+    }
+
+    const hint = event.target.closest("[data-suggest]");
+    if (hint) {
+      searchInput.value = hint.dataset.suggest;
+      setLibraryState({ query: hint.dataset.suggest, category: "All" });
+      closeSuggestions();
+      scrollToLibrary();
+      return;
+    }
+
+    if (event.target.closest("#search-clear")) {
+      searchInput.value = "";
+      setLibraryState({ query: "" });
+      closeSuggestions();
+      searchInput.focus();
+      return;
+    }
+
+    if (event.target.closest("#reset-filters") || event.target.closest("#clear-search")) {
+      searchInput.value = "";
+      $("#pdf-only").checked = false;
+      $("#sort-select").value = "featured";
+      setLibraryState({ category: "All", query: "", pdfOnly: false, sort: "featured" });
+      closeSuggestions();
+      return;
+    }
+
+    if (event.target.closest("#desk-clear")) {
+      forgetResources();
+      return;
+    }
+
+    if (event.target.closest("#index-open")) {
+      openIndex();
+      return;
+    }
+
+    if (event.target.closest("#index-close") || event.target.closest("#open-library")) {
+      indexController.close();
+    }
+  });
+
+  document.addEventListener("auxclick", (event) => {
+    if (event.button !== 1) return;
+    const link = event.target.closest('a[href^="viewer.html?id="]');
+    if (link) rememberResource(new URL(link.href, window.location.href).searchParams.get("id"));
+  });
+
+  suggestionList.addEventListener("mousedown", (event) => {
+    const option = event.target.closest('[role="option"]');
+    if (!option) return;
+    event.preventDefault();
+    openSuggestion(option);
+  });
+
+  searchInput.addEventListener("input", (event) => {
+    setLibraryState({ query: event.target.value.trim() });
+    renderSuggestions();
+  });
+
+  searchInput.addEventListener("focus", renderSuggestions);
+
+  searchInput.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+      if (suggestionList.hidden) renderSuggestions();
+      if (suggestionList.hidden) return;
+      event.preventDefault();
+      markSuggestion(suggestionIndex + (event.key === "ArrowDown" ? 1 : -1));
+      return;
+    }
+    if (event.key === "Escape" && !suggestionList.hidden) {
+      event.preventDefault();
+      closeSuggestions();
+      return;
+    }
+    if (event.key === "Tab") closeSuggestions();
   });
 
   $("#search-form").addEventListener("submit", (event) => {
     event.preventDefault();
-    setLibraryState({ query: $("#search-input").value.trim(), category: "All" });
-    $("#library").scrollIntoView({ behavior: "smooth" });
+    const options = [...suggestionList.querySelectorAll('[role="option"]')];
+    if (!suggestionList.hidden && suggestionIndex >= 0 && openSuggestion(options[suggestionIndex])) return;
+    setLibraryState({ query: searchInput.value.trim() });
+    closeSuggestions();
+    scrollToLibrary();
   });
-  $("#search-input").addEventListener("input", (event) => { setLibraryState({ query: event.target.value.trim() }); });
+
+  $("#search-form").addEventListener("focusout", (event) => {
+    if (!event.relatedTarget || !event.currentTarget.contains(event.relatedTarget)) closeSuggestions();
+  });
+
+  $("#sort-select").addEventListener("change", (event) => setLibraryState({ sort: event.target.value }));
+  $("#pdf-only").addEventListener("change", (event) => setLibraryState({ pdfOnly: event.target.checked }));
   $("#quick-search").addEventListener("input", (event) => { quickState.query = event.target.value.trim(); renderQuickIndex(); });
-  document.addEventListener("keydown", (event) => {
-    const panel = $("#quick-index");
-    if (panel.classList.contains("open") && event.key === "Tab") {
-      const focusable = [...panel.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])')].filter((element) => element.offsetParent !== null);
-      if (focusable.length) {
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
-        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
-      }
-    }
-    if (event.key === "Escape" && panel.classList.contains("open")) setQuickIndex(false);
-    if (event.key === "/" && !$("#quick-index").classList.contains("open") && !/input|textarea|select/i.test(document.activeElement.tagName)) {
-      event.preventDefault(); setQuickIndex(true);
-    }
+  $("#quick-search").addEventListener("keydown", (event) => {
+    if (event.key !== "Escape" || event.isComposing) return;
+    // Ô search gốc dùng Esc để xóa chữ trước khi dialog nhận được phím.
+    event.preventDefault();
+    indexController.close();
   });
-  $(".menu-toggle").addEventListener("click", () => { const open = $(".site-header").classList.toggle("nav-open"); $(".menu-toggle").setAttribute("aria-expanded", String(open)); });
-  $(".main-nav").addEventListener("click", () => { $(".site-header").classList.remove("nav-open"); $(".menu-toggle").setAttribute("aria-expanded", "false"); });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "/" || event.ctrlKey || event.metaKey || event.altKey) return;
+    if (indexDialog.open) return;
+    const tag = document.activeElement ? document.activeElement.tagName : "";
+    if (/^(input|textarea|select)$/i.test(tag)) return;
+    event.preventDefault();
+    openIndex();
+  });
+
+  window.addEventListener("pageshow", (event) => {
+    if (!event.persisted) return;
+    recent = sanitizeRecent(recentStore.load([]));
+    renderDesk();
+  });
+
+  /* ------------------------------------------------ Trạng thái cuộn và nav */
+
+  const header = $(".site-header");
+  const navLinks = $$("[data-nav]");
+  const sections = navLinks.map((link) => document.getElementById(link.dataset.nav)).filter(Boolean);
+  let scrollTicking = false;
+
+  function updateScrollState() {
+    scrollTicking = false;
+    header.classList.toggle("is-stuck", window.scrollY > 8);
+    const line = window.scrollY + header.offsetHeight + 90;
+    let current = "";
+    for (const section of sections) {
+      if (section.hidden) continue;
+      if (section.getBoundingClientRect().top + window.scrollY <= line) current = section.id;
+    }
+    navLinks.forEach((link) => {
+      if (link.dataset.nav === current) link.setAttribute("aria-current", "location");
+      else link.removeAttribute("aria-current");
+    });
+  }
+
+  window.addEventListener("scroll", () => {
+    if (scrollTicking) return;
+    scrollTicking = true;
+    window.requestAnimationFrame(updateScrollState);
+  }, { passive: true });
+
+  // Trình duyệt chưa có scroll-driven animation: tự bật mép mờ của hàng cuộn ngang.
+  function setupScrollFades() {
+    if (window.CSS && CSS.supports("animation-timeline", "scroll()")) return;
+    $$(".chip-row, .section-nav ul").forEach((scroller) => {
+      const first = scroller.firstElementChild;
+      const last = scroller.lastElementChild;
+      if (!first || !last) return;
+      const observer = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+          scroller.classList.toggle(entry.target === first ? "more-start" : "more-end", entry.intersectionRatio < 1);
+        }
+      }, { root: scroller, threshold: 1, rootMargin: "1px" });
+      observer.observe(first);
+      observer.observe(last);
+    });
+  }
+
+  /* ------------------------------------------------------------- Khởi động */
+
   $("#doc-count").textContent = documents.length;
+  $("#fact-docs").textContent = documents.length;
+  $("#fact-topics").textContent = CATEGORY_ORDER.length;
   $("#year").textContent = new Date().getFullYear();
-  renderTopics(); renderFeatured(); renderBlog(); renderLibrary(); renderQuickIndex();
+  indexButton.setAttribute("aria-expanded", "false");
+
+  renderTopics();
+  renderFilters();
+  renderQuickFilters();
+  renderLibrary();
+  renderDesk();
+  renderQuickIndex();
+  setupScrollFades();
+  updateScrollState();
 }());

@@ -3,106 +3,232 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="English 101 — kho tài liệu Grammar, Vocabulary, Writing, Verb, Guide và Blog miễn phí.">
-  <meta name="theme-color" content="#131416">
-  <title>English 101 — Learn with clarity</title>
+  <meta name="description" content="English 101 — kho học liệu tiếng Anh mở: Ngữ pháp, Từ vựng, Viết, Động từ, Hướng dẫn và Blog. Mở thẳng trên trình duyệt, không đăng nhập.">
+  <meta name="theme-color" content="#0b1013">
+  <meta name="color-scheme" content="light">
+  <title>English 101 — Học tiếng Anh rõ ràng hơn</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20261031-quiet-1">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="home.css?v=20261113-desk-3">
 </head>
-<body>
-  <!-- Inline lesson icons: avoids external SVG source restrictions -->
-  <svg class="lesson-icon-sprite" aria-hidden="true" focusable="false"><symbol id="lesson-icon-grammar" viewBox="0 0 400 300"><rect width="400" height="300" rx="28" fill="#FBFAF7"/><rect x="72" y="70" width="256" height="160" rx="26" fill="#FF6B4A" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="M126 122h148M126 164h96" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="m278 48 15 15 28-31" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></symbol><symbol id="lesson-icon-guide" viewBox="0 0 400 300"><rect width="400" height="300" rx="28" fill="#FBFAF7"/><path d="M54 62c56-10 101 5 146 40 45-35 90-50 146-40v170c-56-10-101 5-146 40-45-35-90-50-146-40V62Z" fill="#fff" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="M200 102v170M91 120c41-8 67 0 86 18M309 111c-38 10-63 28-83 56" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><circle cx="286" cy="109" r="17" fill="#EEA632" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="M177 138c-9 50-34 83-70 95" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></symbol><symbol id="lesson-icon-verb-forms" viewBox="0 0 400 300"><rect width="400" height="300" rx="28" fill="#FBFAF7"/><rect x="58" y="54" width="284" height="66" rx="20" fill="#2EA67A" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><rect x="86" y="132" width="256" height="66" rx="20" fill="#FF6B4A" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><rect x="58" y="210" width="284" height="66" rx="20" fill="#377CF6" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="M98 87h92M126 165h92M98 243h92M304 120v12m0 66v12m-18-10 18 10 18-10" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></symbol><symbol id="lesson-icon-vocabulary" viewBox="0 0 400 300"><rect width="400" height="300" rx="28" fill="#FBFAF7"/><path d="M98 168c42-5 73 3 102 28 29-25 60-33 102-28v69c-42-5-73 3-102 28-29-25-60-33-102-28v-69Z" fill="#fff" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><rect x="72" y="58" width="78" height="64" rx="14" fill="#377CF6" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><rect x="161" y="42" width="78" height="64" rx="14" fill="#FF6B4A" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><rect x="250" y="58" width="78" height="64" rx="14" fill="#377CF6" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="M111 122v34m89-50v90m89-74v34" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></symbol><symbol id="lesson-icon-writing" viewBox="0 0 400 300"><rect width="400" height="300" rx="28" fill="#FBFAF7"/><rect x="62" y="54" width="276" height="192" rx="28" fill="#8867E8" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="M108 105h152M108 146h112M108 187h82" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="m282 104 45 34-77 102-45 19 8-48 69-107Z" fill="#FF6B4A" fill="none" stroke="#0B1220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></symbol></svg>
-  <a class="skip-link" href="#library">Đi đến kho tài liệu</a>
+<body class="home">
+  <a class="skip-link" href="#library">Bỏ qua tới kho tài liệu</a>
+
   <header class="site-header" id="top">
-    <div class="nav-wrap container">
+    <div class="header-inner">
       <a class="brand" href="#top">
-        <span class="brand-mark">E<span>101</span></span>
-        <span>English 101 <small>Learn with clarity</small></span>
+        <span class="brand-mark" aria-hidden="true">E<i>101</i></span>
+        <span class="brand-text"><b>English 101</b><small>Learn with clarity</small></span>
         <span class="sr-only">Trang chủ</span>
       </a>
-      <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Mở menu"><span></span><span></span><span></span></button>
-      <nav class="main-nav" id="main-nav" aria-label="Điều hướng chính">
-        <a href="#topics">Chủ đề</a><a href="#featured">Nổi bật</a><a href="#library">Tài liệu</a><a href="#blog">Blog</a><a href="#about">Giới thiệu</a>
+      <nav class="section-nav" aria-label="Các mục trên trang">
+        <ul>
+          <li><a href="#topics" data-nav="topics">Chủ đề</a></li>
+          <li><a href="#library" data-nav="library">Tài liệu</a></li>
+          <li><a href="#blog" data-nav="blog">Blog</a></li>
+          <li><a href="#about" data-nav="about">Giới thiệu</a></li>
+        </ul>
       </nav>
+      <button class="index-button" id="index-open" type="button" aria-label="Mục lục bài học" aria-haspopup="dialog" aria-controls="quick-index">
+        <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+        <span>Mục lục</span>
+        <kbd aria-hidden="true">/</kbd>
+      </button>
     </div>
+    <div class="scroll-rail" aria-hidden="true"><i></i></div>
   </header>
 
-  <main>
-    <section class="hero">
-      <div class="container hero-grid">
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-inner">
         <div class="hero-copy">
-          <h1>Học tiếng Anh<br><em>rõ ràng hơn.</em></h1>
-          <p>Một không gian học tập tập trung, nơi mọi tài liệu từ ngữ pháp đến kỹ năng viết đều sẵn sàng để đọc và luyện tập ngay trên trình duyệt.</p>
-          <form class="hero-search" id="search-form" role="search">
-            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m21 21-4.35-4.35m2.35-5.65a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"/></svg>
-            <label class="sr-only" for="search-input">Tìm tài liệu</label>
-            <input id="search-input" type="search" placeholder="Tìm ngữ pháp, từ vựng, IELTS..." autocomplete="off">
-            <button type="submit">Tìm kiếm</button>
+          <p class="kicker"><span class="lamp-dot"></span>Kho học liệu mở · <b id="doc-count">29</b> tài liệu</p>
+          <h1 id="hero-title">Học tiếng Anh<br><em>rõ ràng hơn.</em></h1>
+          <p class="lede">Ngữ pháp, từ vựng, kỹ năng viết và luyện truy hồi. Mở thẳng trên trình duyệt, không đăng nhập, không quảng cáo, không bước thừa.</p>
+
+          <form class="search" id="search-form" role="search" autocomplete="off">
+            <svg class="glyph search-glyph" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 4.5 4.5"/></svg>
+            <label class="sr-only" for="search-input">Tìm tài liệu trong kho</label>
+            <input id="search-input" type="search" name="q" placeholder="Tìm ngữ pháp, từ vựng, IELTS…" role="combobox" aria-expanded="false" aria-controls="search-suggestions" aria-autocomplete="list" aria-describedby="search-help">
+            <button class="search-clear" id="search-clear" type="button" hidden aria-label="Xóa từ khóa">
+              <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+            </button>
+            <button class="search-submit" type="submit" aria-label="Tìm kiếm">
+              <span>Tìm</span>
+              <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg>
+            </button>
+            <ul class="suggestions" id="search-suggestions" role="listbox" aria-label="Gợi ý tài liệu" hidden></ul>
           </form>
-          <div class="hero-meta"><span><b id="doc-count">29</b> tài liệu</span><span><b>6</b> chủ đề</span><span><b>100%</b> miễn phí</span></div>
+          <p class="search-help" id="search-help">Gõ để lọc kho tài liệu bên dưới. Bấm <kbd>/</kbd> để mở mục lục nhanh.</p>
+          <p class="hero-hints"><span>Thử ngay:</span>
+            <button type="button" data-suggest="TOEIC">TOEIC 600</button>
+            <button type="button" data-suggest="ngữ pháp">Ngữ pháp</button>
+            <button type="button" data-suggest="IELTS">IELTS</button>
+            <button type="button" data-suggest="phrasal">Phrasal verbs</button>
+          </p>
         </div>
-        <div class="hero-art" aria-hidden="true">
-          <div class="word-card card-one"><span>VOCABULARY</span><strong>serendipity</strong><small>/ˌser.ənˈdɪp.ə.ti/</small><p>a happy discovery made by chance</p></div>
+
+        <aside class="desk" aria-labelledby="desk-title">
+          <div class="desk-head">
+            <h2 id="desk-title">Tiếp tục học</h2>
+            <button class="desk-clear" id="desk-clear" type="button" hidden>
+              <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14M10 7V5h4v2M7 7l1 12h8l1-12"/></svg>
+              <span>Xóa lịch sử</span>
+            </button>
+          </div>
+          <ol class="desk-list" id="desk-list"></ol>
+          <p class="desk-note" id="desk-note"></p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section topics" id="topics" aria-labelledby="topics-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow"><i>01</i> Chủ đề</p>
+            <h2 id="topics-title">Sáu ngăn kéo của bàn học</h2>
+          </div>
+          <p class="section-note">Chọn một ngăn để lọc kho tài liệu. Chọn lại lần nữa để bỏ lọc.</p>
+        </div>
+        <div class="topic-grid" id="topic-grid"></div>
+      </div>
+    </section>
+
+    <section class="section library" id="library" aria-labelledby="library-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow"><i>02</i> Kho học liệu</p>
+            <h2 id="library-title">Tất cả tài liệu</h2>
+          </div>
+          <p class="result-count" id="result-count" role="status" aria-live="polite"></p>
+        </div>
+
+        <div class="library-tools">
+          <div class="chip-scroller">
+            <div class="chip-row" id="filters" role="group" aria-label="Lọc theo chủ đề"></div>
+          </div>
+          <div class="tool-row">
+            <label class="select-field">
+              <span>Sắp xếp</span>
+              <select id="sort-select">
+                <option value="featured">Nổi bật trước</option>
+                <option value="az">Tên A–Z</option>
+                <option value="category">Nhóm theo chủ đề</option>
+              </select>
+              <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </label>
+            <label class="check-field">
+              <input type="checkbox" id="pdf-only">
+              <span>Chỉ tài liệu PDF</span>
+            </label>
+            <button class="reset-button" id="reset-filters" type="button" hidden>
+              <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+              <span>Xóa bộ lọc</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="document-grid" id="document-grid"></div>
+
+        <div class="empty-state" id="empty-state" hidden>
+          <svg class="sketch empty-art" viewBox="0 0 120 96" aria-hidden="true"><g transform="rotate(7 56 50)"><rect class="s-shade s-back" x="26" y="16" width="52" height="66" rx="3"/></g><g transform="rotate(-5 48 50)"><rect class="s-paper" x="20" y="14" width="54" height="68" rx="3"/><path class="s-detail s-dash" d="M28 30h38M28 40h38M28 50h30M28 60h34"/></g><g transform="rotate(45 76 56)"><rect class="s-paper" x="94" y="52.5" width="24" height="7" rx="3.5"/></g><circle class="s-accent s-paper" cx="76" cy="56" r="17"/><path class="s-detail" d="M66 50a11 11 0 0 1 7-7"/></svg>
+          <h3>Không tìm thấy tài liệu</h3>
+          <p id="empty-detail">Thử một từ khóa khác, hoặc bỏ bớt bộ lọc đang chọn.</p>
+          <button class="button button-primary" id="clear-search" type="button">Xóa bộ lọc và từ khóa</button>
         </div>
       </div>
     </section>
 
-    <nav class="section-nav" aria-label="Chuyển nhanh giữa các mục">
-      <a href="#topics">Chủ đề</a><a href="#featured">Nổi bật</a><a href="#library">Tài liệu</a><a href="#blog">Blog</a><a href="#about">Giới thiệu</a>
-    </nav>
-
-    <section class="topics section container" id="topics">
-      <div class="section-heading"><h2>Chọn lộ trình của bạn</h2></div>
-      <div class="topic-grid" id="topic-grid"></div>
-    </section>
-
-    <section class="featured section" id="featured">
+    <section class="section blog" id="blog" aria-labelledby="blog-title">
       <div class="container">
-        <div class="section-heading"><h2>Tài liệu nổi bật</h2><button class="text-button" data-show-all>Xem toàn bộ <span>→</span></button></div>
-        <div class="featured-grid" id="featured-grid"></div>
+        <div class="section-head">
+          <div>
+            <p class="eyebrow"><i>03</i> Blog</p>
+            <h2 id="blog-title">Học thế nào cho hiệu quả?</h2>
+          </div>
+          <p class="section-note">Ghi chép về cách học, cách nhớ và cách dùng được tiếng Anh.</p>
+        </div>
+        <div id="blog-slot"></div>
       </div>
     </section>
 
-    <section class="library section container" id="library">
-      <div class="section-heading library-head"><h2>Kho học liệu</h2><p id="result-count" aria-live="polite"></p></div>
-      <div class="filters" id="filters" role="group" aria-label="Lọc theo chủ đề"></div>
-      <div class="document-grid" id="document-grid"></div>
-      <div class="empty-state" id="empty-state" hidden><span>⌕</span><h3>Không tìm thấy tài liệu</h3><p>Thử một từ khóa khác hoặc chọn lại “Tất cả”.</p><button class="primary-button" id="clear-search">Xóa bộ lọc</button></div>
-    </section>
-
-    <section class="blog section" id="blog">
+    <section class="section about" id="about" aria-labelledby="about-title">
       <div class="container">
-        <div class="section-heading"><h2>Blog — Học thế nào cho hiệu quả?</h2></div>
-        <div class="blog-grid" id="blog-grid"></div>
+        <div class="about-panel">
+          <div class="about-copy">
+            <p class="eyebrow eyebrow-dark"><i>04</i> Giới thiệu</p>
+            <h2 id="about-title">Một nơi. Mọi tài liệu.<br>Mở ra và học ngay.</h2>
+            <p>English 101 là kho học liệu mở cho người tự học. Không tài khoản, không quảng cáo, không thanh toán. Tiến độ và lịch sử học nằm trên thiết bị của bạn.</p>
+            <div class="about-actions">
+              <a class="button button-lime" href="#library">Bắt đầu học
+                <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg>
+              </a>
+              <a class="button button-outline-dark" href="viewer.html?id=english-learning-101">Đọc hướng dẫn học</a>
+            </div>
+          </div>
+          <dl class="about-facts">
+            <div><dt>Tài liệu</dt><dd id="fact-docs">29</dd></div>
+            <div><dt>Chủ đề</dt><dd id="fact-topics">6</dd></div>
+            <div><dt>Tài khoản</dt><dd>Không</dd></div>
+            <div><dt>Chi phí</dt><dd>0đ</dd></div>
+          </dl>
+        </div>
       </div>
-    </section>
-
-    <section class="about section" id="about">
-      <div class="container about-card"><h2>Một nơi. Mọi tài liệu.<br>Mở ra và học ngay.</h2><p>Không đăng nhập, không quảng cáo, không bước thừa. English 101 giúp bạn tập trung vào điều quan trọng nhất: tiến bộ mỗi ngày.</p><a href="#library" class="light-button">Bắt đầu học <span>→</span></a></div>
     </section>
   </main>
 
-  <footer class="footer"><div class="container footer-inner"><a class="brand footer-brand" href="#top"><span class="brand-mark">E<span>101</span></span><span>English 101 <small>Learn with clarity</small></span><span class="sr-only">Trang chủ</span></a><p>Kho học liệu tiếng Anh mở, được thiết kế cho việc tự học.</p><div class="footer-links"><a href="#topics">Chủ đề</a><a href="#library">Tài liệu</a><a href="#blog">Blog</a><a href="viewer.html?id=english-learning-101">Hướng dẫn học</a></div><small class="copyright">© <span id="year"></span> English 101. Built for learners.</small></div></footer>
-
-  <button class="index-launcher" id="index-launcher" aria-expanded="false" aria-controls="quick-index" aria-label="Mục lục bài học">
-    <span class="index-launcher-icon">☷</span><span><b>Mục lục bài học</b><small>Chọn bài nhanh</small></span><i>→</i>
-  </button>
-  <div class="index-backdrop" id="index-backdrop" hidden></div>
-  <aside class="quick-index" id="quick-index" role="dialog" aria-modal="true" aria-labelledby="quick-index-title" aria-hidden="true">
-    <div class="quick-index-head">
-      <div><span>LESSON LIBRARY</span><h2 id="quick-index-title">Mục lục bài học</h2><p id="quick-count"></p><p class="sr-only" id="quick-status" role="status"></p></div>
-      <button id="index-close" aria-label="Thu gọn mục lục">×</button>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="brand-mark" aria-hidden="true">E<i>101</i></span>
+        <p><b>English 101</b><br>Kho học liệu tiếng Anh mở, thiết kế cho việc tự học.</p>
+      </div>
+      <nav class="footer-links" aria-label="Liên kết cuối trang">
+        <a href="#topics">Chủ đề</a>
+        <a href="#library">Tài liệu</a>
+        <a href="#blog">Blog</a>
+        <a href="viewer.html?id=english-learning-101">Hướng dẫn học</a>
+      </nav>
+      <p class="copyright">© <span id="year">2026</span> English 101 · Built for learners.</p>
     </div>
-    <label class="quick-search"><span aria-hidden="true">⌕</span><input id="quick-search" type="search" placeholder="Tìm bài học..." aria-label="Tìm bài học"><kbd aria-hidden="true">/</kbd></label>
-    <div class="quick-filters" id="quick-filters" role="group" aria-label="Lọc nhanh theo chủ đề"></div>
-    <div class="quick-list" id="quick-list"></div>
-    <div class="quick-index-foot"><span><i></i> Tiến độ được lưu trên thiết bị</span><a href="#library" id="open-library">Xem kho đầy đủ →</a></div>
-  </aside>
+  </footer>
+
+  <dialog class="quick-index" id="quick-index" aria-labelledby="quick-index-title">
+    <div class="qi-head">
+      <div>
+        <p class="eyebrow"><i>≡</i> Mục lục bài học</p>
+        <h2 id="quick-index-title">Mở nhanh bất kỳ tài liệu nào</h2>
+      </div>
+      <button class="icon-button" id="index-close" type="button" aria-label="Đóng mục lục">
+        <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <label class="qi-search">
+      <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 4.5 4.5"/></svg>
+      <span class="sr-only">Tìm bài học trong mục lục</span>
+      <input id="quick-search" type="search" placeholder="Tìm bài học…" autocomplete="off" autofocus>
+    </label>
+    <div class="chip-scroller">
+      <div class="chip-row qi-chips" id="quick-filters" role="group" aria-label="Lọc nhanh theo chủ đề"></div>
+    </div>
+    <p class="qi-count" id="quick-count" role="status" aria-live="polite"></p>
+    <div class="qi-list" id="quick-list"></div>
+    <div class="qi-foot">
+      <span><i class="lamp-dot"></i> Lịch sử học lưu trên thiết bị này</span>
+      <a href="#library" id="open-library">Xem kho đầy đủ
+        <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg>
+      </a>
+    </div>
+  </dialog>
 
   <script src="data/documents.js"></script>
-  <script src="script.js?v=20261031-quiet-1"></script>
+  <script src="home-icons.js?v=20261113-desk-3"></script>
+  <script src="assets/learning/persistence.js"></script>
+  <script src="assets/ui/dialog.js"></script>
+  <script src="script.js?v=20261113-desk-3"></script>
 </body>
 </html>
