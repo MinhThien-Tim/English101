@@ -40,3 +40,7 @@ credentials.json
 .mimosa/
 .impeccable
 .playwright-mcp
+
+# Agent tool state (machine-local)
+.serena/
+.zcode/
