@@ -4,6 +4,7 @@
   const documents = window.ENGLISH_101_DOCUMENTS || [];
   const ICONS = window.ENGLISH101_HOME_ICONS || { categories: {}, resources: {}, ui: {} };
   const shared = window.English101Learning || {};
+  const motion = window.English101Motion || null;
 
   const CATEGORY_ORDER = ["Vocabulary", "Grammar", "Writing", "Verb", "Guide", "Blog"];
   const categoryInfo = {
@@ -235,6 +236,7 @@
     const grouped = state.sort === "category" && lessons.length > 0;
     grid.classList.toggle("is-grouped", grouped);
     grid.innerHTML = grouped ? groupedHTML(lessons) : lessons.map((doc) => cardHTML(doc)).join("");
+    if (motion) motion.revealIn(grid, { selector: ".doc-card" });
     renderBlog(list);
 
     const parts = [`${list.length} tài liệu`];
@@ -255,6 +257,7 @@
     $("#blog").hidden = posts.length === 0;
     $$('a[href="#blog"]').forEach((link) => { link.hidden = posts.length === 0; });
     $("#blog-slot").innerHTML = posts.map((doc) => cardHTML(doc, { className: "blog-card reveal", action: "Đọc bài viết" })).join("");
+    if (motion) motion.revealIn($("#blog-slot"), { selector: ".blog-card" });
   }
 
   function setLibraryState(patch) {
@@ -308,10 +311,12 @@
       const all = `<li role="option" id="suggestion-all" aria-selected="false" data-action="all" data-topic="all"><span></span><span class="suggest-all">Xem tất cả ${hits.length} kết quả trong kho</span>${glyph("arrow")}</li>`;
       suggestionList.innerHTML = rows + all;
     }
+    const opening = suggestionList.hidden;
     suggestionList.hidden = false;
     searchInput.setAttribute("aria-expanded", "true");
     suggestionIndex = -1;
     searchInput.removeAttribute("aria-activedescendant");
+    if (opening && motion) motion.staggerIn([...suggestionList.children]);
   }
 
   function openSuggestion(option) {
@@ -563,6 +568,7 @@
   indexButton.setAttribute("aria-expanded", "false");
 
   renderTopics();
+  if (motion) motion.revealIn($("#topic-grid"), { selector: ".topic-card" });
   renderFilters();
   renderQuickFilters();
   renderLibrary();

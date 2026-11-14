@@ -39,3 +39,4 @@ credentials.json
 *-credentials.json
 .mimosa/
 .impeccable
+.playwright-mcp

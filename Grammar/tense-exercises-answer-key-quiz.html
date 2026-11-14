@@ -34,6 +34,7 @@ input[type=text],textarea{width:100%;border:1px solid var(--line);border-radius:
 .topic-pill{display:inline-block;margin-left:6px;padding:3px 7px;border-radius:999px;background:#e8f6f1;color:#17664f;font-size:10px;font-weight:850;vertical-align:1px}.smart-note{margin-top:10px;padding:10px 12px;border-left:4px solid #2b7d69;border-radius:8px;background:#eff9f5;color:#315d53;font-size:12px;line-height:1.5}.weak-topics{margin-top:10px;padding:10px 12px;border-radius:10px;background:#fff9e8;border:1px solid #edd9a9;font-size:13px}
 @media(max-width:650px){.contrast-grid{grid-template-columns:1fr}.history-stats{grid-template-columns:repeat(3,1fr)}.review-hub{padding:15px}.theory-body{padding:11px}}
 </style>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
 </head>
 <body><div class="wrap">
 <section class="hero">
@@ -202,7 +203,7 @@ function keyText(q){if(Array.isArray(q.answer))return q.answer.join(' / ');if(q.
 function isCorrect(q,r){if(q.kind==='mcq'||q.kind==='error')return norm(r)===norm(q.answer);if(q.kind==='text'){const arr=Array.isArray(q.answer)?q.answer:[q.answer];return arr.some(a=>norm(r)===norm(a))}return null}
 function render(){const q=qnow(),m=META.find(x=>x.id===q.ex);$('#pill').textContent=`${q.ex===99?'Ôn tập mới':`Exercise ${q.ex}`} · ${m.title}`;$('#meta').innerHTML=`Câu ${idx+1}/${session.length} · Item ${esc(q.num)}${q.section?' · '+esc(q.section):''}<span class="topic-pill">${esc(topicOf(q))}</span>`;$('#bar').style.width=`${(idx+1)/session.length*100}%`;$('#question').textContent=q.prompt;$('#answerArea').innerHTML=inputHTML(q);$('#feedback').className='feedback';$('#feedback').innerHTML='';$('#selfOK').classList.add('hidden');$('#selfBad').classList.add('hidden');$('#prev').disabled=idx===0;$('#next').textContent=idx===session.length-1?'Xem kết quả →':'Câu tiếp →';if(state[q.id]?.checked)showStored(q)}
 function explanationHTML(q){return q.explanation?`<div class="small" style="margin-top:8px"><b>Vì sao:</b> ${esc(q.explanation)}</div>`:''}
-function showStored(q){const s=state[q.id],fb=$('#feedback');if(q.kind==='self'){fb.className='feedback show info';fb.innerHTML=`<b>Answer key:</b><div class="key">${esc(keyText(q))}</div>${explanationHTML(q)}`;$('#selfOK').classList.remove('hidden');$('#selfBad').classList.remove('hidden');return}fb.className=`feedback show ${s.correct?'ok':'bad'}`;fb.innerHTML=`<b>${s.correct?'✓ Chính xác':'✗ Chưa đúng'}</b><div class="key">Answer key: ${esc(keyText(q))}</div>${explanationHTML(q)}`}
+function showStored(q){const s=state[q.id],fb=$('#feedback');if(q.kind==='self'){fb.className='feedback show info';fb.innerHTML=`<b>Answer key:</b><div class="key">${esc(keyText(q))}</div>${explanationHTML(q)}`;$('#selfOK').classList.remove('hidden');$('#selfBad').classList.remove('hidden');return}fb.className=`feedback show ${s.correct?'ok':'bad'}`;fb.innerHTML=`<b>${s.correct?'✓ Chính xác':'✗ Chưa đúng'}</b><div class="key">Answer key: ${esc(keyText(q))}</div>${explanationHTML(q)}`;var el=fb;if(window.English101Motion)English101Motion.staggerIn([el],{duration:200,step:0,translateY:4});}
 $('#check').onclick=()=>{const q=qnow(),r=response(q);if(!norm(r)){const fb=$('#feedback');fb.className='feedback show info';fb.innerHTML='<b>Hãy chọn hoặc nhập câu trả lời trước khi kiểm tra.</b>';return}state[q.id]={...(state[q.id]||{}),response:r,checked:true};if(q.kind==='self'){state[q.id].correct=state[q.id].correct??null}else{state[q.id].correct=isCorrect(q,r);if(!state[q.id].recorded){recordHistory(q,state[q.id].correct);state[q.id].recorded=true}}showStored(q)}
 $('#show').onclick=()=>{const q=qnow(),r=response(q);state[q.id]={...(state[q.id]||{}),response:r,checked:true};if(q.kind!=='self'){state[q.id].correct=isCorrect(q,r);if(norm(r)&&!state[q.id].recorded){recordHistory(q,state[q.id].correct);state[q.id].recorded=true}}const fb=$('#feedback');fb.className='feedback show info';fb.innerHTML=`<b>Answer key:</b><div class="key">${esc(keyText(q))}</div>${explanationHTML(q)}`;if(q.kind==='self'){state[q.id].correct=state[q.id].correct??null;$('#selfOK').classList.remove('hidden');$('#selfBad').classList.remove('hidden')}}
 function rateSelf(correct){const q=qnow(),s=state[q.id]||(state[q.id]={checked:true,response:response(q)});s.correct=correct;if(!s.recorded){recordHistory(q,correct);s.recorded=true}showStored(q)}
@@ -223,4 +224,6 @@ document.addEventListener('keydown',e=>{
 });
 setup();
 </script>
+<script defer src="../assets/ui/animation.js?v=20261114-motion-1"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
 </body></html>
