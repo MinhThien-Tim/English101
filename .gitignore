@@ -43,3 +43,6 @@ credentials.json
 .serena/
 docs/redesign/
 docs/handoff-*.md
+
+# Agent tool state (machine-local)
+.zcode/
