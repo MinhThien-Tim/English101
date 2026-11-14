@@ -179,6 +179,71 @@
     }
   }
 
+  // Flush khi anime về muộn (hàng pending): card trong viewport (mở rộng theo
+  // rootMargin) đã paint ở trạng thái tự nhiên — animate lại sẽ nháy
+  // (opacity 1 → 0 → 1). Card đã hiện thì mark revealed, KHÔNG animate;
+  // card ngoài vùng chưa paint nên đưa về IO như thường, không nháy.
+  function parseRootMargin(value) {
+    const tokens = String(value == null ? '' : value).trim().split(/\s+/);
+    const num = (token, axis) => {
+      const match = /^(-?\d*\.?\d+)(px|%)?$/.exec(token);
+      if (!match) return 0;
+      const n = parseFloat(match[1]);
+      if (match[2] !== '%') return n;
+      const base = axis === 'v'
+        ? (typeof window !== 'undefined' && typeof window.innerHeight === 'number' ? window.innerHeight : 0)
+        : (typeof window !== 'undefined' && typeof window.innerWidth === 'number' ? window.innerWidth : 0);
+      return (n / 100) * base;
+    };
+    if (!tokens.length || !tokens[0]) return { top: 0, right: 0, bottom: 0, left: 0 };
+    if (tokens.length === 1) return { top: num(tokens[0], 'v'), right: num(tokens[0], 'h'), bottom: num(tokens[0], 'v'), left: num(tokens[0], 'h') };
+    if (tokens.length === 2) return { top: num(tokens[0], 'v'), right: num(tokens[1], 'h'), bottom: num(tokens[0], 'v'), left: num(tokens[1], 'h') };
+    if (tokens.length === 3) return { top: num(tokens[0], 'v'), right: num(tokens[1], 'h'), bottom: num(tokens[2], 'v'), left: num(tokens[1], 'h') };
+    return { top: num(tokens[0], 'v'), right: num(tokens[1], 'h'), bottom: num(tokens[2], 'v'), left: num(tokens[3], 'h') };
+  }
+
+  function intersectsExpandedViewport(rect, margin) {
+    if (typeof window === 'undefined') return false;
+    const width = typeof window.innerWidth === 'number' ? window.innerWidth : 0;
+    const height = typeof window.innerHeight === 'number' ? window.innerHeight : 0;
+    return rect.bottom >= -margin.top
+      && rect.top <= height + margin.bottom
+      && rect.right >= -margin.left
+      && rect.left <= width + margin.right;
+  }
+
+  function flushPendingReveal(container, settings) {
+    try {
+      const targets = collectTargets(container, settings.selector);
+      if (!targets.length) return;
+      if (!motionOK() || !animeReady()) {
+        clearInlineState(targets);
+        return;
+      }
+      const margin = parseRootMargin(settings.rootMargin);
+      let hasOffscreen = false;
+      for (let i = 0; i < targets.length; i += 1) {
+        const el = targets[i];
+        let rect = null;
+        try { rect = el.getBoundingClientRect(); } catch (error) { rect = null; }
+        // Rect rỗng (container đang ẩn / chưa layout) → coi như ngoài viewport,
+        // giữ hành vi IO cũ thay vì mark revealed vội.
+        const hasLayout = rect && rect.width > 0 && rect.height > 0;
+        if (hasLayout && intersectsExpandedViewport(rect, margin)) {
+          clearInlineState(el);
+        } else {
+          hasOffscreen = true;
+        }
+      }
+      // Còn target ngoài viewport: observe qua IO như nhánh thường — các target
+      // đã hiện bị collectTargets bỏ qua (data-motion-revealed), không nháy lại.
+      if (hasOffscreen) startReveal(container, settings);
+    } catch (error) {
+      // fail-visible: lỗi flush → mark revealed TOÀN BỘ hàng, không card nào kẹt ẩn.
+      try { clearInlineState(collectTargets(container, settings.selector)); } catch (cleanupError) { /* bỏ qua */ }
+    }
+  }
+
   function dropPending(entry) {
     const index = pendingReveals.indexOf(entry);
     if (index !== -1) pendingReveals.splice(index, 1);
@@ -194,7 +259,7 @@
           dropPending(entry);
         } else if (animeReady()) {
           pendingReveals.splice(i, 1);
-          startReveal(entry.container, entry.settings);
+          flushPendingReveal(entry.container, entry.settings);
         } else if (now >= entry.deadline) {
           dropPending(entry);
         }
@@ -242,7 +307,9 @@
       }
       if (!animeReady()) {
         // CDN chưa tới (defer cuối chuỗi): chờ bằng poll rAF/60ms tới deadline
-        // 1500ms — anime sẵn sàng thì flush, hết hạn thì mark revealed và bỏ.
+        // 1500ms — anime sẵn sàng thì flush (card đã hiện trong viewport thì
+        // skip animate để không nháy, xem flushPendingReveal), hết hạn thì mark
+        // revealed và bỏ.
         pendingReveals.push({ container, settings, deadline: Date.now() + PENDING_DEADLINE_MS });
         ensurePendingPoll();
         return;
