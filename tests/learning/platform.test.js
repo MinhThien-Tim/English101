@@ -73,6 +73,17 @@ test('keyboard maps Enter to the current primary action and respects guards', ()
   assert.equal(resolveKeyboardAction({ key: ' ', active: true, kind: 'flashcard', revealed: false }), 'REVEAL');
 });
 
+test('arrows stay available when focus sits on a control', () => {
+  assert.equal(resolveKeyboardAction({ key: 'ArrowRight', active: true, kind: 'flashcard', revealed: true, tagName: 'BUTTON', interactive: true }), 'NEXT');
+  assert.equal(resolveKeyboardAction({ key: 'ArrowLeft', active: true, kind: 'flashcard', revealed: true, tagName: 'BUTTON', interactive: true }), 'PREVIOUS');
+  assert.equal(resolveKeyboardAction({ key: 'ArrowRight', active: true, tagName: 'A', interactive: true }), 'NEXT');
+  // input protection is unchanged
+  assert.equal(resolveKeyboardAction({ key: 'ArrowRight', active: true, tagName: 'INPUT' }), null);
+  assert.equal(resolveKeyboardAction({ key: 'ArrowLeft', active: true, tagName: 'TEXTAREA', multiline: true }), null);
+  assert.equal(resolveKeyboardAction({ key: 'ArrowRight', active: true, tagName: 'SELECT', interactive: true }), null);
+  assert.equal(resolveKeyboardAction({ key: 'Enter', active: true, tagName: 'BUTTON', interactive: true }), null);
+});
+
 test('learning route preserves dataset and mode in the URL', () => {
   assert.deepEqual(readLearningRoute('https://example.test/Vocabulary/vocabulary-practice.html?set=vong-3-4&mode=vi-en'), {
     set: 'vong-3-4',

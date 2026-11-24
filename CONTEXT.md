@@ -108,6 +108,16 @@ Enter invokes the current primary action in an interactive Activity:
 
 Enter must not submit while the learner is composing text with an IME, activate when focus is on an unrelated control, or skip an unanswered Prompt. Multiline writing areas keep normal line-break behavior unless the interface clearly provides a different shortcut.
 
+### Arrow keys
+
+Arrow keys move through a sequential Activity. They navigate; they never activate the focused control:
+
+1. `ArrowRight` continues to the next Prompt only after the current result is visible;
+2. `ArrowLeft` returns to the previous Prompt and writes no progress;
+3. both stop at the ends instead of wrapping, and a flashcard Activity completes at the last Prompt.
+
+Arrow keys stay available while focus sits on a button or link inside the Activity, because clicking a control leaves focus there. Text inputs, textareas, selects, and multiline editors keep their native caret, option, and line-break behavior.
+
 ### Answer handling
 
 Normalize only differences the Activity declares insignificant, such as surrounding whitespace or case. Preserve distinctions that are being tested, including spelling, word form, grammar, and required punctuation when relevant. Show the expected answer without silently rewriting learner input.

@@ -164,10 +164,15 @@
     $('#flashHint').textContent = `/${entry.ipa}/ · ${entry.partOfSpeech} · ${entry.topic}`;
     $('#flashBack').hidden = !revealed;
     $('#flashBack').innerHTML = `<div class="flash-answer"><h3>${escapeHTML(entry.vietnamese)}</h3><p>${escapeHTML(entry.definition)}</p><div class="examples open">${exampleMarkup(entry)}</div><p class="usage-note">${escapeHTML(entry.usageNote)}</p></div>`;
-    $('#flashActions').innerHTML = revealed ? '<button class="btn secondary" data-rate="hard">1 · Khó</button><button class="btn" data-rate="good">2 · Đã nhớ</button>' : '<button class="btn" data-reveal>Lật thẻ ↵</button><button class="btn secondary" data-flash-speak>🔊 Nghe</button>';
+    const prevDisabled = snapshot.index ? '' : ' disabled';
+    $('#flashActions').innerHTML = revealed
+      ? `<button class="btn secondary" data-flash-prev${prevDisabled}>← Trước</button><button class="btn secondary" data-rate="hard">1 · Khó</button><button class="btn" data-rate="good">2 · Đã nhớ</button><button class="btn secondary" data-flash-next>Tiếp →</button>`
+      : `<button class="btn secondary" data-flash-prev${prevDisabled}>← Trước</button><button class="btn" data-reveal>Lật thẻ ↵</button><button class="btn secondary" data-flash-speak>🔊 Nghe</button>`;
   }
 
   function revealFlash() { if (!learningSession) return; learningSession.dispatch({type: 'REVEAL'}); renderFlash(); }
+  function nextFlash() { if (!learningSession) return; learningSession.dispatch({type: 'NEXT'}); renderFlash(); }
+  function previousFlash() { if (!learningSession || learningSession.snapshot().index <= 0) return; learningSession.dispatch({type: 'PREVIOUS'}); renderFlash(); }
   function rateFlash(value) {
     const entry = learningSession.snapshot().currentEntry;
     learningSession.dispatch({type: 'RATE', value});
@@ -271,6 +276,8 @@
     }
     if (target.dataset.detail) { const detail = target.closest('.card').querySelector('.entry-detail'); detail.hidden = !detail.hidden; target.setAttribute('aria-expanded', String(!detail.hidden)); target.textContent = detail.hidden ? '+ Ví dụ · collocation · word family' : '− Thu gọn'; }
     if (target.id === 'startFlash') return startFlash();
+    if ('flashPrev' in target.dataset) return previousFlash();
+    if ('flashNext' in target.dataset) return nextFlash();
     if ('reveal' in target.dataset) return revealFlash();
     if (target.dataset.rate) return rateFlash(target.dataset.rate);
     if ('flashSpeak' in target.dataset) return speak(learningSession.snapshot().currentEntry);
@@ -299,7 +306,9 @@
     dispatch(action) {
       if (activeKind === 'flashcard') {
         if (action === 'REVEAL') revealFlash();
-        else if (action === 'NEXT' || action === 'RATE_GOOD') rateFlash('good');
+        else if (action === 'NEXT') nextFlash();
+        else if (action === 'PREVIOUS') previousFlash();
+        else if (action === 'RATE_GOOD') rateFlash('good');
         else if (action === 'RATE_HARD') rateFlash('hard');
         return;
       }

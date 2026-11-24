@@ -7,12 +7,17 @@
 
   function resolveKeyboardAction(context = {}) {
     const tagName = String(context.tagName || '').toUpperCase();
-    if (!context.active || context.repeat || context.composing || context.dialogOpen || context.interactive) return null;
-    if (tagName === 'TEXTAREA' || tagName === 'SELECT' || tagName === 'A' || tagName === 'BUTTON' || context.multiline) return null;
+    if (!context.active || context.repeat || context.composing || context.dialogOpen) return null;
+    if (tagName === 'TEXTAREA' || tagName === 'SELECT' || context.multiline) return null;
+
+    // Arrows navigate the Activity; they never activate the focused control.
+    if (context.key === 'ArrowLeft') return tagName === 'INPUT' ? null : 'PREVIOUS';
+    if (context.key === 'ArrowRight') return tagName === 'INPUT' ? null : 'NEXT';
+
+    // Every other key belongs to the control that has focus.
+    if (tagName === 'A' || tagName === 'BUTTON' || context.interactive) return null;
 
     if (context.key === 'Escape') return 'CLOSE';
-    if (context.key === 'ArrowLeft' && tagName !== 'INPUT') return 'PREVIOUS';
-    if (context.key === 'ArrowRight' && tagName !== 'INPUT') return 'NEXT';
     if (context.key === 'Enter') {
       if (context.emptyInput && context.kind !== 'flashcard') return null;
       if (context.kind === 'flashcard') return context.revealed ? 'NEXT' : 'REVEAL';

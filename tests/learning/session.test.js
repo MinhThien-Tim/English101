@@ -103,3 +103,34 @@ test('a completed snapshot remains completed when restored', () => {
   assert.equal(restored.snapshot().status, 'completed');
   assert.equal(restored.snapshot().currentEntry, null);
 });
+
+test('previous steps back one prompt and clears the answer state', () => {
+  const three = [
+    { id: 'one', answer: 'alpha' },
+    { id: 'two', answer: 'beta' },
+    { id: 'three', answer: 'gamma' },
+  ];
+  const session = createLearningSession({ entries: three, strategy, kind: 'flashcard' });
+  session.start();
+  session.dispatch({ type: 'REVEAL' });
+  session.dispatch({ type: 'NEXT' });
+  session.dispatch({ type: 'REVEAL' });
+  session.dispatch({ type: 'NEXT' });
+  assert.equal(session.snapshot().index, 2);
+
+  session.dispatch({ type: 'PREVIOUS' });
+  const snapshot = session.snapshot();
+  assert.equal(snapshot.index, 1);
+  assert.equal(snapshot.currentEntry.id, 'two');
+  assert.equal(snapshot.answerState.revealed, false);
+});
+
+test('previous at the first prompt keeps the index at zero', () => {
+  const session = createLearningSession({ entries, strategy });
+  session.start();
+  session.dispatch({ type: 'PREVIOUS' });
+  const snapshot = session.snapshot();
+  assert.equal(snapshot.index, 0);
+  assert.equal(snapshot.status, 'active');
+  assert.equal(snapshot.currentEntry.id, 'one');
+});
